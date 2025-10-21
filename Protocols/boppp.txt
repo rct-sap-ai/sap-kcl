@@ -1,0 +1,2523 @@
+Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 1 of 74 
+  
+ 
+PROTOCOL FULL TITLE:  
+ Beta-blockers Or Placebo for Primary 
+Prophylaxis of oesophageal varices (BOPPP 
+Trial). A blinded, UK multi -centre, clinical 
+effectiveness and cost -effectiveness 
+randomised controlled trial.  
+ 
+ 
+PROTOCOL SHORT TITLE:  
+Beta -blockers or placebo for primary prophylaxis (BOPPP) of oesophageal varices trial.  
+ 
+ 
+ 
+ 
+ 
+Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 2 of 74 
+ Sponsor  King’s College Hospital NHS Foundation Trust (KCH)  
+Funder  NIHR Health Technology Assessment (17/32/04)  
+Sponsor’s protocol number  KCHBOPPP01  
+IRAS Reference  255446  
+EUDRACT number  2018 -002509 -78 
+ISRCTN  ISRCTN10324656  
+CPMS reference number  40439  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 3 of 74 
+  
+Contact Information  
+Sponsor - King’s College Hospital NHS Foundation Trust  
+Amy Holton  
+King’s Health Partners Clinical Trials Office  
+F16 Tower Wing, Guy’s Hospital, Great Maze Pond  
+London, SE1 9RT  
+Telephone : 020 718  85732  
+Email: amy.holton@kcl.ac.uk   
+ 
+Chief Investigator - Dr Vishal C. Patel   
+Consultant in Hepatology  
+Institute of Liver Studies, King’s College Hospital NHS Foundation Trust  
+Denmark Hill, London, SE5 9RS  
+Telephone: 020 3299 3713  
+Email:  vishal.patel@nhs.net  
+ 
+Chief Scientific Investigator  - Dr Mark J. McPhail  
+Consultant in Hepatology & Intensive Care  
+Institute of Liver Studies, King’s College Hospital NHS Foundation Trust  
+Denmark Hill, London, SE5 9RS  
+Telephone: 020 3299 1558  
+Email:  mark.mcphail@kcl.ac.uk  
+ 
+Trial Statistician  - Dr Ben Carter  
+Reader  in Biostatistics  
+Kings College London Clinical Trials Unit  
+PO64, Institute of Psychiatry, De Crespigny Park  
+Denmark Hill, London, SE5 9RF  
+Tel: 0207 848 0532  
+Email:  ben.carter@kcl.ac.uk   
+ 
+BOPPP Trial Email address  - kch-tr.BOPPP trial@nhs.net  
+Funder: This project is funded by the National Institute for Health Research (NIHR) [ Health 
+Technology Programme (NIHR grant reference: 17/32/04 )]. The views expressed are those of 
+the author(s) and not necessarily those of the NIHR or the Department of Health and Social 
+Care.  
+ 
+ 
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 4 of 74 
+ Trial Synopsis  
+Title of clinical trial  
+ Beta -blockers or placebo for primary prophylaxis of 
+oesophageal varices.  
+A blinded, multi -centre, clinical effectiveness and 
+cost-effectiveness randomised controlled trial.  
+Protocol Short Title/Acronym   Beta-blockers Or Placebo for Primary Prophylaxis of 
+oesophageal varices (BOPPP) Trial  
+Trial Phase if not mentioned in title   Phase IV 
+Sponsor name   King’s College Hospital NHS Foundation Trust  
+Chief Investigator   Dr Vishal C. Patel  
+Chief Scientific Investigator   Dr Mark J. W. McPhail  
+Eudract number   2018 -002509 -78 
+IRAS number   255446  
+Medical condition or disease under 
+investigation   Cirrhosis of the liver with small oesophageal varices 
+which have not bled  
+Purpose of clinical trial   To determine if carvedilol reduces the rate of all-cause 
+decompensation  in patients with cirrhosis and small  
+(grade 1)  oesophageal varices  
+Primary objective   1. To determine the clinical effectiveness in 
+reduction of all -cause decompensation in patients 
+treated with carvedilol versus placebo after 3 
+years.  
+2. To determine the cost -effectiveness of Carvedilol 
+in patients with small oesophageal varices.   
+Secondary objective (s)   To determine if primary prophylaxis is cost -effective, 
+and if this therapy can be delivered in primary care    
+Trial Design   Multi -centre, Phase IV, blinded (participant, 
+investigator, analyst), prospective randomised 
+controlled trial of Beta -blockers Or Placebo for 
+Primary Prophylaxis of oesophageal varices . 
+Endpoints   PRIMARY ENDPOINTS  
+1. Time to first decompensating event listed in 
+section 2 
+2. Cost -utility of NSBB over trial follow up to 3 years.  
+SECONDARY ENDPOINTS  
+From baseline to 3 years unless explicitly stated  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 5 of 74 
+ 1. Estimation of the 1, and 3 -year variceal bleed rate 
+by allocation, and associated number needed to 
+treat  
+2. Progression to medium/large varices requiring 
+clinical intervention  
+3. Development of gastric, duodenal or ectopic 
+varices  
+4. Composite of progression in variceal size or 
+variceal bleeding as per 1 and 2 by 3 years  
+5. Quality of life, EQ -5D-5L 
+Sample Size   740 patients  
+Summary of eligibility criteria   Patients with small (grade 1) oesophageal varices 
+with cirrhosis of any cause.  
+IMP, dosage and route of 
+administration   Oral Carvedilol 6.25 mg to 12.5 mg OD. 12.5 mg can 
+be taken as 6.25 mg BD if preferred by patient.  
+Active comparator product(s)   Oral Placebo 1 to 2 tablets  
+Duration of trial   Combined 3-year follow up or a n event -driven  
+follow -up (n=185  decompensating events )  
+Version and date of final protocol   4.0, 31 MAY 2023 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 6 of 74 
+ Version Control  
+Version  Date of 
+version  Reason for change  
+1.0 20 Dec  2018  NA - First version  
+ 
+1.1 17 Jan 2019  1) Updating data collection activity (Healthcare usage questionnaire), 2) 
+Protocolising posting trial IMP if patient loses medication, 3) Harmonising 
+Inclusion Criteria, 4) Updating appendices.  
+ 
+1.2 28 Feb 2019  1) Phase of clinical trial from III to IV, 2) Modifying Inclusion and Ex clusion 
+Criteria, 3) Documenting data collection activities in each visit 
+description, 4) Protocolising that dose modification must be ratified by a 
+clinician  
+1.3 06 Mar 2019  1) Inclusion of Patient Identification Centres as trial site type, 2) Naming 
+REC committee, TSC and DMC members  
+1.4 05 Jun 2019  1) Version control table inserted, 2) advice about withdrawing patients 
+whose varices progress, 3) tighter definition of inclusion / exclusion 
+criteria, 4) inclusion of data collection activities (text and s chedule of 
+visits), 5) advice on endoscopy photo -documentation (text and 
+appendix), 6) inclusion of research nurses for qualitative interviews, 7) 
+tighter rules for IMP dose modification (text and appendix), 8) alert card 
+update for inclusion of IMP dose, 9) statement that 12.5 mg daily dose 
+can be taken as 6.25 mg BD.  
+1.5 26 Feb 2020  1) Modified Inclusion Criteria (extended window of OGD diagnosis of 
+Grade 1 varices), 2) inclusion of a new secondary endpoint (gastric, 
+duodenal or ectopic varices), 3) changes to the schedule of visits 
+indicating timeline requirement for pre -consent hepatocellular cancer 
+surveillance ultrasound, 4) advice on adverse event reporting, 5) alert 
+card update for inclusion of date and signing of researcher, 6) 
+clarifications t o the qualitative research component, 7) clarified 
+processes on randomisation and 8) inclusion of the MBOP mechanistic 
+sub-study.  
+1.6 20 Nov 2020  1) Change in Sponsor contact details.  
+2) Clarification of exclusion criteria  and addition of new criterion . 
+3) Addition of a repeat staff interview as part of the  Qualitative Research.  
+4) Addition of a COVID -19 guidance section  
+5) Clarification of withdrawal criteria  
+2.0 18 Jun 2021  1) Clarification of outcome events that lead to permanent withdrawal 
+from IMP and/or the trial 
+2) Change from nurse to delivery staff  
+3) Clarification of criteria for a pause in trial IMP  
+4) Removal of temperature monitoring requirement  
+5) Addition of figure 2  
+6) Clarification of clinician input for dose modifications  
+7) Clarification of non -variceal bleed   
+8) Updating appendices  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 7 of 74 
+ 3.0 30 May  2022  1) Amended q ualitative research  sections to reflect completion  
+2) Addition of table 2 – COPD/Asthma considerations for recruitment  
+3) SAE reporting  timelines  post completion/termination of IMP clarified  
+4) Duration of recruitment period and Pilot 2 updated to reflect changes 
+due to COVID -19 
+5) Clarified permanent termination of IMP due to red signs  
+6) Appendix 9 – MBOP summary updated  
+7) Typographical corrections  
+4.0 31 May 2023  1) Changes made throughout protocol due to approved modification of primary 
+outcome from ‘variceal haemorrhage’ to ‘all -cause decompensation’, 
+encompassing change in sample size from 1,200 to 740 participants  
+2) Removal of pilot 2  
+3) Addition of table 1 – outcome table  
+4) Statistical amendments made to reflect chang es in event rate of new primary 
+endpoint  
+Table of Contents  
+Trial Synopsis  ................................ ................................ ................................ ................................ ...........  4 
+Abbreviations  ................................ ................................ ................................ ................................ .........  10 
+1. Background and Rationale  ................................ ................................ ................................ .........  12 
+2. Rationale for adapting the primary outcome to all -cause decompensation  ...............................  14 
+2.1. Progression or development of varices without meeting the primary outcome  ................  16 
+2.2. Outcomes following last patient trial visit (at 36 months)  ................................ .................  17 
+3. Trial Objectives and Design  ................................ ................................ ................................ ........  17 
+3.1. Trial objectives  ................................ ................................ ................................ ...................  17 
+3.2. Trial endpoints  ................................ ................................ ................................ ...................  18 
+3.3. Trial design  ................................ ................................ ................................ ........................  18 
+3.3.1.  MBOP  - Mechanism of beta -blockade on bacterial translocation in portal hypertension 
+(MBOP) sub -study.  ................................ ................................ ................................ .........................  19 
+3.4. Trial flowchart / Overview  ................................ ................................ ................................ . 20 
+3.5. Schedule of visits ................................ ................................ ................................ ................  21 
+4. Trial Medication  ................................ ................................ ................................ .........................  22 
+4.1. Investigation Medicinal Product – active drug ................................ ................................ ... 22 
+4.2. Investigation Medicinal Product – placebo  ................................ ................................ ........  23 
+4.3. Dosing regimen  ................................ ................................ ................................ ..................  23 
+4.4. IMP risks  ................................ ................................ ................................ ............................  24 
+4.5. Drug acco untability  ................................ ................................ ................................ ...........  24 
+4.6. Packing and storage of IMP  ................................ ................................ ...............................  25 
+4.6.1.  Trial medication labelling  ................................ ................................ ..............................  25 
+4.6.2.  Transportation of trial medication to hospital Pharmacy  ................................ ..............  25 Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 8 of 74 
+ 4.7. Trial participant compliance  ................................ ................................ ..............................  25 
+4.8. Concomitant medication  ................................ ................................ ................................ ... 26 
+5. Selection and Withdrawal of Participants  ................................ ................................ ...................  27 
+5.1. Inclusion criteria  ................................ ................................ ................................ ................  27 
+5.2. Exclusion criteria  ................................ ................................ ................................ ................  27 
+5.3. Selection of participants  ................................ ................................ ................................ .... 29 
+5.4. Permanent withdrawal from trial IMP  ................................ ................................ ...............  30 
+5.5. Permanent withdrawal from the trial  ................................ ................................ ................  33 
+5.6. Expected duration of trial  ................................ ................................ ................................ .. 33 
+6. Trial Procedures and Visits  ................................ ................................ ................................ .........  33 
+6.1. Setting and context  ................................ ................................ ................................ ............  33 
+6.2. Identifying patients  ................................ ................................ ................................ ............  33 
+6.3. Screening visit and informed consent  ................................ ................................ ................  35 
+6.4. Baseline visit  ................................ ................................ ................................ ......................  35 
+6.4.1.  Randomisation ................................ ................................ ................................ ...............  36 
+6.4.2.  Qualitative interviews to understand recruitment [completed in April 2021]  ................  36 
+6.5. Week 1 visit (dose titration)  ................................ ................................ ...............................  37 
+6.6. Week 6 safety telephone call  ................................ ................................ .............................  37 
+6.7. Month 6 -36 (+/ - 6 weeks at each interval)  ................................ ................................ ........  37 
+6.8. End of treatment (or early discontinuation) procedures  ................................ ....................  38 
+6.9. Extended follow up by electronic record linkage  ................................ ................................  38 
+6.10.  Qualitative interviews [completed]  ................................ ................................ ................  39 
+6.10.1.  Patient level to understand recruitment barriers and enablers  ................................ ..... 39 
+6.10.2.  Site level to understand recruitment barriers and enablers  ................................ ...........  39 
+6.10.3.  Interviews with General Practitioners (GPs)  ................................ ................................ .. 39 
+6.11.  Quality of Life and Health Economic Analysis  ................................ ................................  40 
+6.12.  Overview of outcome measures by visit  ................................ ................................ .........  41 
+6.13.  COVID -19 guidance  ................................ ................................ ................................ ........  42 
+7. Blinding  ................................ ................................ ................................ ................................ ...... 43 
+7.1. Definitions  ................................ ................................ ................................ .........................  43 
+7.2. Emergency unblinding/ code break  ................................ ................................ ...................  43 
+7.3. Blinding of trial personnel  ................................ ................................ ................................ .. 43 
+7.4. Planned un -blinding of trial personnel  ................................ ................................ ...............  44 
+8. Interim Analysis ................................ ................................ ................................ ..........................  45 
+9. Assessment of Efficacy  ................................ ................................ ................................ ...............  45 Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 9 of 74 
+ 9.1. Primary efficacy parameters  ................................ ................................ ..............................  45 
+9.2. Secondary effectiveness and safety parameters  ................................ ................................  46 
+9.3. Procedures for assessing effectiveness parameters  ................................ ...........................  46 
+10. Assessment of Safety  ................................ ................................ ................................ .............  47 
+10.1.  Planned unblinding due to safety  ................................ ................................ ..................  47 
+10.2.  Procedures for reporting and recording adverse events  ................................ ................  47 
+10.3.  Reporting responsibilities ................................ ................................ ...............................  49 
+10.4.  Events that do not require reporting  ................................ ................................ .............  50 
+10.5.  Treatment stopping rules  ................................ ................................ ..............................  50 
+11. Statistics  ................................ ................................ ................................ ................................ . 51 
+11.1.  Sample s ize ................................ ................................ ................................ ....................  51 
+11.1.1.  Estimation of all -cause decompensation rate  ................................ ................................  51 
+11.1.2.  Sample size calculation  ................................ ................................ ................................ .. 51 
+11.1.3.  Higher hazard ratio  ................................ ................................ ................................ ........  51 
+11.2.  Statistical analysis and quantitative data  ................................ ................................ ...... 51 
+11.2.1.  Internal pilot  ................................ ................................ ................................ ..................  51 
+11.2.2.  Primary outcome  ................................ ................................ ................................ ...........  51 
+11.2.3.  Secondary outcome  ................................ ................................ ................................ .......  52 
+11.2.4.  Population under investigation  ................................ ................................ ......................  54 
+11.2.5.  Protocol deviations and violations  ................................ ................................ .................  54 
+11.3.  Health economic assessment  ................................ ................................ ........................  54 
+11.4.  Qualitative data  ................................ ................................ ................................ .............  55 
+12. Trial Steering Committee  ................................ ................................ ................................ .......  55 
+13. Independent Data Monitoring Committee  ................................ ................................ .............  56 
+14. Direct Access to Source Data Documents  ................................ ................................ ...............  56 
+15. Ethics and Regulatory Approvals  ................................ ................................ ............................  56 
+16. Quality Assurance  ................................ ................................ ................................ ..................  57 
+17. Data Handling and Management ................................ ................................ ............................  57 
+17.1.  Source data worksheet completion  ................................ ................................ ...............  58 
+17.2.  Data handling  ................................ ................................ ................................ ................  58 
+17.3.  Data validation  ................................ ................................ ................................ ..............  58 
+17.4.  Record retention  ................................ ................................ ................................ ............  58 
+17.5.  End of trial definition  ................................ ................................ ................................ ..... 58 
+17.6.  Archiving  ................................ ................................ ................................ ........................  58 
+18. Amendmen ts ................................ ................................ ................................ .........................  59 Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 10 of 74 
+ 19. Publication Policy  ................................ ................................ ................................ ...................  59 
+20. Insurance / Indemnity  ................................ ................................ ................................ ............  59 
+21. Financial Aspects  ................................ ................................ ................................ ....................  60 
+22. Signatures  ................................ ................................ ................................ ..............................  60 
+Appendix 1 – Varices size assessment & gastroscopy report photo -documentation  ..........................  61 
+Appendix 2 – Dose titration procedures  ................................ ................................ .............................  63 
+Appendix 3 – Acute Kidney Injury criteria  ................................ ................................ ...........................  64 
+Appendix 4 – BOPPP Participant Alert Card  ................................ ................................ ........................  65 
+Appendix 5 – Liver Prognostic Scoring Systems  ................................ ................................ ..................  66 
+Appendix 6 – Clinical Grading of Ascites  ................................ ................................ .............................  68 
+Appendix 7 – Grading of Hepatic Encephalopathy ................................ ................................ ..............  69 
+Appendix 8 – Trial Steering Committee and Data Monitoring Committee Members  ..........................  70 
+Appendix 9 – MBOP Sub -study Summary  ................................ ................................ ...........................  71 
+ 
+Abbreviations  
+ACLF  Acute -on-Chronic Liver Failure   HCC Hepatocellular Carcinoma  
+AD Acute Decompensation   HE Hepatic Encephalopathy  
+ADR  Adverse Drug Reaction   HES Health Episode Statistics  
+AE Adverse Event   HR Heart Rate  
+AKI Acute Kidney Injury   ICH International Conference on 
+Harmonisation  
+APRI  Aspartate aminotransferase -to-
+platelet ratio index   ICF Informed Consent  Form  
+BP Blood Pressure   IME Important Medical Events  
+BPM  Beats Per Minute   IMP Investigational Medicinal Product  
+Co-I Co-Investigator   INR International Normalised Ratio  
+CI Chief Investigator   ITT Intention to Treat  
+CRF Case Report Form   IV Intravenous  
+CRO  Contract Research Organisation   IVRS  Interactive Voice Response System  
+CRP C-Reactive Protein   KCTU  King’s College London Clinical Trials Unit  
+CTCAE  Common Terminology Criteria 
+for Adverse Events   KHP-
+CTO King’s Health Partners Clinical Trial 
+Office  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 11 of 74 
+ DMC  Data Monitoring Committee   MBOP  Mechanism of beta -blockade on 
+bacterial translocation in portal 
+hypertension sub -study.  
+EC Ethics Committee   MHRA  Medicines & Healthcare Regulatory 
+Agency  
+EU European Union   mmHg  millimetres of mercury  
+eCRF  Electronic Case Report Form   NIHR  National Institute for Health Research  
+eGFR  Estimated Glomerular Filtration 
+Rate   NSBB  Non Selective Beta Blocker  
+FBC Full Blood Count   NYHA  New York Heart Association  
+GCP Good Clinical Practice   OD Once Daily  
+GI Gastro -Intestinal   OGD  Oesophago -gastric duodenoscopy  
+GP General Practitioner   OLTx  Orthotopic Liver Transplantation  
+Hb Haemoglobin   OV Oesophageal Varices  
+HRS  Hepatorenal syndrome   SOC Standard of Care  
+PIN Patient Identification Number   SUSAR  Suspected Unexpected Serious Adverse 
+Reaction   
+PO Per Oral   TE Transient Elastography  
+QoL Quality of Life   TIPS Transjugular Intrahepatic Porto -Systemic 
+Shunt  
+REC Research Ethics Committee   TS Trial Statistician  
+RN Research Nurse   TSC Trial Steering Committee  
+SAE Serious Adverse Event   TMG  Trial Management Group  
+SAP Statistical Analysis Plan   UK United Kingdom  
+SAR Serious Adverse Reaction   VH Variceal Haemorrhage  
+SBP Systolic Blood Pressure   95%CI  95% Confidence Interval  
+ 
+ 
+ 
+ 
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 12 of 74 
+ 1. Background and Rationale  
+Liver disease is the fifth commonest cause of death in the developed world and is rising in 
+incidence, with liver failure  being  a common mode of death in these patients1. The global 
+disease burden of cirrhosis is rising owing to an increased prevalence of alcohol and non -
+alcoholic -related liver disease. In England and Wales, it is estimated that 60,000 people have 
+cirrhosis with approximately 11,000  attributable deaths per annum1. Standardised mortality 
+has risen by 400% from 1970, commonly in those of working age and in contrast to the other 
+major causes of mortality.   
+Portal hypertension is a frequent clinical syndrome and complication of cirrhosis that is defined by an 
+increase in porto -systemic pressure gradient in any portion of the portal venous system 2. Although 
+portal hypertension can result from pre -hepatic portal or splenic vein thrombosis, post -hepatic 
+abnormalities or intrahepatic non -cirrhotic causes; cirrhosis remains the commonest cause of portal 
+hypertension in 90% of cases.  
+Of the complications that directly result from portal hypertension; the development of varices and 
+variceal haemorrhage (VH) is one of the most significant. The management for va rices and variceal 
+haemorrhage has markedly advanced over the past decades due to research on animal models, 
+introduction of new effective treatments and many randomized clinical trials. Through consensus 
+conferences , definitions and validated endpoints ha ve been agreed and practice recommendations 
+made. As a consequence of  consensus conference s and an evolution in disease definitions and 
+understanding,  definitions and validated endpoints have been agreed and practice recommendations 
+made. The most recent c onsensus conference  was the 6th Baveno Consensus Workshop 20153. These 
+inform the British Society of Gastroenterology (BSG) guidance 4.  
+Following the above consensus conferences , oesophageal varices (OV) are graded by size or features 
+evident at oesophago -gastric duodenoscopy (OGD) con sistent with increased risk of future bleeding 
+(high risk stigmata). Grading of OV is by endoscopic appearance or estimation of diameter ( ≤5mm is 
+deemed small) and directly affects the risk of VH or death  (Appendix 1) .  
+Despite the advances of medical, endoscopic and radiological therapy the mortality rates of acute 
+variceal haemorrhage is still 10% -20% 5. Prevention of VH is ther efore vital in those who have va rices . 
+Prophylaxis against future bleeding can be by pharmacological methods or endoscopic therapies. The 
+main pharmacological choice is non -selective beta -blockade (NSBB) and following several randomised 
+controlled trials of different endoscopic methods band l igation is now the preferred endoscopic therapy Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 13 of 74 
+ of OV. The current evidence base, and international recommendations suggest that there is no benefit 
+of NSBB in pre -primary prophylaxis for patients without varices.  However, there is a clear benefit in 
+the reduction of VH with NSBB in patients with moderate -large varices (>5mm in diameter), or those 
+with advanced liver disease6.  There is currently no clear evidence to guide the use of NSBB in patients 
+with small varices.  
+The risks of NSBB are that approximately 15% of patients may have absolute or relative 
+contraindications to therapy and another 15% require  dose -reduction or discontinuation due to 
+(reversible) side -effects (e.g. fatigue, weakness, shortness of breath) which may discourage patients 
+from using these drugs10. In patients with well compensated disease the risk of mortality from NSBB is 
+negligible. There have been concerns on the use of NSBBs in patients with significant decompensati on; 
+with an increased risk of death reported in patients with renal impairment, hyponatraemia and 
+refractory ascites 11. Patients with refractory ascites that are on NSBB for prim ary prophylaxis should 
+be closely monitored and dose reduction or discontinuation can be considered in those who develop 
+low blood pressure and impairment in renal function3. Patients who are well compensated with no or 
+minimal ascites and varices are still likely to benefit from NSBB. Whil e those who have demonstrated 
+intolerance to, or lack of efficacy with propranolol or other older agents may be switched to carvedilol12.  
+Of the many NSBB used in clinical practice carvedilol has gained in favour over propranolol or other 
+agents due to its dosing schedule, tolerability a nd clinical effectiveness. While evidence is clarifying on 
+the best method of primary prophylaxis in large varices 7 there is equipoise on whether those with small 
+varices require primary prophylaxis at all. The implication for this project is that there is sufficie nt doubt 
+to allow placebo as a control arm in comparisons of NSBB for primary prophylaxis in those with small 
+varices and that carvedilol is an appropriate single agent to investigate.  
+The main benefits of NSBB s include reduction in rate of progression to  bleeding or progression to larger 
+varices when initial variceal size is moderate6 or more. This trial s eeks to determine if there is a benefit 
+for those with small varices. NSBBs are low cost, easy to administer and do not require specific expertise 
+(they can be managed in primary care). As they act by decreasing portal pressure, NSBB may also reduce 
+the de velopment of ascites and decompensation 8,9. International consensus in trials in po rtal 
+hypertension supports using all-cause decompensation as the optimal endpoint. All-cause 
+decompensation encompasses progression of cirrhosis into clinical events such as development of 
+ascites, hepatic encephalopathy, worsening jaundice, variceal bleed ing, renal failure and liver -related 
+death. Several smaller trials suggest that NSBB s have potential effects over some or all of these aspects 
+of decompensation but this remains unproven in patients with small varices.  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 14 of 74 
+ 2. Rationale for adapting the primary outcome  to all -cause decompensation  
+Original trial objective:  To determine if carvedilol reduces rate of variceal haemorrhage  in patients with 
+cirrhosis and small oesophageal varices  
+New trial objective:  To determine if carvedilol reduces rate of all-cause  decompensation  in patients with 
+cirrhosis and small oesophageal varices  
+Deaths due to complications of cirrhosis continue to rise whereas deaths in other non -liver disease s 
+areas are declining as further advances are being made. In the UK alone, a 400% in crease in mortality 
+has been reported over a 40 year period from 1970 to 2010 in those  with cirrhosis aged <65 years. 
+Cirrhosis causes pressure changes inside the abdomen and swelling of  veins in the oesophagus (called 
+“varices”) which can  lead to catastrophic  bleeding . Portal hypertension is the main complication of 
+cirrhosis, which leads to the development of varices and variceal haemorrhage and other forms of 
+decompensation such as encephalopathy, ascites and renal failure. Despite advances in th erapies, the 
+mortality rate for acute variceal haemorrhage (VH) is still ~15%. Currently, there are no proven 
+preventative methods available and therefore prevention of VH and all cause decompensation is vital 
+in those who have  varices.  
+The impetus for thi s modification of the  primary outcome is (i) the strength of evidence of the 
+importance of this endpoint and (ii) a pivot  in scientific opinion from  the hepatology community . In the 
+PREDESCI study 1, all-cause decompensation was used as the primary endpoint  in a cohort of patients 
+similar to  those in  BOPPP. These patients had cirrhosis and portal hypertension, however, clinically 
+significant portal hypertension  (CSPH) was defined by invasive portal pressure measurements. In 
+BOPPP, CSPH is defined by the pres ence of small varices. Therefore, the populations do not completely 
+overlap , but BOPPP is the more pragmatic design with higher external validity to a larger population. 
+The primary efficacy of Carvedilol in the smaller PREDESCI RCT wa s for a benefit in reducing all -cause 
+decompensation in particular , ascites . This is because the haemodynamic effects of Carvedilol will not 
+only affect oesophageal varices but t he entire portal venous system, which drives other clinical 
+decompensating sym ptoms, including ascites, hepatic encephalopathy and renal dysfunction.  
+Carvedilol is also potentially likely to  improve mortality including in groups with ascites2 and i n patients 
+with acute -on-chronic liver failure (ACLF) . Carvedilol was associated with improvement in  mortality and 
+                                                           
+1Beta blockers to prevent decompensation of cirrhosis in patients with clinically significant portal hypertension (PREDESCI): a randomised, double -blind, 
+placebo -controlled, multicentre trial.  
+Villanueva C, Albillos A, Genescà J, Garcia -Pagan JC, Calleja JL, Aracil C, Bañares R, Morillas RM, Poca M, Peñas B, Augustin S, Abraldes JG, Alvarado E, Torres F, 
+Bosch J.  
+2 Carvedilol use is associated with improved  survival in patients with liver cirrhosis and ascites  
+Rohit Sinha, Khalida A Lockman, Nethmee Mallawaarachchi, Marcus Robertson, John N Plevris, Peter C Hayes  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 15 of 74 
+ less spontaneous bacterial peritonitis3. Therefore , it is clear that Carvedilol could favourably impact a 
+wide range of decompensating events in patients with cirrhosis, its effect is not limited to variceal 
+bleeding , and there  is a growing expert view  that all -cause decompensation is a more appropriate 
+endpoint in cirrhosis studies.  In a meta -analysis of clinical trials in patients with invasively measured 
+portal hypertension those who responded to beta -blockers had reduced num ber of not only variceal 
+bleeding -related  but also decompensating events (ascites, hepatorenal syndrome or spontaneous 
+bacterial peritonitis4). 
+Recent consensus has crystallised  around decompensation as the most appropriate endpoint for phase 
+III trials from  the LiverHope Consortium5. This consortium encompasses 16 partners from 7 European 
+countries including global hepatology experts. They define hospitalisation due to complications of 
+cirrhosis and survival as the most important endpoint s to consider. T hey define complications of 
+cirrhosis as ascites, encephalopathy, variceal bleeding, infection or acute kidney injury. Given the 
+increasing focus on decompensation as a valuable outcome , this has been encapsulated in the new 
+endpoint.  
+The all -cause decomp ensation endpoint has been  discussed at the British Association for the Study of 
+the Liver Research Steering Group who ratified this approach.  Furthermore, all -cause  decompensation 
+is a more meaningful endpoint to patients with cirrhosis as any worsening o f their liver disease or need 
+for hospitalisation due to worsening liver failure is seen as a worrying event, and is closely linked with 
+quality of life as well as overall survival.  
+2.1. Definition of all -cause decompensation  
+All-cause decompensation is defined within BOPPP as the occurrence of any of the below:  
+ Variceal haemorrhage  
+ New or worsening ascites  
+o Defined by clinical examination or radiological findings  
+ New or worsening hepatic encephalopathy  
+o Defined by West -Haven Grade >1 (overt HE)  
+ Spontaneous bacterial peritonitis  
+o Ascitic fluid cell PMN cell count >250/mm3 
+ Hepatorenal syndrome  
+ Increase in Child Pugh Grade by 1 grade or MELD by 5 points  (Appendix 5)  
+ Liver -related mortality  
+                                                           
+3 Treatment with carvedilol improves survival of patients with acute -on-chronic liver failure: a  randomized controlled trial  
+Manoj Kumar, Sumit Kainth, Ashok Choudhury, Rakhi Maiwall, Lalita G Mitra, Vandana Saluja, Prashant Mohan Agarwal, Saggere Mu ralikrishna Shasthry, Ankur 
+Jindal, Ankit Bhardwaj, Guresh Kumar, Shiv K Sarin  
+4 Lowering Portal Press ure Improves Outcomes of Patients With Cirrhosis, With or Without Ascites: A Meta -Analysis  
+Turco et al Clin Gastro Hep 2020: 18(2):;313 - 
+5 Endpoints and design of clinical trials in patients with decompensated cirrhosis: Position paper of the LiverHope Con sortium  
+Sola et al. J Hepatology 2021: 74 (1); 200 -219 Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 16 of 74 
+ Within the trial two ethical issues require further definition : 
+2.2. Progression or development of varices without meeting the primary outcome  
+The primary outcome is all -cause decompensation  as defined above. Post -decompensation, with the 
+exception of variceal haemorrhage, there is no clear rationale or evidence  in the literature to suggest 
+what the defin itive method is with carvedilol. T herefore , BOPPP  participants are to continue with trial 
+IMP and/or pause IMP when hospitalised. If a trial participant has a  variceal haemorrhage they should 
+discontinue IMP, and  should be started on NSBB as per standard of care. Participants who  meet the 
+primary endpoint will not be unblinded.  
+Similarly, if during surveillance (planned or unplanned), the patient’s oesophageal varices have 
+progressed to medium/large, or they have  developed varices elsewhere in the GI tract  (detected 
+endoscopically) , IMP is to be permanently discontinued. All efforts are to be made to continue the 6 -
+monthly follow up for data collection. These participants may be unblinded if it influences their 
+subsequent clinical management. This has been explicitly added to the trial design in terms of an 
+important combined secondary outcome, and the power calculation takes this point into account.  
+Table 1 provides  guid ance  to research teams on how to proceed with participants who meet any of the 
+events  listed in  the definition of all -cause decompensation (primary outcome)  and/or progress in their 
+varices size  (secondary outcome) . 
+Table 1.  Proposed clinical management of partic ipants following progression to all -cause 
+decompensation  
+ Outcome  Primary 
+endpoint  Hospitalised  Action with IMP  Open label 
+carvedilol  
+1 Variceal haemorrhage  YES YES Stop permanently  YES 
+2 Progression to medium/large 
+varices  or development of gastric, 
+duodenal, or ectopic varices  NO Potentially  Stop permanently  YES 
+3 New or worsening ascites   YES Potentially  Continue1 NO2 
+4 New or worsening encephalopathy   YES Potentially  Continue1 NO2 
+5 Increase in Child Pugh by 1 or MELD 
+by 5  YES Potentially  Continue1 NO2 
+6 Spontaneous bacterial peritonitis   YES YES Pause while 
+hospitalised  NO2 
+7 Hepatorenal syndrome   YES YES Pause while 
+hospitalised  NO2 
+8 Liver -related mortality  YES N/A N/A N/A 
+1 unless hospitalised and requires pause at PI discretion – restart on improvement/discharge  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 17 of 74 
+ 2 unless sustained decompensation/progression which at PI discretion and following discussion with central team 
+requires open label carvedilol  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+2.3. Outcomes following  last patient trial visit (at 36 months)  
+To answer the trial question in an ethical, pragmatic and cost -effective manner we have set  a combined 
+3-year follow up or a minimum event -driven (n=185) follow up. Thereafter we would seek permission 
+to obtain  further information on certain outcomes after the patients’ last visit (e.g. at 36 months); i.e. 
+bleeding; progression; mortality; health care utilisation as part of a post IMP follow up period. This will 
+increase the power of the trial and add important additional  weight to the findings without unduly 
+impacting on the trial budget or burden to the patient. Future access to patient records will be explicitly 
+requested from patients at the time of consent. This will give a de facto  median follow up of 4 yea rs for 
+the primary outcome, at the end of the study.  
+ 
+ 
+3. Trial Objectives and Design  
+3.1. Trial objectives  
+The aim of this study  is to evaluate  the clinical  efficacy  and cost -effectiveness of NSBB in reducing  
+disease progression, defined  by all -cause  decompensation, in cirrhotic patients with small varices.  
+Primary objectives : 
+1. To determine the clinical effectiveness in the reduction of all -cause decompensation in patients 
+treated with carvedilol versus placebo at 3 years.  
+2. To determine the cost -effectiveness of Carvedilol in patients with small oesophageal varices.  
+Secondary objectives : 
+1. At 1 -year after participant recruitment opens, to assess feasibility of: recruitment, retention 
+acceptability, with progression criteria ou tlined in internal pilot 1.  Definition of variceal haemorrhage:  
+ haematemesis and/or melaena with either  
+1) endoscopic evidence of variceal bleeding or stigmata of recent haemorrhage and at 
+least a 2 g/L reduction in haemoglobin within 24 hours of admission; or  
+2) massive upper gastrointestinal bleeding leading to death  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 18 of 74 
+ 2. To determine additional clinical benefits of Carvedilol versus placebo for: reduction of variceal size 
+progression, need to initiate endoscopic management of varices (endoscopic band ligation (EBL)), 
+deterioration in liver func tion (assessed by MELD score and Child -Pugh grade) and all -cause 
+mortality.  
+3. To investigate how this is best delivered in primary care, by general practice, using qualitative 
+approaches and GP interviews to examine barriers and enablers to implementation.  
+ 
+3.2. Trial endpoints  
+Primary endpoints  
+1. Time to first decompensating event as defined in section 2  
+2. Cost -utility of NSBB over trial follow -up to 3 years.  
+Secondary & tertiary endpoints  
+1. Estimation of the 1, and 3 -year variceal bleed rate by allocation, and associated number needed to 
+treat.  
+2. Progression to medium/large oesophageal varices at gastroscopy requiring clinical intervention.  
+3. Development of gastric, duodenal, or ectopic or rectal varices in the GI tract at gastroscopy  
+4. Composite of progression in var iceal size and bleeding as per 1 and 2 by 3 years.  
+5. Survival (Overall, liver -related, cardiovascular -related).   
+6. Quality of life, EQ -5D-5L. 
+ 
+All of the above will be analysed until 3 years from baseline. We will seek permission for collection of 
+primary outc ome and Health Episode Statistic (HES) data post cessation of IMP until trial completion.  
+3.3. Trial design  
+A UK wide, multicentre, Phase IV, blinded (participant, outcome assessor, investigator, chief 
+investigator, and senior statistician), randomised controlled trial of beta blockade with Carvedilol versus 
+Placebo in patients with cirrhosis and small varices w ithout evidence of previous bleeding in England, 
+Wales, Scotland and Northern Ireland.  
+This trial will incorporate both a clinical primary outcome and cost effectiveness outcome to evaluate 
+the benefit to patients and society for earlier intervention with  beta -blockers. The clinical primary 
+endpoint is all-cause decompensation  from baseline until 3 years (with further data  collection until last 
+patient last visit).  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 19 of 74 
+ Diagnostic upper GI endoscopy will be performed as per UK 2015 guidelines (4) in that patie nts will 
+have an annual surveillance OGD. Treatment for VH will be by endoscopic criteria and will not be guided 
+by the trial as this represents an endpoint.  
+BOPPP includes a qualitative research programme that is part of the main trial; this  was completed  in 
+April 2021 . The results of which have informed subsequent amendments.  
+3.3.1.  MBOP  - Mechanism of beta -blockade on bacterial translocation in portal 
+hypertension (MBOP) sub -study.  
+An integrated  basic science mechanistic study has been established to investigate the mechanism of 
+effect of Carvedilol in preventing decompensation in patients with cirrhosis. All BOPPP sites will be 
+offered the opportunity to participate in MBOP, were BOPPP participa nts will be separately consented 
+to provide biological samples. Sites who are interested should email kch-tr.BOPPPtrial@nhs.net  for the 
+MBOP study protocol and appropriate documentation. There is an MBOP sum mary in Appendix 9.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 20 of 74 
+ 3.4. Trial flowchart / Overview  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Patients with cirrhosis assessed for eligibility following detection of small 
+oesophageal varices at gastroscopy  
+(approximated n= 4,000) 
+Excluded  (n = 3,26 0) 
+Not meeting inclusion 
+criteria, Refused to 
+participate, other reasons  
+Allocated to control 
+arm ( Placebo ) 
+(n = 370) 
+Enrolment  
+Randomised (n = 740) 
+Week one   
+(up-titration)  
+Week six   
+(AE review)  
+Clinic visits every six 
+months : 
+(M6, M12, M18,   
+M24, M30, M36)  
+All patients followed 
+up at the study 
+conclusion  
+All patients followed 
+up at the study 
+conclusion  
+Analysis  
+Allocated to active 
+arm NSBB  (Carvedilol ) 
+(n = 370) 
+Week one   
+(up-titration)  
+Week six   
+(AE review)  
+Clinic visits every six 
+months : 
+(M6, M12, M18,   
+M24, M30, M36)  
+Allocation  
+Follow -Up 
+Follow -Up 
+Telephone 
+call Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 21 of 74 
+ 3.5. Schedule of  visits  
+Trial procedures  Pre-
+screening  Screening  
+Visit Baseline  Week  1  
+ (+/-)  
+3 days  Week  6   
+(+/-)  
+2 w eek s  Month 6 
+(+/-) 
+6w eek s  Month  12 
+(+/-)    
+ 6 w eek s  Month  18  
+(+/-)   
+6w eek s  Month  24  
+(+/-)    
+6w eek s  Month  30  
+(+/-) 
+6w eek s  Month  36  
+(+/-) 
+6w eek s  At v ari ceal  
+bl eed  At tri al  
+com pl etion  
+(v ia notes)  
+Informed consent   X            
+Eligibility criteria   X X           
+Randomisation    X           
+Demographics*   X            
+Medical History*   X            
+Targeted physical exam*   X X***    X X X X X X   
+Weight / Height*   X X***    X X X X X X   
+Vital signs (BP/HR)*   X X X  X X X X X X X  
+TE/APRI  (FibroScan) * X             
+FBC, INR, Liver, Renal and Bone profile*    X†   X X X X X X X  
+Liver prognostic scores*  ɣ    X†   X X X X X X X  
+AUDIT -C/alcohol questionnaire *   X   X X X X X X   
+Variceal Haemorrhage Status       X X X X X X X  
+IMP dispensing    Xα   X X X X X    
+Commence IMP    X           
+Dose - titration     X X X X X X X X X  
+HCC surveillance US*  X‡‡     X X X X X X (X)  
+Gastroscopy*  X†      X  X  X X  
+Conmeds*    X X X X X X X X X   
+Adverse events  (AEs) **    X X X X X X X X  X 
+QoL questionnaire    X   X X X X X X   
+Health Care Usage    X   X X X X X X  X 
+Adherence to IMP     X  X X X X X X X  
+Telephone call      X         
+Note  *standard of care  ; **AEs collected  from baseline to  30-days post M36 visit/ permanent IMP discontinuation (not including death) , ***not repeated if screening and baseline are 
+within 2 weeks, ‡‡ completed within 6 months of screening or last SOC surveilla nce for HCC -US [alternative imaging methods [CT and / or MRI] are permitted as long as the data 
+needed is provided]), † completed within 6 months of baseline, ɣ Child -Pugh, MELD, UKELD, CLIF -C AD , α IMP to be allocated within 4 weeks of consent  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 22 of 74 
+ 4. Trial Medication  
+Procurement, manufacture, packaging and distribution of trial medication has been contracted to 
+MODEPHARMA. The company will provide central distribution services throughout the life cycle of the 
+trial. MODEPHARMA will arrange the sourcing and purchase of commercially available Carvedilol 
+tablets, Placebo manufacture, randomised double -blind IMP packaging, final QP release, storage and 
+distribution of the investigational medicinal products (IMP). The IMP will be shipped directly from the 
+final QP releasing site to the trial sites following site initiation. Please refer to the Summary of Product 
+Characteristics and Investigational Medicinal Product Dossier (IMPD) for more details about the active 
+and placeb o IMPs.  
+4.1. Investigation Medicinal Product – active drug  
+The Investigational Medicinal Product used in this trial is oral Carvedilol. Carvedilol 6.25 mg is presented 
+as an oval, slightly bi -convex white tablet marked S2 on one side and scored on the reverse.  
+Carvedilol is a vasodilatory non -selective beta -blocker, which reduces heart rate via beta -adrenergic 
+blockade, and reduces peripheral vascular resistance by selective alpha -1 receptor blockade and 
+suppression of the renin -angiotensin system through non -selective beta -blockade. Indications for use 
+include essential hypertension; chronic stable angina pectoris and as an adjunctive treatment in 
+moderate to severe stable heart failure.  
+For the management of essential hypertension; the recommended initial dose  is 12.5 mg once daily; to 
+be up -titrated to a maximum of 50 mg once daily if well tolerated4.  In patients with cirrhosis the 
+maximally tolerated dose is expected to be 12.5 mg OD. UK guidance suggests starting carvedilol at 
+6.25 mg OD and then increa sing to 12.5 mg OD (aiming for a target heart rate of 50 -55 bpm) is optimal 
+for reduction in portal pressure without increasing the risk of complications of systemic arterial 
+hypotension. The 12.5 mg daily dose can be taken as 6.25 mg BD if preferred.  
+To explore if dose escalation can be managed in primary care we incorporate a dose escalation visit at 
+week 1 post randomisation with a trial research nurse  or practitioner , followed by a week 6 telephone 
+call and then revert to 6 month follow up. The early v isits provide an opportunity for safe dose 
+adjustment. We envisage dose escalation to eventually be managed in primary care after the trial is 
+completed.  
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 23 of 74 
+ 4.2. Investigation Medicinal Product – placebo  
+To maintain blinding, high quality placebo tablets will be utilised to provide a complete match with 
+regards to the appearance (e.g. dimensions, markings, and colour ) of the Carvedilol 6.25 mg tablets 
+being used. The placebo tablets are presented as oval, slightly bi -convex white tablets marked S2 on 
+one side and scored on the reverse.  This is the same as the active medication.  
+4.3. Dosing regimen  
+The two treatment arms will be Carvedilol or Placebo. The IMP will be started at a dose of 6.25 mg OD 
+and up -titrat ed to a maximum daily dose of 12.5 mg if required at 1 -week post -randomisation . 
+Following this, the trial drug will be dispensed 6 monthly for a total period of 3 years.   
+Where req uired the dose will be up - or down - titrated at clinician discretion, at tri al visits and if the 
+patient contacts the trial team regarding side effects. The indication for dose adjustments will be 
+experience of known drug related adverse events; recorded using Common Terminology  Criteria for 
+Adverse Events (CTCAE) version 5.0 (see below).  This method is intended to maximise clinical benefit 
+with appropriate up titration.  
+(https://ctep.cancer.gov/protocolDevelopment/electronic_ap plications/ctc.htm#ctc_50 ).  
+In order to achieve the optimal therapeutic benefit from beta -blockade the dose should be escalated 
+after 7 days.  We are aiming for at least a 25% reduction in baseline HR and ideally a HR between 
+50 and 55 bpm.  12.5 mg will be the maximum and target dose used in this trial. Dose 
+modifications with these haemodynamic parameters will be performed by research nurses  or 
+practitioners  without direct involvement of BOPPP investigators. The criteria for dose 
+modification is listed i n Appendix 2.  
+Carvedilol is well tolerated, and we expect a low rate of compliance problems or requirement for 
+discontinuation due to adverse events (AEs). However, to capture any AEs following up titration a 
+telephone call from a research nurse or practi tioner is planned at 6 weeks  post -randomisation . There 
+will be an opportunity to discuss dose reduction at this stage. This is intended to improve compliance.  
+The maximum dose in this trial is chosen to reflect experience and current practice in patients with 
+medium to large varices who receive carvedilol.   
+ 
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 24 of 74 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+4.4. IMP risks  
+Section 4.8 of the Summary of Product Characteristics (SmPC ) for Carvedilol 6.25 mg will act as the 
+reference safety information. A summary of the contraindications to beta blocker use are described 
+within section 5.2 (Exclusion Criteria).  
+ 
+4.5. Drug accountability  
+Trial specific stock will be distributed to each site f ollowing the final QP release, once all regulatory and 
+local approvals are in place.  The pharmacy clinical trials team must maintain accurate accountability 
+records of the IMP, including, but not limited to, the number of bottles/tablets received, the num ber 
+of bottles/tablets dispensed to which participant, batch number, expiry date, and quantity of 
+investigational medicinal product returned by the participant.  
+Participants will be asked to return any unused IMP and/or empty packaging at each visit. This 
+is to allow the research team to check compliance and for accountability purposes. All study 
+drug returns must be returned to pharmacy for reconciliation on the Investigational Product Criteria for a temporary discontinuation in trial IMP:  
+ Systolic blood pressure < 90mmHg  
+ Spontaneous bacterial peritonitis  
+ Acute kidney injury  
+ Hyponatraemia (Na < 125 mmol/L)  
+ Sepsis  
+ Non-variceal GI bleed  
+ Pregnancy (duration of pregnancy and lactation)
+ * 
+ To facilitate cardiac stress testing  
+ 
+Once the reason for pausing treatment has resolved the IMP should be restarted at the previously 
+tolerated dose.  
+* After pregnancy or lactation (where applicable), participants should resume IMP at their next 6 -
+monthly SoC clinic visit.  
+Criteria for permanent discontinuation in trial IMP:  
+ IMP-related Red Flag symptoms (Chest pain or syncope at CTCAE grade 3)*  
+*in the absence of an alternative cause  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 25 of 74 
+ Accountability Log. Study drug returns will be verified by the trial clinical research associate (CRA) prior 
+to disposal at site. Destruction of IMP must be in accordance with the site IMP destruction SOP. Records 
+of IMP destruction  and related correspondence must be filed in the relevant section of the pharmacy 
+trial file.      
+4.6. Packing and storage of IMP  
+All active and placebo tablets will be packed in labelled HDPE bottles with a child -security lid and a 
+tamper -evident seal. Each HDPE bottle contain s 210 active or placebo tablets. This is sufficient for 15 
+weeks /3 and a half months  (for participants on 2 tablets a day) as well as for 6 months ( for participants 
+on 1 tablet a day).  
+The IMP has no special storage conditions  and can remain in  its original packaging at ambient room 
+temperature in a secure location. Temperature monitoring and reporting is not required.  
+4.6.1.    Trial medication labelling  
+All bottles have an Annex 13 compliant clinical trial label with a unique pack number printed on it. All 
+drugs will be dispensed by the Pharmacy Department against a trial specific prescription. Upon 
+dispensing the site pharmacy tea m will hand -write the patient i dentification number (PIN) and the 
+name and site of the Principal Investigator on the existing label in the field provided.  The information 
+presented on the labels for the IMP will comply with applicable national and local regulations.  
+4.6.2.    Transportation of trial medication to hospital Pharmacy  
+MODEPHARMA will arrange the distribution  of the trial medication to each site via approved medical 
+supplies courier. Resupply will be arranged with the distributor, through the King’s Clinical Trials Unit 
+(KCTU) trials pharmacist (after approval to ship IMP has been received from the Chief Inves tigator). 
+Medication will usually reach site within 1 -2 days of receiving confirmation to ship. The Trial Manager 
+is responsible for notifying the trials pharmacist of rates of recruitment, patient withdrawals and 
+patients in screening to ensure enough IMP  is stocked at sites. The procedure for ordering IMP will be 
+in the pharmacy manual.  Should a trial participant lose their trial medication and they cannot attend 
+the hospital, arrangements will be made to post replacement IMP to the participant by follow ing a trial 
+specific operating procedure.  
+4.7. Trial participant compliance  
+Treatment compliance will be assessed by means of a pill count undertaken by the research nurse  or 
+practitioner  at each protocolled research visit. Compliance data and pill counts will be recorded in the Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 26 of 74 
+ CRF and will form part of monitoring by the CRA. Patients will be recorded as having complied to taking 
+the trial medication if at least 50% of the number of pills  that should have been removed, were removed 
+i.e. less than 50% of the trial IMP tables have been returned. Situations where patients have returned 
+more than 50% of the trial IMP must be recorded as a protocol deviation. Refer to the supporting trial 
+infor mation for reporting to the BOPPP trial team.  
+ 
+4.8. Concomitant medication  
+Carvedilol is a substrate as well as an inhibitor of P -glycoprotein. Therefore, the bioavailability of drugs 
+transported by P -glycoprotein may be increased with concomitant administratio n of carvedilol. In 
+addition, the bioavailability of Carvedilol can be modified by inducers or inhibitors of P -glycoprotein. 
+Inhibitors as well as inducers of CYP2D6 and CYP2C9 can modify the systemic and/or pre -systemic 
+metabolism of Carvedilol stereo -selectively, leading to increased or decreased plasma concentrations 
+of R and S -Carvedilol. Patients receiving medicines that induce (e.g. rifampicin, carbamazepine and 
+barbiturates) or inhibit (e.g. paroxetine, fluoxetine, quinidine, cinacalcet, bupropion, a miodarone and 
+fluconazole) these CYP enzymes must be monitored closely during concomitant treatment with 
+Carvedilol.  
+Additionally, there may be other pharmaco -dynamic interactions with other drugs (beta -blockers, 
+calcium channel blockers, anti -arrhythmic agents and antihypertensive agents). Careful monitoring will 
+be undertaken with concomitant medications that have a potential documented action with Carvedilol.  
+Patients that require beta -blockade for portal hypertensive or non -portal hypertensive reasons , or 
+those that require medication with significant interactions with beta -blockers (such as rate limiting 
+calcium channel antagonists), will have the trial IMP discontinued permanently if the need is lifelong. 
+After a one -week washout period, the patient can be started on the relevant medication. Starting 
+medication(s) with significant interactions earlier than advised will be at the treating clinicians’ 
+discretion and must be recorded in the patients’ medical notes and the CRF. Similarly, patients should 
+stop a beta -blocker or relevant medication(s) with known significant interactions prior to enrolment in 
+BOPPP for at least 1 -week prior to initiation of IMP.  
+The BOPPP trial team will inform the patients’ GP if they require beta -blockade for cardiovascular or 
+liver related reasons. We will continue to collect data with the patient’s consent following the cessation 
+of trial IMP, unless they fully withdraw consen t from BOPPP.  
+For management of concomitant therapies, please refer to the Carvedilol Summary of Product 
+Characteristics. A complete listing of all concomitant medications being taken by the patient will be Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 27 of 74 
+ recorded in the CRF at each visit. All routine c oncomitant medication will be allowed during the trial 
+with the exception of anti -arrhythmic medications with significant interactions with beta -blockers, but 
+the only beta -blocker administration allowed will be as specified in this protocol.  
+ 
+5. Selection and Withdrawal of Participants  
+5.1. Inclusion criteria  
+o Age 18 years and over  
+o Cirrhosis and portal hypertension, defined by any 2 of the following:  
+ Characteristic clinical examination findings; one or more of  
+ Characteristic liver function tests  
+ Haematological p anel  
+ Coagulation profile abnormalities  
+ Characteristic radiological findings; one or more of  
+ Heterogeneous liver with irregular contour  
+ splenomegaly  
+ ascites  
+ varices  
+ recanalized umbilical vein  
+ FibroScan liver stiffness measurement >15 kPa without other exp lanation  
+ Fibrosis score > ISHAK stage 4 on liver biopsy (presence of a relevant fibrosis score by biopsy 
+does not require additional clinical examination / radiological / FibroScan supporting evidence)  
+o Small oesophageal varices diagnosed within the last 6 months, defined as ≤5 mm in diameter or 
+varices which completely disappear on moderate insufflation at gastroscopy.  
+o Not received a beta -blocker in the last week  
+o Capacity to provide informed consent  
+5.2. Exclusion criteria  
+o Non-cirrhotic portal hypertension  
+o Curr ent medium/large oesophageal varices (defined as >5 mm in diameter)  
+o Previous medium/large oesophageal varices (defined as >5 mm in diameter), which decreased in 
+size with curative therapy  
+o Gastric (IGV and GOV2), duodenal, rectal or other ectopic varices wi th or without evidence of 
+recent bleeding. For gastric varices, this includes:  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 28 of 74 
+ 1. IGV-1 and IGV -2 (isolated gastric varices)  
+2. GOV2 (gastric varices continuing into the cardia)  
+3. Note GOV1 (gastric varices continuing into the lesser curve) are not an exclusion if present with 
+small oesophageal varices  
+o Previous variceal haemorrhage  
+o Previous band ligation or glue injection of oesophageal and/or gastric varices  
+o Red signs accompanying varices at endoscopy  
+o Known intolerance to beta blockers  
+o Contraindications to beta blocker use:  
+ Heart rate <50 bpm  
+ Known 2nd degree or higher heart block  
+ Sick sinus syndrome  
+ Systolic blood pressure <85 mmHg  
+ Chronic airways obstruction (asthma/COPD)  
+• See special considerations  below  
+ Floppy Iris Syndrome  
+ CYP2D6 Poor Metaboliser  
+ History of cardiogenic shock  
+ History of severe hypersensitivity reaction to beta -blockers  
+ Untreated phaeochromocytoma  
+ Severe peripheral vascular disease  
+ Prinzmetal angina  
+ NYHA IV heart failure  
+o Unable to provide informed consent  
+o Child Pugh C cirrhosis  
+o Already receivin g a beta -blocker for another reason that cannot be discontinued  
+o Graft cirrhosis post liver transplantation  
+o Evidence of active malignancy without curative therapy planned  
+o Pregnant or lactating women  
+o Women of child bearing potential not willing to use adequa te contraception during the period of 
+IMP dosing *  
+o Patients who have been on a CTIMP within the previous 3 months  
+o Clinical symptoms consistent with COVID -19 (a high temperature, a new continuous cough  or a 
+loss or change to sense of smell or taste) at the time of randomisatio n 
+*if relevant  
+ 
+Special considerations  
+Asthma /COPD  – sites are encouraged to investigate the true burden of asthma /COPD . When a patient 
+has a historical diagnosis and is not symptomatic and / or not dependent on steroidal / preventative  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 29 of 74 
+ inhalers: then the diagnosis should be challenged and discussed with the patient and their GP. If the 
+latter suggests that the patient is not asthmatic according to British Thoracic Society (BTS) guidelines, 
+correction of the patient’s asthma diagnosis sh ould be considered and documented in the patients’ 
+medical notes before being consented for participation in BOPPP  (Group A) . Patients with asthma/COPD 
+are challenged with carvedilol in practical clinical situations, it is at the PI’s discretion should they wish 
+to enrol a patient with asymptomatic asthma/COPD to the trial (Group B). Patients that are 
+symptomatic with or without therapy who have previously tolerated a trial of beta -blockade prior to 
+enrolment are eligible for BOPPP  (Group C) . However, symptomatic patients with  or without  a 
+dependency of inhalers , and are beta -blocker naïve are ineligible for BOPPP  (Group D) . Any u ncertainty  
+needs to be communicated  with the Chief Investigator and/ or Chief Scientific Investigator via email 
+prior to randomisation and clearly doc umented in the patient’s notes. The different groups of patients 
+with asthma/COPD are summarised in Table 2. 
+Table 2. Trial eligibility for patients with diag nosis of asthma/COPD  
+If the site have queries regarding any of the eligibility criteria, the BOPPP central team should be 
+contacted via email or telephone prior to moving forward with recruitment.  
+ 
+5.3. Selection of participants  
+Patients at risk of developing OV are reviewed 6 monthly as per standard of care protocols with 
+surveillance endoscopy undertaken annually. Participants will be identified from secondary or tertiary 
+hospital services following screening or surveillance end oscopy standard of care procedures, or during 
+routine follow up for the management of cirrhosis. Photo -documentation will be required to verify the 
+grade of OV in order to confirm participant eligibility. Reports from liver ultrasound scans for 
+hepatocellu lar carcinoma ( HCC) surveillance should be performed within 6 months of screening, or the 
+last standard of care interval, and retained for each participant. Alternate imaging methods (e.g. MRI 
+or CT) are permissible as long as the necessary data can be col lected i.e. hepatomegaly (Y/N ), 
+splenomegaly (Y/N), spleen size (cm), hepatic vein patent (Y/N), portal vein patent (Y/N), radiological 
+ascites (Y/N), focal liver lesions (Y/N).  Group  Eligibile (Y/N)  
+A: No asthma/COPD (including following review of investigations)  Y 
+B: Asymptomatic asthma/COPD not requiring any therapy  Y 
+C: Symptomatic asthma/COPD with or without therapy who have previously tolerated a 
+trial of beta -blockade prior to enrolment  Y 
+D: Symptomatic asthma/COPD with or without therapy who are beta -blocker naïve  N Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 30 of 74 
+ Local clinical care teams will be key in assisting to identify these patients during their review / pre -
+screening of endoscopy and clinical records. As part of the qualitative research within the trial, we will 
+analyse potential eligible patients’ reasons for declining participation. Patients who decline to enter the 
+trial were  offered the opportunity to participate in a qualitative interview aimed at understanding the 
+motivation for non -participation. A summary of the recruitment process is shown in below Figure 1. 
+ 
+Figure 1. Screening and informed consent . Note: Qualitative research was offered to patients that ha d 
+been approached for BOPPP participation.  Recruitment to the qualitative research component of the 
+trial was completed  in April 2021 . 
+5.4. Permanent withdrawal from trial IMP  
+Participants have the rig ht to permanently withdraw from taking trial drug at any time.  Temporary 
+cessation is discussed in section 4.3 and appendix 2. The investigator also has the right to withdraw 
+patients from the trial IMP in the event of inter -current illness, AEs, SAEs , SUSARs , repeated protocol 
+deviations/ violations, cure, or other reasons . Among others, the following criteria are definite reasons 
+for withdrawal  from trial IMP – requirement for beta -blockade (e.g. following cardiac or 
+cerebrovascular event) and withdra wal of patient consent to treatment.  
+Should a patient or treating clinician decide that permanent withdrawal from trial drug is necessary; all 
+efforts will be made to report the reason for IMP withdrawal in as much detail as possible. In the 
+absence of consent withdrawal for follow -up, these patients should continue with follow -up as per the 
+trial schedule and efforts will be made to obtain safety and endpoint data. If the patient discontinues 
+Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 31 of 74 
+ the IMP before the full 3 -year trial period, they will be follow ed-up until last patient last visit provided 
+they do  not withdraw consent. We will continue to collect lab parameters, QoL, healthcare utilisation 
+data and AUDIT -C/ alcohol consumption data during the follow -up period even if the IMP has been 
+discontinued and will seek consent for this.  
+If participants experience events that represent progression and meeting a secondary endpoint  listed 
+below , they should be permanently withdrawn from trial IMP, may be unbl inded . SOC provided  by 
+treating clinicians , which m ay include commencement of NSBB and/or offering endoscopic band 
+ligation of oesophageal varices. These events include:  
+1. oesophageal varices increase in size to grade II and/or grade III  
+2. development of gastric, duodenal , ectopic or rectal varices in the GI tract at gastroscopy  
+If a patient subsequently undergoes  an intervention related to liver disease progression such as  a 
+Transjugular Intrahepatic Porto -Systemic Shunt  (TIPS) or orthotopic liver transplantation ( OLTx ), they 
+should have IMP discontinued and  be withdrawn from further 6-monthly follow -up but mortality and 
+endpoint data will be collected at the end of the trial via HES.  SoC may also include consideration for 
+other appropriate clinical trials depending on participant choice.  
+See Figure  2 for an  illustrative diagram.  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 32 of 74 
+   
+ 
+Figure 2. Follow -up schedule pertaining to events leading onto permanent or temporary withdrawal from trial IMP  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 33 of 74 
+ 5.5. Permanent withdrawal from the trial  
+Participants have the right to withdraw from the trial at any time for any reason. It is understood by all 
+concerned that an excessive rate of withdrawals can render the trial un -interpretable; therefore, 
+unnecessary withdrawal of participants should be av oided.  Should a participant decide to withdraw 
+from the trial, all efforts will be made to report the reason for withdrawal as thoroughly as possible. 
+Should a participant withdraw from trial IMP only, efforts will be made to continue to obtain the 6 -
+mont hly follow -up data, with the permission of the patient. The withdrawal rate will be reported 
+routinely to the Data Monitoring Committee.  
+5.6. Expected duration of trial  
+All participants in the trial will be followed -up up to  3 years (36 months) . However, if n=185 
+decompensating events is reached in less than 36 months for some participants, the study will continue 
+for an additional 6 months plus 6 weeks after the last IMP dispatch, subject to trial oversight committee 
+approval. End of trial is defined as date  of database lock.  
+ 
+6. Trial Procedures and Visits  
+Trial interventions will be undertaken as outlined below and in accordance to the schedule of activities 
+in Section 3.5. Visits were purposefully scheduled to match standard of care practice visits and 
+procedures. Research only visits include screening, baseline and week 1 visits.  
+6.1. Setting and context  
+Patients will be recruited from secondary or tertiary (hospital) services (following screening or 
+surveillance endoscopy) when undergoing standard of care ( SOC) procedures or visit for the 
+management of cirrhosis. Principal investigators identified at all centres are active proponents of clinical 
+research; and all centres identified have an active research portfolio, integrating research activity with 
+clinica l care. This has been identified as crucial to this project as the trial interventions are for the most 
+part reflective of standard of care treatment.  
+6.2. Identifying patients  
+Pre-screening of clinic records will be undertaken by the local clinical care team s to identify suitable 
+patients for the trial. This includes SOC gastroscopy results, transient elastography (TE, if available), 
+aspartate aminotransferase -to-platelet ratio index (APRI) and an assessment of hepatocellular 
+carcinoma (HCC using US, CT and/ or MRI). Endoscopy reports will require as a minimum the following 
+information and must be available in the participants’ source document folder:  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 34 of 74 
+  Size of oesophageal varices based on grading criteria  
+ Number of columns of oesophageal varices  
+ Presence of gas tric varices (GOV1, GOV2, IGV1, IGV2)   
+ Presence of duodenal varices  
+ Any red signs present affecting oesophageal, gastric or duodenal varices  
+ 
+It is recommended  that photo -documentation of standard landmarks on endoscopy reports is 
+undertaken as per current UK guidelines to confirm the details of the endoscopists’ report (see 
+Appendix 1):  
+ Lower oesophagus (note current European guidelines advice on photographing the upper 
+oesophagus, but this is not optimal for capturing appearances of oesophageal varices)  
+ Gastro -oesophageal junction  
+ Body of stomach  
+ Gastric antrum  
+ Fundus in retroflexion  
+ Incisura in retroflexion  
+ Duodenal bulb  
+ Distal duodenum  
+ 
+In addition, it is imp ortant to photo -document the lower oesophagus to demonstrate that small 
+varices are present, with and without air insufflation.  It is recommended that two photographs are 
+captured as follows:  
+1) Lower oesophagus demonstrating small varices present, without  air insufflation  
+2) Lower oesophagus demonstrating small varices collapsed with  air insufflation  
+ 
+The treating clinician will ideally obtain verbal consent for the patient to be contacted by the research 
+team; via telephone or email, as per patient preference.  This will be documented in the patient records. 
+The BOPPP trial participant information sheet (PIS) will be supplied to those in  agreement and a follow 
+up screening appointment arranged. At all times, the patient will have the opportunity to read the PIS 
+and ask any questions regarding the conduct of the trial. There is no minimum period to be adhered to 
+between receiving the PIS a nd a screening appointment.  
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 35 of 74 
+ 6.3. Screening visit and informed consent  
+During the screening visit, the research team will confirm with the patient that they have had the 
+opportunity to read and understood the PIS and will discuss with the patient allowing them to ask any 
+questions regarding the conduct of the trial. The risks  and benefits that are outlined in the PIS will be 
+discussed at the screening visit so that patients assessed are fully informed. Written informed consent 
+will be obtained using the BOPPP trial informed consent form (ICF) and full eligibility will be deter mined 
+by a member of the local research team (e.g. research nurse), with verification by the Principal 
+Investigator. The patients will then be enrolled into BOPPP. The ICF will be signed off by the PI or 
+delegated clinician. Assessments include demographic  data collection, clinical review of medical history, 
+target ed physical exam, weight/  height and vital signs. Of note: re -screening of patients who previously 
+did not meet eligibility criteria is allowed a s the variceal status may vary as part of the natur al history 
+of cirrhosis.  
+6.4. Baseline visit  
+The baseline visit will involve:  
+ Eligibility  
+ Targeted physical exam, including grading of ascites and hepatic encephalopathy, Glasgow 
+Coma Scale assessment, weight/height, vital signs (blood pressure, heart rate)  
+ Blood tests: full blood count (FBC), international harmonised ratio (INR) /PT ratio , liver profile, 
+renal and bone profile, as part of standard of care procedures. Blood test parameters are 
+specified in the source document worksheets. If the baseline visit occurs outside the standard 
+of care, the trial sites can utilise the most recent standard of care blood test results if the 
+following apply:  
+o they have been taken within the last 6 months  
+o the patient is deemed to be stable, so the results are reflective of  the patient’s current 
+health status and would be considered reliable for clinical decisions to be made based 
+on these.  
+In all cases, the situation must be communicated to the central trial team for assessment by 
+the Trial Statistician.  
+ Disease severity an d prognostic score calculation: Child Pugh, MELD, UKELD and CLIF-C-AD  
+ Baseline QoL, healthcare resource questionnaire and AUDIT -C questionnaire will also be 
+completed by the patient  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 36 of 74 
+ Randomisation is performed at this visit, along with concomitant medicati on review and start of trial 
+medication. Note (1) – the aforementioned ‘Baseline’ procedures may occur on the same day as the 
+screening visit if this reduces the burden on the trial participant. Note (2) If the Baseline visit is within 
+two weeks of the scr eening visit, the Targeted Physical Exam and weight / height are not required at 
+baseline.  
+NB If screening and baseline occur separately, eligibility needs to be re -confirmed at baseline.  
+6.4.1.    Randomisation  
+Randomisation will be undertaken by the local research team at each site once written informed 
+consent has been obtained, eligibility confirmed and baseline data collected. Randomisation should be 
+completed within 4 weeks of participant consent. Following consent and once the registration page has 
+been completed and saved in the Elsevier EDC MACRO system , each participant will be allocated a 
+unique six -digit Participant Identification Number (PIN).  This number will be the sole identifier to be 
+used on the paper source data worksheets and electronic dat a forms in MACRO. The first two digits of 
+the PIN will indicate the hospital site number. The last four digits of the PIN will indicate the patient ; for 
+example 030015 would denote site 03 and patient 0015. This will be the main participant identifier for 
+those recruited. Once the PIN is obtained, t he trial team member will log into a separate secure 
+multiuser multisite online randomisation system dev eloped and managed by the King’s College London 
+Clinical Trial Unit (KCTU). The PIN , participant initials and date of birth will be submitted into the 
+randomisation system for treatment allocation. The treatment allocation results (blinded) will be 
+emailed  to staff with approved user access, including the site pharmacy. No further allocation of trial 
+drug is needed at randomisation as this is automatically completed at this time point.  
+Following randomisation and collection of IMP, patients will be booked t o return for the week 1 up -
+titration visit. The allocation sequence of each permuted block will be concealed from participants, 
+clinicians, researchers and analysts.  
+6.4.2.    Qualitative interviews to understand recruitment  [completed  in April 2021 ] 
+BOPPP has in corporated a Qualitative Research component into the protocol to understand the barriers 
+and enablers of trial recruitment at two levels (i) patient level, (ii) research site level. Please see section 
+6.10. “Qualitative Interviews” for further details.  
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 37 of 74 
+ 6.5. Week 1 visit (dose titration)  
+A one -week visit will be conducted by research nurses or practitioners focussed on trial medication up 
+titration. At that visit , routine history will be taken for any adverse events experienced since 
+commencement of trial medi cation. Particular attention will be placed on the following symptoms, as 
+experience of any of these will affect trial drug dose modification: collapse, palpitations, chest pain, 
+rash and erectile dysfunction in males. A focussed set of observations (heart  rate and blood pressure) 
+will be taken. Trial drug modifications / dose titration will be done following the criteria outlined in 
+Appendix 2 as well as recording of concomitant medications and pill count.  If dose modification  is 
+necessary due to adverse e vent(s) or in case of any other medical event  e.g. a side effect (s), the 
+modification should be ratified by a BOPPP clinician. All dose modifications are to  be documented in 
+the participant’s notes.  
+6.6. Week 6 safety telephone call  
+At this telephone call, research nurses or practitioners will take a routine history for any adverse events; 
+in particular, for collapse, palpitations, chest pain, rash and erectile dysfunction in males. For patients 
+with significant cardiac symptoms (ches t pain, multiple collapses) the patient will be advised to go to 
+the emergency department (ED). For those with palpitations, single collapse, rash or erectile 
+dysfunction the default advice is to seek advice in primary care (GP or NHS Direct on 111).  
+Hepa tological indications to withhold IMP are due to decompensation such as non-variceal bleeding, 
+sepsis, acute kidney injury (Appendix 3) or spontaneous bacterial peritonitis. Where an indication for 
+NSBB has become apparent (e.g. variceal haemorrhage) the p atient should suspend IMP and undergo 
+SOC. Where the indication to stop IMP is temporary (e.g. vasopressor dependent septic shock, 
+spontaneous bacterial peritonitis) this should be recorded and reported to the TM, and IMP restarted 
+when safe to do so (at t he discretion of the local PI). Any decision to stop IMP must be made in 
+consultation with the local PI and reassessed at next visit with a view to restart. In patients who stop 
+IMP permanently, outcome d ata will be collected until trial end and the patien t’s GP will be informed.  
+6.7. Month 6 -36 (+/- 6 weeks at each interval)  
+*standard of care follow up procedures * 
+Participants will receive clinical review in the outpatient setting:  
+ Clinical review of medical history  
+ Targeted physical exam, including grading of ascites and hepatic encephalopathy,  Glasgow 
+Coma Scale assessment, weight/height, vital signs (blood pressure, heart rate)  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 38 of 74 
+  Blood tests: full blood count (FBC), international harmonised ratio (INR), liver profile, renal and 
+bone profile, as part of stan dard of care procedures. Blood test parameters are specified in the 
+source document worksheets.  
+ Disease severity and prognostic score calculation: Child Pugh, MELD, UKELD and CLIF-C-AD  
+ Baseline QoL and healthcare resource questionnaire will also be comple ted by the patient  
+ AUDIT -C questionnaire completed by the patient at months 12, 24 and 36 with limited alcohol 
+consumption questions to be completed at months 6, 18 and 30.  
+ Variceal haemorrhage status  
+ Surveillance liver ultrasound for hepatocellular carcinoma (US, CT and / or MRI), as part of 
+standard of care  
+ 
+IMP for the current period will be returned by the patient so a dherence can be assessed by pill count 
+at each trial visit and IMP for  the next 6 -month period dispensed. Concomitant medication an d adverse 
+events will be recorded with consideration of dose up or down titration.  Participants will be asked to 
+complete EQ -5D-5L QoL, healthcare resource questionnaire and AUDIT -C/ alcoholic consumption 
+questionnaire. A gastroscopy examination will be un dertaken at yearly intervals only.  
+At the completion of the trial (prior to database lock, this may be almost five years from recruitment 
+for some patients)) variceal bleed, mortality, myocardial infarction  and liver transplant will be recorded 
+in participants’ notes and in the Trial Completion Review form in the EDC.  
+6.8. End of treatment (o r early discontinuation) procedures  
+Participants who discontinue trial medication before the allocated period can continue within the trial, 
+entering in a follow up only phase. This will involve collection of routine standard of care data and 
+completion of QoL questionnaires. A final assessment will be completed at trial end (last patient last 
+follow up). If a participant indicates their wish to formally withdraw cons ent for further follow -up in the 
+trial for any reason, this will be honoured and the patient will return to SOC. In any case, if patients 
+have not fully withdrawn  from the trial,  all outstanding data should be collected and any queries 
+resolved.  
+6.9. Extended f ollow up by electronic record linkage  
+Participants will be asked to provide consent to be followed up electronically by record linkage to NHS 
+electronic datasets ( e.g. the Health Episodes Statistics in England and corresponding datasets in Wales 
+/ Northern  Ireland / Scotland) and  death records held by the Office of National Statistics. . The aim will 
+be to assess the impact of the period of randomised treatment on long -term outcomes. Failure to Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 39 of 74 
+ provide this separate consent will not exclude the participant f rom participating in the trial. This 
+extended follow -up will not be considered a formal component of the main trial.  
+6.10. Qualitative interviews  [completed]  
+6.10.1.  Patient level to understand recruitment barriers and enablers  
+Qualitative interviews were undertaken to  examine the decision -making process among an estimated 
+20 patients who either agree d or decline d to participate in the trial.  After consent to participate in 
+BOPPP has been obtained or declined, patients were  given a PIS for the qualitative interview and  asked 
+for verbal consent to be contacted by the qualitative research assistant who follow ed up with a phone 
+call to answer questions and / or schedule one -off appointments.  Fully informed consent was obtained 
+using the informed consent form (ICF) in pers on or by verbal means, with a witness to verify consent 
+on the ICF. Recruitment to qualitative interviews continue d until data saturation.  
+Trial participants were  asked for their views on the process of screening, consent, baseline visit and 
+one-week revie w to identify further barriers to participation including the acceptability of 
+randomisation and other benefits and risks associated with the proposed intervention and trial 
+participation. Interview topic guides were  revised iteratively in response to the priorities and concerns 
+of participants.   
+Selected participants may be requested to take part in a video interview for the trial website.  The 
+interview will consist of questions regarding their participation in the trial.  
+6.10.2.  Site level to understand recruitm ent barriers and enablers   
+An estimated 10 endoscopists (e.g. 5 sites with 2 endoscopists per site) and 10 research nurses across 
+the sites were  contacted via email / phone and invited to participate in a qualitative interview to 
+examine the barriers and challenges to delivering the treatment strategy within trial period and beyond 
+the BOPPP trial within the NHS setting.  Following the pause/re -start of the trial due to COVID -19, staff 
+were  invited to take part in a repeat interview.  
+Qualitative data at patient and site level will be used within internal pilot 1 to inform the written and 
+verbal organisation of trial information, recruitment procedu res and support strategies needed to 
+optimise recruitment and retention.  
+6.10.3.  Interviews with General Practitioners  (GPs)  
+An estimated 20 -30 telephone interviews were  conducted with GPs to understand the barriers and 
+enablers to implementation in primary care b eyond the trial context in. Interviews explored the 
+perceived acceptability, challenges and concerns around dose titration for patients with small Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 40 of 74 
+ oesophageal varices within primary care. The optimal timing of primary care involvement, the role of 
+other pr imary care professionals, e.g. practice pharmacists, and the information, support and 
+infrastructure required with secondary and tertiary care centres were  examined. Themes identified in 
+GP interviews, and internal pilot interviews with endoscopists, will inform the topic guide used in two 
+subsequent focus groups with local endoscopists, gastroenterologists, GPs, practice pharmacists and 
+nurses that will examine strategies and potential solutions to early dose adjustment as part of routine 
+clinical care.  
+6.11. Quality of Life and Health Economic Analysis  
+Quality of Life (QoL) and healthcare resource assessment will be undertaken at baseline, 6,12,  18, 24, 
+30 and 36 months using the EQ -5D-5L tool and a bespoke healthcare resource questionnaire. The EQ -
+5D-5L is an  existing and validated multi – attribute utility instrument for measuring health related QoL 
+in cost effectiveness analysis. The QoL tool essentially consists of 2 pages: the EQ -5D descriptive system 
+and the EQ visual analogue scale (EQ VAS).  
+The descript ive system comprises five dimensions: mobility, self -care, usual activities, pain/discomfort 
+and anxiety/depression. Each dimension has 5 levels: no problems, slight problems, moderate 
+problems, severe problems and extreme problems. The patient is asked to  indicate his/her health state 
+by ticking the box next to the most appropriate statement in each of the five dimensions. This decision 
+results in a 1 -digit number that expresses the level selected for that dimension. The digits for the five 
+dimensions can be combined into a 5 -digit number that describes the patient’s health state. The 
+number is a used primarily to characterise the response although it can facilitate some comparative 
+analysis directly.  
+A tariff set is available to score EQ -5D-5L health states based on survey data from the English 
+population13. The tariff set provides a quality of life score for each unique response to the EQ -5D-5L. 
+Scores range from 1 to -0.284 where 1 represents full health and 0 represents death. Around 5% of 
+responses to the EQ -5D-5L have an associated tariff which is negative (considered worse than death). 
+The tariffs were generated by a  mixture of time trade -off and Discrete Choice Experiment survey data 
+on a subset of the 3125 health states described by the instrument, in combination with regression 
+modelling.  
+The EQ -5D-5L records the patient’s self -rated health on a vertical visual ana logue scale, where the 
+endpoints are labelled ‘The best health you can imagine’ and ‘The worst health you can imagine’. The 
+EQ-5D-5L can be used as a quantitative measure of health outcome that reflects the patient’s own 
+judgement.  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 41 of 74 
+ The healthcare usage ass essment encompasses a questionnaire that focuses on the participants’ use 
+of 1) residential and respite care, 2) day care and rehabilitation services, 3) community health services 
+and 4) community social services. With both questionnaires, the participant will be asked to complete 
+unaided. The research nurse  or practitioner  will review the questionnaires before the participant leaves 
+clinic in order to clarify questions with multiple answers.  
+6.12. Overview of outcome measures by visit  
+Outcome measures will be r ecorded at the time -points defined in the table below (Table 3). If a patient 
+presents with a variceal bleed between assessments, this will be reported of the date presented and 
+outcomes assessed on that day. Interventions that are not current standard of care have been 
+highlighted in bold . 
+At each visit participants will be asked for any evidence of adverse events, or for evidence of primary 
+or secondary outcomes.   
+Time point  Scheduled activity  
+Pre - Screening   All patients with cirrhosis and small oesophageal varices identified at surveillance 
+endoscopy will be screened for inclusion in this trial.  
+Eligibility / 
+Screening   All screened patients will be assessed using the trial inclusion and exclusion criteria. 
+Gastroscopy will be photo -documented  
+Informed 
+Consent   Patients identified at screening who meet the inclusion and exclusion criteria will be 
+offered the opportunity to take part in the trial.  Potential participants will be given 
+education on the risk of varices progression and on the benefit s and risks of treatment 
+with the IMP (Carvedilol) from the trial site team, and confirming the possibility of 
+being assigned to placebo arm.  
+ If they agree they will be asked to give written informed consent.  
+Baseline   Participants will be randomised to re ceive either carvedilol  or placebo.   
+ Participants will complete the EQ -5D-5L QoL , Health Care Usage and AUDIT -C 
+questionnaire . 
+ Participants will receive further education on the trial and the IMP and then commence 
+treatment.  
+Week 1  
+(+/- 3 days)   Participants will be reviewed to assess adherence and for any adverse events related to 
+the IMP.   
+ Clinical assessment to include measurement of vital signs  
+ If they are tolerating the IMP well and if the heart rate is > 60 bpm and SBP > 100 
+mmHg then dose  of IMP will be increased as per the protocol.  
+Week 6  
+(+/- 2 weeks)   Participants will receive a safety telephone review to assess for any adverse events 
+related to the IMP.  
+Month 6  
+(+/- 6 weeks)   Participants will receive clinical review in the out -patient setting, laboratory testing 
+and surveillance liver ultrasound.   
+ Participants will complete EQ -5D-5L, Health Care Usage and alcohol consumption 
+questionnaires.  
+Month 12   
+(+/- 6 weeks)   Participan ts will receive clinical review in the out -patient setting, laboratory testing, 
+surveillance liver ultrasound and varices surveillance gastroscopy.   
+ Participants will complete EQ -5D-5L, Health Care Usage and AUDIT -C questionnaires.  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 42 of 74 
+ Month 18   
+(+/- 6 weeks)   Participants will receive clinical review in the out -patient setting, laboratory testing 
+and surveillance liver ultrasound.  
+ Participants will complete EQ -5D-5LHealth Care Usage and alcohol consumption 
+questionnaires.  
+Month 24   
+(+/- 6 weeks)   Participants will receive clinical review in the out -patient setting, laboratory testing, 
+surveillance liver ultrasound and varices surveillance gastroscopy.   
+ Participants will complete EQ -5D-5L, Health Care Usage and AUDIT -C questionnaires.  
+Month 30  
+ (+/- 6 weeks)   Participants will receive clinical review in the out -patient setting, laboratory testing 
+and surveillance liver ultrasound.  
+ Participants will complete EQ -5D-5L, Health Care Usage and alcohol consumption 
+questionnaires.  
+Month 36   
+(+/- 6 weeks)   Participants will receive clinical review in the out -patient setting, laboratory testing, 
+surveillance liver ultrasound and varices surveillance gastroscopy.   
+ Participants will complete EQ -5D-5L, Health Care Usage and AUDIT -C questionnaires.  
+Table 3. Trial visits and assessment of efficacy and safety.  
+Although the visit windows are +/ - 6 weeks, if due to variation in SoC visits, the patient is seen outside 
+of the 6 week window but within a 12 week window, the outcome data can be used  for that visit.   
+6.13. COVID -19 guidance  
+Week 1 Visit (+/ - 3 days)  
+The following procedures can be carried out via phone or video call:  
+ ConMeds (check new or ongoing)  
+ AEs (check new or ongoing).  
+Patients will need to attend the hospital for a s hort visit to carry out the rest of the Week 1 procedures.  
+Month 6-36 visits  (+/- 6 weeks)  
+The following procedures can be carried out via phone or video call:  
+ Concomitant medication s (check new or ongoing)  
+ AEs (check new or ongoing)  
+ Dose titration (reducing dose/ stopping IMP only – based on AEs)  
+ Questionnaires  
+ IMP dispensing (see below)  
+Patients will need to attend the hospital to carry out the rest of the 6 monthly procedures.  
+ 
+IMP supply to participants  
+Sites can arrange for the IMP study drug to be sent direct  to the participants ’ home.  Verbal informed 
+consent will be obtained and this will be recorded in the participant’s records. An audit trail will be 
+maintained from collection of the IMP by the courier to receipt by the participant.  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 43 of 74 
+ 7. Blinding  
+7.1. Definitions  
+In line with KCTU Standard Operating Procedures (SOPs) on blinding.  
+ Fully blinded - Not able to review any post Baseline outcome data coded as IMP/Placebo, or coded 
+as A/B. All data should be presented aggregated across both allocation groups.  
+ Partially blinded - Able to review data post Baseline outcome data as A/B.  
+ Unblinded  - Able to review post Baseline outcome data as IMP/Placebo.  
+ 
+7.2. Emergency unblinding/ code break  
+A 24hr telephone unblinding service will be provided for Emergency Code Break and Medical 
+Information. This service will be provided by ESMS Global Ltd . Each randomised patient will be provided 
+with an alert card detailing  a code break telephone number (020 3282 0458) and emergency contact 
+details. A template for the alert card can be located in Appendix 4. Participants will be requested to 
+carry this card with them at all times whilst participating in the trial. Authorisatio n for unblinding must 
+be given by the PI at site. After the patient has been unblinded, ESMS will send a completed unblinding 
+form to the Sponsor detailing the unblinding request and result of unblinding  (i.e. successful unblinding 
+or not) .  Patients who a re unblinded will be withdrawn from the trial. Primary outcomes will be 
+measured until the last patient last visit.  
+7.3. Blinding of trial personnel  
+At randomisation: Recruiting and consenting clinicians, researchers and senior statistician will all be 
+blind t o the allocation. Participants will be associated with a patient information number (PIN) and will 
+not know their allocation ( A or B). The KCTU randomisation system is linked directly to the IMP 
+management system and pharmacy.  
+At Week 1:  Participants will be assessed by blinded research nurses or practitioners  who will not be 
+aware  of the allocation. The y will measure the participant ’s heart rate and blood pressure, and 
+document any reason why the participant cannot be up -titrated if eligible e.g. side effects. This 
+information will be entered onto paper source data worksheets, then an online system (electronic data 
+capture system [EDC]).  
+At Week 6:  Blinded assessors will contact  the participants by telephone and will record any adverse 
+events. All adverse events will lead to further assessment. AE information will be recorded on a paper Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 44 of 74 
+ source data worksheets and inputted into the trial database housed by KCTU, blinded from the s enior 
+statistician, clinicians and researchers.  
+At Month 6 to 36: Blinded outcome assessors will be used to report all standard of care procedure data, 
+AEs and pill count as per Week 6 outcomes.  
+At the completion of the trial : A blinded assessor will rev iew the participant notes for evidence of 
+variceal bleed or mortality.  
+Throughout the trial, the Chief Investigator (CI) and Senior Statistician will be fully blind to treatment 
+allocation and will only see pooled data for the duration of the trial. At the  start of any TMG/TSC/DMC, 
+the committee are to be reminded the CI and Senior Statistician are fully blinded.  
+ 
+7.4. Planned un -blinding of trial personnel  
+Trial Manager - The Trial Manager is planned to be partially blinded in order to expedite safety data 
+from the site Principal Investigator (PI) to the Chair of the DMC. If required at the discretion of the DMC, 
+they will be fully unblinded. The Trial Manager will not take part in an y discussion that influences the 
+early stopping of the trial at any Trial Management Group meetings.  
+Junior Statistician - The Junior Statistician will be fully blind until the Statistical Analysis Plan (SAP) is 
+approved by the Trial Steering Committee (TS C). The SAP should be detailed enough so that it presents 
+a clear and structured plan for the primary outcome, required data manipulation, and analysis. It should 
+be written consistent with the KCTU Statistics SOP on generating a SAP (ST -03 Statistical Ana lysis Plan). 
+All changes to the SAP after approval by the TSC should authored by a statistician who is fully blind, this 
+would be expected to be the Trial Statistician. Any amendments the SAP will be approved by the TMG 
+and TSC.   
+After the first version of  the SAP is approved by the TSC, the Junior Statistician is planned to become 
+partially -blinded and access patient level data coded as A/B. The Junior Statistician will then have access 
+to the adherence data and be able to monitor and inform the DMC of the  trial adherence of the 
+participants. They will present the closed DMC report to the DMC members. The Junior Statistician will 
+not take part in any discussion that influences the early stopping of the trial at any TMG, TSC, or DMC 
+meetings.  
+The final combined Trial Steering Committee and Data Monitoring Committee meeting  
+Prior to this meeting the Junior Statistician will generate the partially blinded data and analyses 
+presented to the senior statistician (allocations as A and B). This will be i nterpreted by the Senior Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 45 of 74 
+ Statistician and they will check the analyses prior to the meeting (completing adequate quality control 
+checks, outlined in the SAP).  
+At this meeting this analysis will be fully interpreted by the TMG/TSC/DMC.  Following consensus,  the 
+Chair of the TSC will be provided with an envelope that will contain the allocation (intervention and 
+control) to fully un -blind the CI, and trial team. Any amendments to the primary outcome analysis after 
+this meeting will be explicitly stated with t he main trial results.  
+KCTU Trials Pharmacist  – The unblinded KCTU Trials Pharmacist will be responsible for monitoring IMP 
+stock levels at sites. They will have knowledge of the number of patients at site on treatment allocation 
+A or B. The trials pharmacist will provide quarterly reports to TMG on the bulk supplies held at site s and 
+at the manufacturer, for the purposes of IMP reordering/manufacture.  
+ 
+8. Interim Analysis  
+No interim analysis is planned for efficacy or harm, beyond the feasibility pilot phase assessment.  
+Internal pilot  (Recruitment and retention)  
+An internal pilot is planned to determine the feasibility of the trial and will be run at 12 months after 
+recruitment opens, with the following Go/No Go progression  to demonstrate the ability of recruit sites 
+and patients within the sites : 
+1. To have opened at least 8 sites, w ith at least one patient randomised at each.  
+2. To have randomised at least 80 patients.  
+3. To have a retention rate of at least 70%.  
+If the above criteria are met, we will progress  the trial .  
+ 
+9. Assessment of Efficacy  
+9.1. Primary efficacy parameters  
+ Time to first decompensating event  
+ Cost effectiveness of carvedilol in this population.  
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 46 of 74 
+ 9.2. Secondary effectiveness and safety parameters  
+Secondary Endpoints (defined as at 3 years post baseline unless explicitly noted to be different)  
+ Estimation of the 1, and 3 -year oesophageal variceal bleed rate by allocation, and associated 
+number needed to treat  
+ Progression to oesophageal medium/large varices requiring clinical intervention over 3 years  
+ Composite of oesophageal variceal bleed or progression to medium/la rge varices over 3 years  
+ Development of gastric, duodenal , ectopic or rectal varices  
+ Survival (Overall, liver -related, or cardiovascular -related)  
+Other outcomes  
+ Quality of life, using the EQ -5D-5L questionnaire  
+ Other recorded events not defined as endpoint s 
+a. Adverse Events (AE)  
+b. Serious AEs (SAE)  
+c. Adherence (pill counts)  
+ 
+9.3. Procedures for assessing effectiveness parameters  
+Variceal  haemorrhage  (defined by Baveno IV criteria)14.  
+This is the primary reason for the potential use of NSBB in this cohort of patients.  NSBB are hoped to 
+prevent progression of portal hypertension to the point where VH occurs and thus prevent hospital 
+admission and the risk of death associated with VH. The PPI group confirmed this as a patient supported 
+preferred outcome.  
+Progression to m edium/large oesophageal  varices requiring clinical intervention:   
+This endpoint is an important outcome as at this point initiation of NSBB or pre -emptive endoscopic 
+band ligation (EBL) is warranted.  As continuing with a placebo may be dangerous in this c ohort we 
+define this as a trial endpoint.  
+Clinical intervention requiring initiation of NSBB  (composite of variceal bleed or progression to 
+medium/large oesophageal varices  or development of gastric, duodenal, ectopic or rectal varices ):  
+This endpoint will capture both portal hypertension -related reasons for starting NSBB. Composite 
+endpoints are encouraged by multiple expert groups in portal hypertension15 and this is a clinically 
+relevant pragmatic composite that will define those patients who have or are at significant risk of 
+bleeding due to progression of portal hypertension.  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 47 of 74 
+ Survival/Mortality:  
+Will be assigned as liver related ( following episode of variceal bleeding, spontaneous bacterial 
+peritonitis, hepatic encephalopathy, hepatorenal syndrome or acute on chronic liver failure) or cardio -
+vascular related (following episode of chest pain, arrhythmia, heart failure or proven card iac 
+ischaemia)). All -cause mortality will also be recorded.  
+MELD score  
+The model for end stage liver disease  (MELD) is an alternative prognostic scoring system based on 
+standard laboratory investigations. MELD (Appendix 5) will be measured on all patients at 
+randomisation and bi -annually until the end of the trial.  
+Child Pugh score  
+Child Pugh  score  will be determined using serum albumin and bilirubin levels, prothrombin time and 
+the degree of ascites (Appendix 6) and encephalopathy (Appendix 7).   
+ 
+10. Assessment of Safety  
+10.1. Planned un blinding due to safety  
+In order to facilitate efficient management of safety reporting the trial manager will be un -blinded to 
+allow allocation to be communicated to the DMC. The chief investigators and investigator team will all 
+remain fully blinded throughout the duration of t he trial. At the start of all TMGs there will be a standing 
+agenda item that all co -applicants must remain fully blinded to the allocation and no reports, tables will 
+be reported partitioned into the allocation groups (A or B).  
+The protocol contains crite ria for unblinding  for safety reasons when clinicians need to know the 
+allocation at the point when the patient leaves the trial and the TMG will be able to facilitate based on 
+these criteria without involving the co -applicants. In the rare circumstance a clinical safety query may 
+require knowledge of the allocation the TMG will communicate directly with the chair of the DMC.  
+10.2. Procedures for reporting and recording adverse events  
+The Medicines for Human Use (Clinical Trials) Regulations 2004 and Amended Regulations 2006 gives 
+the following definitions:  
+ Adverse Event (AE) : Any untoward medical occurrence in a participant to whom a medicinal 
+product has been administered including occurrences which are not necessarily caused by or Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 48 of 74 
+ related to that product.  
+ Adverse Reaction (AR):  Any untoward and unintended response in a participant to an 
+investigational medicinal product which is related to any dose administered to that participant.  
+ Unexpected Adverse Reaction  (UAR) : An adverse reaction the nature and severit y of which is not 
+consistent with the information about the medicinal product in question set out in the summary 
+of product characteristics (SmPC).  
+ Serious Adverse Event (SAE), Serious Adverse Reaction (SAR) or Unexpected Serious Adverse 
+Reaction (USAR): Any adverse event, adverse reaction or unexpected adverse reaction, 
+respectively, that : 
+o results in death;  
+o is life -threatening;  
+o required hospitalisation or prolongation of existing hospitalisation;  
+o results in persistent or significant disability or incapacit y; 
+o consists of a congenital anomaly or birth defect;  
+o requires intervention to prevent permanent impairment or damage ; This includes 
+important medical  events (IMEs) that may not be immediately life -threatening or result in 
+death or hospitalisation but may j eopardise the patient or may require intervention to 
+prevent one of the other outcomes listed in the definition above should also be considered 
+serious.  
+ Pregnancy : Although not a serious adverse event, any unplanned pregnancy will be reported via 
+the SAE reporting system.  
+All adverse events should be graded by the most up to date Common Terminology Criteria for 
+Adverse Events (CTCAE) criteria (currently v5.0) . A summary is below:  
+Grades: Grade refers to the severity of the AE. The CTCAE displays Grades 1 through 5 with unique 
+clinical descriptions of severity for each AE based on this general guideline:  
+Grade 1  Mild; asymptomatic or mild symptoms; clinical or diagnostic observations only; intervention 
+not indicated.  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 49 of 74 
+ Grade 2  Moderate; minimal, local or non -invasive intervention indicated; limiting age - appropriate 
+instrumental activities for daily living (ADL)*. *Instrumental ADL refer to preparing meals, shopping 
+for groceries or clothes, using the telephone, managing money, etc.  
+Grade 3  Severe or medically significant but not immediately life -threatening; hospitalization or 
+prolongation of hospitalization indicated; disabling; limiting self -care ADL**.**Self -care ADL refer to 
+bathing, dressing and undressing, feeding self, using the toil et, taking medications, and not 
+bedridden.  
+Grade 4  Life-threatening consequences; urgent intervention indicated.  
+Grade 5  Death related to AE.  
+10.3. Reporting responsibilities  
+ 
+King’s College Hospital NHS Foundation Trust has delegated the delivery of the Sponsor’s responsibility 
+for Pharmacovigilance (as defined in Regulation 5 of the Medicines for Human Use (Clinical Trials) 
+Regulations 2004 to the King’s Health Partners Clinic al Trials Office (KHP -CTO).  
+All SAEs, SARs and SUSARs (excepting those specified in this protocol as not requiring reporting) will be 
+reported immediately (and certainly no later than 24hrs) by the site PI or delegate to the KHP -CTO and 
+CI for review in ac cordance with the current Pharmacovigilance Policy.  
+Death as a result of disease progression and other events that are  primary or secondary outcome 
+measures are not considered to be SAEs and should be reported in the normal way, on the AE log and 
+other appropriate CRF s. 
+ SAEs  (with the exception of death)  only need  be reported if they occur  within  30 days post 
+termination  of trial IMP 
+The KHP -CTO will report SUSARs to the regulatory authorities (MHRA, competent authorities of other 
+EEA (European Economic Area) states in which the trial is taking place.  
+The Chief Investigator  will report to the relevant ethics committee. Reporting timelines are as follows:  
+ SUSARs which are fatal or life -threatening must be reported not later than 7 days  after the 
+sponsor is first aware of the reaction. Any additional relevant information must be reported 
+within a further 8 days ; 
+ SUSARs that are not fatal or life -threatening must be reported within 15 days  of the sponsor Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 50 of 74 
+ first becoming aware of the reaction.   
+The Chief Investigator and KHP -CTO (on behalf of the co-sponsors), will submit a Development Safety 
+Update Report (DSUR) relating to this trial IMP, to the MHRA  and REC annually.  
+The Trial Manager  will report to the DMC.  
+10.4. Events that do not require reporting  
+ Medical events or the consequence of those events which occur prior to taking trial IMP, do 
+not need to be reported.  
+ Planned elective admissions for emerging illnesses should not be considered SAEs.  
+ Medical events which are recognized complications of cirrhosis will not require reporting.  
+ Variceal haemorrhage  
+ Decompensation (trial endpoint) i.e. one of:  
+1. Spontaneous bacterial peritonitis (ascitic fl uid cell count >250/mm3 polymorphs)  
+2. Hepatic encephalopathy (defined by psychometric testing or clinical examination)  
+3. New or worsening ascites defined by clinical examination or ultrasound and/or  
+4. Increase in Child Pugh or MELD score  
+ Development o f hepatocellular carcinoma  
+ Hospitalisation less than 24 hours (e.g. for therapeutic parascentesis / outpatient 
+appointments)  
+All of the above will be required to be recorded  in the AE log and relevant sections of the source data 
+worksheets and electronic d ata capture systems as part of ongoing data collection activities . 
+10.5. Treatment stopping rules  
+The trial may be prematurely discontinued by the Sponsor, Chief Investigator or Regulatory Authority 
+on the basis of new safety information or for other reasons giv en by the Data Monitoring & Trial 
+Steering Committee, regulatory authority or ethics committee concerned. If the trial is prematurely 
+discontinued, active participants will be informed and no further participant data will be collected. The 
+Competent Author ity and Research Ethics Committee will be informed within 15 days of the early 
+termination of the trial.  
+The trial can be recommended for stopping, based on a decision by the DMC, or by the Trial Sponsor, 
+or Regulatory Authority/Ethics Committee, if there are sufficient safety concerns that may compromise 
+the health or well -being of the trial participants.  
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 51 of 74 
+ 11. Statistics  
+BOPPP is a UK based, Phase IV, multi -centre, randomised, controlled, blinded (participant, clinician, 
+analyst), prospective trial of carvedil ol versus placebo in patients with small oesophageal varices.  
+11.1. Sample size  
+11.1.1.  Estimation of all-cause decompensation  rate 
+The PREDESCI study enrolled 201 patients (1:1) and reported 27%, versus 16% 3 -year decompensation 
+rate in the placebo and β -blockers group (HR 0·51, 95% CI 0·26 –0·97, p=0.04). A BOPPP data extract in 
+March 2022 shows that our all -cause decompensation rate was 20% at 1 -year (across both arms 
+combined).   
+11.1.2.  Sample size calculation  
+Based on the data collected from 187 patients randomi sed in the BOPPP trial as of December 2021, the 
+event rate of all -cause decompensation in both study arms was approximately 0.16 a t one year. To 
+ensure a conservative estimate and account for possible censoring due to intercurrent events, such as 
+adverse events that may cause treatment discontinuation in these patients, we have projected that the 
+3-year decompensation rate in the BOP PP trial will be at least 25.5%, or 3 1% in the placebo arm and 
+20% in the β -blocker arm. To detect this difference with a hazard ratio of approximately 0.60, we would 
+require a total of 666 patients (or 170 events) to achieve 90% power and a type -1 error r ate of 0.05. To 
+account for a potential 10% loss to follow -up, we plan to enrol 740 patients.  
+11.1.3.  Higher hazard ratio  
+Should the true hazard ratio be 0.7, and the event rate in the control arm remains the same , the trial 
+will retain 71% power.  
+ 
+11.2. Statistical analysis and quantitative data  
+11.2.1.  Internal pilot  
+The feasibility outcomes will be calculated and summarised by the TS and report ed to the DMC. The 
+DMC will assess the report against the Go / No go criteria and make a recommendation to the TSC.  
+11.2.2.  Primary outcome  
+The time  to all-cause decompensation  for the two allocation groups will be analysed using a Cox’s 
+proportional hazards model, and adjusted for patient age, gender, and disease severity as described in 
+the SAP. Site will be fitted as a shared frailt y across hospitals .  The assumption of proportionality will be Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 52 of 74 
+ visually assessed using a Kaplan Meier Plot  (and log -log plot) , with an at -risk table for the two groups. 
+We will report the adjusted  hazard ratio, with associated 95% confidence interval and p -value.   
+11.2.3.  Secondary outcome  
+Continuous data will be analysed using general linear mixed effects model, with random effects for 
+patient, and site, adjusted for fixed effects of: patient age, and disease severity as described in the SAP. 
+The mean difference between allocation groups will be presented alongside 95% CI and p -value. 
+Dichotomous outcomes will be analysed using a mixed effects logistic regression, similarly to the above. 
+The various outcomes that will be recorded at the various s cheduled trial visits which are summarised 
+in Table 4. All outcomes will be investigated using the intention to treat population.Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 53 of 74 
+ Table 4: Outcome recording  
+Trial visit  Baseline  Week  1  
+(+/- 3)      day s Week  6  
+(+/- 2 
+week s ) Month 6  
+(+/- 6 
+ week s) Month 12   
+(+/-6 
+ w eek s ) Month 18   
+(+/-6  
+ week s) Month 24   
+(+/-6 
+ w eek s ) Month 30   
+(+/-6 
+ w eek s ) Month 36   
+(+/-6 
+ week s) At  v ariceal 
+bl eed  At tri al  
+com pl etion (v ia 
+regi stry )  
+Variceal bleed     X X X X X X X X 
+Mortality    X X X X X X X X X 
+Hospitalisation    X X X X X X X X  
+Increase in grade of OV      X  X  X   
+Presence of non -OV      X  X  X   
+Progression in Child Pugh score     X X X X X X X  
+Progression in MELD score     X X X X X X X  
+Progression in UKELD  score     X X X X X X X  
+Progression in CLIF-C AD  score     X X X X X X X  
+Development of hepatic 
+decompensation  (SBP, HE, 
+HRS, etc.)     X X X X X X X  
+Heath Care usage  X   X X X X X X X X 
+EQ-5D-5L Quality of Life Score  X   X X X X X X X  
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 54 of 74 
+ 11.2.4.  Population under investigation  
+An intention to treat (ITT)  population  will encompass  all patients  involved in the  study’s  outcome  
+assessment . Patients who encounter  any of the all-cause decompensation  events listed in section 2.1 , 
+whichever occurs  first, will be classified  as having treatment failure and will be recorded as an event. 
+Patients  who do not undergo  any form  of decompensation  during the  follow -up period  will be 
+considered  non-event s and censored at the last time of follow -up time . Patients who  are lacking any 
+post -baseline data will be excluded from the ITT population.  
+The per-protocol population (PPP) exclude s participants who violates the study  protocol. In the analysis 
+of the primary outcome, p articipants who progress (e.g. due to an increase in varices size ), but have 
+not experienced a ny type of decompensation  will be censored.   
+11.2.5.  Protocol deviations and violations  
+A protocol deviation/violation is defined if there is an unplanned excursion from the protocol as 
+planned. A protocol deviation (PD) is defined as  a non -serious breach from the protocol that is unlikely 
+to lead to any impact on the value of the data contributing to the overall treatment effect. An example 
+of a PD would be missing of a single visit window, or not returning the IMP bottle at a single visit. A 
+protocol violation (PV) is an excursion from the protocol that is more serious and likely to lead to a 
+significant impact on the quality of the data and would lead the patient from being excluded from the 
+per protocol population. A detailed defini tion of the protocol deviation and violation will be presented 
+in the Statistical Analysis Plan (SAP).   
+11.3. Health economic assessment  
+We will undertake cost -utility analyses of Carvedilol compared with usual care over a three -year time 
+horizon and over a lifetime, from a Health and Personal Social Services perspective. Quality of life will 
+be assessed at baseline and at 6 monthly intervals using the EQ -5D-5L. Resource use in secondary care 
+will be assessed from Hospital Episode Statistics records (or equiv alent for patients in Scotland, Wales 
+or Northern Ireland). Primary care resource use will be collected using a patient questionnaire. Unit 
+cost data from appropriate national sources (NHS Reference Costs, Unit Costs of Health & Social Care 
+etc.) will be a pplied to resource use. Cost effectiveness will be reported as the incremental cost -
+effectiveness ratio (ICER); mean incremental net monetary benefit (INMB) after valuing a quality 
+adjusted life -year (QALY) at £20,000; and the cost -effectiveness acceptabil ity curve (CEAC).  
+The ‘within trial’ analysis will compare costs and quality adjusted life expectancy (QALE) across trial 
+arms with adjustment for pre -specified baseline characteristics. Missing data will be imputed by Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 55 of 74 
+ Multiple Imputation. Bootstrapping wi ll be used to quantify the impact of sampling uncertainty and 
+generate a CEAC. For the lifetime analysis, we will build a Markov model to extrapolate costs and 
+estimate QALE. Health states will include compensated and decompensated cirrhosis, liver transpl ant, 
+hepatocellular carcinoma, myocardial infarction, bleeding event and death. Costs and quality of life 
+tariffs will be attached to health states and generated from the trial data, where possible, or from the 
+literature. The model will be probabilistic; uncertainty in parameters will be quantified from the trial 
+data or literature sources or estimated where necessary. Important event rates including bleeding 
+events will be estimated from the trial data using parametric survival analysis. Alternative param etric 
+specifications will be tested in sensitivity analysis. Results will be presented as the INMB, ICER (where 
+appropriate) and CEAC. In the base case the analysis will assume no difference in quality of life according 
+to treatment, conditional on the mod el health state, provided  we observe no difference across trial 
+arms at the 5% significance level. In sensitivity analysis we will adjust quality of life tariffs according to 
+differences attributable to treatment (conditional on health state such as compen sated cirrhosis) 
+estimated from the trial data.  
+11.4. Qualitative data  
+Qualitative data will be transcribed verbatim and pseudo -anonymised to maintain confidentiality.  Data 
+will then be analysed iteratively using a focussed thematic analysis20. Three members of the research 
+team will independently code initial data before constructin g an analytical framework, which will be 
+applied to the remaining transcripts, with themes and subthemes refined as necessary. Ideas about 
+themes and their relationships will be recorded in theoretical memos and discussed among our Patient 
+Advisory Group a nd Project Steering Group. The computer programme QSR N -VIVO will be used to 
+process the transcripts, enabling us to code and retrieve a large volume of narrative data. The trial will 
+be conducted and reported in accordance with the CONSORT (Consolidated S tandards of Reporting 
+Trials) statement.  
+ 
+ 
+12. Trial Steering Committee  
+The Trial Steering Committee (TSC) will meet at the commencement of the trial, after MHRA and Ethics 
+approval, either face -to-face or via teleconference (if face -to-face proves problematic), and thereafter 
+every 6 months to one year to assess trial conduct and recruitment.  The TSC members include the 
+following : independent chair, chief investigator, trial statistician, clinical co -applicants, patient 
+representatives, qualitative  researcher, and independent  clinicians ; see appendix 8 .  The TSC will Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 56 of 74 
+ approve the TSC charter and will be defined as quorate if at least 67% of the Independent members are 
+present at the TSC.  
+ 
+13. Independent Data Monitoring Committee  
+The DMC will have 3 mem bers , see appendix 8; to review data on safety, including SAEs, SUSARs, and 
+the primary endpoint events, and will advise the trial steering committee (TSC) on acceptable 
+continuation of the trial, or whether the trial should be stopped.  The DMC will meet via in person or 
+by teleconference every 6 months to one year (and more frequently if deemed necessary). The 
+composition and responsibilities of the DMC is outlined in the DMC Charter. The membership of the 
+DMC will receive final approval from the NIHR as per the terms of the award. The DMC will approve the 
+DMC Charter in line with Damocles. The DMC will be chaired by Prof Kenneth Simpson (University of 
+Edinburgh) and will require 2 members present (in person, or by telephone) to be quorate.   
+ 
+14. Direct Acces s to Source Data Documents  
+The Investigators will permit trial -related monitoring, audits, REC review, and regulatory inspections by 
+providing the Sponsor(s), Regulators and REC direct access to source data and other documents (e.g. 
+patients’ case sheets,  blood test reports, X -ray reports, histology reports etc.).  
+ 
+ 
+15. Ethics and Regulatory Approvals  
+The trial will be conducted in compliance with the principles of the Declaration of Helsinki (1996), the 
+principles of GCP, and in accordance with all applicabl e regulatory requirements including but not 
+limited to the Research Governance Framework and the Medicines for Human Use (Clinical Trial) 
+Regulations 2004, as amended in 2006 and any subsequent amendments.  
+This protocol and related documents  will be submit ted for approval to the Health Research Authority 
+(HRA) <Yorkshire & The Humber - Leeds West Research Ethics Committee> Research Ethics Committee 
+(REC), and to the Medicines and Healthcare Products Regulatory Agency (MHRA) for Clinical Trial 
+Authorisation.  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 57 of 74 
+ Subsequent protocol amendments will be submitted to the REC and Regulatory Authorities for approval 
+(if applicable), and that you will comply with regulations, particularly specifying, Pharmacovigilance 
+reporting and providing the REC & MHRA with progress  reports, and a copy of the Final Trial Report.  
+The Chief Investigator will submit a final report at conclusion of the trial to the KHP -CTO (on behalf of 
+the Sponsor), the REC and the MHRA within the timelines defined in the Regulations. The KHP -CTO will 
+upload the final report to EudraCT on behalf of the Sponsor.  
+ 
+ 
+16. Quality Assurance  
+Monitoring of this trial to ensure compliance with Good Clinical Practice and scientific integrity will be 
+managed, and oversight retained, by the KHP -CTO Quality Team. Further details are available in the 
+data monitoring plan.  
+ 
+17. Data Handling and Manageme nt 
+Source data refers to the patient data held on clinical NHS systems. This will be entered onto a source 
+data worksheet. The CI/PI is responsible for the accuracy of all data reported in the source data 
+worksheet. The source data will therefore form part  of the source data for this trial but original NHS 
+systems data will be made available for monitoring purposes. The source data will be entered into a n 
+Infer Med MACRO database from the source data worksheet. Each site will have a login to the database.  
+An electronic database provided by Infer Med MACRO will be used to capture trial related information. 
+All data will be inputted using the source data worksheet and stored on a database to be analysed at 
+the end of the trial.  
+Access to the MACRO database wil l be restricted, with only authorised site -specific personnel able to 
+make entries or amendments to their patients’ data. It is the investigator's responsibility to ensure 
+completion and to review and approve all data captured in the MACRO database. The re cruiting 
+physician or his/her designee(s) will be responsible for all entries into the MACRO database and will 
+confirm (electronically) that the data are accurate and complete.  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 58 of 74 
+ 17.1. Source data worksheet completion  
+The source data worksheet completion will be performed by members of the research team at each 
+site; who have been delegated the task in the trial delegation of responsibilities log. Participant 
+competed questionnaires will be stored with the source data worksheet.  
+17.2. Data handling  
+The Chief Investigato r will act as custodian for the trial data. The following guidelines will be strictly 
+adhered to: Patient data will be pseudo -anonymised. All pseudo -anonymised data will be stored on a 
+restricted access, password protected computer. All trial data will be processed, stored and disposed 
+of in accordance with all relevant legal and regulatory requirements, including the UK General Data 
+Protection Regulation (GDPR) and any amendments thereto.  
+17.3. Data validation  
+Data will be validated at the point of entry into th e eCRF and at regular intervals during the trial. Data 
+discrepancies will be flagged to the trial sites and any data changes will be recorded in order to maintain 
+a complete audit trail (e.g. reason for change, date change made, who made change). All trial  data will 
+be held securely at the KCTU. All transfers of data across the internet will be encrypted.  
+17.4. Record retention  
+To enable evaluations and/or audits from regulatory authorities, the investigators agree to keep 
+records, including the identity of all p articipating patients (sufficient information to link records, all 
+original signed informed consent forms, serious adverse event forms, source documents, and detailed 
+records of treatment disposition). The records should be retained by the trial site coord inators and 
+investigator according to ICH GCP, local regulations, or as specified in the Clinical Trial Agreement, 
+whichever is longer.  
+17.5. End of trial definition  
+This is defined as when the database will be locked and will follow the KCTU statistical SOPs on  
+generation of the final clinical trial report. The planned trial closure will form part of the TMG minutes. 
+Final report submission will be within 12 months of end of trial.  
+17.6. Archiving  
+All written trial related documentation will be archived for 15 years after completion of the trial as per 
+KHP-CTO SOPs for CTIMPS. Electronic data will be stored in the TMF and archived. It is the responsibility 
+of the site PI to make arrangements for appropriate archiving of trial related documentation.  
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 59 of 74 
+ 18. Amendments  
+All amendments will be tracked in the BOPPP protocol. The decision to amend the protocol and 
+associated trial documentation will be initiated by the TMG. The Sponsor will be responsible for 
+deciding whether an amendment is substantial or non -substantial. S ubstantive changes will be 
+submitted to REC, HRA, and if required, the MHRA for approval.  
+ 
+19. Publication Policy  
+It is intended that the whole or part of this results of the trial will be reported and disseminated at 
+international conferences and in peer -reviewed scientific journals and by Open Access credentialing. 
+The protocol will be published in a clinical trials journal in an appropriate time frame  of the study 
+commencing. No professional writers will be used. Full anonymity of participant’s details will  be 
+maintained throughout. The results will be  disseminate d to participants via the BOPPP website and 
+partners in the British Liver Trust.   
+ 
+20. Insurance / Indemnity  
+KCH will provide NHS indemnity cover for negligent harm, as appropriate and is not in the po sition to 
+indemnify for non -negligent harm. NHS indemnity arrangements do not extend to non -negligent harm 
+and NHS bodies cannot purchase commercial insurance for this purpose; it cannot give advance 
+undertaking to pay compensation when there is no neglige nce attributable to their vicarious liability. 
+KCH will only extend NHS indemnity cover for negligent harm to its employees; substantive and 
+honorary, conducting research studies that have been approved by the KCH Research and Innovation 
+Office. KCH cannot  accept liability for any activity that has not been properly registered and approved 
+by the KCH Research and Innovation Office. Potential claims should be reported immediately to the 
+KCH Research and Innovation Office:  
+Research and Innovation Office  
+King 's College Hospital NHS Foundation Trust  
+First Floor Coldharbour Works, 245A Coldharbour Lane  
+Brixton, London SW9 8RR  
+Phone: +44 (0) 20 3299 1980  
+Email  kch-tr.research@nhs.net   
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 60 of 74 
+ 21. Financial Aspects  
+Funding to conduct the trial is provided by the National Institute for Health Research Health Technology 
+Assessment Board, UK (Reference 17/32/04).  
+Department of Health and Social Care Disclaimer : The views expresses are those of the authors and not 
+necessarily those  of the NHS, the NIHR or the Department of Health and Social Care.  
+ 
+22. Signatures  
+ 
+ 
+ 
+31 MAY 2023 
+___________________________________    _______________________  
+Chief Investigator       Date  
+VISHAL PATEL  
+ 
+ 
+          
+  
+31 MAY 2023 
+___________________________________    _______________________  
+Chief Scientific Investigator      Date  
+MARK MCPHAIL  
+ 
+ 
+ 
+ 
+     
+31 MAY 2023 
+___________________________________    _______________________  
+Trial Statistician        Date  
+BEN CARTER  
+ 
+Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 61 of 74 
+ Appendix 1 – Varices size assessment & gastroscopy report photo -
+documentation   
+ 
+ 
+ 
+Figure Appendix 1A. Assessment of oesophageal  varices . Reproduced with permission from 
+Tripathi et al. U.K. guidelines on the management of variceal haemorrhage in cirrhotic 
+patients. Gut 2015; 64(11): 1680 -704 
+(A) Grade I oesophageal  varices  (or ≤5mm) . These collapse to inflation of  the oesophagus 
+with air.  
+(B) Grade II  oesophageal varices. These are varices  between grades 1 and 3.  
+(C) Grade III  oesophageal varices. These are large  enough to occlude the lumen.  
+ 
+ 
+ 
+ 
+Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 62 of 74 
+ Figure Appendix 1B. A schematic demonstrating the recommended stations for photo -
+documentation during a diagnostic oesophago -gastro -duodenoscopy . Used with permissions 
+from.  Rey JF, Lambert   R.. ESGE Quality Assurance Committee.  ESGE recommendations for 
+quality control in gastrointestinal endoscopy: guidelines for image documentation in upper 
+and lower GI endoscopy.  Endoscopy  2001;33:901 –3. doi:10.1055/s -2001 -42537  
+ 
+  
+Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 63 of 74 
+ Appendix 2 – Dose titration procedures   
+The target haemodynamic response is a heart rate reduced by >25% from that at baseline or 
+between 50 -55 bpm. The target dose is 12.5 mg but if the above aim is met at 6.25 mg then 
+the patient should remain on 6.25  mg. A “red flag” symptom is a grade 3 cardiac symptom 
+requiring urgent investigation. For this trial we define this as cardiac chest pain or collapses 
+since starting trial medication  (in the absence of an alternative cause ). A red flag symptom will 
+necessitate permanent discontinuation of IMP only when its relatedness to IMP is confirmed. 
+Further details on cardiac and syncopal grading can be found here:   
+https://ctep.cancer.gov/protocolDevelopment/electronic_applications/ctc.htm#ctc_50  
+As a safety measure, if HR is 56 -60 bpm or SBP 91 -100 mmHg a dose increase from 6.25 mg 
+to 12.5 mg is not recommended.   
+Criteria to up -titrate:  
+ no red flags on history, AND  
+ HR >60 bpm, AND systolic BP >100 mmHg  
+Criteria to remain at present dose  
+ Already on 2 tablets (12.5 mg); AND  
+ HR 50 -59 bpm; OR  
+ HR <75 % of baseline  
+Criteria to stop IMP:  
+ >0 red flags on history , OR 
+ On 1 tablet AND  
+ HR <50  bpm OR systolic BP <90  mmHg  
+Criteria to dose reduce:  
+ on 2 tablets AND   
+ HR <50  bpm OR systolic BP <90  mmHg  
+Criteria to stop IMP temporarily  (any criteria present, restart IMP when these issues have 
+resolved)  
+ Critical illness with hypotension (systolic BP <90 mmHg)  
+ Spontaneous bacterial peritonitis  
+ Acute kidney injury  
+ Hyponatraemia (Na < 125 mmol/L)  
+ Sepsis  
+ Non-variceal GI bleed  
+ Pregnancy  (duration of pregnancy  and lactation ) 
+ To facilitate cardiac stress testing  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 64 of 74 
+ Appendix 3 – Acute Kidney Injury criteria   
+ 
+International Club of Ascites (ICA -AKI) new definitions for the diagnosis and management of 
+AKI in patients with cirrhosis.  
+ 
+ Definition  
+ 
+Baseline sCr  A value of sCr obtained in the previous 3 months, when available, can be 
+used as baseline sCr. In patients with more than one value within the 
+previous 3 months, the value closest to the admission time to the 
+hospital should be used In patients without a p revious sCr value, the sCr 
+on admission should be used as baseline  
+ 
+Definition of AKI  Increase in sCr ≥0.3 mg/dL (≥26.5 μmol/L) within 48 h; or a percentage 
+increase sCr ≥50% from baseline which is known, or presumed, to have 
+occurred within the prior 7 days  
+ 
+Staging of AKI  Stage 1: increase in sCr ≥0.3 mg/dL (26.5 μmol/L) or an increase  in sCr 
+≥1.5 -fold to twofold from baseline  
+Stage 2: increase in sCr >two to threefold from baseline  
+Stage 3: increase of sCr >threefold from baseline or sCr ≥4.0 mg/dL 
+(353.6 μmol/L) with an acute increase ≥0.3 mg/dL (26.5 μmol/L) or 
+initiation of renal r eplacement therapy  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 65 of 74 
+ Appendix 4 – BOPPP Participant Alert Card  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 66 of 74 
+ Appendix 5 – Liver Prognostic Scoring Systems  
+ 
+These should be calculated at baseline and 6 monthly visits and noted in the CRF. They are 
+not required in the one -week up -titration assessment or 6 -week telephone call.  Calculation 
+should ideally be performed using the website as described in the subheadings. The 
+component parts will be recorded in the CRF.  
+ 
+A1.1  Child Pugh Score  
+Child Pugh Sco re should be calculated from the following website:  
+https://www.mdcalc.com/child -pugh -score -cirrhosis -mortality  
+Measure  1 point  2 points  3 points  
+Total bilirubin , 
+μmol/L  <34 34–50 >50 
+Serum albumin , g/L  >35 28–35 <28 
+INR <1.7  1.7-2.3 >2.3  
+Ascites  None  Mild (or suppressed 
+with medication)  Moderate to severe (or 
+refractory)  
+Hepatic 
+encephalopathy  None  Grade I –II Grade III –IV 
+ 
+  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 67 of 74 
+ A1.2.  MELD score  
+Calculate MELD score from the following website:  
+https://www.mdcalc.com/meld -score -model -end-stage -liver -disease -12-older  
+MELD now includes sodium as per the following document from OPTN.  
+https://optn.transplant.hrsa.g ov/media/1575/policynotice_20151101.pdf   
+The following description uses the units mg/dl NOT umol/l.  
+Candidates receive an initial MELD(i) score equal to:  
+0.957 x Ln(creatinine mg/dL) + 0. 378 x Ln(bilirubin mg/dL) + 1.120 x Ln (INR) + 0.643  
+Laboratory va lues less than 1.0 will be set to 1.0 when calculating a candidate’s MELD score.  
+The following candidates will receive a creatinine value of 4.0 mg/dL:  
+ Candidates with a creatinine value greater than 4.0 mg/dL  
+ Candidates who received two or more dialysi s treatments within the prior 7 days 
+Candidates who received 24 hours of continuous veno -venous hemodialysis (CVVHD) 
+within the prior 7 days  
+The maximum MELD score is 40. The MELD score derived from this calculation will be 
+rounded to the tenth decimal pl ace and then multiplied by 10.  
+For candidates with an initial MELD score greater than 11, the MELD score is then re -
+calculated as follows:  
+MELD = MELD(i) + 1.32*(137 -Na) – [0.033*MELD(i)*(137 -Na)]  
+Sodium values less than 125 mmol/L will be set to 125, an d values greater than 137 mmol/L 
+will be set to 137.  
+ 
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 68 of 74 
+ A1.3.  UKELD score  
+Calculate the UKELD score from the following link:  
+https://nhsbtdbe.blob.core.windows.net/umbraco -assets -corp/2913/ukeld_calculator -2.xls  
+UKELD score = (5.395 x Ln (INR)) + (1.485 x Ln (Bilirubin)) + (3.13 x Ln (bilirubin)) – (81.565 x Ln 
+(Na)) +435  
+ 
+A1.4.   CLIF-C-AD score  
+These can be calculated from the following website:  
+https://www.clifresearch.com/portals/0/calculadoras/CLIF -C_AD_Score.htm  
+ 
+ 
+Appendix 6 – Clinical Grading of Ascites   
+ 
+No ascites=none detected clinically or on 
+imaging (ultrasound, CT or MRI)  
+ 
+ 
+Grade 1 (mild)   
+ 
+ 
+ 
+ 
+Ascites is only detectable by ultrasound 
+examination.  
+ 
+Grade 2 (moderate)  Ascites causing moderate symmetrical 
+distension of the abdomen.  
+ 
+Grade 3 (large)  Ascites causing marked abdominal 
+distension.  
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 69 of 74 
+ Appendix 7 – Grading of Hepatic Encephalopathy   
+ 
+West -Haven 
+Criteria for 
+HE Stage  Consciousness  Intellect and 
+Behaviour  Neurologic Findings  
+0  Normal  Normal  Normal examination; if 
+impaired psychomotor 
+testing, consider minimal 
+hepatic encephalopathy  
+1  Mild lack of awareness  Shortened 
+attention span  Impaired addition or 
+subtraction; mild asterixis or 
+tremor  
+2  Lethargic  Disoriented; 
+Inappropriate 
+behaviour  Obvious asterixis; Slurred 
+speech  
+ 
+3  Somnolent but 
+arousable  Gross 
+disorientation; 
+Bizarre behaviour  Muscular rigidity and clonus; 
+Hyperreflexia  
+4  Coma  Coma  Decerebrate posturing  
+ 
+Patients without somnolence (Grade 0/1 /2) should have the animal naming test performed. 
+In one minute (timed by the clinician/researcher), the patient should attempt to name as 
+many animals as possible. The number is noted. ANT < 10 = impaired; ANT > 15 unimpaired;  
+ANT 11-14 borderline.  
+ 
+ 
+ 
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 70 of 74 
+ Appendix 8 – Trial Steerin g Committee and Data Monitoring 
+Committee Members   
+ 
+ Independent  Committee  Role  
+Prof Eleanor Barnes  Yes Trial Steering Committee  Clinician and Chair  
+Dr Steven Masson  No Trial Steering Committee  Clinician  
+Dr Sam Thomson  Yes Trial Steering Committee  Clinician  
+Dr Charles Millson  Yes Trial Steering Committee  Clinician  
+Dr Oliver Van Hecke   Yes Trial Steering Committee  Clinician  
+Prof Alan Watkins  Yes Trial Steering Committee  Statistician  
+Dr Claire Snowdon  Yes Trial Steering Committee  Qualitative Social Sciences  
+Dr Vishal C. Patel   No Trial Steering Committee  Chief Investigator  
+Dr Mark J. W. McPhail  No Trial Steering Committee  Chief Scientific Investigator  
+Dr Ben Carter  No Trial Steering Committee  Statistician  
+Ms Elaine Mullings   Yes Trial Steering Committee  PPI 
+Ms Morwenna Orton   Yes Trial Steering Committee  PPI 
+Mr Peter Walsh   Yes Trial Steering Committee  PPI 
+Dr Ken Simpson   Yes Data Monitoring Committee  Clinician and Chair  
+Dr Jeremy Cobbold   Yes Data Monitoring Committee  Clinician  
+Dr Stephanie MacNeill  Yes Data Monitoring Committee  Statistician  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 71 of 74 
+ Appendix 9 – MBOP Sub-study Summary   
+ 
+Background  
+MBOP has been established as an isolated basic science mechanistic sub -study to investigate 
+the mechanism of effect of carvedilol in preventing decompensation in patients with cirrhosis. 
+The underlying mechanism of the benefit of beta -blockade will be char acterised by measuring 
+bacterial DNA, markers of gut permeability, phenotyping the subsequent immune response 
+and gut microbiome in a subset of 150-200 patients enrolled onto BOPPP.  Selected BOPPP 
+sites will be offered the opportunity to participate in MBOP, please email the BOPPP Trial 
+management team to confirm site eligibility for the sub -study at kch-tr.boppptrial@nhs.net . As 
+MBOP is a sub -study, this study is neither funded nor regulated by the NIHR.  
+Aims and objectives  
+1. Determine whether it is feasible to undertake the MBOP study.  
+2. Determine the clinical effectiveness of the reduction in all cause decom pensation in 
+patients treated with carvedilol versus placebo after 3 years.  
+3. Determine if circulating bacterial DNA levels are reduced by treatment with carvedilol.  
+4. Confirm that the gut microbiome itself is not modulated by carvedilol but that gut 
+permeab ility itself is reduced.  
+5. Demonstrate that pro -inflammatory responses and monocyte phenotype and function are 
+mediated with carvedilol via reduction in circulating bacterial DNA.  
+6. To evaluate the performance of spleen stiffness by VCTE to assess oesophageal varices at 
+baseline as well as during treatment by carvedilol.  
+Eligibility  
+In order to be eligible for MBOP participants must meet the following eligibility criteria:  
+Inclusion criteria : 
+- Consented onto the BOPPP Trial and randomised to receive IMP  
+Exclusion criteria : 
+- Inflammatory bowel disease  
+- Previous or planned gastric surgery  Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 72 of 74 
+ Consent  
+Eligible BOPPP subjects will be provided with the MBOP patient information sheet and have 
+the sub study explained verbally. After participants have had the opportuni ty to ask questions 
+and those agreeing to take part will sign the MBOP consent form. It is thought that there will 
+be a minimal impact on the recruitment and retention of patients recruited to the main study 
+due to the sub -study. The burden of the sub -stud y on the patients is low, and they are free to 
+decline participation in the sub -study without affecting their participation in the main study .  
+ 
+Sample Collection  
+The below blood samples will be collected at baseline and annually at years 1,  2 and 3  
+ 4 ml EDTA tube whole blood for bacterial and host DNA quantification and profiling  
+ 6 ml plain serum tube for cytokine profiling and future metabolic profiling  
+ 2.5 ml PAXgene tube whole blood for RNAseq  
+ 36 - 52 ml lithium heparin for PBMC isolation and plasma al iquot storage  
+Saliva and faecal samples will be taken at baseline and annually at years 1,  2 and 3.  
+ 8ml of saliva by passive drool  
+ Two  20ml universal container to obtain 20g of faeces  
+Future analysis will be conducted in Quadram Institute Bioscience, Norwich.  
+All MBOP samples will be stored, shipped and processed according to the MBOP lab manual . 
+ 
+Additional imaging  (at KCH only)  
+Participants will have an additional scan of their spleen at baseline and annually at years 1, 2 
+and 3.  
+ 
+ 
+ 
+ Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 73 of 74 
+ Appendix 10 – References  
+1. Williams R, Aspinall R, Bellis M, et al. Addressing liver disease in the UK: a blueprint for 
+attaining excellence in health care and reducing premature mortality from lifestyle issues of 
+excess consumption of alcohol, obesity, and viral hepatitis. Lancet  2014; 384(9958): 1953 -97. 
+2. Mehta G, Gustot T, Mookerjee RP, et al. Inflammation and portal hypertension - the 
+undiscovered country. J Hepatol  2014; 61(1): 155 -63. 
+3. de Franchis R, Baveno VIF. Expanding consensus in portal hypertension: Report of the 
+Bave no VI Consensus Workshop: Stratifying risk and individualizing care for portal 
+hypertension. J Hepatol  2015; 63(3): 743 -52. 
+4. Tripathi D, Stanley AJ, Hayes PC, et al. U.K. guidelines on the management of variceal 
+haemorrhage in cirrhotic patients. Gut 2015; 64(11): 1680 -704.  
+5. Augustin S, Altamirano J, Gonzalez A, et al. Effectiveness of combined pharmacologic 
+and ligation therapy in high -risk patients with acute esophageal variceal bleeding. Am J 
+Gastroenterol  2011; 106(10): 1787 -95. 
+6. Leithead JA, Rajo riya N, Tehami N, et al. Non -selective beta -blockers are associated 
+with improved survival in patients with ascites listed for liver transplantation. Gut 2015; 64(7): 
+1111 -9. 
+7. Tripathi D, Ferguson JW, Kochar N, et al. Randomized controlled trial of carve dilol 
+versus variceal band ligation for the prevention of the first variceal bleed. Hepatology  2009; 
+50(3): 825 -33. 
+8. Garcia -Tsao G. The Use of Nonselective Beta Blockers for Treatment of Portal 
+Hypertension. Gastroenterology & hepatology  2017; 13(10): 61 7-9. 
+9. Garcia -Tsao G, Lim JK, Members of Veterans Affairs Hepatitis CRCP. Management and 
+treatment of patients with cirrhosis and portal hypertension: recommendations from the 
+Department of Veterans Affairs Hepatitis C Resource Center Program and the Nati onal 
+Hepatitis C Program. Am J Gastroenterol  2009; 104(7): 1802 -29. 
+10. Longacre AV, Imaeda A, Garcia -Tsao G, Fraenkel L. A pilot project examining the 
+predicted preferences of patients and physicians in the primary prophylaxis of variceal 
+hemorrhage. Hepa tology  2008; 47(1): 169 -76. 
+11. Serste T, Melot C, Francoz C, et al. Deleterious effects of beta -blockers on survival in 
+patients with cirrhosis and refractory ascites. Hepatology  2010; 52(3): 1017 -22. Protocol version :  4.0, 31 MAY 2023     
+Short name:  BOPPP trial 
+IRAS number :              255446  
+Page 74 of 74 
+ 12. Reiberger T, Ulbrich G, Ferlitsch A, et al. Carved ilol for primary prophylaxis of variceal 
+bleeding in cirrhotic patients with haemodynamic non -response to propranolol. Gut 2013; 
+62(11): 1634 -41. 
+13. Devlin NJ, Shah KK, Feng Y, Mulhern B, van Hout B. Valuing health -related quality of life: 
+An EQ -5D-5L val ue set for England. Health economics  2018; 27(1): 7 -22. 
+14. de Franchis R. Evolving consensus in portal hypertension. Report of the Baveno IV 
+consensus workshop on methodology of diagnosis and therapy in portal hypertension. J 
+Hepatol  2005; 43(1): 167 -76. 
+15. Abraldes JG, Garcia -Tsao G. The Design of Clinical Trials in Portal Hypertension. Semin 
+Liver Dis  2017; 37(1): 73 -84. 
+16. Garcia -Tsao G, Bosch J, Groszmann RJ. Portal hypertension and variceal bleeding --
+unresolved issues. Summary of an American Associa tion for the study of liver diseases and 
+European Association for the study of the liver single -topic conference. Hepatology  2008; 
+47(5): 1764 -72. 
+17. Merli M, Nicolini G, Angeloni S, et al. Incidence and natural history of small esophageal 
+varices in cirr hotic patients. J Hepatol  2003; 38(3): 266 -72. 
+18. de Franchis R, Primignani M. Natural history of portal hypertension in patients with 
+cirrhosis. Clin Liver Dis  2001; 5(3): 645 -63. 
+19. Zoli M, Merkel C, Magalotti D, et al. Natural history of cirrhotic patients with small 
+esophageal varices: a prospective study. Am J Gastroenterol  2000; 95(2): 503 -8. 
+20. Braun V, Clarke V. What can "thematic analysis" offer health and wellbeing 
+researcher s? International journal of qualitative studies on health and well -being  2014; 9: 
+26152.  
+ 
+ 
+ 
+ 
+ 
+ 

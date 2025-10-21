@@ -1,0 +1,240 @@
+=== Admin Info ===
+
+### Administrative Information
+
+**Full Trial Title:**  
+Beta-blockers Or Placebo for Primary Prophylaxis of Oesophageal Varices (BOPPP Trial). A Blinded, UK Multi-Centre, Clinical Effectiveness and Cost-Effectiveness Randomised Controlled Trial.
+
+**Trial Registration Details:**  
+- **Registry Name:** ISRCTN  
+- **Registration Number:** ISRCTN10324656  
+- **Registration Date:** 31 May 2023  
+
+**Protocol Number and Version:**  
+- **Protocol Number:** KCHBOPPP01  
+- **Version:** 4.0  
+- **Version Date:** 31 May 2023  
+
+**Chief Investigator:**  
+Dr. Vishal C. Patel, King's College Hospital NHS Foundation Trust  
+
+**Trial Statistician:**  
+Dr. Ben Carter, King's College London Clinical Trials Unit, Institute of Psychiatry, Psychology and Neuroscience, King's College London
+
+=== Introduction ===
+
+**Introduction**
+
+Liver disease, particularly cirrhosis, has emerged as a significant public health concern, being the fifth leading cause of death in the developed world. The increasing incidence of liver failure, often resulting from conditions such as alcohol-related liver disease and non-alcoholic fatty liver disease, underscores the urgent need for effective preventive strategies. Among the complications associated with cirrhosis, portal hypertension is a critical condition that can lead to the development of oesophageal varices, which pose a substantial risk for variceal bleeding—a life-threatening event with a mortality rate ranging from 10% to 20%. Current guidelines indicate that non-selective beta-blockers (NSBBs) are effective in reducing the risk of variceal bleeding in patients with moderate to large varices; however, their role in patients with small varices remains unclear. This uncertainty presents a gap in clinical practice, as there is no consensus on whether patients with small varices should receive prophylactic treatment.
+
+The Beta-blockers Or Placebo for Primary Prophylaxis of Oesophageal Varices (BOPPP) trial aims to address this critical question by evaluating the clinical effectiveness and cost-effectiveness of carvedilol, a specific NSBB, in reducing the rate of all-cause decompensation in patients with cirrhosis and small oesophageal varices. The primary objective of this study is to determine whether carvedilol can significantly reduce the incidence of all-cause decompensation compared to placebo over a three-year follow-up period. Additionally, the trial seeks to assess the cost-effectiveness of carvedilol in this patient population, thereby providing valuable insights into the economic implications of implementing such a treatment strategy in clinical practice.
+
+In summary, the BOPPP trial is designed to fill the existing knowledge gap regarding the use of carvedilol for primary prophylaxis in patients with small oesophageal varices. By rigorously evaluating both clinical outcomes and cost-effectiveness, this study aims to inform clinical guidelines and improve patient management strategies in the context of cirrhosis and portal hypertension.
+
+=== Study Design ===
+
+**Study Design**
+
+The BOPPP trial is designed as a multi-centre, Phase IV, blinded, prospective randomised controlled trial. This study employs a parallel-group design, where participants will be allocated to one of two treatment arms. The trial will involve a total of 740 participants, who will be randomised in a 1:1 allocation ratio to receive either the investigational medicinal product (IMP) or a placebo.
+
+The two arms of the study are as follows:
+
+1. **Carvedilol Arm**: Participants in this arm will receive oral carvedilol, starting at a dose of 6.25 mg once daily, which may be titrated up to a maximum of 12.5 mg once daily based on clinical response and tolerability. This arm aims to evaluate the clinical effectiveness of carvedilol in reducing the rate of all-cause decompensation in patients with small oesophageal varices.
+
+2. **Placebo Arm**: Participants in this arm will receive an oral placebo that matches the appearance of carvedilol tablets. The placebo will be administered in the same manner as the carvedilol, with the same dosing schedule. This arm serves as a control to assess the effectiveness of carvedilol against a non-active treatment.
+
+The primary hypothesis testing framework for this trial is superiority, with the aim of determining whether carvedilol is more effective than placebo in reducing the rate of all-cause decompensation. The primary comparison will be based on the time to first decompensating event between the two arms. Secondary comparisons, including the cost-effectiveness of carvedilol versus placebo, will also be evaluated within the same superiority framework. 
+
+Overall, the study design is structured to provide robust evidence regarding the effectiveness of carvedilol in the specified patient population, while maintaining rigorous blinding and randomisation protocols to ensure the integrity of the trial outcomes.
+
+=== Randomisation ===
+
+## Randomisation
+
+Participants in the BOPPP trial will be randomised to receive either the investigational medicinal product (Carvedilol) or a placebo control. The randomisation process will be conducted using a secure, web-based randomisation system developed and managed by the King’s College London Clinical Trials Unit (KCTU). This system ensures that the allocation sequence is concealed from both participants and investigators until the point of randomisation.
+
+Randomisation will occur after the participant has provided informed consent and their eligibility has been confirmed. Each participant will be assigned a unique six-digit Participant Identification Number (PIN) that will serve as their identifier throughout the trial. The first two digits of the PIN will correspond to the site number, while the last four digits will identify the individual participant.
+
+To ensure balance across treatment groups, randomisation will be stratified by site, allowing for the control of potential site-specific variations in participant characteristics. This stratification will help to mitigate any biases that may arise from differences in patient populations at various trial sites. The randomisation will be performed within a permuted block design, which will further enhance the balance of treatment allocation across the groups.
+
+The randomisation process will be executed within a timeframe of four weeks following participant consent. This timeframe is designed to facilitate timely allocation while maintaining the integrity of the randomisation process. The allocation results will be communicated via email to authorized personnel at each site, ensuring that the treatment assignment remains blinded to both participants and trial staff involved in the assessment of outcomes. 
+
+In summary, the randomisation process for the BOPPP trial will employ a secure, web-based system to allocate participants to either the Carvedilol or placebo group, with stratification by site to ensure balanced treatment allocation and minimize bias.
+
+=== Sample Size ===
+
+### Sample Size and Power
+
+The sample size calculation for the BOPPP trial was conducted to ensure adequate power to detect a significant difference in the primary endpoint, which is the time to first decompensating event between the carvedilol and placebo groups. The calculation was based on data from the PREDESCI study, which reported a 3-year decompensation rate of 27% in the placebo group and 16% in the carvedilol group. The anticipated hazard ratio for the comparison is 0.60, indicating a 40% reduction in the risk of decompensation with carvedilol treatment.
+
+The assumptions used in the sample size calculation include an event rate of 31% in the placebo group and 20% in the carvedilol group at 3 years. A significance level of 0.05 was set for the two-sided hypothesis test. The planned power for the study is 90%, allowing for a robust detection of treatment effects.
+
+The statistical tests considered for the sample size estimation include Cox proportional hazards models to analyze the time-to-event data. The analysis will adjust for potential confounding factors such as age, gender, and disease severity.
+
+To account for anticipated dropouts and losses to follow-up, a 10% increase in the sample size was applied. Therefore, the final sample size was determined to be 740 participants, with 370 allocated to each treatment group. This adjustment ensures that the study maintains sufficient power to detect the primary outcome despite potential missing data.
+
+=== Interim Analysis ===
+
+### Interim Analysis and Internal Pilot
+
+An internal pilot is planned for this study to assess the feasibility of recruitment and retention, as well as to evaluate the overall conduct of the trial. The internal pilot will be conducted 12 months after recruitment opens, with specific objectives to determine the trial's viability. The criteria for progression from the internal pilot to the full trial include:
+
+- Opening at least 8 sites, with at least one patient randomised at each site.
+- Randomising a minimum of 80 patients.
+- Achieving a retention rate of at least 70%.
+
+The statistical methods for evaluating the internal pilot will involve descriptive statistics to summarize recruitment and retention rates. The Data Monitoring Committee (DMC) will review the results of the internal pilot and provide recommendations regarding the continuation of the trial based on the established criteria.
+
+No interim analysis for efficacy or harm is planned beyond the internal pilot phase. Therefore, there will be no adjustments to significance levels or sample size based on interim findings. The DMC will be responsible for monitoring the trial's safety and efficacy, ensuring that the trial adheres to the pre-defined criteria for continuation or modification. 
+
+In summary, while an internal pilot is included to evaluate feasibility, no interim analysis for efficacy or harm is planned, and no adjustments to significance levels will be made.
+
+=== Timing ===
+
+**Timing of Final Analysis and Outcome Data Collection**
+
+The final analysis for the BOPPP trial will be conducted after all data has been collected and the database is locked. This will ensure that the analysis is based on complete and verified data, thereby enhancing the integrity and reliability of the results. The planned duration of follow-up for each participant is three years, with a minimum event-driven follow-up of 185 decompensating events. The final analysis will encompass all primary and secondary outcomes as defined in the protocol.
+
+Outcomes will be measured at specific time points throughout the trial, with the following visit windows established for data collection:
+
+- **Baseline Visit**: Data will be collected at the time of randomization, which includes demographic information, medical history, and baseline clinical assessments.
+- **Week 1 Visit**: (+/- 3 days) Participants will be assessed for adherence and any adverse events related to the investigational medicinal product (IMP).
+- **Week 6 Visit**: (+/- 2 weeks) A safety telephone call will be conducted to review any adverse events.
+- **Month 6 Visit**: (+/- 6 weeks) Clinical review, laboratory testing, and quality of life assessments will be performed.
+- **Month 12 Visit**: (+/- 6 weeks) Similar assessments as Month 6, including a surveillance gastroscopy.
+- **Month 18 Visit**: (+/- 6 weeks) Clinical review and quality of life assessments will be repeated.
+- **Month 24 Visit**: (+/- 6 weeks) Clinical review, laboratory testing, and surveillance gastroscopy will be conducted.
+- **Month 30 Visit**: (+/- 6 weeks) Clinical review and quality of life assessments will be repeated.
+- **Month 36 Visit**: (+/- 6 weeks) Final clinical review, laboratory testing, surveillance gastroscopy, and quality of life assessments will be performed.
+
+In addition to these scheduled visits, any events related to variceal bleeding or other decompensating events will be recorded as they occur, ensuring that all relevant data is captured for the final analysis. The comprehensive collection of outcome data at these specified time points will facilitate a thorough evaluation of the clinical effectiveness and cost-effectiveness of carvedilol compared to placebo in the target population.
+
+=== Analysis Considerations ===
+
+All hypothesis testing will be two-sided, with a nominal level of statistical significance set at 5% (α = 0.05). For the estimation of treatment effects, 95% confidence intervals (CIs) will be presented alongside p-values. No adjustments for multiple testing will be made.
+
+Adherence to the trial intervention will be assessed at each 6-monthly visit via a pill count of returned investigational medicinal product. A participant will be considered adherent if they have consumed at least 50% of the expected number of tablets during the period between visits. Adherence will be summarized descriptively by treatment arm at each visit and for the overall treatment period. The summary will include the number and percentage of adherent participants, as well as continuous summaries of the percentage of medication taken (e.g., mean, standard deviation, median, and interquartile range).
+
+Protocol deviations will be categorized into two types: minor deviations and major violations. A minor protocol deviation is defined as a non-serious breach from the protocol that is unlikely to significantly impact the study's scientific integrity or participant safety. Examples include minor timing variations in study visits or incomplete questionnaire responses. A protocol violation is a more serious departure from the protocol that could substantially affect the study's validity, such as randomization errors, significant eligibility criteria breaches, or major non-compliance with the intervention.
+
+The trial will summarize protocol deviations by categorizing them according to type. This summary will include the number and percentage of participants with each type of deviation, stratified by treatment arm. Major protocol violations that could potentially bias the study results will be explicitly identified and their potential impact on the analysis discussed.
+
+The primary analysis population will be the intention-to-treat (ITT) population, which includes all randomized participants with completed outcomes, analyzed according to their initial treatment allocation, regardless of protocol adherence or subsequent treatment changes. A per-protocol (PP) population will also be defined, excluding participants with major protocol violations or those who do not meet key eligibility criteria upon detailed review. A safety population will be defined as all participants who received at least one dose of the investigational medicinal product and had at least one post-baseline safety assessment.
+
+=== Trial Population ===
+
+**Trial Population**
+
+The trial population for the BOPPP trial will consist of patients with cirrhosis and small oesophageal varices who meet the specified eligibility criteria. Screening data will be collected to provide a comprehensive overview of the representativeness of the trial sample. This will include demographic and clinical characteristics of all patients screened for eligibility, allowing for an assessment of how well the enrolled participants reflect the broader population of patients with cirrhosis and small varices.
+
+Eligibility for participation in the trial will be determined based on the following criteria:
+
+**Inclusion Criteria:**
+- Age 18 years and over
+- Cirrhosis and portal hypertension, defined by any 2 of the following:
+  - Characteristic clinical examination findings
+  - Characteristic liver function tests
+  - Haematological panel
+  - Coagulation profile abnormalities
+  - Characteristic radiological findings
+- Small oesophageal varices diagnosed within the last 6 months, defined as ≤5 mm in diameter
+- Not received a beta-blocker in the last week
+- Capacity to provide informed consent
+
+**Exclusion Criteria:**
+- Non-cirrhotic portal hypertension
+- Current medium/large oesophageal varices (defined as >5 mm in diameter)
+- Previous medium/large oesophageal varices which decreased in size with curative therapy
+- Gastric, duodenal, rectal or other ectopic varices with or without evidence of recent bleeding
+- Previous variceal haemorrhage
+- Known intolerance to beta blockers
+- Contraindications to beta blocker use
+- Unable to provide informed consent
+- Child Pugh C cirrhosis
+- Already receiving a beta-blocker for another reason that cannot be discontinued
+- Evidence of active malignancy without curative therapy planned
+- Pregnant or lactating women
+- Patients who have been on a CTIMP within the previous 3 months
+- Clinical symptoms consistent with COVID-19 at the time of randomisation
+
+The CONSORT flow diagram will detail the number of participants at each stage of the trial, including the number screened, the number eligible, the number randomized, and the number of participants allocated to each treatment group. Additionally, it will include the number of participants who withdraw from the intervention and/or from follow-up at each time point, specifically at the end of each follow-up visit (Months 6, 12, 18, 24, 30, and 36).
+
+Withdrawal and lost to follow-up data will be presented at each follow-up time point, summarizing the reasons for withdrawal when available. This will include participants who discontinue the investigational medicinal product (IMP) and those who withdraw from the trial entirely. The summary will provide counts and percentages of participants lost to follow-up, as well as any relevant demographic or clinical characteristics of those who withdrew compared to those who remained in the study.
+
+Baseline characteristics to be summarized will include age, gender, baseline liver function tests, Child Pugh score, MELD score, and other relevant clinical parameters. These characteristics will be descriptively summarized using means and standard deviations for continuous variables, and counts and percentages for categorical variables. All baseline data will be presented in a table format, allowing for a clear comparison of participant characteristics across treatment groups.
+
+=== Outcome Definitions ===
+
+Time to first decompensating event, defined as the time from randomisation to the occurrence of any of the specified decompensation events, including variceal hemorrhage, new or worsening ascites, new or worsening hepatic encephalopathy, spontaneous bacterial peritonitis, hepatorenal syndrome, increase in Child Pugh Grade by 1 or MELD by 5 points, or liver-related mortality. This outcome will be assessed at each scheduled follow-up visit and recorded until the last patient last visit or until the event occurs.
+
+Estimation of the 1-year and 3-year variceal bleed rate by allocation, which will be calculated as the proportion of participants experiencing variceal bleeding within 1 year and 3 years from randomisation, respectively. This outcome will be assessed through clinical review and documentation of any variceal hemorrhage events reported at each follow-up visit, with the specific measurement unit being the percentage of participants experiencing the event.
+
+Progression to medium/large varices requiring clinical intervention, defined as the transition from small (grade 1) oesophageal varices to medium or large varices (greater than 5 mm in diameter) as determined by endoscopic examination. This outcome will be assessed at the scheduled gastroscopy visits, which occur annually, and will be recorded as a binary outcome (yes/no) indicating whether the participant required clinical intervention due to variceal progression.
+
+Development of gastric, duodenal, or ectopic varices, assessed through endoscopic examination during scheduled follow-up visits. This outcome will be recorded as a binary outcome (yes/no) indicating the presence of any new varices in the specified locations, with the assessment occurring at each annual gastroscopy visit.
+
+Composite of progression in variceal size or variceal bleeding, which will be defined as the occurrence of either variceal bleeding or progression to medium/large varices by 3 years from randomisation. This outcome will be assessed through clinical review and endoscopic examination, with the specific measurement unit being the percentage of participants experiencing either event, recorded until the last patient last visit. 
+
+Survival outcomes will include overall survival, liver-related survival, and cardiovascular-related survival. Overall survival will be defined as the time from randomisation to death from any cause, assessed at each follow-up visit and recorded until the last patient last visit. Liver-related survival will be defined as the time from randomisation to death specifically due to liver-related complications, while cardiovascular-related survival will be defined as the time from randomisation to death due to cardiovascular events. Both survival outcomes will be recorded as time-to-event data, measured in months from randomisation. 
+
+Quality of life will be assessed using the EQ-5D-5L questionnaire at baseline and at 6-month intervals. This outcome will be recorded as a score reflecting the participant's self-reported health status across five dimensions: mobility, self-care, usual activities, pain/discomfort, and anxiety/depression. The specific measurement unit will be the EQ-5D-5L index score, which ranges from 1 (full health) to -0.284 (worse than death).
+
+=== Analysis Methods ===
+
+For all primary and secondary outcomes, analyses will be conducted on the intention-to-treat (ITT) population. The primary outcome of time to first decompensating event will be analysed using a Cox proportional hazards model, with treatment group as the main effect. The model will adjust for age as a continuous covariate and sex as a binary covariate (male/female). The treatment effect will be presented as a hazard ratio with a 95% confidence interval.
+
+The secondary outcomes, including the estimation of the 1- and 3-year variceal bleed rate, progression to medium/large varices requiring clinical intervention, development of gastric, duodenal, or ectopic varices, and the composite of progression in variceal size or variceal bleeding, will be analysed using logistic regression models. These models will adjust for baseline covariates of age and sex, similar to the primary outcome analysis. The treatment effects for these binary outcomes will be presented as odds ratios with 95% confidence intervals.
+
+Quality of life, measured using the EQ-5D-5L questionnaire, will be analysed using a general linear mixed effects model. This model will include random effects for patient and site, and will adjust for fixed effects of age and baseline quality of life scores. The mean difference between treatment groups will be reported alongside 95% confidence intervals and p-values.
+
+All analyses will adhere to the principles of the ITT approach, ensuring that all randomised participants are included in the groups to which they were assigned, regardless of adherence or protocol deviations.
+
+=== Assumptions And Sensitivity Analysis ===
+
+In the analysis of the BOPPP trial data, several assumptions inherent to the statistical models will be rigorously checked to ensure the validity of the results. For the primary outcome, which involves the time to first decompensating event, the Cox proportional hazards model will be employed. The assumption of proportional hazards will be assessed visually using Kaplan-Meier plots and log-log survival plots. Additionally, Schoenfeld residuals will be examined to test for proportionality. If the proportional hazards assumption is violated, alternative approaches will be considered, including stratifying the analysis by covariates that may influence the hazard ratios or utilizing time-varying covariates within the Cox model.
+
+For the secondary outcomes, which include various continuous and dichotomous measures, the general linear mixed effects model and mixed effects logistic regression will be applied. Assumptions related to normality and homoscedasticity for the continuous outcomes will be evaluated through residual plots and normality tests. Should these assumptions be violated, data transformations (e.g., logarithmic or square root transformations) will be applied to achieve normality. If transformations do not resolve the issues, non-parametric methods such as the Wilcoxon rank-sum test for continuous outcomes and Fisher's exact test for dichotomous outcomes will be utilized.
+
+In addition to the primary and secondary analyses, several sensitivity analyses will be conducted to assess the robustness of the findings. One planned sensitivity analysis will involve examining the impact of missing data on the primary outcome. Multiple imputation will be employed to handle missing data, and the results will be compared to those obtained from complete case analysis. This will help to determine whether the conclusions drawn from the primary analysis are sensitive to the handling of missing data.
+
+Another sensitivity analysis will focus on the potential impact of outliers on the primary and secondary outcomes. Outliers will be identified using standardized residuals, and analyses will be repeated after excluding these outliers to assess their influence on the results. Furthermore, we will conduct a sensitivity analysis to evaluate the effect of different assumptions regarding the cost-effectiveness analysis, including varying the quality-adjusted life-year (QALY) thresholds and the discount rates applied to future costs and benefits.
+
+All sensitivity analyses will be clearly documented, and the results will be presented alongside the primary findings to provide a comprehensive understanding of the robustness of the trial outcomes. The rationale for each sensitivity analysis will be articulated, ensuring that the implications of any deviations from the primary analysis are thoroughly explored and communicated.
+
+=== Subgroup Analysis ===
+
+Subgroup analyses will be conducted to explore the treatment effects of carvedilol versus placebo across various patient characteristics. The primary focus will be on the following subgroups: age (younger than 65 years vs. 65 years and older), gender (male vs. female), and baseline disease severity as measured by the Child-Pugh score (Child-Pugh A vs. Child-Pugh B). 
+
+To assess the interaction between the subgroup indicators and the treatment intervention, an interaction term will be included in the Cox proportional hazards model for the primary outcome of time to first decompensating event. This model will adjust for potential confounders such as age, gender, and baseline disease severity. The results will be presented as hazard ratios with corresponding 95% confidence intervals for each subgroup, allowing for a comparison of treatment effects across different patient characteristics.
+
+In addition to the primary outcome, subgroup analyses will also be performed for secondary outcomes, including the progression to medium/large varices requiring clinical intervention and the quality of life measured by the EQ-5D-5L. Similar interaction terms will be incorporated into the appropriate statistical models for these outcomes. 
+
+Overall, these subgroup analyses aim to provide insights into whether the efficacy of carvedilol varies among different patient populations, thereby enhancing the understanding of its clinical effectiveness in the context of primary prophylaxis for oesophageal varices.
+
+=== Missing Data ===
+
+In the BOPPP trial, the handling of missing data will be approached with careful consideration to ensure the integrity of the statistical analyses. Missing data will be reported in terms of frequency and patterns, and the reasons for missingness will be documented where possible. The primary assumption regarding missing data is that it is missing at random (MAR), conditional on the covariates included in the analysis models. This assumption allows for valid inferences to be drawn from the observed data.
+
+For continuous baseline covariates, missing values will be addressed using mean imputation, which involves replacing missing values with the mean of the observed values for that covariate. For binary or categorical covariates, missing indicators will be created to account for the presence of missing data, allowing the analysis to retain the maximum number of participants while acknowledging the missingness.
+
+In general, missing data for outcomes will not be imputed, and analyses will be conducted solely on participants with complete outcome data. This approach ensures that the results reflect the actual observed data without introducing potential biases from imputation. Multiple imputation will not be employed unless specified in the protocol, as it is not anticipated that additional auxiliary information will be available to enhance the imputation model. Therefore, the focus will remain on complete cases for outcome analyses, maintaining the robustness of the findings while minimizing the risk of bias associated with missing data.
+
+=== Additional Analysis ===
+
+No additional analysis will be conducted.
+
+=== Harms ===
+
+**Adverse Event Reporting**
+
+Adverse events (AEs) will be systematically collected throughout the trial, from baseline until 30 days post the last visit or permanent discontinuation of the investigational medicinal product (IMP). AEs will be classified according to the Common Terminology Criteria for Adverse Events (CTCAE) version 5.0, which provides a standardized framework for grading the severity of AEs. Each AE will be assessed for severity, expectedness, and causality in relation to the IMP. Expectedness will be determined based on the information provided in the Summary of Product Characteristics (SmPC) for Carvedilol, while causality will be evaluated by the investigator based on clinical judgment and the temporal relationship between the administration of the IMP and the onset of the AE.
+
+All AEs will be coded using the Medical Dictionary for Regulatory Activities (MedDRA) terminology to ensure consistency and facilitate data analysis. AEs will be categorized into serious adverse events (SAEs), which include events resulting in death, life-threatening conditions, hospitalization, or significant disability, and non-serious AEs. The frequency and nature of AEs will be summarized descriptively, including the number and percentage of participants experiencing each type of AE, stratified by treatment group (Carvedilol vs. placebo).
+
+For inferential analysis, the incidence of AEs will be compared between the two treatment groups using appropriate statistical methods, such as Chi-square tests for categorical outcomes. The analysis will focus on the overall incidence of AEs, as well as the incidence of specific AEs of interest, including those that are severe or unexpected. The results will be presented alongside 95% confidence intervals to provide an estimate of the precision of the observed differences. Additionally, any significant differences in the severity and type of AEs between treatment groups will be discussed in the context of the overall safety profile of Carvedilol compared to placebo. 
+
+The safety data will be reviewed regularly by the Data Monitoring Committee (DMC) to ensure participant safety and to make recommendations regarding the continuation of the trial based on the safety findings.
+
+=== Software ===
+
+All analysis will be carried out using Stata 18.5.
