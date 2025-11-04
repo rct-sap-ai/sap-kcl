@@ -27,7 +27,7 @@ __all__ = ["get_chat"]
 
 
 """
-links to the other chat models od OpenAI
+links to the other chat models of OpenAI
 
 def get_chats(system_message):
     chats = {}
