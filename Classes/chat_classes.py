@@ -25,6 +25,7 @@ class OpenAIChat:
         response = self.client.chat.completions.create(
             model=self.model_name,
             messages= messages,
+            reasoning_effort = "minimal"
         )
         content = response.choices[0].message.content.strip()
         usage = response.usage
