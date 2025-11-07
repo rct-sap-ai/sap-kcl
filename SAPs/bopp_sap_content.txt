@@ -1,0 +1,355 @@
+title: Beta-blockers Or Placebo for Primary Prophylaxis of oesophageal varices (BOPPP Trial). A blinded, UK multi-centre, clinical effectiveness and cost-effectiveness randomised controlled trial.
+acronym: BOPPP
+isrctn_number: ISRCTN10324656
+protocol_version: Protocol version: 4.0, 31 MAY 2023.
+protocol_date: 31 MAY 2023
+name_of_cheif_investigator: Dr Vishal C. Patel, Institute of Liver Studies, King’s College Hospital NHS Foundation Trust
+senior_statistician: Dr Ben Carter, King’s College London Clinical Trials Unit, King’s College London.
+trial_acronym: BOPPP
+description_of_trial: UK multicentre, Phase IV, blinded (participant, investigator, analyst), randomised, placebo-controlled trial comparing carvedilol (6.25–12.5 mg daily) versus matching placebo in adults (≥18 years) with cirrhosis and small (grade 1) oesophageal varices without previous variceal bleeding.
+
+Participants are followed for up to 3 years (with an event-driven component) to assess clinical effectiveness and cost-effectiveness.
+investigators: Dr Vishal C. Patel, Institute of Liver Studies, King’s College Hospital NHS Foundation Trust
+Dr Mark J. W. McPhail, Institute of Liver Studies, King’s College Hospital NHS Foundation Trust
+principle_investigator: Dr Vishal C. Patel — Institute of Liver Studies, King’s College Hospital NHS Foundation Trust
+trial_manager: Trial Manager: Not specified in protocol.
+trial_statisticians: Dr Ben Carter, King’s College London Clinical Trials Unit
+health_economist: Not specified in protocol
+primary_objectives: To determine the clinical effectiveness in the reduction of all -cause decompensation in patients treated with carvedilol versus placebo at 3 years.
+To determine the cost -effectiveness of Carvedilol in patients with small oesophageal varices.
+secondary_objectives: At 1-year after participant recruitment opens, to assess feasibility of: recruitment, retention acceptability, with progression criteria outlined in internal pilot 1.
+
+To determine additional clinical benefits of Carvedilol versus placebo for: reduction of variceal size progression, need to initiate endoscopic management of varices (endoscopic band ligation (EBL)), deterioration in liver function (assessed by MELD score and Child-Pugh grade) and all-cause mortality.
+
+To investigate how this is best delivered in primary care, by general practice, using qualitative approaches and GP interviews to examine barriers and enablers to implementation.
+trial_design: Overall trial design
+
+This is a UK, multicentre, Phase IV, parallel-group, randomised, placebo-controlled, blinded clinical effectiveness and cost-effectiveness trial comparing carvedilol with placebo in adults with cirrhosis and small oesophageal varices. Blinding applies to participants, outcome assessors, site investigators, the Chief Investigator and the senior statistician; limited operational unblinding is prespecified for safety oversight. The hypothesis framework is superiority of carvedilol versus placebo for delaying time to first all-cause decompensation over up to 3 years; a co-primary economic evaluation will assess cost-utility over the same horizon. Follow-up is scheduled for 36 months with an event-driven minimum of 185 decompensation events and extended capture via electronic record linkage.
+allocation_ratio: 1:1
+randomization_level: Participant
+stratification_factors: - None specified
+number_of_arms: Number of treatment arms: 2
+Carvedilol (NSBB)
+Placebo
+duration_of_treatment: Participants randomised to Carvedilol will receive treatment dispensed 6 monthly for a total period of 3 years. Participants randomised to Placebo will receive matched placebo dispensed 6 monthly for a total period of 3 years.
+follow_up_timepoints: Statistical Analysis Plan: Follow-up outcome assessment time points
+
+- Month 6 (±6 weeks; outcome data may be used if visit occurs outside ±6 weeks but within 12 weeks)
+- Month 12 (±6 weeks; annual surveillance gastroscopy; outcome data acceptable within a 12-week window)
+- Month 18 (±6 weeks; outcome data acceptable within a 12-week window)
+- Month 24 (±6 weeks; annual surveillance gastroscopy; outcome data acceptable within a 12-week window)
+- Month 30 (±6 weeks; outcome data acceptable within a 12-week window)
+- Month 36 (±6 weeks; annual surveillance gastroscopy; outcome data acceptable within a 12-week window)
+- Unscheduled: at variceal bleed (on the date of presentation; outcomes assessed that day)
+- Trial completion review (prior to database lock; outcomes recorded via notes/registry)
+- Post-IMP extended follow-up by electronic record linkage (HES/ONS and equivalents) from end of on-trial follow-up until trial completion (where consent provided)
+visit_windows: Statistical Analysis Plan: Visit Windows for Assessments
+
+- Screening and Baseline:
+  - Baseline may occur the same day as Screening. If Screening and Baseline occur separately and Baseline is within 2 weeks of Screening, the targeted physical exam and weight/height are not repeated at Baseline.
+  - Randomisation should be completed within 4 weeks of consent; IMP allocation within 4 weeks of consent.
+  - Baseline laboratory tests and prognostic scores may use results obtained within 6 months of Baseline.
+  - HCC surveillance ultrasound at Baseline must be completed within 6 months of Screening or the last standard-of-care surveillance.
+
+- Week 1 visit: ±3 days.
+
+- Week 6 safety telephone call: ±2 weeks.
+
+- Months 6, 12, 18, 24, 30, and 36 clinic visits: each ±6 weeks.
+  - Although the visit windows are ±6 weeks, if due to variation in standard-of-care visits the patient is seen outside of the 6-week window but within a 12-week window, the outcome data can be used for that visit.
+
+- Annual gastroscopies at Months 12, 24, and 36 occur within the corresponding visit windows.
+
+- Unscheduled assessments:
+  - At variceal bleed: outcomes are assessed on the date presented.
+  - At trial completion (via notes): no window specified.
+data_collection_procedures: Data will be sourced from NHS clinical records (clinic notes, laboratory results, imaging/HCC surveillance, and endoscopy reports with photo-documentation), participant-completed EQ-5D-5L and healthcare resource use questionnaires, concomitant medication logs and pill counts, and unscheduled event reports, then transcribed to source data worksheets and entered into the InferMed MACRO (Elsevier) EDC by authorised site staff using pseudo-anonymised PINs; the EDC applies point-of-entry validations, regular data checks, full audit trails, and secure storage at KCTU. Timing: baseline/enrolment (including randomisation), week 1 dose-titration (in person), week 6 safety call, then 6‑monthly visits to month 36 (±6 weeks; data up to ±12 weeks permitted) capturing efficacy/safety, labs, prognostic scores (Child-Pugh, MELD, UKELD, CLIF-C AD), adherence, QoL and resource use; annual gastroscopy at months 12, 24, 36; HCC surveillance per standard care. Unscheduled events (e.g. variceal bleed) are recorded at occurrence; AEs are collected from baseline to 30 days post month‑36 visit or permanent IMP discontinuation. At trial completion, outcomes (variceal bleed, mortality, myocardial infarction, liver transplant) are abstracted from notes, and extended follow‑up via linkage to national datasets (HES or equivalents and ONS deaths) is undertaken to capture long‑term outcomes.
+inclusion_criteria: Statistical Analysis Plan — Eligibility Criteria (Inclusion)
+
+- Age 18 years and over
+- Cirrhosis and portal hypertension, defined by any 2 of the following:
+  - Characteristic clinical examination findings; one or more of
+  - Characteristic liver function tests
+  - Haematological panel
+  - Coagulation profile abnormalities
+  - Characteristic radiological findings; one or more of
+    - Heterogeneous liver with irregular contour
+    - splenomegaly
+    - ascites
+    - varices
+    - recanalized umbilical vein
+    - FibroScan liver stiffness measurement >15 kPa without other explanation
+    - Fibrosis score > ISHAK stage 4 on liver biopsy (presence of a relevant fibrosis score by biopsy does not require additional clinical examination / radiological / FibroScan supporting evidence)
+- Small oesophageal varices diagnosed within the last 6 months, defined as ≤5 mm in diameter or varices which completely disappear on moderate insufflation at gastroscopy.
+- Not received a beta-blocker in the last week
+- Capacity to provide informed consent
+exclusion_criteria: SAP section: Eligibility – Exclusion Criteria
+
+- Non-cirrhotic portal hypertension
+- Current medium/large oesophageal varices (defined as >5 mm in diameter)
+- Previous medium/large oesophageal varices (defined as >5 mm in diameter), which decreased in size with curative therapy
+- Gastric (IGV and GOV2), duodenal, rectal or other ectopic varices with or without evidence of recent bleeding. For gastric varices, this includes: IGV-1 and IGV-2 (isolated gastric varices); GOV2 (gastric varices continuing into the cardia); Note GOV1 (gastric varices continuing into the lesser curve) are not an exclusion if present with small oesophageal varices
+- Previous variceal haemorrhage
+- Previous band ligation or glue injection of oesophageal and/or gastric varices
+- Red signs accompanying varices at endoscopy
+- Known intolerance to beta blockers
+- Contraindications to beta blocker use: Heart rate <50 bpm; Known 2nd degree or higher heart block; Sick sinus syndrome; Systolic blood pressure <85 mmHg; Chronic airways obstruction (asthma/COPD) – See special considerations below; Floppy Iris Syndrome; CYP2D6 Poor Metaboliser; History of cardiogenic shock; History of severe hypersensitivity reaction to beta-blockers; Untreated phaeochromocytoma; Severe peripheral vascular disease; Prinzmetal angina; NYHA IV heart failure
+- Unable to provide informed consent
+- Child Pugh C cirrhosis
+- Already receiving a beta-blocker for another reason that cannot be discontinued
+- Graft cirrhosis post liver transplantation
+- Evidence of active malignancy without curative therapy planned
+- Pregnant or lactating women
+- Women of child bearing potential not willing to use adequate contraception during the period of IMP dosing (if relevant)
+- Patients who have been on a CTIMP within the previous 3 months
+- Clinical symptoms consistent with COVID-19 (a high temperature, a new continuous cough or a loss or change to sense of smell or taste) at the time of randomisation
+primary_outcome_measures: • Time to first all-cause decompensation: Time from randomisation to the first occurrence of any protocol-defined decompensation event, assessed up to 3 years from baseline (time unit not prespecified).
+
+• Cost-utility of NSBB: Incremental cost-utility of carvedilol versus placebo over 3 years, expressed as an incremental cost-effectiveness ratio (£ per QALY) using EQ-5D-5L–derived QALYs and healthcare resource use.
+secondary_outcome_measures: Secondary Outcomes
+
+- Variceal haemorrhage rate at 1 and 3 years: proportion (%) of participants experiencing variceal haemorrhage (per protocol definition) by allocation at 12 and 36 months from baseline, with number needed to treat derived from the 3-year risk difference.
+
+- Progression to medium/large oesophageal varices requiring clinical intervention: occurrence (yes/no) of progression to medium/large oesophageal varices (>5 mm or grade II/III) requiring clinical intervention over 36 months from baseline, assessed at scheduled gastroscopies.
+
+- Development of gastric, duodenal, ectopic or rectal varices: occurrence (yes/no) of new varices at these sites detected at gastroscopy over 36 months from baseline.
+
+- Composite of variceal size progression or variceal bleeding: occurrence (yes/no) of either progression to medium/large oesophageal varices or variceal haemorrhage by 36 months from baseline.
+
+- Survival: time to death (overall, and cause-specific as liver-related or cardiovascular-related per protocol definitions) from baseline to 36 months; unit not applicable.
+
+- Quality of life: EQ-5D-5L measured at baseline and 6, 12, 18, 24, 30 and 36 months, reported as the tariff-based index value (unitless utility score) and EQ VAS (0–100).
+mediator_of_treatment: Exploratory mediators of treatment effect (MBOP mechanistic sub-study)
+
+- Circulating bacterial DNA: quantified from EDTA whole blood for bacterial/host DNA profiling.
+- Gut permeability markers: assayed from collected biospecimens (blood/serum) per MBOP sampling.
+- Pro-inflammatory responses and monocyte phenotype/function: assessed via PBMC isolation with cytokine profiling and RNAseq.
+- Gut microbiome composition: profiled from saliva and faecal samples.
+moderator_of_treatment: Statistical Analysis Plan section: Effect Modifiers (Moderator Variables)
+
+- None prespecified in the protocol; only adjustment covariates (age, sex, disease severity) and a site shared-frailty term are specified; no interaction/subgroup effects defined.
+process_indicators: Process indicators to be summarised
+
+- Site activation (number of sites opened; ≥8 sites with ≥1 randomised participant at 12 months per internal pilot)
+- Recruitment (number randomised; target ≥80 at 12 months per internal pilot)
+- Retention (retained in follow-up; target ≥70% at 12 months per internal pilot)
+- Timeliness of randomisation (randomised within 4 weeks of consent)
+- Week 1 visit completion (up‑titration visit within ±3 days window)
+- Week 6 safety call completion (telephone contact within ±2 weeks window)
+- Six‑monthly visit adherence (M6–M36 completed within ±6 weeks; allowable use up to ±12 weeks)
+- Annual gastroscopy completion (M12, M24, M36 per schedule)
+- HCC surveillance imaging completion (baseline within 6 months; then per 6‑monthly SOC schedule)
+- Laboratory assessments completion (baseline within 6 months; then 6‑monthly SOC panels)
+- EQ‑5D‑5L completion (baseline and 6‑monthly)
+- Healthcare resource questionnaire completion (baseline and 6‑monthly)
+- AUDIT‑C/alcohol questions completion (AUDIT‑C at M12, M24, M36; limited alcohol questions at M6, M18, M30)
+- IMP dispensing per schedule (6‑monthly issue recorded)
+- IMP accountability (return of unused/empty packs; pharmacy reconciliation logged)
+- Adherence by pill count (compliant if <50% tablets returned)
+- Dose titration conducted per protocol (Appendix 2 criteria applied at Week 1 and subsequent visits)
+- Achieved dose status (on 6.25 mg vs 12.5 mg at each visit)
+- Haemodynamic target attainment (HR reduction >25% from baseline or HR 50–55 bpm when applicable)
+- Dose modifications (up/down‑titrations and reasons recorded)
+- Temporary IMP pauses (occurrence and reasons per protocol criteria)
+- Permanent IMP discontinuations (occurrence and reasons; e.g., variceal bleed, variceal progression, red‑flag symptoms, need for open‑label beta‑blocker)
+- Emergency/planned unblinding events (number and reasons)
+- Protocol deviations and violations (counts and categories as defined)
+- Concomitant medication conflicts leading to IMP changes (occurrence and reasons)
+- Consent for extended electronic follow‑up (proportion consenting to record linkage)
+- SAE/SUSAR reporting timeliness (SAEs to KHP‑CTO within 24 h; SUSAR regulatory timelines met)
+- Endoscopy photo‑documentation availability at screening (presence of required images to verify variceal grade)
+- IMP home shipment (use of courier supply and audit trail completeness, where applicable)
+adverse_events: Harms: adverse event collection, definitions, reporting, and summaries
+
+Adverse event collection window and reference safety information
+Adverse events (AEs) will be collected from Baseline through 30 days after the Month 36 visit or 30 days after permanent IMP discontinuation (whichever occurs first), as specified in the protocol. Section 4.8 of the Carvedilol SmPC (6.25 mg) is the Reference Safety Information for expectedness assessments. AE severity will be graded using CTCAE v5.0. No specific AE coding dictionary (e.g., MedDRA) is specified in the protocol.
+
+Definitions and grading to be used
+The following regulatory definitions (per Medicines for Human Use (Clinical Trials) Regulations 2004/2006) will be applied:
+- Adverse Event (AE): any untoward medical occurrence in a participant administered a medicinal product, not necessarily causally related.
+- Adverse Reaction (AR): any untoward and unintended response to an investigational medicinal product related to any dose administered.
+- Unexpected Adverse Reaction (UAR): an AR whose nature or severity is not consistent with the Carvedilol SmPC.
+- Serious Adverse Event (SAE)/Serious Adverse Reaction (SAR)/Suspected Unexpected Serious Adverse Reaction (SUSAR): any AE/AR/UAR that results in death; is life-threatening; requires hospitalisation or prolongation of existing hospitalisation; results in persistent or significant disability/incapacity; is a congenital anomaly/birth defect; or requires intervention to prevent permanent impairment/damage (including Important Medical Events).
+- Pregnancy: not an SAE but any unplanned pregnancy will be reported via the SAE reporting system.
+All AEs will be graded for severity using CTCAE v5.0 (Grades 1–5).
+
+Events not requiring SAE reporting (but to be recorded)
+The following do not require SAE reporting to the sponsor but must be recorded in the AE log/CRFs and relevant endpoint forms, as applicable: medical events occurring prior to first IMP dose; planned elective admissions; recognised complications of cirrhosis; variceal haemorrhage; decompensation events constituting the primary endpoint (spontaneous bacterial peritonitis, hepatic encephalopathy, new/worsening ascites, increase in Child-Pugh or MELD); development of hepatocellular carcinoma; and hospitalisations <24 hours (e.g., for therapeutic paracentesis/outpatient appointments). Deaths due to disease progression and events that are trial primary/secondary endpoints are not considered SAEs and will be handled through endpoint data capture.
+
+Safety reporting procedures (per protocol)
+Investigators will report SAEs/SARs/SUSARs immediately and no later than 24 hours to the KHP-CTO and CI. SUSARs that are fatal or life-threatening will be reported by the sponsor within 7 days (with follow-up within 8 days); other SUSARs within 15 days. SAEs (except death) require reporting only if occurring within 30 days post termination of IMP. The Trial Manager may be unblinded to facilitate safety reporting to the DMC; investigators and the CI remain blinded. Emergency unblinding is available via the 24-hour code break service.
+
+Harms analysis sets and presentation
+All collected AEs from Baseline onward will be included in harms summaries. Primary and secondary endpoint events will not be analysed as SAEs; they will be analysed within the efficacy endpoints. AE summaries will be presented by randomised treatment arm and will include: number (%) of participants with at least one AE, AR, SAE, SAR, SUSAR; total number of events; maximum CTCAE grade per participant; relationship to IMP (as recorded); outcome (e.g., resolved, ongoing, death); and seriousness criteria. Additional summaries will describe AEs leading to dose reduction, temporary interruption, or permanent discontinuation of IMP, and AEs leading to hospitalisation ≥24 hours. Pregnancies will be listed. Where applicable, listings will include event term as recorded, onset/stop dates, severity (CTCAE grade), seriousness, relatedness, and action taken. No additional categorisation (e.g., MedDRA SOC/PT) is prespecified in the protocol.
+only_baseline_measures: Pre-randomisation measures (to be described and used in the SAP)
+
+- Demographics (age, gender)
+- Medical history
+- Targeted physical examination: ascites grade (Appendix 6), hepatic encephalopathy grade (West-Haven; Appendix 7), Glasgow Coma Scale, weight, height, vital signs (SBP, HR)
+- Transient elastography (TE) and APRI (FibroScan)
+- Laboratory profiles: FBC; INR/PT ratio; liver, renal, and bone profiles
+- Liver prognostic scores: Child-Pugh; MELD (including sodium); UKELD; CLIF-C AD
+- Endoscopic assessment of varices: size/grade (Grade I, ≤5 mm), number of columns, red signs; presence/classification of gastric/duodenal varices (GOV1, GOV2, IGV1, IGV2); photo-documentation
+- HCC surveillance imaging (US/CT/MRI): hepatomegaly, splenomegaly and spleen size (cm), portal/hepatic vein patency, radiological ascites, focal liver lesions
+- Concomitant medications
+- Quality of life: EQ-5D-5L (including EQ VAS)
+- Healthcare Resource Use questionnaire
+- Alcohol use: AUDIT-C
+additional_follow_up_measures: Post-randomisation follow-up measures
+
+- Dose titration (IMP up/down): Week 1; Week 6; Months 6, 12, 18, 24, 30, 36
+- Vital signs (blood pressure, heart rate): Week 1; Months 6, 12, 18, 24, 30, 36
+- Safety telephone AE assessment: Week 6 (±2 weeks)
+- Adverse events collection: Week 6; Months 6, 12, 18, 24, 30, 36; to 30 days post-M36 or permanent IMP discontinuation (excluding death)
+- Concomitant medications review: Week 1; Week 6; Months 6, 12, 18, 24, 30, 36
+- IMP adherence (pill count): Week 1; Months 6, 12, 18, 24, 30, 36
+- IMP dispensing: Months 6, 12, 18, 24, 30
+- Targeted physical exam (ascites and HE grading), GCS, weight/height: Months 6, 12, 18, 24, 30, 36
+- Laboratory tests (FBC, INR, liver, renal, bone profiles): Months 6, 12, 18, 24, 30, 36
+- Prognostic scores (Child-Pugh, MELD, UKELD, CLIF-C-AD): Months 6, 12, 18, 24, 30, 36
+- Variceal haemorrhage status: Months 6, 12, 18, 24, 30, 36; at variceal bleed event
+- Hospitalisations: Months 6, 12, 18, 24, 30, 36
+- Development of hepatic decompensation components (SBP, HE, HRS, etc.): Months 6, 12, 18, 24, 30, 36
+- Increase in oesophageal varices grade: Months 12, 24, 36
+- Presence/development of non-oesophageal varices (gastric, duodenal, ectopic, rectal): Months 12, 24, 36
+- HCC surveillance imaging (US ± CT/MRI): Months 6, 12, 18, 24, 30, 36
+- Annual surveillance gastroscopy: Months 12, 24, 36
+- Quality of life (EQ-5D-5L): Months 6, 12, 18, 24, 30, 36
+- Healthcare resource use questionnaire: Months 6, 12, 18, 24, 30, 36
+- Alcohol assessments: AUDIT-C at Months 12, 24, 36; limited alcohol questions at Months 6, 18, 30
+- Mortality ascertainment: Months 6, 12, 18, 24, 30, 36; at trial completion via notes; extended via registry
+- Unscheduled assessment at variceal bleed: outcomes assessed on the event day
+- Trial completion review (via notes): variceal bleed, mortality, myocardial infarction, liver transplant
+- Extended follow-up by electronic record linkage (HES and death records): post last trial visit to trial completion
+- MBOP sub-study (subset): blood, saliva and faecal samples at Years 1, 2, 3 after baseline; spleen stiffness VCTE annually at KCH only
+screening_recruitment_consort: Statistical Analysis Plan (SAP): Participant Flow (CONSORT-style)
+
+- Assessed for eligibility: approximately n=4,000 (patients with cirrhosis assessed after detection of small oesophageal varices at gastroscopy)
+- Excluded: n=3,260 (not meeting inclusion criteria, refused to participate, other reasons)
+- Randomised: n=740
+- Allocated to carvedilol: n=370
+- Allocated to placebo: n=370
+- Treated (receipt of allocated intervention): IMP initiated at Baseline, dose titration at Week 1, safety telephone review at Week 6, and 6‑monthly dispensing/management to Month 36 (counts not reported)
+- Treatment modifications/cessation per protocol: 
+  - Permanent stop for variceal haemorrhage; for progression to medium/large OV or development of gastric/duodenal/ectopic/rectal varices (SOC may include open-label NSBB/EBL)
+  - Temporary pause for SBP, AKI, hyponatraemia, sepsis, non‑variceal GI bleed, critical illness with hypotension, pregnancy/lactation, or to facilitate cardiac stress testing (restart when resolved)
+  - Permanent discontinuation for IMP-related “red flag” cardiac symptoms (CTCAE grade 3) if relatedness confirmed
+- Follow-up: clinic visits every 6 months to Month 36 with annual gastroscopy; all patients followed up at study conclusion; combined 3‑year follow-up or event‑driven follow-up to 185 decompensation events (+6 months +6 weeks after last IMP dispatch); extended follow-up via record linkage (HES/ONS) post‑IMP with consent (no loss‑to‑follow‑up counts reported)
+- Analysed: 
+  - ITT population includes all randomised participants with post‑baseline data; those without any post‑baseline data excluded from ITT (per protocol)
+  - Per‑protocol population excludes major protocol violations; participants censored at progression without decompensation in primary analysis
+  - Primary analysis: time to first all‑cause decompensation via Cox model adjusted for age, gender, disease severity; site as shared frailty (no analysis counts reported)
+treatment_compliance_definitition: Treatment compliance/adherence will be assessed by pill count of returned IMP at each protocolled research visit (week 1 dose-titration and all 6‑monthly visits from Month 6 to Month 36). Patients will be recorded as compliant if at least 50% of the number of pills that should have been removed were removed (i.e., less than 50% of the trial IMP tablets are returned); returning more than 50% constitutes a protocol deviation. Compliance data and pill counts will be recorded in the CRF and monitored by the CRA.
+adherence_to_treatment: Adherence to allocated IMP will be assessed by pill count from returned study drug at Week 1 and each 6‑monthly clinic visit through Month 36 (no pill count at the Week 6 safety call), with counts recorded in the CRF and verified via pharmacy accountability and CRA monitoring; participants will be classified compliant if at least 50% of expected tablets were taken (i.e., <50% returned), and returns >50% will be recorded as protocol deviations. Adherence (pill counts) will be summarised descriptively over time as the number and proportion of visits/participants meeting the compliance threshold, aligned with the protocol’s “other recorded events” reporting.
+descriptive_statistics: Descriptive summaries will be presented by randomised allocation (carvedilol vs placebo) at each scheduled assessment (baseline, week 1, week 6, months 6, 12, 18, 24, 30, 36) and, where applicable, cumulatively to 3 years (and at 1 year where specified). For the primary outcome (time to first all-cause decompensation), we will tabulate numbers of events and censored observations by arm and display Kaplan–Meier curves with numbers at risk and cumulative incidence estimates at 1 and 3 years (reporting median time-to-event and follow-up where estimable). Variceal haemorrhage will be described by 1- and 3-year bleed rates by arm with the derived number needed to treat; the composite of bleed or progression, progression to medium/large oesophageal varices, and development of gastric/duodenal/ectopic/rectal varices will be summarised as counts and percentages by arm at annual gastroscopy time points (12, 24, 36 months) and cumulatively by 3 years. Survival will be summarised as numbers of deaths (overall, liver-related, cardiovascular-related) and Kaplan–Meier estimates by arm. Repeated measures of MELD, Child-Pugh, UKELD and CLIF-C AD will be summarised by arm and visit using means (SD) and medians (IQR). EQ-5D-5L index and VAS scores and healthcare resource use will be summarised by arm at each scheduled time point using appropriate location and spread (e.g. means/SD and medians/IQR). Hospitalisations recorded at visits will be reported as numbers and proportions by arm over each interval and cumulatively. Adherence (pill counts) will be summarised as the proportion meeting the ≥50% compliance threshold by arm at each visit and overall. Adverse events, serious adverse events and related categories (by CTCAE grade and relatedness) will be tabulated as counts and percentages by arm over the on-treatment period (baseline to 30 days post M36 or permanent IMP discontinuation).
+descriptive_of_intervention: Descriptive summaries of the intervention will present, by randomised group, the intended regimen (carvedilol 6.25 mg once daily with week‑1 up‑titration to a maximum of 12.5 mg once daily, which may be taken as 6.25 mg twice daily, versus matched placebo) and treatment exposure: numbers and percentages initiating IMP, achieving/maintaining 12.5 mg or 6.25 mg, using the twice‑daily schedule, dose changes over time, duration on IMP, adherence by pill‑count, and counts/reasons for temporary pauses and permanent discontinuations per protocol (including post‑progression open‑label NSBB starts). We will summarise delivery and roles: research nurses/practitioners (blinded) conducting the week‑1 dose‑titration visit and week‑6 safety telephone call; blinded outcome assessors conducting 6‑monthly follow‑up; site pharmacies dispensing 6‑monthly supplies via the KCTU randomisation–IMP system; and the unblinded KCTU trials pharmacist monitoring site stock. Dose modifications precipitated by adverse events will be described and noted as ratified by a BOPPP clinician where required. Completion of scheduled titration/telephone contacts, IMP dispensed/returned, and protocol‑defined dose‑management actions will be summarised overall and by site where relevant.
+descriptive_concomitant_medications: Concomitant medication will be summarised using the complete listing recorded in the CRF at baseline, Week 1, and each scheduled 6‑monthly visit to Month 36 (per Schedule of Visits; not collected at the Week 6 safety call), and reviewed against protocol-specified interaction/management rules. Variables tabulated by randomised group will include: any concomitant medication use (yes/no) at each time point; use of medication classes of interest described in the protocol (non‑trial beta‑blockers, rate‑limiting calcium channel antagonists, anti‑arrhythmics with significant interactions, and CYP2D6/CYP2C9/P‑glycoprotein inhibitors or inducers); and indicators that concomitant therapy led to IMP pause or permanent discontinuation (as per Section 4.8 and Appendix 2). Data will be presented as counts and percentages of participants using each class at baseline and “any time during follow‑up,” and as counts/percentages of participants with IMP modification attributable to concomitant therapy, with timing summarised by visit.
+visit_window_deviation: Visit windows will follow the protocol: Week 1 (±3 days), Week 6 (±2 weeks), and Months 6–36 (±6 weeks), with the explicit allowance that, for Month 6–36 visits, outcome data obtained outside the ±6-week window but within 12 weeks may be used for that scheduled visit and will not be considered a deviation. Visits occurring outside the specified windows (or missed) will be recorded as protocol deviations (PDs), consistent with the protocol example that “missing of a single visit window” constitutes a PD; classification as a protocol violation (PV) will be reserved for more serious excursions likely to materially impact data quality, per protocol Section 11.2.5.
+primary_estimand: Primary estimand
+
+The primary estimand targets the effect of assignment to carvedilol versus placebo on time to first all-cause decompensation over 3 years in adults with cirrhosis and small (grade 1) oesophageal varices as enrolled in BOPPP. The population is all randomised participants who contribute any post-baseline outcome assessment (intention-to-treat population). The treatment condition is oral carvedilol initiated at 6.25 mg once daily and titrated per protocol up to 12.5 mg daily (12.5 mg once daily or 6.25 mg twice daily) versus visually matched placebo, with dose modifications allowed per protocol. The endpoint is time from randomisation to first decompensating event within 3 years, defined as the composite of: variceal haemorrhage; new or worsening ascites (clinical or radiological); new or worsening hepatic encephalopathy (West-Haven >1); spontaneous bacterial peritonitis (ascitic PMN >250/mm3); hepatorenal syndrome; increase in Child-Pugh by ≥1 grade or MELD by ≥5 points; or liver-related mortality. Participants without a qualifying event are censored at last known follow-up within 3 years. The population-level summary is the hazard ratio (carvedilol vs placebo) from a Cox proportional hazards model adjusted for age, gender and disease severity, with site included as a shared frailty; estimates will be presented with 95% confidence interval and p-value.
+
+Intercurrent events are handled using a treatment-policy strategy unless specified. Specifically: temporary IMP pauses, dose changes, permanent IMP discontinuation, initiation of open-label non-selective beta-blocker, and endoscopic or other standard-of-care interventions do not define the endpoint and participants remain under observation for decompensation; events are counted regardless of adherence or additional therapies. Progression to medium/large varices or development of gastric/duodenal/ectopic varices leads to permanent IMP discontinuation and possible open-label carvedilol, but follow-up for the primary endpoint continues; absent decompensation, participants are censored at last follow-up. For TIPS or liver transplantation, IMP is discontinued and routine visits cease; outcome ascertainment continues via records where available and, if no decompensation occurs, participants are censored at last follow-up. Liver-related death is an event; other deaths are not part of the primary endpoint. Participants who are unblinded and withdrawn or lost to follow-up will contribute time-to-event data up to the last date with outcome information.
+confidence_interval_p_value: Statistical inference will use a nominal significance level of 0.05 (type I error) and treatment effects will be reported with 95% confidence intervals, with corresponding p-values presented (e.g., adjusted hazard ratios for the primary outcome and mean differences for continuous secondary outcomes).
+primary_analysis_model: Primary clinical outcome (time to first all-cause decompensation): Analysis will use a Cox proportional hazards model with treatment as a fixed effect (carvedilol vs placebo) and site modelled as a shared frailty term, adjusting for patient age, gender, and disease severity as specified in the protocol; the treatment effect will be reported as an adjusted hazard ratio with 95% confidence interval and p-value, with proportional hazards assessed visually (Kaplan–Meier and log–log plots). Primary economic outcome (cost-utility to 3 years): A within-trial cost-utility analysis will compare mean costs and QALYs between arms with regression adjustment for pre-specified baseline characteristics, handling missing data by multiple imputation and quantifying uncertainty by non-parametric bootstrapping to produce ICERs, mean incremental net monetary benefit at £20,000/QALY, and cost-effectiveness acceptability curves; a probabilistic Markov model will be used for lifetime extrapolation.
+intercurrent_events_and_analysis: Statistical Analysis Plan section: Intercurrent events and handling
+
+The following intercurrent events are anticipated. Strategies and supplementary analyses follow the protocol.
+
+- Variceal haemorrhage (VH)
+  - Handling: Counts as a primary all-cause decompensation (ACD) event at time of VH.
+  - Treatment actions: Permanently stop IMP; start open-label NSBB as standard of care; do not unblind.
+  - Analysis: Included in ITT time-to-ACD. No special handling beyond event timing.
+
+- Progression to medium/large oesophageal varices or development of gastric/duodenal/ectopic/rectal varices
+  - Handling: Not a primary ACD event; secondary endpoint; IMP permanently discontinued; participant may be unblinded if it influences management.
+  - Analysis: ITT primary analysis continues follow-up for ACD. Per-protocol: participants who progress but have not decompensated will be censored in the primary outcome analysis. Secondary outcomes analyse progression and the composite with bleeding as specified.
+
+- New/worsening ascites; hepatic encephalopathy; spontaneous bacterial peritonitis; hepatorenal syndrome; increase in Child-Pugh grade by 1 or MELD by 5; liver-related mortality
+  - Handling: Each component is part of the primary ACD composite.
+  - Treatment actions: Continue IMP, or pause while hospitalised per protocol; restart on improvement/discharge.
+  - Analysis: Event recorded at first occurrence for time-to-ACD.
+
+- Temporary pause or dose modification of IMP (e.g., SBP, AKI, hyponatraemia, sepsis, non-variceal GI bleed, pregnancy/lactation, to facilitate stress testing; low BP/HR; CTCAE grade 3 cardiac symptoms)
+  - Handling: Exposure change only; IMP paused or reduced per protocol; resume when resolved; pregnancy reported via SAE system.
+  - Analysis: ITT primary analysis continues irrespective of treatment changes. Per-protocol population will exclude protocol violators per SAP definitions.
+
+- Initiation of non-trial beta-blocker or interacting medications for other indications
+  - Handling: Permanent discontinuation of trial IMP if need is lifelong or due to interactions; one-week washout before starting interacting medication as applicable.
+  - Analysis: Continue outcome data collection with consent; included in ITT primary analysis.
+
+- Emergency unblinding/code break
+  - Handling: Participants unblinded via emergency service will be withdrawn from the trial.
+  - Analysis: Primary outcomes will be measured until last patient last visit; included up to that time.
+
+- TIPS placement or orthotopic liver transplantation
+  - Handling: IMP discontinued; participant withdrawn from scheduled 6‑monthly follow-up.
+  - Analysis: Mortality and endpoint data collected at trial end via Health Episode Statistics (HES) linkage; included in primary outcome if events occur.
+
+- Withdrawal from IMP only
+  - Handling: Participant remains in follow-up; collect scheduled data and endpoints.
+  - Analysis: Included in ITT.
+
+- Withdrawal from the trial
+  - Handling: No further scheduled data unless permitted; reasons documented.
+  - Analysis: Censor at last known follow-up time if no ACD event has occurred.
+
+- Deaths
+  - Handling: Liver-related death is part of the ACD composite. Overall, liver-related, and cardiovascular-related survival are secondary outcomes.
+  - Analysis: Time to ACD includes liver-related mortality. Survival outcomes analysed as secondary endpoints.
+
+- COVID-19–related disruptions
+  - Handling: Use phone/video visits for specified procedures; courier IMP; allow visit windows ±6 weeks (extendable to 12 weeks for outcome use).
+  - Analysis: Primary analysis unchanged; mitigates missingness per protocol.
+
+- Missed visits/out-of-window assessments
+  - Handling: Data outside ±6 weeks but within 12 weeks may be used for that visit.
+  - Analysis: Use available data; censor at last follow-up if no ACD.
+
+- No post-baseline data
+  - Handling: Defined in protocol.
+  - Analysis: Excluded from the ITT population.
+
+Supplementary analyses and data sources
+
+- Per-protocol analysis: Excludes protocol violators; for the primary outcome, participants who progress in variceal size without decompensation will be censored.
+- Extended follow-up: With consent, collect primary outcome and HES data after the 36‑month visit to trial completion to increase power; planned median follow-up ~4 years for the primary outcome.
+- Trial completion ascertainment: Prior to database lock, record variceal bleed, mortality, myocardial infarction, and liver transplant from participant notes and the Trial Completion Review form.
+secondary_estimands: Statistical Analysis Plan section: Estimands for secondary outcomes (differences from the primary estimand)
+
+Primary estimand (for reference). The primary estimand targets the effect of assignment to carvedilol versus placebo on time to first all-cause decompensation over 3 years, in the intention-to-treat (ITT) population (all randomised participants with any post-baseline data), using a treatment policy strategy for intercurrent events (e.g., treatment discontinuation, switching to open-label NSBB, endoscopic band ligation (EBL), TIPS/OLTx), with follow-up censored at last contact.
+
+Variceal haemorrhage at 1 and 3 years. The estimand is the absolute risk of ≥1 variceal haemorrhage by 1 year and separately by 3 years under randomised assignment to carvedilol vs placebo, in the ITT population. Intercurrent events (including permanent IMP discontinuation, initiation of open-label NSBB/EBL) are handled using a treatment policy strategy; participants are followed to the time horizon and censored at last contact. The contrast is the risk difference at each horizon, with associated number needed to treat (NNT).
+
+Progression to medium/large oesophageal varices requiring clinical intervention. The estimand is the effect of assignment to carvedilol vs placebo on time to first progression to medium/large varices over 3 years, in the ITT population. Progression itself leads to permanent IMP discontinuation and may trigger open-label therapy; these intercurrent events are addressed with a treatment policy strategy. Participants are censored at last assessment if no progression is observed.
+
+Development of gastric, duodenal, ectopic or rectal varices. The estimand is the effect of assignment on time to first development of non-oesophageal varices over 3 years, in the ITT population. Intercurrent events (including treatment changes) are handled by a treatment policy strategy; censoring occurs at last assessment.
+
+Composite of variceal size progression or variceal bleeding. The estimand is the effect of assignment on time to first occurrence of either variceal size progression (to medium/large) or variceal haemorrhage over 3 years, in the ITT population, with a treatment policy strategy for intercurrent events and censoring at last contact.
+
+Survival outcomes (overall; liver-related; cardiovascular-related). The estimands are the effects of assignment on time to death over 3 years for: all-cause mortality; liver-related mortality; and cardiovascular-related mortality, each in the ITT population. Cause of death is classified per protocol. Intercurrent events (treatment changes, discontinuation, procedures) are addressed with a treatment policy strategy; censoring is at last contact.
+
+Quality of life (EQ-5D-5L). The estimand is the difference between treatment arms in EQ-5D-5L utility measured at scheduled visits from 6 to 36 months in the ITT population, under a treatment policy strategy for intercurrent events. The summary measure is the adjusted mean difference derived from the pre-specified linear mixed-effects model across follow-up. Participants without observed post-baseline data are excluded per protocol.
+secondary_analysis: Statistical analysis of secondary outcomes will follow an intention-to-treat framework. Continuous outcomes collected repeatedly over visits (e.g., liver prognostic scores, EQ-5D-5L utilities/VAS) will be analysed using general linear mixed-effects models with random effects for patient and site, and fixed effects adjusting for patient age and disease severity (as specified in the SAP). Dichotomous outcomes (e.g., progression to medium/large oesophageal varices, development of gastric/duodenal/ectopic varices, composite of progression or bleeding by 3 years) will be analysed using mixed-effects logistic regression with random effects for patient and site and fixed effects for patient age and disease severity. For secondary endpoints requiring estimation of event proportions at fixed time points (e.g., 1- and 3-year variceal bleed rates), rates by allocation and the associated number needed to treat will be reported.
+
+Where secondary outcomes are inherently time-to-event (e.g., survival: overall, liver-related, cardiovascular-related), analyses will use time-to-event methods consistent with the primary analysis framework, and results will be presented with effect estimates and 95% confidence intervals. Across secondary analyses, the shared model structure includes random effects for site (and for patient where repeated measures apply) and covariate adjustment for patient age and disease severity. All secondary outcomes will be analysed up to 3 years from baseline, as specified.
+time_points: Analysis time points and visit windows: Time zero is the date of randomisation/baseline. The primary clinical endpoint (time to first all-cause decompensation) will be analysed from baseline to 36 months; events occurring between visits will be recorded on the event date and used in the time-to-event analysis, with participants without decompensation censored at their last follow-up. Secondary outcomes are assessed over 3 years: variceal bleed rates estimated at 1 and 3 years; progression/development of varices and the composite endpoint over 3 years; survival (overall, liver-related, cardiovascular-related) to 3 years; EQ-5D-5L and healthcare use at baseline and months 6, 12, 18, 24, 30, and 36; gastroscopy at months 12, 24, and 36; AUDIT-C at baseline, 12, 24, and 36 (with limited alcohol questions at 6, 18, and 30). Scheduled visit assessments use a ±6-week window; if data are outside this window but within ±12 weeks of the target visit, they will be used for that visit; otherwise they are treated as missing. At trial completion, variceal bleed, mortality, myocardial infarction, and liver transplant are abstracted from notes. With separate consent, extended follow-up of the primary outcome and hospital utilisation via linkage (e.g., HES/ONS) will continue post-IMP until trial completion (de facto median follow-up ~4 years), but the primary analyses are limited to outcomes within 3 years from baseline.
+stratification_and_clustering: Accounting for stratification and clustering: No randomisation stratification factors are specified in the protocol; therefore, analyses will adjust for pre-specified prognostic covariates rather than stratification variables. The primary time-to-event outcome (time to first all-cause decompensation) will be analysed using a Cox proportional hazards model adjusted for patient age, gender, and disease severity, with site fitted as a shared frailty term to account for clustering by hospital. Secondary continuous outcomes will be analysed using linear mixed-effects models and secondary dichotomous outcomes using mixed-effects logistic regression, each including random effects for site (to account for clustering) and for patient where repeated measures occur, and fixed effects for patient age and disease severity as specified.
+missing_items_in_scales: Missing data handling for multi-item instruments will follow instrument guidance where stated; the protocol provides no item-level prorating rules. Accordingly, scale/subscale scores will be calculated only when all required items for that score are present; if any required item is missing, the corresponding score will be set to missing (no within-form prorating or item imputation). EQ-5D-5L utilities require complete descriptive system responses; the EQ VAS is a standalone item. AUDIT-C and other questionnaire-derived scores will likewise require complete items for scoring. Consistent with the health economic plan, missing EQ-5D-5L utilities and resource-use data will be addressed at the analysis stage using Multiple Imputation (Section 11.3); no additional item-level imputation is specified.
+missing_baseline_data: Missing baseline covariates will be sourced from the baseline visit; where the baseline occurs outside standard of care (SoC), the protocol permits use of the most recent SoC laboratory results obtained within the prior 6 months if the patient is clinically stable, with notification to the central trial team and Trial Statistician (these labs underpin baseline disease severity scores: Child-Pugh, MELD, UKELD, CLIF-C-AD). Primary and secondary clinical analyses will adjust for age, gender and disease severity, but the protocol does not specify any imputation for missing baseline covariates; participants with no post-baseline data will be excluded from the ITT population. For the health economic analysis, missing data (including baseline characteristics used for adjustment) will be handled using Multiple Imputation.
+missing_data_sensitivity_analysis: Sensitivity analyses for missing outcome data
+The protocol does not pre-specify sensitivity analyses (e.g., MNAR or tipping-point analyses) for missing clinical outcomes. For the primary time-to-event endpoint, participants without any post-baseline data are excluded from the ITT set; otherwise, missingness is handled through right-censoring at last observed follow-up, with extended follow-up via electronic record linkage (e.g., HES/ONS) to mitigate missingness. Per-protocol analyses will censor participants who progress in variceal size without decompensation as specified. For the economic evaluation, missing cost and EQ-5D-5L data will be addressed using Multiple Imputation, with uncertainty propagated via nonparametric bootstrapping in cost-effectiveness analyses. No additional MNAR-focused sensitivity analyses are described in the protocol.
+multiple_comparisons: Multiplicity: The protocol does not specify any formal adjustment for multiplicity. The clinical primary endpoint (time to first decompensation) will be tested at the 5% significance level as per the sample size assumptions; the health economic primary endpoint is a cost-utility evaluation and is not included in type I error control. Secondary (and other) endpoints will be analysed as specified without multiplicity adjustment; 95% confidence intervals and nominal p-values will be presented and interpreted as exploratory. No additional adjustment is planned for repeated measures beyond the specified model-based approaches (e.g., mixed-effects models).
+analysis_for_noncompliance: Non-compliance analyses: The primary analysis will use the intention-to-treat (ITT) population, defined as all randomised patients with any post-baseline data; patients with no post-baseline data will be excluded. A per-protocol population (PPP) will be defined by excluding participants who violate the protocol (with deviations/violations classified per SAP; violations will exclude from PPP). For the primary endpoint in the PPP, participants who progress in variceal size without any decompensation will be censored at the time of progression. Adherence will be assessed via pill counts at each visit; returning >50% of dispensed IMP is recorded as a protocol deviation. No complier-average causal effect (CACE), instrumental-variable, or as-treated analyses are specified in the protocol.
+model_assumption_checks: Assumption checks and remedies: For the primary time-to-event analysis, the proportional hazards assumption of the Cox shared-frailty model will be assessed visually using Kaplan–Meier curves (with at‑risk tables) and log–log plots for the two allocation groups, as specified in the protocol; no further formal tests are prespecified. If clear violations are observed, no remedial method is preplanned in the protocol; any alternative modelling approach will be detailed via a SAP amendment authored by a blinded statistician and approved by the TMG/TSC prior to unblinding. For the health-economic extrapolations that use parametric survival models, structural assumptions will be examined by testing alternative parametric specifications in sensitivity analyses, as prespecified. No additional model assumption checks are defined in the protocol for other analyses.
+other_sensitivity_analysis: Sensitivity analyses beyond missing data will include: (1) repeating the primary time-to-event analysis in the per-protocol population to assess robustness to protocol deviations, excluding protocol violators and censoring participants who progress in variceal size without experiencing decompensation, as specified; (2) a supportive analysis of the primary endpoint incorporating the extended post-IMP follow-up obtained via electronic record linkage (e.g., HES/ONS) to evaluate consistency of treatment effects beyond the 3-year visit schedule; and (3) for the economic evaluation, predefined scenario analyses varying EQ-5D-5L utility assumptions (base case assumes no treatment effect within health states; sensitivity will adjust utilities for any treatment-attributable differences conditional on state) and testing alternative parametric survival specifications for key event rates within the Markov model, alongside probabilistic sensitivity analysis to characterise parameter uncertainty.
+subgroup_analysis: No subgroup analysis will be conducted.
+any_additional_exploratory_analysis: No additional analysis will be conducted.
+any_exploratory_mediator_and_moderator_analysis: No exploratory mediation or moderation analyses are planned per the protocol.
+interim_analysis: Interim Analyses and Internal Pilot
+
+No formal interim analyses for efficacy or harm are planned.
+
+An internal feasibility pilot is planned at 12 months after recruitment opens. Its objective is to assess operational feasibility (site activation, recruitment, and retention). The Trial Statistician will summarise feasibility outcomes and report to the DMC, which will assess performance against pre-specified Go/No-Go criteria and make a recommendation to the TSC. Criteria for continuation are: at least 8 sites opened with ≥1 patient randomised at each; ≥80 patients randomised in total; and ≥70% retention. If these are met, the trial proceeds.
+
+No comparative effectiveness data will be reviewed by allocation during the pilot. No alpha spending, significance-level adjustment, or sample size re-estimation is planned in relation to the internal pilot.
