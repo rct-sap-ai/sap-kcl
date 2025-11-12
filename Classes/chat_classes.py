@@ -17,7 +17,7 @@ class OpenAIChat:
         # If OPENAI_API_KEY is in env, this works without passing api_key explicitly
         self.client = OpenAI()
         
-    def get_response(self, prompt: str, reasoning_effort="low", verbosity="low"):
+    def get_response(self, prompt: str, reasoning_effort="minimal", verbosity="low"):
         response = self.client.responses.create(
             model=self.model_name,
             instructions=self.system_message,
