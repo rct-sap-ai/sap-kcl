@@ -74,3 +74,14 @@ protocol = Protocol("Protocols/boppp.pdf")
 template.get_sap_content(protocol.protocol_txt, prompts_file = prompts_file, prompt_tasks = prompt_tasks)
 template.save_content_as_text(path = "SAPs/bopp_sap_content.txt")
 template.populate(sap_folder = "SAPs", sap_name = "bopp_sap_v0.1.docx")
+
+def write_sap(protocol_name, sap_name):
+    protocol = Protocol(f"Protocols/{protocol_name}")
+    template.get_sap_content(protocol.protocol_txt, prompts_file = prompts_file, prompt_tasks = prompt_tasks)
+    template.save_content_as_text(path = f"SAPs/{sap_name}_content.txt")
+    template.populate(sap_folder = "SAPs", sap_name = f"{sap_name}.docx")
+
+
+
+# to run with your SAP just edit this line :)
+write_sap("boppp.pdf", "bop_sap_v0.1")
