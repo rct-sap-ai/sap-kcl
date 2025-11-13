@@ -6,12 +6,12 @@ class Template:
     def __init__(
         self,
         template_path: str | Path,
-        prompts_file,
+        system_message_function,
         prompt_register,
     ) -> None:
 
         self.template_path = template_path
-        self.prompts_file = prompts_file
+        self.system_message_function = system_message_function # a function of protocol text
         self.prompt_register = prompt_register
 
     
