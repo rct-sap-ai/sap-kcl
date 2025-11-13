@@ -7,22 +7,25 @@ class Template:
     def __init__(
         self,
         template_path: str | Path,
+        prompts_file,
+        prompt_register,
         *,
-        delay_sec: float = 0.5
+        delay_sec: float = 0.01
     ) -> None:
 
         self.template_path = template_path
         self.delay_sec = delay_sec # the delay used between calls to AI to prevent rate limits being exceeded.
-
+        self.prompts_file = prompts_file
+        self.prompt_register = prompt_register
 
     
-    def get_sap_content(self, protocol_text, prompts_file, prompt_tasks):
+    def get_sap_content(self, protocol_text):
         chat_bot = OpenAIChat(
             model_name = "gpt-5-2025-08-07", 
-            system_message = prompts_file.system_message(protocol_text))
+            system_message = self.prompts_file.system_message(protocol_text))
 
         results = {}
-        for var_name, prompt_func in prompt_tasks:
+        for var_name, prompt_func,  in self.prompt_register:
             prompt = prompt_func()
 
             print(f"Running {var_name}")

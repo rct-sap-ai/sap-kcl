@@ -17,17 +17,15 @@ class OpenAIChat:
         # If OPENAI_API_KEY is in env, this works without passing api_key explicitly
         self.client = OpenAI()
         
-    def get_response(self, prompt: str):
-        messages = [
-            {"role": "system", "content": self.system_message},
-            {"role": "user", "content": prompt}
-        ]
-        response = self.client.chat.completions.create(
+    def get_response(self, prompt: str, reasoning_effort="minimal", verbosity="low"):
+        response = self.client.responses.create(
             model=self.model_name,
-            messages= messages,
-            reasoning_effort = "minimal"
+            instructions=self.system_message,
+            input=prompt,
+            reasoning={ "effort": reasoning_effort},
+            text={ "verbosity": verbosity}
         )
-        content = response.choices[0].message.content.strip()
-        usage = response.usage
-        return {"content": content, "usage": usage}
+        content = response.output_text.strip()
+        return {"content": content}
          
+

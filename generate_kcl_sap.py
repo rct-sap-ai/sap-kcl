@@ -66,12 +66,17 @@ prompt_tasks = [
     ("interim_analysis", prompts_file.generate_interim_analysis_prompt),
 ]
 
+# Set up template with template file and prompts   
+template = Template(
+    template_path = "Templates/DRAFT Q-162 (SAP Template) V2.0.docx", 
+    prompts_file=prompts_file, 
+    prompt_register=prompt_tasks
+)
 
-template = Template(template_path = "Templates/DRAFT Q-162 (SAP Template) V2.0.docx")
-
-
+# Give the template a prtocol and wtite a sap
 protocol = Protocol("Protocols/boppp.pdf")
-template.get_sap_content(protocol.protocol_txt, prompts_file = prompts_file, prompt_tasks = prompt_tasks)
+template.get_sap_content(protocol.protocol_txt)
+
 template.save_content_as_text(path = "SAPs/bopp_sap_content.txt")
 template.populate(sap_folder = "SAPs", sap_name = "bopp_sap_v0.1.docx")
 
