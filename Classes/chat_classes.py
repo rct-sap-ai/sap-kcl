@@ -1,4 +1,5 @@
 import os
+import time
 from openai import OpenAI
 from dotenv import load_dotenv, find_dotenv
 
@@ -6,16 +7,21 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 
+
+ 
+
 class OpenAIChat:
     def __init__(
         self,
         model_name: str = "gpt-4o-mini-2024-07-18",
-        system_message: str = "You are a helpful chatbot."
+        system_message: str = "You are a helpful chatbot.",
+        delay_sec: float = 0.1
     ):
         self.model_name = model_name
         self.system_message = system_message
         # If OPENAI_API_KEY is in env, this works without passing api_key explicitly
         self.client = OpenAI()
+        self.delay_sec = delay_sec
         
     def get_response(self, prompt: str, reasoning_effort="minimal", verbosity="low"):
         response = self.client.responses.create(
@@ -27,5 +33,30 @@ class OpenAIChat:
         )
         content = response.output_text.strip()
         return {"content": content}
+    
+    def run_prompts_register(self, prompt_register):
+        results = {}
+        for item  in prompt_register:
+            prompt = item.prompt_function()
+            var_name = item.variable
+       
+
+            print(f"Running {var_name}")
+            try:
+                response = self.get_response(
+                    prompt=prompt, 
+                    reasoning_effort=item.reasoning_effort, 
+                    verbosity = item.verbosity
+                )
+                response_content = (response.get("content", "") or "").strip()
+                if not response_content:
+                    response_content = "ERROR"
+            except Exception as e:
+                print(f"An error occurred: {e}")
+                response_content = "ERROR"
+            results[var_name] = response_content
+            
+            time.sleep(self.delay_sec)
+        return(results)
          
 
