@@ -1,4 +1,5 @@
 import os
+import asyncio
 import time
 from openai import OpenAI
 from dotenv import load_dotenv, find_dotenv
@@ -58,5 +59,36 @@ class OpenAIChat:
             
             time.sleep(self.delay_sec)
         return(results)
-         
+    
 
+    async def run_prompts_register_async(self, prompt_register):
+        results = {}
+
+        async def run_one(item):
+            prompt = item.prompt_function()
+            var_name = item.variable
+            print(f"Running {var_name}")
+
+            try:
+                response = await self.get_response(
+                    prompt=prompt,
+                    reasoning_effort=item.reasoning_effort,
+                    verbosity=item.verbosity,
+                )
+                response_content = (response.get("content", "") or "").strip()
+                if not response_content:
+                    response_content = "ERROR"
+            except Exception as e:
+                print(f"An error occurred: {e}")
+                response_content = "ERROR"
+
+            return var_name, response_content
+
+        tasks = [run_one(item) for item in prompt_register]
+
+        for var_name, value in await asyncio.gather(*tasks):
+            results[var_name] = value
+
+        print("printing results")
+        print(results)
+        return results
