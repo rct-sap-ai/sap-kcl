@@ -97,7 +97,8 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
 write_sap(
     protocol_path="Protocols/boppp.pdf",
     sap_folder_path = "SAPs",
-    sap_name = "bopp_sap_v0.1_async",
+    sap_name = "bopp_sap_v0.1_test",
+    test = True
 )
 
 # running with without test mode on uses full gpt-5. This is what we'll use in production so when refining prompts is best to use.
