@@ -4,6 +4,8 @@ from Classes.prompt_register_class import PromptRegister
 
 from Prompts import prompts_06 as prompts_file
 
+import time 
+
 #reasoning_effort ="high", "medium", or "low", "minimal"
 # verbosity = "high", "medium", or "low"
 #PromptRegister(variable, prompt_function, reasoning_effort, verbosity)
@@ -81,6 +83,8 @@ template = Template(
 
 # Give the template a prtocol and wtite a sap
 def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
+    t0 = time.time()
+
     protocol = Protocol(protocol_path)
     if not test:
         template.get_sap_content(protocol.protocol_txt)
@@ -91,6 +95,9 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
     template.save_content_as_text(path = f"{sap_folder_path}/{sap_name}_content.txt")
     template.populate(sap_folder = sap_folder_path, sap_name = f"{sap_name}.docx")
 
+    t1 = time.time()
+    total_time = round(t1- t0)
+    print(f"SAP written in {total_time} seconds")
 
 
 # running with test = true uses gpt-5-nano which is faster and cheaper. Use to make sure everything runs.
