@@ -83,7 +83,7 @@ template = Template(
 def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
     protocol = Protocol(protocol_path)
     if not test:
-        template.get_sap_content(protocol.protocol_txts)
+        template.get_sap_content(protocol.protocol_txt)
     else:
         print("Test enabled - running with gpt5 nano")
         template.get_sap_content(protocol.protocol_txt, model = "gpt-5-nano")

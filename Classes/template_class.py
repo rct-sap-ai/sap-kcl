@@ -1,6 +1,8 @@
 from pathlib import Path
 from docxtpl import DocxTemplate
-from Classes.chat_classes import OpenAIChat
+from Classes.chat_classes import OpenAIChat, OpenAIChatAsync
+import asyncio
+
 
 class Template:
     def __init__(
@@ -16,10 +18,12 @@ class Template:
 
     
     def get_sap_content(self, protocol_text, model = "gpt-5-2025-08-07"):
-        chat_bot = OpenAIChat(
+        chat_bot = OpenAIChatAsync(
             model_name = model, 
             system_message = self.system_message_function(protocol_text))
-        self.sap_content = chat_bot.run_prompts_register(prompt_register=self.prompt_register)
+        self.sap_content = asyncio.run(
+            chat_bot.run_prompts_register(prompt_register=self.prompt_register)
+        )
         
     def save_content_as_text(self, path):
         sap_content = self.sap_content
