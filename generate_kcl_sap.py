@@ -88,8 +88,8 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
         print("Test enabled - running with gpt5 nano")
         template.get_sap_content(protocol.protocol_txt, model = "gpt-5-nano")
 
-    #template.save_content_as_text(path = f"{sap_folder_path}/{sap_name}_content.txt")
-    #template.populate(sap_folder = sap_folder_path, sap_name = f"{sap_name}.docx")
+    template.save_content_as_text(path = f"{sap_folder_path}/{sap_name}_content.txt")
+    template.populate(sap_folder = sap_folder_path, sap_name = f"{sap_name}.docx")
 
 
 
@@ -97,7 +97,7 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
 write_sap(
     protocol_path="Protocols/boppp.pdf",
     sap_folder_path = "SAPs",
-    sap_name = "bopp_sap_v0.1",
+    sap_name = "bopp_sap_v0.1_test",
     test = True
 )
 
