@@ -80,29 +80,30 @@ template = Template(
 )
 
 # Give the template a prtocol and wtite a sap
-protocol = Protocol("Protocols/boppp.pdf")
-template.get_sap_content(protocol.protocol_txt)
-
-template.save_content_as_text(path = "SAPs/bopp_sap_content.txt")
-template.populate(sap_folder = "SAPs", sap_name = "bopp_sap_v0.1.docx")
-
 def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
     protocol = Protocol(protocol_path)
     if not test:
-        template.get_sap_content(protocol.protocol_txt,  prompt_tasks = prompt_tasks)
+        template.get_sap_content(protocol.protocol_txts)
     else:
         print("Test enabled - running with gpt5 nano")
-        template.get_sap_content(protocol.protocol_txt, prompt_tasks = prompt_tasks, model = "gpt-5-nano")
+        template.get_sap_content(protocol.protocol_txt, model = "gpt-5-nano")
 
-    template.save_content_as_text(path = f"{sap_folder_path}/{sap_name}_content.txt")
-    template.populate(sap_folder = sap_folder_path, sap_name = f"{sap_name}.docx")
+    #template.save_content_as_text(path = f"{sap_folder_path}/{sap_name}_content.txt")
+    #template.populate(sap_folder = sap_folder_path, sap_name = f"{sap_name}.docx")
 
 
 
-# to run with your trial just edit this call
+# running with test = true uses gpt-5-nano which is faster and cheaper. Use to make sure everything runs.
 write_sap(
     protocol_path="Protocols/boppp.pdf",
     sap_folder_path = "SAPs",
     sap_name = "bopp_sap_v0.1",
     test = True
 )
+
+# running with without test mode on uses full gpt-5. This is what we'll use in production so when refining prompts is best to use.
+# write_sap(
+#     protocol_path="Protocols/boppp.pdf",
+#     sap_folder_path = "SAPs",
+#     sap_name = "bopp_sap_v0.1",
+# )
