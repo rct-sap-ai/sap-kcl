@@ -365,7 +365,7 @@ PROMPTS = {
         - Do not infer or invent variables, timepoints, or measurement details that are not present in the protocol.
         - Do not describe or propose any mediation analysis; only list and describe the mediator variables.
         - If no mediators are specified, output a single bullet with the sentence: "No mediators of treatment effects are explicitly specified in the protocol."
-        """
+        """,
 
 
         "{{moderator_of_treatment}}": """
@@ -376,7 +376,7 @@ PROMPTS = {
         - Do not infer or invent variables, categories, or measurement details that are not present in the protocol.
         - Do not describe or propose any moderation, interaction, or subgroup analysis; only list and describe the moderator variables.
         - If no moderators of treatment effects are specified, output a single bullet with the sentence: "No moderators of treatment effects are explicitly specified in the protocol."
-        """
+        """,
 
         
         "{{process_indicators}}": """
@@ -387,7 +387,7 @@ PROMPTS = {
         - Do not infer or invent indicators, categories, or measurement details that are not present in the protocol.
         - Do not describe or propose any statistical analysis of process indicators; only list and describe the indicators to be summarised.
         - If no process indicators are specified, output a single bullet with the sentence: "No process indicators are explicitly specified in the protocol."
-        """
+        """,
 
         "{{adverse_events}}": """
         - Using only the clinical trial protocol, write a concise, paragraph-style summary of adverse event (harms) reporting suitable for inclusion in the Statistical Analysis Plan (SAP) Harms section.
@@ -397,7 +397,7 @@ PROMPTS = {
         - Be concise and write in continuous prose (one to three short paragraphs), not bullet points.
         - Do not infer or invent definitions, coding systems, time windows, or analyses that are not present in the protocol.
         - If the protocol does not specify adverse event definitions, coding system, or planned summaries, write a single short paragraph stating that the protocol does not provide detailed specifications for adverse event reporting.
-        """
+        """,
 
         "{{only_baseline_measures}}": """
         - Using only the clinical trial protocol, identify measures that are collected pre-randomisation (e.g., baseline covariates, screening or baseline assessments) and are intended to be used or reported in the Statistical Analysis Plan (SAP).
@@ -407,7 +407,7 @@ PROMPTS = {
         - Do not infer or invent measures, scales, timepoints, or other details that are not present in the protocol.
         - Do not describe or propose any statistical analyses; only list and describe the pre-randomisation measures.
         - If no additional pre-randomisation measures are specified, output a single bullet with the sentence: "No additional pre-randomisation measures to be used in the SAP are explicitly specified in the protocol."
-        """
+        """,
 
         "{{additional_follow_up_measures}}": """
         - Using only the clinical trial protocol, identify post-randomisation follow-up measures that are collected in addition to the primary and secondary outcomes (e.g., exploratory outcomes, additional questionnaires, long-term follow-up assessments, resource-use measures).

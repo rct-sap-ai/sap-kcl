@@ -46,7 +46,7 @@ prompt_tasks = [
     PromptRegister("only_baseline_measures", prompts_file.generate_only_baseline_measures_prompt,"minimal","low"),
     PromptRegister("additional_follow_up_measures", prompts_file.generate_additional_follow_up_measures_prompt,"minimal","low"),
     PromptRegister("screening_recruitment_consort", prompts_file.generate_screening_recruitment_consort_prompt,"minimal","low"),
-    PromptRegister("treatment_compliance_definitition", prompts_file.generate_treatment_compliance_definitition_prompt,"minimal","low"),
+    #PromptRegister("treatment_compliance_definitition", prompts_file.generate_treatment_compliance_definitition_prompt,"minimal","low"),
     PromptRegister("adherence_to_treatment", prompts_file.generate_adherence_to_treatment_prompt,"minimal","low"),
     PromptRegister("descriptive_statistics", prompts_file.generate_descriptive_statistics_prompt,"minimal","low"),
     PromptRegister("descriptive_of_intervention", prompts_file.generate_descriptive_of_intervention_prompt,"minimal","low"),
@@ -100,7 +100,7 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
     print(f"SAP written in {total_time} seconds")
 
 
-# running with test = true uses gpt-5-nano which is faster and cheaper. Use to make sure everything runs.
+#running with test = true uses gpt-5-nano which is faster and cheaper. Use to make sure everything runs.
 write_sap(
     protocol_path="Protocols/boppp.pdf",
     sap_folder_path = "SAPs",
