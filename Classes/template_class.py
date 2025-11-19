@@ -2,6 +2,8 @@ from pathlib import Path
 from docxtpl import DocxTemplate
 from Classes.chat_classes import OpenAIChat, OpenAIChatAsync
 import asyncio
+from datetime import date
+
 
 
 class Template:
@@ -24,6 +26,11 @@ class Template:
         self.sap_content = asyncio.run(
             chat_bot.run_prompts_register(prompt_register=self.prompt_register)
         )
+
+        today = date.today()
+        str_today = today.strftime("%m/%d/%y")
+        self.sap_content .update({"todays_date": str_today})
+
         
     def save_content_as_text(self, path):
         sap_content = self.sap_content

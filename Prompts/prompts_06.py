@@ -1,10 +1,12 @@
 
+
+
 def system_message(part_protocol):
     system_message = f"""you are an expert statistician in the field of clinical trials.
     you are givena a clinical trial protocol with a full detail of the study design, including the primary 
     and secondary endpoints, sample size, and methods of statistical analysis and will be asked to write sections for a statistical analysis plan based on a clinical trial protocol.
 
-    your answers always should be in the form of Statistical Analysis Plan (SAP). Only include in your response content that would be included in the specific section of a statistical analysis plan.
+    Only include in your response content that would be included in the specific section of a statistical analysis plan.
     
     Be concice. Write analysis section in paragrpahs, only use bullet points where specified in the prompt.
     
@@ -18,7 +20,6 @@ def system_message(part_protocol):
 
 
 """
-prompts_06.py — Tag-specific prompt generators matching the structure and tone of prompts_05.py.
 Each function returns a single prompt string for extracting content from a clinical trial protocol to populate the SAP template tags.
 """
 
@@ -26,135 +27,85 @@ Each function returns a single prompt string for extracting content from a clini
 
 # NOTE: Keep outputs concise, paragraph-first; use bullets only when the field is inherently a list.
 
-ALL_TAGS = [
-    "{{title}}",
-    "{{acronym}}",
-    "{{isrctn_number}}",
-    "{{protocol_version}}",
-    "{{protocol_date}}",
-    "{{name_of_cheif_investigator}}",
-    "{{senior_statistician}}",
-    "{{trial_acronym}}",
-    "{{description_of_trial}}",
-    "{{investigators}}",
-    "{{principle_investigator}}",
-    "{{trial_manager}}",
-    "{{trial_statisticians}}",
-    "{{health_economist}}",
-    "{{primary_objectives}}",
-    "{{secondary_objectives}}",
-    "{{trial_design}}",
-    "{{allocation_ratio}}",
-    "{{randomization_level}}",
-    "{{stratification_factors}}",
-    "{{number_of_arms}}",
-    "{{duration_of_treatment}}",
-    "{{follow_up_timepoints}}",
-    "{{visit_windows}}",
-    "{{data_collection_procedures}}",
-    "{{inclusion_criteria}}",
-    "{{exclusion_criteria}}",
-    "{{primary_outcome_measures}}",
-    "{{secondary_outcome_measures}}",
-    "{{mediator_of_treatment}}",
-    "{{moderator_of_treatment}}",
-    "{{process_indicators}}",
-    "{{adverse_events}}",
-    "{{only_baseline_measures}}",
-    "{{additional_follow_up_measures}}",
-    "{{sample_size}}",
-    "{{timing_of_analysis}}",
-    "{{screening_recruitment_consort}}",
-    "{{adherence_to_treatment}}",
-    "{{descriptive_statistics}}",
-    "{{descriptive_of_intervention}}",
-    "{{descriptive_concomitant_medications}}",
-    "{{visit_window_deviation}}",
-    "{{primary_estimand}}",
-    "{{confidence_interval_p_value}}",
-    "{{primary_analysis_model}}",
-    "{{intercurrent_events_and_analysis}}",
-    "{{secondary_estimands}}",
-    "{{secondary_analysis}}",
-    "{{time_points}}",
-    "{{Stratification_and_clustering}}",
-    "{{missing_items_in_scales}}",
-    "{{missing_baseline_data}}",
-    "{{missing_data_sensitivity_analysis}}",
-    "{{multiple_comparisons}}",
-    "{{analysis_for_noncompliance}}",
-    "{{model_assumption_checks}}",
-    "{{other_sensitivity_analysis}}",
-    "{{subgroup_analysis}}",
-    "{{any_additional_exploratory_analysis}}",
-    "{{any_exploratory_mediator_and_moderator_analysis}}",
-    "{{interim_analysis}}",
-]
-
-
-
 # 1. Put all your prompt texts in a single dict.
 
+PROMPTS_TITLE_ADMIN = {
 
-
-PROMPTS = {
+    
         "{{title}}": """
-        - Using the clinical trial protocol, extract the full trial title and return it exactly as it should appear in the Statistical Analysis Plan (SAP). 
-        - Be concise. 
+        - Extract the full trial title from the protocol and return it exactly as it is given in the trial protcol. 
         - Do not include any content outside of this field. Do not invent information not present in the protocol.
         """,
 
         "{{acronym}}": """
-        - Using the clinical trial protocol, extract the trial acronym and return it exactly as it should appear in the SAP. 
-        - Be concise. 
-        - Do not include any content outside of this field. 
-        - Do not invent information not present in the protocol.
+        - Extract the trial acronym from the protocol and return it exactly as it is given in the trial protcol. 
+        - Do not include any content outside of this field. Do not invent information not present in the protocol.
         """,
         
         "{{isrctn_number}}": """
-        - Using the clinical trial protocol, extract the ISRCTN (or equivalent single registry identifier if specified) and return it exactly as it should appear in the SAP. 
-        - Be concise. 
+        - Extract the ISRCTN (or equivalent single registry identifier if specified) from the protocol and return it exactly as it is given in the trial protcol. 
         - Do not include any content outside of this field. Do not invent information not present in the protocol.
         """,
         
         "{{protocol_version}}": """
-        - Using the clinical trial protocol, extract the protocol version identifier and return it exactly as it should appear in the SAP. 
+        - Extract the protocol version identifier from the protocol and return it exactly as it is given in the trial protcol. 
         - If multiple versions exist, select the current/most recent (usually the biggest number). 
-        - Be concise. 
         - Do not include any content outside of this field. Do not invent information not present in the protocol.
         """,
         
         "{{protocol_date}}": """
-        - Using the clinical trial protocol, extract the protocol version date and return it exactly as it should appear in the SAP. 
-        - Be concise. 
+        - Extract the protocol version date from the protocol and return it exactly as it is given in the trial protcol.
+        - If multiple versions exist, select the current/most recent (usually the most recent date). 
         - Do not include any content outside of this field. 
         - Do not invent information not present in the protocol.
         """,
         
         "{{name_of_cheif_investigator}}": """
-        - Using the clinical trial protocol, extract the full name and affiliation(s) for the Chief/Principal Investigator and return a concise SAP-ready line (name and affiliation only). 
+        - Extract the full name and affiliation(s) for the Chief/Principal Investigator from the protocol and return a concise SAP-ready line (name and affiliation only). 
         - Do not include postal addresses, emails, or phone numbers. 
+        - Example: Dr. Ben Carter, Kings College London Clinical Trials Unit, Institute of Psychiatry, Psychology and Neuroscience, King's College London 
         - Be concise. 
         - Do not include any content outside of this field. Do not invent information not present in the protocol.
         """,
         
         "{{senior_statistician}}": """
-        - Using the clinical trial protocol, extract the full name and affiliation(s) for the Senior Statistician and return a concise SAP-ready line (name and affiliation only). 
+        - Extract the  full name and affiliation(s) for the Senior Statistician from the protocol and return a concise SAP-ready line (name and affiliation only). 
         - Do not include postal addresses, emails, or phone numbers. 
+         - Example: Dr. Ben Carter, Kings College London Clinical Trials Unit, Institute of Psychiatry, Psychology and Neuroscience, King's College London 
         - Be concise. 
         - Do not include any content outside of this field. 
         - Do not invent information not present in the protocol.
         """,
-        
-        "{{trial_acronym}}": """
-        - Using the clinical trial protocol, extract the trial acronym and return it exactly as it should appear in the SAP title line. 
+}
+
+def get_people_prompt(who):
+        prompt = f""" 
+        - Using the clinical trial protocol, list the {who} to be named in the SAP, presenting each as “Name, Affiliation”. 
+        - Use one item per person. 
+        - Do not include addresses or emails. 
         - Be concise. 
         - Do not include any content outside of this field. 
         - Do not invent information not present in the protocol.
-        """,
-        
+        - If there are no {who} listed in the protocol, return "No {who} are specified in the protocol.""
+
+        - Example: Dr. Ben Carter, Kings College London Clinical Trials Unit, Institute of Psychiatry, Psychology and Neuroscience, King's College London 
+
+        """
+        return(prompt)
+
+PROMPTS_PEOPLE = {
+           "{{investigators}}": get_people_prompt("investigators"),
+           "{{principle_investigator}}": get_people_prompt("Chief/Principal Investigator"),
+           "{{senior_statistician}}": get_people_prompt("senior statisticin"),
+           "{{statisticians}}": get_people_prompt("statisticians"),
+           "{{trial_manager}}": get_people_prompt("trial manager"),
+           "{{health_economist}}": get_people_prompt("health economist"),
+
+
+}
+
+PROMPTS_INTRO_AND_DESIGN = {        
         "{{description_of_trial}}": """
-        - Using the clinical trial protocol, write a brief description of the trial suitable for the SAP “Description of the trial”.
         - Write a brief introduction that outlines the background and rationale for the study and the study objectives.
         - The background and rationale should consist of a synopsis of trial the background and rationale including a brief description of research question and brief justification for undertaking the trial
         - Breiefly mention the trial intervention.
@@ -167,41 +118,12 @@ PROMPTS = {
         - Do not invent information not present in the protocol.
         """,
         
-        "{{investigators}}": """
-        - Using the clinical trial protocol, list the Investigators to be named in the SAP, presenting each as “Name, Affiliation”. 
-        - Use one item per line. 
-        - Do not include addresses or emails. 
-        - Be concise. 
-        - Do not include any content outside of this field. 
-        - Do not invent information not present in the protocol.
-        - If there are no investigators listed in the protocol, return "No investigators are specified in the protocol."
-        """,
-        
-        
-        "{{principle_investigator}}": """
-        - Using the clinical trial protocol, extract the full name and affiliation(s) for the Principal/Chief Investigator and return a concise SAP-ready line (name and affiliation only). 
-        - Do not include postal addresses, emails, or phone numbers. 
-        - Be concise. 
-        - Do not include any content outside of this field. 
-        - Do not invent information not present in the protocol.
-        """,
+   
+    
 
 
-        "{{trial_manager}}": """
-        - Using the clinical trial protocol, extract the full name and affiliation(s) for the Trial Manager and return a concise SAP-ready line (name and affiliation only). 
-        - Do not include postal addresses, emails, or phone numbers. 
-        - Be concise. 
-        - Do not invent information not present in the protocol.
-        - if no trial manager mentioned in the protocol, return "No trial manager is specified in the protocol."
-        """,
-             
-        "{{trial_statisticians}}": """
-        - Using the clinical trial protocol, list the Trial Statistician(s) with affiliation(s), one per line in “Name, Affiliation” format. Do not include postal addresses, emails, or phone numbers. 
-        - Be concise. 
-        - Do not include any content outside of this field. 
-        - Do not invent information not present in the protocol.
-        - If no trial statisticians mentioned in the protocol, return "No trial statisticians are specified in the protocol.
-        """,
+
+  
         
         "{{health_economist}}": """
         - Using the clinical trial protocol, extract the full name and affiliation(s) for the Trial Health Economist and return a concise SAP-ready line (name and affiliation only). 
@@ -533,6 +455,7 @@ PROMPTS = {
         "{{interim_analysis}}": """Using the clinical trial protocol, state whether interim analysis or an internal pilot is planned. If yes, provide the objectives, timing, methods/stopping rules, and any alpha/sample-size adjustments in concise prose; if not planned, return one clear sentence stating these are not included and no significance-level adjustments will be made. Be concise. Do not invent information not present in the protocol.""",
     }
 
+PROMPTS = PROMPTS_TITLE_ADMIN | PROMPTS_INTRO_AND_DESIGN |PROMPTS_PEOPLE
 
 # 2. If you still want ALL_TAGS, derive it from PROMPTS so it never goes out of sync.
 ALL_TAGS = list(PROMPTS.keys())

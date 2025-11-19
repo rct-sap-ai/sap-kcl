@@ -76,7 +76,7 @@ system_message = prompts_file.system_message
 
 # Set up template with template file and prompts   
 template = Template(
-    template_path = "Templates/DRAFT Q-162 (SAP Template) V2.0.docx", 
+    template_path = "Templates/sapai_kcl_template_v0.1.docx ", 
     system_message_function=prompts_file.system_message, 
     prompt_register=prompt_tasks
 )
