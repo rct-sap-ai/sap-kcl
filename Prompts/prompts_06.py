@@ -117,22 +117,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Do not include any content outside of this field. 
         - Do not invent information not present in the protocol.
         """,
-        
-   
-    
 
-
-
-  
-        
-        "{{health_economist}}": """
-        - Using the clinical trial protocol, extract the full name and affiliation(s) for the Trial Health Economist and return a concise SAP-ready line (name and affiliation only). 
-        - Do not include postal addresses, emails, or phone numbers. 
-        - Be concise. 
-        - Do not include any content outside of this field. 
-        - Do not invent information not present in the protocol.
-        - If no health economist mentioned in the protocol, return "No health economist is specified in the protocol.
-        """,
         
         "{{primary_objectives}}": """
         - From the protocol, write the trial’s primary objective(s) exactly as specified. 
