@@ -408,7 +408,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Write the output as a single concise paragraph (no bullet points in the output itself), using the terminology from the protocol where possible.
         - Do not describe or propose any statistical tests; focus only on descriptive summaries of concomitant medication data.
         - Do not infer or invent concomitant medication variables, coding systems, time periods, or summary methods that are not explicitly reported in the protocol; if certain details are not specified, state briefly that these are not reported.
-        """
+        """,
 
         "{{visit_window_deviation}}": """
         - Using only the clinical trial protocol, write a single short descriptive clause (not a full sentence) that can directly follow the words 'classified as protocol deviation as' in the SAP text.
@@ -417,7 +417,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Be concise and keep the clause brief (no more than one short line of text).
         - Do not infer or invent any visit-window rules, classifications, or handling strategies that are not explicitly reported in the protocol.
         - If the protocol does not specify how visit-window deviations are handled or classified, return the clause: 'per the visit-window deviation rules specified in the protocol, which are not detailed here'
-        """
+        """,
 
         "{{primary_estimand}}": """
         - Using only the clinical trial protocol, describe the primary estimand(s) in SAP-ready text.
@@ -437,7 +437,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Do not introduce any additional estimands, populations, endpoints, intercurrent events, or population-level summaries beyond those explicitly described in the protocol.
         - Do not describe estimation methods, statistical models, or inference procedures here; focus only on defining the estimand(s).
         - Do not infer or invent any missing details; if one of the five aspects is not explicitly defined in the protocol, state briefly under that aspect that it is not clearly specified.
-        """
+        """,
 
         "{{effect_size}}": """
         - Using only the clinical trial protocol, describe any additional effect sizes (beyond those implied by the primary estimand) that are planned to be reported in the Statistical Analysis Plan (SAP).
@@ -446,7 +446,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Write the output as one concise paragraph; if there are several distinct effect sizes, they may be listed in sentences within the same paragraph.
         - Do not provide any justification or interpretation of the effect sizes; only state what will be reported and how they will be calculated according to the protocol.
         - Do not infer or invent any effect sizes, outcomes, timepoints, or calculation methods that are not explicitly reported in the protocol; if no additional effect sizes are specified, write a single sentence: "No additional effect sizes beyond those used for the primary analysis are explicitly specified in the protocol."
-        """
+        """,
 
         "{{confidence_interval_p_value}}": """
         - Using only the clinical trial protocol, state the nominal significance level (alpha) and the confidence interval level(s) that will be used for reporting treatment effects in the Statistical Analysis Plan (SAP).
@@ -454,7 +454,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Write the output as a single concise sentence or short paragraph suitable for direct inclusion in the SAP (no bullet points in the output itself).
         - Do not include mathematical formulae or perform any new calculations; simply report the levels and types of p-values and confidence intervals as specified.
         - Do not infer or invent significance levels, sidedness, or confidence interval levels that are not explicitly reported in the protocol; if these details are not specified, state briefly that the nominal significance level and/or confidence interval level are not clearly specified in the protocol.
-        """
+        """,
         
         "{{primary_analysis_model}}": """
         - Using only the extracted information from the clinical trial protocol, write a main analysis section for all primary and secondary utcomes (excluding health economic and cost-utility outcomes), suitable for inclusion in the Statistical Analysis Plan (SAP).
@@ -467,7 +467,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Write the output as one or more concise paragraphs, without bullet points, with enough detail that the analysis could be implemented unambiguously (e.g., clearly identifying the outcome, treatment variable, covariates, and general model structure), but ithout mathematical formulae.
         - Do not introduce new analysis models, covariates, transformations, or populations beyond those explicitly described in the protocol; if important details (e.g., covariate adjustments or specific model forms) are not specified, state briefly that these are ot clearly specified in the protocol.
         - Be concise and focus only on the analysis models and covariate adjustments for the primary and secondary outcomes as described bove.
-        """
+        """,
 
         
         "{{intercurrent_events_and_analysis}}": """
@@ -478,7 +478,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Describe any supplementary analyses planned to address these intercurrent events (e.g., analyses using alternative strategies such as treatment-policy, hypothetical, composite, while-on-treatment, or principal stratum) and/or any analyses corresponding to different estimands, as outlined in the protocol, without introducing new strategies or estimands.
         - Write the output as concise prose; where the protocol lists intercurrent events or analyses as items, it is acceptable to present them as bullet points or short sentences mirroring that structure.
         - Do not describe or propose new intercurrent events, rates, handling strategies, or supplementary analyses that are not explicitly reported in the protocol; if no anticipated intercurrent events or related supplementary analyses are specified, write a single sentence stating that these are not explicitly specified in the protocol.
-        """
+        """,
 
 
         "{{secondary_estimands}}": """
@@ -489,7 +489,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Write the output as one or more concise paragraphs (no bullet points in the output itself), using terminology from the protocol and from the primary estimand section where appropriate.
         - Do not introduce new estimands or modify aspects of the primary estimand unless such differences are explicitly stated or clearly implied in the protocol.
         - Do not infer or invent populations, endpoints, treatment conditions, intercurrent-event strategies, or summary measures that are not documented in the protocol; if no secondary estimands differing from the primary estimand are specified, write a single sentence stating that secondary outcomes are assumed to share the same estimand as the primary outcome unless otherwise specified.
-        """
+        """,
 
         "{{secondary_analysis}}": """
         - Using only the clinical trial protocol, describe the planned analysis approach for secondary outcomes, for inclusion in the Statistical Analysis Plan (SAP), ensuring consistency with the defined secondary estimands.
@@ -499,7 +499,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - If different analysis populations are specified for some secondary outcomes (e.g., safety or per-protocol analyses), briefly state these where relevant, without redefining them.
         - Write the output as one or more concise paragraphs (no bullet points in the output itself), providing sufficient detail for the analyses to be implemented unambiguously, but without mathematical formulae or new methods.
         - Do not introduce new models, covariates, transformations, or analysis populations beyond those explicitly described in the protocol; if the protocol does not clearly specify the analysis approach for certain secondary outcomes, state briefly that the analysis method for those outcomes is not clearly specified.
-        """
+        """,
 
        
         "{{time_points}}": """
@@ -509,7 +509,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - If visit windows are defined, state what data will be used when measurements fall within or outside the specified windows (e.g., closest measurement within the window, rules for assigning visits, handling of out-of-window data), as described in the protocol.
         - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Time points” section of the SAP.
         - Do not infer or invent timepoints, visit windows, or analysis-time structures that are not explicitly reported in the protocol; if details of how time or visit windows are handled are not specified, state briefly that these are not clearly specified in the protocol.
-        """
+        """,
 
 
         "{{Stratification_and_clustering}}": """
@@ -519,7 +519,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - If both stratification and clustering are present, briefly explain how both will be incorporated into the analysis models (e.g., adjustment for stratification factors as fixed effects and inclusion of a random effect for cluster).
         - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Stratification and clustering” section of the SAP.
         - Do not infer or invent stratification factors, clustering structures, or modelling approaches that are not explicitly reported in the protocol; if stratification and/or clustering are used but their handling in the analysis is not specified, state briefly that the approach to accounting for these is not clearly specified in the protocol.
-        """
+        """,
 
 
         
@@ -531,7 +531,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Make clear whether different scales/subscales use different missing-item rules, and, if so, summarise these differences briefly.
         - Write the output as a single concise paragraph (no bullet points in the output itself), using the terminology from the protocol where possible.
         - Do not infer or invent prorating rules, thresholds, or other missing-item handling procedures that are not explicitly described in the protocol; if the protocol does not specify how missing items within scales are handled, state briefly that the handling of missing items in scales/subscales is not clearly specified.
-        """
+        """,
 
 
         "{{missing_baseline_data}}": """
@@ -542,7 +542,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - If different approaches are planned for different types of baseline variables (e.g., continuous vs categorical), briefly summarise these distinctions where specified.
         - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Missing baseline data” section of the SAP.
         - Do not infer or invent expectations about missingness, reporting methods, or imputation approaches that are not explicitly described in the protocol; if the handling of missing baseline data is not clearly specified, state this briefly.
-        """
+        """,
 
         "{{missing_data_sensitivity_analysis}}": """
         - Using only the clinical trial protocol, write a concise paragraph outlining any planned sensitivity analyses for missing outcome data for inclusion in the Statistical Analysis Plan (SAP).
@@ -551,7 +551,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - If sensitivity analyses are planned specifically to examine scenarios where data may be missing not at random (MNAR), briefly describe the nature of these analyses and how they differ from the primary analysis, in general terms.
         - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Missing outcome data” section of the SAP.
         - Do not infer or invent additional sensitivity analyses, missing data mechanisms, or modelling strategies that are not explicitly described in the protocol; if no sensitivity analyses for missing outcome data are specified, write a single sentence stating that no such sensitivity analyses are explicitly specified in the protocol.
-        """
+        """,
 
         "{{multiple_comparisons}}": """
         - Using only the clinical trial protocol, write a concise paragraph describing the planned approach to handling multiple comparisons/multiplicity for inclusion in the Statistical Analysis Plan (SAP).
@@ -560,7 +560,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - If different multiplicity strategies are specified for different sets of outcomes (e.g., co-primary vs secondary outcomes, primary vs exploratory comparisons), summarise these distinctions clearly.
         - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Method for handling multiple comparisons/multiplicity” section of the SAP.
         - Do not infer or invent multiplicity adjustment methods, outcome groupings, or interpretative strategies that are not explicitly reported in the protocol; if the approach to multiplicity is not specified, write a single sentence stating that no explicit strategy for handling multiple comparisons is described in the protocol.
-        """
+        """,
 
         "{{analysis_for_noncompliance}}": """
         - Using only the clinical trial protocol, write a concise paragraph describing any planned analyses to address non-compliance with the allocated treatment for inclusion in the Statistical Analysis Plan (SAP).
@@ -569,7 +569,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - If non-compliance thresholds or definitions (e.g., minimum dose, number of sessions, or proportion of medication taken) are specified, summarise these briefly using the protocol terminology.
         - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Method for handling non-compliance (per protocol/CACE analyses)” section of the SAP.
         - Do not infer or invent additional non-compliance analyses, definitions, thresholds, or modelling strategies that are not explicitly described in the protocol; if no specific analyses for non-compliance are planned, write a single sentence stating that no additional analyses addressing non-compliance are explicitly specified in the protocol.
-        """
+        """,
 
 
         "{{model_assumption_checks}}": """
@@ -579,7 +579,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - If the protocol states that certain diagnostics will be performed when describing the data (e.g., checking normality of residuals, inspection for outliers), briefly include these as part of the assumption-checking description.
         - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Model assumption checks” section of the SAP.
         - Do not infer or invent additional assumptions, diagnostics, or remedial methods that are not explicitly reported in the protocol; if the protocol does not clearly specify model assumption checks or remedies, state briefly that these are not clearly specified.
-        """
+        """,
 
 
         "{{other_sensitivity_analysis}}": """
@@ -589,7 +589,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Do not repeat sensitivity analyses that are solely concerned with missing outcome data if these are described elsewhere; focus on other types of sensitivity analyses.
         - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Sensitivity analyses” section of the SAP.
         - Do not infer or invent additional sensitivity analyses, rationales, or methods that are not explicitly reported in the protocol; if no additional sensitivity analyses beyond those for missing data are specified, write a single sentence stating that no further sensitivity analyses are explicitly specified in the protocol.
-        """
+        """,
 
 
         "{{subgroup_analysis}}": """
@@ -600,7 +600,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Write the output as one short paragraph (no bullet points in the output itself), providing enough detail that the planned subgroup analyses could be implemented unambiguously.
         - If the protocol explicitly states that no subgroup analyses are planned, or if no subgroup analyses are described, return exactly the sentence: "No subgroup analysis will be conducted."
         - Do not infer or invent subgroup factors, outcomes, models, or interaction structures that are not explicitly reported in the protocol.
-        """
+        """,
 
         
         "{{any_additional_exploratory_analysis}}": """
@@ -610,7 +610,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Write the output as one short paragraph (no bullet points in the output itself), providing enough detail that the planned exploratory analyses could be implemented in general terms, but without mathematical formulae or introducing new methods.
         - If the protocol states that no exploratory analyses are planned, or if no exploratory analyses are described, return exactly the sentence: "No additional analysis will be conducted."
         - Do not infer or invent exploratory outcomes, populations, or analytical approaches that are not explicitly reported in the protocol.
-        """
+        """,
 
         
         "{{any_exploratory_mediator_and_moderator_analysis}}": """
@@ -621,7 +621,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Write the output as one short paragraph (no bullet points in the output itself), providing enough detail to convey the planned outcomes, mediators/moderators, and general model structure, but without introducing new methods.
         - If the protocol does not describe any exploratory mediation or moderation analyses, return exactly the sentence: "No exploratory mediation or moderation analyses are planned."
         - Do not infer or invent outcomes, mediators, moderators, or analytical approaches that are not explicitly reported in the protocol.
-        """
+        """,
 
         
         "{{interim_analysis}}": """
@@ -635,7 +635,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Write the output as one or more short paragraphs; do not use bullet points in the output itself unless the protocol presents key elements as a list that must be preserved.
         - If no interim analysis or internal pilot is planned, return exactly the sentence: "No interim analyses or internal pilot phases are planned, and no adjustments to significance levels will be made."
         - Do not infer or invent interim analyses, internal pilot phases, objectives, timings, stopping rules, or alpha/sample-size adjustments that are not explicitly reported in the protocol; if certain aspects are mentioned but not detailed (e.g., stopping boundaries), state briefly that further details are not specified in the protocol.
-        """
+        """,
 
     }
 
