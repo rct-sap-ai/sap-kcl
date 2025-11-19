@@ -137,25 +137,24 @@ PROMPTS_INTRO_AND_DESIGN = {
 
 
         "{{trial_design}}": """
-        - Using the clinical trial protocol, write a concise description of the overall trial design (e.g., parallel-group randomised controlled trial; blinding status; hypothesis framework).
-        - Use full sentences; do not include randomisation mechanics here.
-        - Be concise.
-        - Do not include any content outside of this field.
-        - Do not invent information not present in the protocol.
-        - Provide a general description of the study design (e.g., parallel, crossover, factorial, cluster-randomised, adaptive, etc.); do not include details on the objectives of the study.
-        - Describe the number of arms and the allocation ratio (e.g., 1:1, 2:1); do not include details of the randomisation process.
-        - Provide a brief description of each arm.
+        - Using the clinical trial protocol, write a concise description of the overall trial design 
+        - Provide a  description of the study design (e.g., parallel, crossover, factorial, cluster-randomised, adaptive, etc.)
+        - Describe the number of arms and provide a brief description of each arm.
         - Specify the hypothesis testing framework (e.g., superiority, non-inferiority, equivalence); where applicable, specify which comparisons will be based on which framework.
-        - Do not include details of the study objectives.
-        - Write in full detail, using paragraphs and clear explanations; only use bullet points if absolutely necessary.
-        - Focus only on the Study Design section as outlined above.
+        - Include a description of blinding, specifying which members of the research team are blinded. Timing of when statisticians and other members of team will be unblinded should also be included. 
+        - Do not include randomisation mechanics here.
+        - Do not include details on the objectives of the study.
+        - Write in paragrpahs using full sentences
+        - Be concise.
+        - Do not include any content outside of this field, provide only the content detailed above
+        - Use only information about the trial from the protocol, do not invent information not present in the protocol.
         """,
         
         "{{allocation_ratio}}": """
         - Using the clinical trial protocol, extract the randomisation allocation ratio (e.g., 1:1, 2:1) and return it exactly as specified. 
-        - Be concise, just the ratio. 
-        - Only include what belongs to this field. 
+        - Be concise, just give the ratio no other detilas. 
         - Do not invent information not present in the protocol.
+        - Example: 1:1
         """,
 
         "{{randomization_level}}": """
@@ -163,6 +162,9 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Be concise, just the level. 
         - Only include what belongs to this field. 
         - Do not invent information not present in the protocol.
+        - Example for individually randomised trial: participant
+        - Example for a cluster randomised trial: cluster
+        - Example for a cluster randomised trial where the unit of randomisation are hopstials: hospital 
         """,
         
         "{{stratification_factors}}": """
@@ -180,6 +182,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Do not add commentary, or any other explanation in the beggining or the end. 
         - Only include what belongs to this field. 
         - Do not invent information not present in the protocol.
+        - Example: two arms, beta blocker, placebo
         """,
         
         "{{duration_of_treatment}}": """
@@ -192,14 +195,16 @@ PROMPTS_INTRO_AND_DESIGN = {
         
         "{{follow_up_timepoints}}": """
         - Using the clinical trial protocol, list all follow-up time points at which outcomes are measured. 
-        - Present as bullets in chronological order, including timing windows if specified. 
+        - Present as bullets in chronological order. 
         - Be concise. 
         - Do not invent information not present in the protocol.
+        - Do not include details on visit windows.
         """,
         
         "{{visit_windows}}": """
-        - Using the clinical trial protocol, describe the visit windows for assessments exactly as specified. 
+        - Using the clinical trial protocol, describe the visit windows for assessments timepoints exactly as specified. 
         - Use sentences/lines or a compact list if the protocol lists discrete windows. 
+        - If no visit windows are given state "visit windows not defined in protocol".
         - Be concise. 
         - Do not invent information not present in the protocol.
         """,
