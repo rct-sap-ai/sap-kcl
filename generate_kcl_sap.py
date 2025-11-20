@@ -24,7 +24,7 @@ prompt_tasks = [
     PromptRegister("trial_statisticians", prompts_file.generate_trial_statisticians_prompt,"minimal","low"),
     PromptRegister("health_economist", prompts_file.generate_health_economist_prompt,"minimal","low"),
     PromptRegister("primary_objectives", prompts_file.generate_primary_objectives_prompt,"minimal","low"),
-    PromptRegister("secondary_objectives", prompts_file.generate_secondary_objectives_prompt,"minimal","low"),
+    PromptRegister("secondary_objectives", prompts_file.generate_secondary_objectives_prompt,"minimal","low"), 
     PromptRegister("trial_design", prompts_file.generate_trial_design_prompt,"minimal","low"),
     PromptRegister("allocation_ratio", prompts_file.generate_allocation_ratio_prompt,"minimal","low"),
     PromptRegister("randomization_level", prompts_file.generate_randomization_level_prompt,"minimal","low"),
@@ -33,13 +33,13 @@ prompt_tasks = [
     PromptRegister("duration_of_treatment", prompts_file.generate_duration_of_treatment_prompt,"minimal","low"),
     PromptRegister("follow_up_timepoints", prompts_file.generate_follow_up_timepoints_prompt,"minimal","low"),
     PromptRegister("visit_windows", prompts_file.generate_visit_windows_prompt,"minimal","low"),
-    PromptRegister("data_collection_procedures", prompts_file.generate_data_collection_procedures_prompt,"minimal","low"),
+    PromptRegister("data_collection_procedures", prompts_file.generate_data_collection_procedures_prompt,"minimal","low"), 
     PromptRegister("inclusion_criteria", prompts_file.generate_inclusion_criteria_prompt,"minimal","low"),
-    PromptRegister("exclusion_criteria", prompts_file.generate_exclusion_criteria_prompt,"minimal","low"),
+    PromptRegister("exclusion_criteria", prompts_file.generate_exclusion_criteria_prompt,"minimal","low"), # end of first section - trial design
     PromptRegister("primary_outcome_measures", prompts_file.generate_primary_outcome_measures_prompt,"minimal","low"),
     PromptRegister("secondary_outcome_measures", prompts_file.generate_secondary_outcome_measures_prompt,"minimal","low"),
     PromptRegister("mediator_of_treatment", prompts_file.generate_mediator_of_treatment_prompt,"minimal","low"),
-    PromptRegister("moderator_of_treatment", prompts_file.generate_moderator_of_treatment_prompt,"minimal","low"),
+    PromptRegister("moderator_of_treatment", prompts_file.generate_moderator_of_treatment_prompt,"minimal","low"), 
     PromptRegister("process_indicators", prompts_file.generate_process_indicators_prompt,"minimal","low"),
     PromptRegister("adverse_events", prompts_file.generate_adverse_events_prompt,"minimal","low"),
     PromptRegister("only_baseline_measures", prompts_file.generate_only_baseline_measures_prompt,"minimal","low"),
@@ -50,14 +50,14 @@ prompt_tasks = [
     PromptRegister("descriptive_statistics", prompts_file.generate_descriptive_statistics_prompt,"minimal","low"),
     PromptRegister("descriptive_of_intervention", prompts_file.generate_descriptive_of_intervention_prompt,"minimal","low"),
     PromptRegister("descriptive_concomitant_medications", prompts_file.generate_descriptive_concomitant_medications_prompt,"minimal","low"),
-    PromptRegister("visit_window_deviation", prompts_file.generate_visit_window_deviation_prompt,"minimal","low"),
+    PromptRegister("visit_window_deviation", prompts_file.generate_visit_window_deviation_prompt,"minimal","low"), # end of second section - outcomes and descriptive analysis
     PromptRegister("primary_estimand", prompts_file.generate_primary_estimand_prompt,"minimal","low"),
     PromptRegister("confidence_interval_p_value", prompts_file.generate_confidence_interval_p_value_prompt,"minimal","low"),
     PromptRegister("primary_analysis_model", prompts_file.generate_primary_analysis_model_prompt,"minimal","low"),
-    PromptRegister("intercurrent_events_and_analysis", prompts_file.generate_intercurrent_events_and_analysis_prompt,"minimal","low"),
+    PromptRegister("intercurrent_events_and_analysis", prompts_file.generate_intercurrent_events_and_analysis_prompt,"minimal","low"), 
     PromptRegister("secondary_estimands", prompts_file.generate_secondary_estimands_prompt,"minimal","low"),
     PromptRegister("secondary_analysis", prompts_file.generate_secondary_analysis_prompt,"minimal","low"),
-    PromptRegister("time_points", prompts_file.generate_time_points_prompt,"minimal","low"),
+    PromptRegister("time_points", prompts_file.generate_time_points_prompt,"minimal","low"),  # end of third section - main analysis
     PromptRegister("stratification_and_clustering", prompts_file.generate_stratification_and_clustering_prompt,"minimal","low"),
     PromptRegister("missing_items_in_scales", prompts_file.generate_missing_items_in_scales_prompt,"minimal","low"),
     PromptRegister("missing_baseline_data", prompts_file.generate_missing_baseline_data_prompt,"minimal","low"),
@@ -69,7 +69,7 @@ prompt_tasks = [
     PromptRegister("subgroup_analysis", prompts_file.generate_subgroup_analysis_prompt,"minimal","low"),
     PromptRegister("any_additional_exploratory_analysis", prompts_file.generate_any_additional_exploratory_analysis_prompt,"minimal","low"),
     PromptRegister("any_exploratory_mediator_and_moderator_analysis", prompts_file.generate_any_exploratory_mediator_and_moderator_analysis_prompt,"minimal","low"),
-    PromptRegister("interim_analysis", prompts_file.generate_interim_analysis_prompt,"minimal","low"),
+    PromptRegister("interim_analysis", prompts_file.generate_interim_analysis_prompt,"minimal","low"), # end of final section - other bits
 ]
 system_message = prompts_file.system_message
 
@@ -109,7 +109,7 @@ write_sap(
 
 # running with without test mode on uses full gpt-5. This is what we'll use in production so when refining prompts is best to use.
 # write_sap(
-#     protocol_path="Protocols/boppp.pdf",
+#     protocol_path="Protocols/boppp.pdf",  
 #     sap_folder_path = "SAPs",
 #     sap_name = "bopp_sap_v0.1",
 # )
