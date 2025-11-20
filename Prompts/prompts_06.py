@@ -202,8 +202,9 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Be concise. 
         - Do not invent information not present in the protocol.
         """,
-        
-        "{{primary_outcome_measures}}": """
+}
+PROMPTS_OUTCOMES_AND_ANALYSIS = {
+        "primary_outcome_measures": """
        - For each primary outcome, write a single paragraph that includes:
           • Specification of outcome (what is being measured)
           • Timing of assessment (timepoint or window)
@@ -221,7 +222,7 @@ PROMPTS_INTRO_AND_DESIGN = {
 
         """,
         
-        "{{secondary_outcome_measures}}": """
+        "secondary_outcome_measures": """
         - Using the clinical trial protocol, identify all secondary outcome(s) and provide a complete definition for each.
         - For each secondary outcome, write a single paragraph that includes:
           • Specification of outcome (what is being measured)
@@ -242,7 +243,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         Protocol text: "Rate of readmission to hospital within 30 or 90 days of discharge, survival (overall, progression-free)."
         """,
 
-        "{{mediator_of_treatment}}": """
+        "mediator_of_treatment": """
        - Using only the clinical trial protocol, identify variables that are explicitly specified as mediators of treatment effects or described as lying on the causal pathway between treatment and the primary or key secondary outcomes.
         - Include only variables that are pre-specified in the protocol; do not introduce post hoc mediators.
         - For each such variable, write one paragraph that states: the variable name, how it is assessed (instrument, scale, or units), and planned measurement timepoints, if stated.
