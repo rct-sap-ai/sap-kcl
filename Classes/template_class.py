@@ -12,11 +12,13 @@ class Template:
         template_path: str | Path,
         system_message_function,
         prompt_register,
+        prompts_dictionary
     ) -> None:
 
         self.template_path = template_path
         self.system_message_function = system_message_function # a function of protocol text
         self.prompt_register = prompt_register
+        self.prompts_dictionary = prompts_dictionary
 
     
     def get_sap_content(self, protocol_text, model = "gpt-5-2025-08-07"):
@@ -24,7 +26,7 @@ class Template:
             model_name = model, 
             system_message = self.system_message_function(protocol_text))
         self.sap_content = asyncio.run(
-            chat_bot.run_prompts_register(prompt_register=self.prompt_register)
+            chat_bot.run_prompts_register(prompt_register=self.prompt_register, prompt_dictionary=self.prompts_dictionary)
         )
 
         today = date.today()
