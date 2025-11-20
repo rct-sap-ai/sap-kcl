@@ -11,13 +11,12 @@ import time
 #PromptRegister(variable, prompt_function, reasoning_effort, verbosity)
 prompt_tasks = [
     PromptRegister("title", prompts_file.generate_title_prompt,"minimal","low"),
-    PromptRegister("acronym", prompts_file.generate_acronym_prompt,"minimal","low"),
+    PromptRegister("trial_acronym", prompts_file.generate_acronym_prompt,"minimal","low"),
     PromptRegister("isrctn_number", prompts_file.generate_isrctn_number_prompt,"minimal","low"),
     PromptRegister("protocol_version", prompts_file.generate_protocol_version_prompt,"minimal","low"),
     PromptRegister("protocol_date", prompts_file.generate_protocol_date_prompt,"minimal","low"),
     PromptRegister("name_of_cheif_investigator", prompts_file.generate_name_of_cheif_investigator_prompt,"minimal","low"),
     PromptRegister("senior_statistician", prompts_file.generate_senior_statistician_prompt,"minimal","low"),
-    PromptRegister("trial_acronym", prompts_file.generate_trial_acronym_prompt,"minimal","low"),
     PromptRegister("description_of_trial", prompts_file.generate_description_of_trial_prompt,"minimal","low"),
     PromptRegister("investigators", prompts_file.generate_investigators_prompt,"minimal","low"),
     PromptRegister("principle_investigator", prompts_file.generate_principle_investigator_prompt,"minimal","low"),

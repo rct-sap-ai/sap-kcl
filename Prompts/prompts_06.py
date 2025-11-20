@@ -97,7 +97,7 @@ PROMPTS_PEOPLE = {
            "{{investigators}}": get_people_prompt("investigators"),
            "{{principle_investigator}}": get_people_prompt("Chief/Principal Investigator"),
            "{{senior_statistician}}": get_people_prompt("senior statisticin"),
-           "{{statisticians}}": get_people_prompt("statisticians"),
+           "{{trial_statisticians}}": get_people_prompt("statisticians"),
            "{{trial_manager}}": get_people_prompt("trial manager"),
            "{{health_economist}}": get_people_prompt("health economist"),
 
@@ -512,7 +512,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         """,
 
 
-        "{{Stratification_and_clustering}}": """
+        "{{stratification_and_clustering}}": """
         - Using only the clinical trial protocol, describe how stratification factors and any potential clustering will be accounted for in the analysis models, for inclusion in the Statistical Analysis Plan (SAP).
         - State whether stratified randomisation is used and, if so, identify the stratification factors and indicate that the primary (and, if specified, secondary) analysis models will adjust for these factors, using the terminology from the protocol.
         - If the trial has a clustered or multi-level design (e.g., cluster randomisation, repeated measures within centres, therapists, or practices), describe how clustering will be handled in the analysis (e.g., random effects/mixed models, generalised estimating equations with robust standard errors, cluster-level summaries), as specified in the protocol.
