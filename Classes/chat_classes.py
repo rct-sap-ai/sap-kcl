@@ -105,7 +105,7 @@ class OpenAIChatAsync:
                 if not response_content:
                     response_content = "ERROR"
             except Exception as e:
-                print(f"An error occurred: {e}")
+                print(f"An error occurred for {var_name}: {e}")
                 response_content = "ERROR"
 
             return var_name, response_content
