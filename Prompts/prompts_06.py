@@ -790,6 +790,9 @@ def generate_visit_window_deviation_prompt():
 def generate_primary_estimand_prompt():
     return get_prompt("primary_estimand")
 
+def generate_analysis_population_prompt():
+    return get_prompt("effect_size")
+
 def generate_confidence_interval_p_value_prompt():
     return get_prompt("confidence_interval_p_value")
 
