@@ -202,55 +202,54 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Be concise. 
         - Do not invent information not present in the protocol.
         """,
-}
-
-PROMPTS_OUTCOMES_AND_ANALYSIS = {
-        "primary_outcome_measures": """
-        - Using the clinical trial protocol, list the primary outcome (or if more than one) and provide a  definition that includes the measure, timing, and unit (if applicable).
-        - Speicfication of outcome
-        Timing of assessment
-        Specific measurement units if applicable
-        Any transformations or calculations used to derive the outcome.
-        Use a single paragraph to describe each outcome. Write a separeate paragraph for each outcome, even if given together in the protocol.
-        - Do not report health or cost utility outocmes
-        #Examples: 
-        protocl text: Rate of readmission to hopsital within 30 or 90 days of discharge, survival (overall, progression-free).
-        correct output:    
-        Number of particiapants readmitted to hospital within 30 days of discharge.
-        Number of participants readmitted to hospital within 90 days of discharge. 
-        Time to death from any cause (overall survival), assessed from randomisation to death or final follow-up.
-        Time to disease progression or death (progression-free survival), assessed from randomisation to disease progression,  death, or final follow up.
-        - Be concise. 
+        
+        "{{primary_outcome_measures}}": """
+       - For each primary outcome, write a single paragraph that includes:
+          • Specification of outcome (what is being measured)
+          • Timing of assessment (timepoint or window)
+          • Specific measurement units if applicable
+          • For scales and questionnaires, include the scale range and direction of interpretation (e.g., "PHQ-9 score ranging from 0 to 27, where higher scores indicate more severe depression")
+          • For outcomes measured at multiple timepoints, clearly state which timepoint is the PRIMARY timepoint for the main analysis
+          • Any transformations or calculations used to derive the outcome
+        - Write each outcome as a separate paragraph, even if outcomes are listed together in the protocol.
+        - Decompose composite outcomes or outcomes with multiple timepoints into individual components. For example, if the protocol states "Rate of readmission to hospital within 30 or 90 days", write separate paragraphs for the 30 day outcome and the 90 day outcome.
+        - For time to event outcomes, clearly state the starting point (e.g., randomisation), the event definition, and censoring approach if specified.
+        - For composite outcomes, list all components and specify how they combine (e.g., "time to first occurrence of death, myocardial infarction, or stroke").
+        - Do not report health economic or cost utility outcomes.
+        - Be concise and use terminology from the protocol.
         - Do not invent information not present in the protocol.
+
         """,
         
-        "secondary_outcome_measures": """
-        - Using the clinical trial protocol, list each secondary outcome as separate bullets and, for each, provide a one-sentence definition that includes the measure, timing, and unit (if applicable).
-        - Speicfication of outcome
-        Timing of assessment
-        Specific measurement units if applicable
-        Any transformations or calculations used to derive the outcome.
-        Use a single paragraph to describe each outcome. Write a separeate paragraph for each outcome, even if given together in the protocol.
-        - Do not report health or cost utility outocmes
-        #Examples: 
-        protocl text: Rate of readmission to hopsital within 30 or 90 days of discharge, survival (overall, progression-free).
-        correct output:    
-        Number of particiapants readmitted to hospital within 30 days of discharge.
-        Number of participants readmitted to hospital within 90 days of discharge. 
-        Time to death from any cause (overall survival), assessed from randomisation to death or final follow-up.
-        Time to disease progression or death (progression-free survival), assessed from randomisation to disease progression,  death, or final follow up. 
-        - Be concise. 
+        "{{secondary_outcome_measures}}": """
+        - Using the clinical trial protocol, identify all secondary outcome(s) and provide a complete definition for each.
+        - For each secondary outcome, write a single paragraph that includes:
+          • Specification of outcome (what is being measured)
+          • Timing of assessment (timepoint or window)
+          • Specific measurement units if applicable
+          • For scales and questionnaires, include the scale range and direction of interpretation (e.g., "PHQ-9 score ranging from 0 to 27, where higher scores indicate more severe depression")
+          • For outcomes measured at multiple timepoints, clearly state the timepoints
+          • Any transformations or calculations used to derive the outcome
+        - Write each outcome as a separate paragraph, even if outcomes are listed together in the protocol.
+        - Decompose composite outcomes or outcomes with multiple timepoints into individual components. For example, if the protocol states "Rate of readmission to hospital within 30 or 90 days", write separate paragraphs for the 30 day outcome and the 90 day outcome.
+        - For time to event outcomes, clearly state the starting point (e.g., randomisation), the event definition, and censoring approach if specified.
+        - For composite outcomes, list all components and specify how they combine (e.g., "time to first occurrence of death, myocardial infarction, or stroke").
+        - Do not report health economic or cost utility outcomes.
+        - Be concise and use terminology from the protocol.
         - Do not invent information not present in the protocol.
+        
+        Example:
+        Protocol text: "Rate of readmission to hospital within 30 or 90 days of discharge, survival (overall, progression-free)."
         """,
 
-        "mediator_of_treatment": """
-        - Using only the clinical trial protocol, identify variables that are explicitly specified as mediators of treatment effects or described as lying on the causal pathway between treatment and the primary or key secondary outcomes.
+        "{{mediator_of_treatment}}": """
+       - Using only the clinical trial protocol, identify variables that are explicitly specified as mediators of treatment effects or described as lying on the causal pathway between treatment and the primary or key secondary outcomes.
         - Include only variables that are pre-specified in the protocol; do not introduce post hoc mediators.
-        - For each such variable, output one bullet containing a single sentence that states: the variable name, how it is assessed (instrument/scale, units), and planned measurement timepoints, if stated.
+        - For each such variable, write one paragraph that states: the variable name, how it is assessed (instrument, scale, or units), and planned measurement timepoints, if stated.
         - Be concise and use the terminology from the protocol where possible.
         - Do not infer or invent variables, timepoints, or measurement details that are not present in the protocol.
         - Do not describe or propose any mediation analysis; only list and describe the mediator variables.
-        - If no mediators are specified, output a single bullet with the sentence: "No mediators of treatment effects are explicitly specified in the protocol."
+        - If no mediators are specified, output: "No mediators of treatment effects are explicitly specified in the protocol."
         """,
 
 
