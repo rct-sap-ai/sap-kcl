@@ -91,10 +91,11 @@ class OpenAIChatAsync:
         results = {}
 
         async def run_one(item):
-            prompt = prompt_dictionary.get(tag, "")
             var_name = item.variable
+            prompt = prompt_dictionary.get(var_name, "")
+
             print(f"Running {var_name}")
-            if prompt = "":
+            if prompt == "":
                 print(f"No prompt in prompt dictionary for {var_name}")
                 response_content = "ERROR: tag not in prompt dictionary"
             else:

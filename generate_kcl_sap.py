@@ -19,7 +19,6 @@ prompt_tasks = [
     PromptRegister("senior_statistician", "minimal","low"),
     PromptRegister("description_of_trial", "minimal","low"),
     PromptRegister("investigators", "minimal","low"),
-    PromptRegister("principle_investigator", "minimal","low"),
     PromptRegister("trial_manager", "minimal","low"),
     PromptRegister("trial_statisticians", "minimal","low"),
     PromptRegister("health_economist", "minimal","low"),
@@ -68,13 +67,14 @@ prompt_tasks = [
     PromptRegister("any_exploratory_mediator_and_moderator_analysis", "minimal","low"),
     PromptRegister("interim_analysis", "minimal","low"), # end of final section - other bits
 ]
-system_message = prompts_file.system_message
+
 
 # Set up template with template file and prompts   
 template = Template(
     template_path = "Templates/sapai_kcl_template_v0.1.docx", 
     system_message_function=prompts_file.system_message, 
-    prompt_register=prompt_tasks
+    prompt_register=prompt_tasks,
+    prompts_dictionary = prompts_file.PROMPTS_DICTIONARY
 )
 
 # Give the template a prtocol and wtite a sap
@@ -97,12 +97,12 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
 
 
 #running with test = true uses gpt-5-nano which is faster and cheaper. Use to make sure everything runs.
-# write_sap(
-#     protocol_path="Protocols/boppp.pdf",
-#     sap_folder_path = "SAPs",
-#     sap_name = "bopp_sap_v0.1_test",
-#     test = True
-# )
+write_sap(
+    protocol_path="Protocols/boppp.pdf",
+    sap_folder_path = "SAPs",
+    sap_name = "bopp_sap_v0.1_test",
+    test = True
+)
 
 #running with without test mode on uses full gpt-5. This is what we'll use in production so when refining prompts is best to use.
 # write_sap(
