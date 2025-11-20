@@ -86,27 +86,30 @@ class OpenAIChatAsync:
         content = response.output_text.strip()
         return {"content": content}
     
-    async def run_prompts_register(self, prompt_register):
+    async def run_prompts_register(self, prompt_register, prompt_dictionary):
         print("running prompts async for \u26A1 speed")
         results = {}
 
         async def run_one(item):
-            prompt = item.prompt_function()
+            prompt = prompt_dictionary.get(tag, "")
             var_name = item.variable
             print(f"Running {var_name}")
-
-            try:
-                response = await self.get_response(
-                    prompt=prompt,
-                    reasoning_effort=item.reasoning_effort,
-                    verbosity=item.verbosity,
-                )
-                response_content = (response.get("content", "") or "").strip()
-                if not response_content:
+            if prompt = "":
+                print(f"No prompt in prompt dictionary for {var_name}")
+                response_content = "ERROR: tag not in prompt dictionary"
+            else:
+                try:
+                    response = await self.get_response(
+                        prompt=prompt,
+                        reasoning_effort=item.reasoning_effort,
+                        verbosity=item.verbosity,
+                    )
+                    response_content = (response.get("content", "") or "").strip()
+                    if not response_content:
+                        response_content = "ERROR"
+                except Exception as e:
+                    print(f"An error occurred for {var_name}: {e}")
                     response_content = "ERROR"
-            except Exception as e:
-                print(f"An error occurred for {var_name}: {e}")
-                response_content = "ERROR"
 
             return var_name, response_content
 

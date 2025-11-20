@@ -59,23 +59,6 @@ PROMPTS_TITLE_ADMIN = {
         - Do not include any content outside of this field. 
         - Do not invent information not present in the protocol.
         """,
-        
-        "{{name_of_cheif_investigator}}": """
-        - Extract the full name and affiliation(s) for the Chief/Principal Investigator from the protocol and return a concise SAP-ready line (name and affiliation only). 
-        - Do not include postal addresses, emails, or phone numbers. 
-        - Example: Dr. Ben Carter, Kings College London Clinical Trials Unit, Institute of Psychiatry, Psychology and Neuroscience, King's College London 
-        - Be concise. 
-        - Do not include any content outside of this field. Do not invent information not present in the protocol.
-        """,
-        
-        "{{senior_statistician}}": """
-        - Extract the  full name and affiliation(s) for the Senior Statistician from the protocol and return a concise SAP-ready line (name and affiliation only). 
-        - Do not include postal addresses, emails, or phone numbers. 
-         - Example: Dr. Ben Carter, Kings College London Clinical Trials Unit, Institute of Psychiatry, Psychology and Neuroscience, King's College London 
-        - Be concise. 
-        - Do not include any content outside of this field. 
-        - Do not invent information not present in the protocol.
-        """,
 }
 
 def get_people_prompt(who):
@@ -95,7 +78,7 @@ def get_people_prompt(who):
 
 PROMPTS_PEOPLE = {
            "{{investigators}}": get_people_prompt("investigators"),
-           "{{principle_investigator}}": get_people_prompt("Chief/Principal Investigator"),
+           "{{name_of_cheif_investigator}}": get_people_prompt("Chief/Principal Investigator"),
            "{{senior_statistician}}": get_people_prompt("senior statisticin"),
            "{{trial_statisticians}}": get_people_prompt("statisticians"),
            "{{trial_manager}}": get_people_prompt("trial manager"),
@@ -103,6 +86,8 @@ PROMPTS_PEOPLE = {
 
 
 }
+
+
 
 PROMPTS_INTRO_AND_DESIGN = {        
         "{{description_of_trial}}": """
@@ -149,41 +134,31 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Do not include any content outside of this field, provide only the content detailed above
         - Use only information about the trial from the protocol, do not invent information not present in the protocol.
         """,
-        
-        "{{allocation_ratio}}": """
-        - Using the clinical trial protocol, extract the randomisation allocation ratio (e.g., 1:1, 2:1) and return it exactly as specified. 
-        - Be concise, just give the ratio no other detilas. 
+
+        "{{randomisation_method}}": """
+        - Using the clinical trial protocol, write a desciption of the randomisation method.
+        - Include the allocation ratio and arms randomised to, the level of randomisation (eg. individual, cluster), and method of randomisation (simple randomisation, stratifified permuted blocks, minimisation)
+        - Where stratified permuted blocks are used give the stratification factors and block sizes used. If given in the protocol, provide levels of catagorical stratification factors (eg. sex (male, female), ethnicity (white british, non-white britich, other))
+        - where minmisation is used, give the minimisation factors and random component
+        - Be concise.
+        - Do not give any justfication for the method used.
         - Do not invent information not present in the protocol.
-        - Example: 1:1
+        - Example 1: Participants will be randomised useing a 1:1 ratio to treatment and control. Randomisation is at the individual level. Randomisation will be conducted using stratified permuted blocks with block sizes 4, 6, and 8. Stratification factors are sex (male, female), and site.  
+        - Example 2: Hospitals will be randomised useing a 3:1:1 ratio to hizomabab, paracetamol, or placebo. Randomisation is at the hospital level (cluster randomised). Randomisation will be conducted uminmisation with a random component, with the probability of being allocated to the arm which minimises imbalance of 0.9. Minimisation factors are sex (male, female), and site. 
         """,
 
-        "{{randomization_level}}": """
-        - Using the clinical trial protocol, extract the randomisation unit/level (e.g., participant, cluster/site) and return it exactly as specified. 
-        - Be concise, just the level. 
-        - Only include what belongs to this field. 
+          "{{randomisation_}}": """
+        - Using the clinical trial protocol, write a desciption of the randomisation method.
+        - Include the allocation ratio and arms randomised to, the level of randomisation (eg. individual, cluster), and method of randomisation (simple randomisation, stratifified permuted blocks, minimisation)
+        - Where stratified permuted blocks are used give the stratification factors and block sizes used. If given in the protocol, provide levels of catagorical stratification factors (eg. sex (male, female), ethnicity (white british, non-white britich, other))
+        - where minmisation is used, give the minimisation factors and random component
+        - Be concise.
+        - Do not give any justfication for the method used.
         - Do not invent information not present in the protocol.
-        - Example for individually randomised trial: participant
-        - Example for a cluster randomised trial: cluster
-        - Example for a cluster randomised trial where the unit of randomisation are hopstials: hospital 
+        - Example 1: Participants will be randomised useing a 1:1 ratio to treatment and control. Randomisation is at the individual level. Randomisation will be conducted using stratified permuted blocks with block sizes 4, 6, and 8. Stratification factors are sex (male, female), and site.  
+        - Example 2: Hospitals will be randomised useing a 3:1:1 ratio to hizomabab, paracetamol, or placebo. Randomisation is at the hospital level (cluster randomised). Randomisation will be conducted uminmisation with a random component, with the probability of being allocated to the arm which minimises imbalance of 0.9. Minimisation factors are sex (male, female), and site. 
         """,
         
-        "{{stratification_factors}}": """
-        - From the protocol, list the randomisation stratification/minimisation factors exactly as specified (factor names and levels where given). 
-        - Present each factor, just the names as a list separated by comma (,) in a single sentence. 
-        - Be concise. 
-        - Do not add commentary, or any other explanation in the beggining or the end. 
-        - Do not invent information not present in the protocol.
-        """,
-        
-        "{{number_of_arms}}": """
-        - Using the clinical trial protocol, state the number of treatment arms and provide the short name/label for each arm.
-        - present it in a single senetnce separated ny comma, (like, two arms, beta blocker, placebo).
-        - Be concise. 
-        - Do not add commentary, or any other explanation in the beggining or the end. 
-        - Only include what belongs to this field. 
-        - Do not invent information not present in the protocol.
-        - Example: two arms, beta blocker, placebo
-        """,
         
         "{{duration_of_treatment}}": """
         - Using the clinical trial protocol, state the duration of treatment for each arm as applicable if the two arms are different, otherwise metion it is the same in both arms. 
@@ -230,7 +205,9 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Be concise. 
         - Do not invent information not present in the protocol.
         """,
-        
+}
+
+PROMPTS_OUTCOMES_AND_ANALYSIS = {
         "{{primary_outcome_measures}}": """
         - Using the clinical trial protocol, list the primary outcome (or if more than one) and provide a  definition that includes the measure, timing, and unit (if applicable).
         - Speicfication of outcome
@@ -639,210 +616,4 @@ PROMPTS_INTRO_AND_DESIGN = {
 
     }
 
-PROMPTS = PROMPTS_TITLE_ADMIN | PROMPTS_INTRO_AND_DESIGN |PROMPTS_PEOPLE
-
-
-
-
-
-
-# 2. If you still want ALL_TAGS, derive it from PROMPTS so it never goes out of sync.
-ALL_TAGS = list(PROMPTS.keys())
-
-
-def get_prompt(tag: str) -> str:
-    tag = tag.strip()
-    if not tag.startswith("{{"):
-        tag = f"{{{{{tag}}}}}"
-    return PROMPTS.get(tag, "")
-
-
-
-def generate_title_prompt():
-    return get_prompt("title")
-
-def generate_acronym_prompt():
-    return get_prompt("acronym")
-
-def generate_isrctn_number_prompt():
-    return get_prompt("isrctn_number")
-
-def generate_protocol_version_prompt():
-    return get_prompt("protocol_version")
-
-def generate_protocol_date_prompt():
-    return get_prompt("protocol_date")
-
-def generate_name_of_cheif_investigator_prompt():
-    return get_prompt("name_of_cheif_investigator")
-
-def generate_senior_statistician_prompt():
-    return get_prompt("senior_statistician")
-
-def generate_trial_acronym_prompt():
-    return get_prompt("trial_acronym")
-
-def generate_description_of_trial_prompt():
-    return get_prompt("description_of_trial")
-
-def generate_investigators_prompt():
-    return get_prompt("investigators")
-
-def generate_principle_investigator_prompt():
-    return get_prompt("principle_investigator")
-
-def generate_trial_manager_prompt():
-    return get_prompt("trial_manager")
-
-def generate_trial_statisticians_prompt():
-    return get_prompt("trial_statisticians")
-
-def generate_health_economist_prompt():
-    return get_prompt("health_economist")
-
-def generate_primary_objectives_prompt():
-    return get_prompt("primary_objectives")
-
-def generate_secondary_objectives_prompt():
-    return get_prompt("secondary_objectives")
-
-def generate_trial_design_prompt():
-    return get_prompt("trial_design")
-
-def generate_allocation_ratio_prompt():
-    return get_prompt("allocation_ratio")
-
-def generate_randomization_level_prompt():
-    return get_prompt("randomization_level")
-
-def generate_stratification_factors_prompt():
-    return get_prompt("stratification_factors")
-
-def generate_number_of_arms_prompt():
-    return get_prompt("number_of_arms")
-
-def generate_duration_of_treatment_prompt():
-    return get_prompt("duration_of_treatment")
-
-def generate_follow_up_timepoints_prompt():
-    return get_prompt("follow_up_timepoints")
-
-def generate_visit_windows_prompt():
-    return get_prompt("visit_windows")
-
-def generate_data_collection_procedures_prompt():
-    return get_prompt("data_collection_procedures")
-
-def generate_inclusion_criteria_prompt():
-    return get_prompt("inclusion_criteria")
-
-def generate_exclusion_criteria_prompt():
-    return get_prompt("exclusion_criteria")
-
-def generate_primary_outcome_measures_prompt():
-    return get_prompt("primary_outcome_measures")
-
-def generate_secondary_outcome_measures_prompt():
-    return get_prompt("secondary_outcome_measures")
-
-def generate_mediator_of_treatment_prompt():
-    return get_prompt("mediator_of_treatment")
-
-def generate_moderator_of_treatment_prompt():
-    return get_prompt("moderator_of_treatment")
-
-def generate_process_indicators_prompt():
-    return get_prompt("process_indicators")
-
-def generate_adverse_events_prompt():
-    return get_prompt("adverse_events")
-
-def generate_only_baseline_measures_prompt():
-    return get_prompt("only_baseline_measures")
-
-def generate_additional_follow_up_measures_prompt():
-    return get_prompt("additional_follow_up_measures")
-
-def generate_sample_size():
-    return get_prompt("sample_size")
-
-def generate_timing_of_analysis_prompt():
-    return get_prompt("timing_of_analysis")
-
-def generate_screening_recruitment_consort_prompt():
-    return get_prompt("screening_recruitment_consort")
-
-def generate_adherence_to_treatment_prompt():
-    return get_prompt("adherence_to_treatment")
-
-def generate_descriptive_statistics_prompt():
-    return get_prompt("descriptive_statistics")
-
-def generate_descriptive_of_intervention_prompt():
-    return get_prompt("descriptive_of_intervention")
-
-def generate_descriptive_concomitant_medications_prompt():
-    return get_prompt("descriptive_concomitant_medications")
-
-def generate_visit_window_deviation_prompt():
-    return get_prompt("visit_window_deviation")
-
-def generate_primary_estimand_prompt():
-    return get_prompt("primary_estimand")
-
-def generate_analysis_population_prompt():
-    return get_prompt("effect_size")
-
-def generate_confidence_interval_p_value_prompt():
-    return get_prompt("confidence_interval_p_value")
-
-def generate_primary_analysis_model_prompt():
-    return get_prompt("primary_analysis_model")
-
-def generate_intercurrent_events_and_analysis_prompt():
-    return get_prompt("intercurrent_events_and_analysis")
-
-def generate_secondary_estimands_prompt():
-    return get_prompt("secondary_estimands")
-
-def generate_secondary_analysis_prompt():
-    return get_prompt("secondary_analysis")
-
-def generate_time_points_prompt():
-    return get_prompt("time_points")
-
-def generate_stratification_and_clustering_prompt():
-    return get_prompt("stratification_and_clustering")
-
-def generate_missing_items_in_scales_prompt():
-    return get_prompt("missing_items_in_scales")
-
-def generate_missing_baseline_data_prompt():
-    return get_prompt("missing_baseline_data")
-
-def generate_missing_data_sensitivity_analysis_prompt():
-    return get_prompt("missing_data_sensitivity_analysis")
-
-def generate_multiple_comparisons_prompt():
-    return get_prompt("multiple_comparisons")
-
-def generate_analysis_for_noncompliance_prompt():
-    return get_prompt("analysis_for_noncompliance")
-
-def generate_model_assumption_checks_prompt():
-    return get_prompt("model_assumption_checks")
-
-def generate_other_sensitivity_analysis_prompt():
-    return get_prompt("other_sensitivity_analysis")
-
-def generate_subgroup_analysis_prompt():
-    return get_prompt("subgroup_analysis")
-
-def generate_any_additional_exploratory_analysis_prompt():
-    return get_prompt("any_additional_exploratory_analysis")
-
-def generate_any_exploratory_mediator_and_moderator_analysis_prompt():
-    return get_prompt("any_exploratory_mediator_and_moderator_analysis")
-
-def generate_interim_analysis_prompt():
-    return get_prompt("interim_analysis")
+PROMPTS = PROMPTS_TITLE_ADMIN | PROMPTS_INTRO_AND_DESIGN |PROMPTS_PEOPLE | PROMPTS_OUTCOMES_AND_ANALYSIS
