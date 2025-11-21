@@ -30,12 +30,18 @@ PROMPTS_TITLE_ADMIN = {
 
     
         "title": """
-        - Extract the full trial title from the protocol and return it exactly as it is given in the trial protcol. 
+        - Extract the full trial title from the protocol. 
+        - Give the title only, do not include the trial acronym, even if included in the protocol title.
         - Do not include any content outside of this field. Do not invent information not present in the protocol.
+        - Example protocl text for title: Finding unecessary never events (FUN), a randomised trial.
+        - Correct response: Finding unecessary never events, a randomised trial.
         """,
 
         "trial_acronym": """
         - Extract the trial acronym from the protocol and return it exactly as it is given in the trial protcol. 
+        - Do not include the word trial after the acronym
+        - Good: ACTISSIST
+        - Bad: ACTISSIST Trial
         - Do not include any content outside of this field. Do not invent information not present in the protocol.
         """,
         
@@ -44,10 +50,14 @@ PROMPTS_TITLE_ADMIN = {
         - Do not include any content outside of this field. Do not invent information not present in the protocol.
         """,
         
-        "protocol_version": """
-        - Extract the protocol version identifier from the protocol and return it exactly as it is given in the trial protcol. 
-        - If multiple versions exist, select the current/most recent (usually the biggest number). 
+        "protocol_version_date": """
+        - Extract the protocol version and date from the protocol. 
+        - If multiple versions exist, select the current/most recent (usually the biggest number with most recent date). 
+        - Only include the version number and date
+        - Do not include the word version
         - Do not include any content outside of this field. Do not invent information not present in the protocol.
+        - Example protocol text: Version 3.0, 31st June 2022
+        - Correct response: 3.0, 31st June 2022
         """,
         
         "protocol_date": """
@@ -58,15 +68,19 @@ PROMPTS_TITLE_ADMIN = {
         """,
 }
 
-def get_people_prompt(who):
+def get_people_prompt(who, one_person = False):
+        single_person = "If more than one relevant person given in the protocol, use one line per person."
+        if one_person:
+              single_person = "- Only give a single person. If more than one person is given, make a judgement as to who seems most relevant."
+        
         prompt = f""" 
         - Using the clinical trial protocol, list the {who} to be named in the SAP, presenting each as “Name, Affiliation”. 
-        - Use one item per person. 
         - Do not include addresses or emails. 
         - Be concise. 
         - Do not include any content outside of this field. 
         - Do not invent information not present in the protocol.
-        - If there are no {who} listed in the protocol, return "No {who} are specified in the protocol.""
+        - If there are no {who} listed in the protocol, return "No {who} specified in the protocol.""
+        {single_person}
 
         - Example: Dr. Ben Carter, Kings College London Clinical Trials Unit, Institute of Psychiatry, Psychology and Neuroscience, King's College London 
 
@@ -74,9 +88,9 @@ def get_people_prompt(who):
         return(prompt)
 
 PROMPTS_PEOPLE = {
-           "investigators": get_people_prompt("investigators"),
-           "name_of_cheif_investigator": get_people_prompt("Chief/Principal Investigator"),
-           "senior_statistician": get_people_prompt("senior statisticin"),
+           "investigators": get_people_prompt("investigators") + "\n - Do not include the chief investigator \n - Do not include the trial statistician.",
+           "name_of_cheif_investigator": get_people_prompt("Chief/Principal Investigator", one_person=True),
+           "senior_statistician": get_people_prompt("senior statisticin", one_person=True),
            "trial_statisticians": get_people_prompt("statisticians"),
            "trial_manager": get_people_prompt("trial manager"),
            "health_economist": get_people_prompt("health economist"),
@@ -88,14 +102,14 @@ PROMPTS_PEOPLE = {
 
 PROMPTS_INTRO_AND_DESIGN = {        
         "description_of_trial": """
-        - Write a brief introduction that outlines the background and rationale for the study and the study objectives.
-        - The background and rationale should consist of a synopsis of trial the background and rationale including a brief description of research question and brief justification for undertaking the trial
-        - Breiefly mention the trial intervention.
-        - Clearly state specific objectives or hypothesis.
+        - Write a brief introduction that outlines the background and rationale for the study.
+        - do not give details of the trial design
+        - Breiefly mention the trial intervention and control arms.
+        - include a brief description of the research question
+        - Do not give specific objectives of the trial.
         - Write this section using full paragraphs Do not use bullet points.
         - Do not write about the statistical analysis.
         - Be concise. 
-        - Write in paragraphs, and only use bullet points when the protocol itself lists items or when the field is a list. 
         - Do not include any content outside of this field. 
         - Do not invent information not present in the protocol.
         """,
@@ -104,6 +118,8 @@ PROMPTS_INTRO_AND_DESIGN = {
         "primary_objectives": """
         - From the protocol, write the trial’s primary objective(s) exactly as specified. 
         - Present each primary objective as a separate sentence on its own line; do not add commentary.
+        - Do not add additional line breaks between objectives
+        - Do not add additional punctiation or bullet points
         - Be concise. 
         - Only include what belongs to this field. 
         - Do not invent information not present in the protocol.
@@ -112,6 +128,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         "secondary_objectives": """
         - From the protocol, write the trial’s secondary objective(s) exactly as specified. 
         - Present each secondary objective as a separate sentence on its own line; do not add commentary. 
+        - Do not add additional line breaks between objectives
         - Be concise. 
         - Only include what belongs to this field. 
         - Do not invent information not present in the protocol.
@@ -144,16 +161,11 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Example 2: Hospitals will be randomised useing a 3:1:1 ratio to hizomabab, paracetamol, or placebo. Randomisation is at the hospital level (cluster randomised). Randomisation will be conducted uminmisation with a random component, with the probability of being allocated to the arm which minimises imbalance of 0.9. Minimisation factors are sex (male, female), and site. 
         """,
 
-          "randomisation_": """
-        - Using the clinical trial protocol, write a desciption of the randomisation method.
-        - Include the allocation ratio and arms randomised to, the level of randomisation (eg. individual, cluster), and method of randomisation (simple randomisation, stratifified permuted blocks, minimisation)
-        - Where stratified permuted blocks are used give the stratification factors and block sizes used. If given in the protocol, provide levels of catagorical stratification factors (eg. sex (male, female), ethnicity (white british, non-white britich, other))
-        - where minmisation is used, give the minimisation factors and random component
-        - Be concise.
-        - Do not give any justfication for the method used.
-        - Do not invent information not present in the protocol.
-        - Example 1: Participants will be randomised useing a 1:1 ratio to treatment and control. Randomisation is at the individual level. Randomisation will be conducted using stratified permuted blocks with block sizes 4, 6, and 8. Stratification factors are sex (male, female), and site.  
-        - Example 2: Hospitals will be randomised useing a 3:1:1 ratio to hizomabab, paracetamol, or placebo. Randomisation is at the hospital level (cluster randomised). Randomisation will be conducted uminmisation with a random component, with the probability of being allocated to the arm which minimises imbalance of 0.9. Minimisation factors are sex (male, female), and site. 
+          "randomisation_implementation": """
+        - Using the clinical trial protocol, write a desciption of how treatment is allocated based on the output of the randomisation system.
+        - Write a single, concice, paragrpah.
+        - Mention who the information will be passed to and how this will result in allocation of treatment. 
+        - Example: The randomisation system records the results of randomisation and automaticly notifies the pharmacy, who dispense the required medicaiton to the particiapnt.
         """,
         
         
@@ -167,7 +179,9 @@ PROMPTS_INTRO_AND_DESIGN = {
         
         "follow_up_timepoints": """
         - Using the clinical trial protocol, list all follow-up time points at which outcomes are measured. 
-        - Present as bullets in chronological order. 
+        - Present each timepoint on a new line, in chronological order.
+        - Do not use bullet points or dashes to introduce new lines. 
+        - Do not add additional line breaks between timepoints
         - Be concise. 
         - Do not invent information not present in the protocol.
         - Do not include details on visit windows.
@@ -175,30 +189,40 @@ PROMPTS_INTRO_AND_DESIGN = {
         
         "visit_windows": """
         - Using the clinical trial protocol, describe the visit windows for assessments timepoints exactly as specified. 
-        - Use sentences/lines or a compact list if the protocol lists discrete windows. 
+        - Use sentences/lines or a compact list if the protocol lists discrete windows.
+        - If a list is used, present each itim in the list on a new line.
+        - Do not use bullet points or dashes to introduce new lines.  
+       - Do not add additional line breaks between visit windows
         - If no visit windows are given state "visit windows not defined in protocol".
         - Be concise. 
+        - Only provide detils of visit windows around follow up timepoints - for example do not include details about the ammount of time between consent and randomisation.
         - Do not invent information not present in the protocol.
         """,
         
         "data_collection_procedures": """
         - Using the clinical trial protocol, summarise the data collection procedures relevant to the SAP (sources, systems, and timing) in one short paragraph. 
         - Be concise and factual. 
+        - Do not include details about how randomisation is carried out.
         - Do not include any content outside of this field. 
         - Do not invent information not present in the protocol.
         """,
         
         "inclusion_criteria": """
-        - From the protocol, list the inclusion criteria as minimally edited bullets retaining the original inclusion criteria. 
-        - One criterion per bullet. 
-        - Do not add commentary or reorder unless the protocol provides an order. 
+        - From the protocol, list the inclusion criteria
+        - Give each criteria on a separate line - do not add any bullet points or other punctuation to indicate new lines.
+        - Remove any enumeration given to the criteria
+        - Where sub criteria exist add leading spaces to the lines.
+        - Do not add commentary or reorder 
         - Be concise. 
         - Do not invent information not present in the protocol.
         """,
         
         "exclusion_criteria": """
-        -From the protocol, list the exclusion criteria verbatim or as minimally edited bullets retaining the original meaning. One criterion per bullet. 
-        - Do not add commentary or reorder unless the protocol provides an order. 
+        -From the protocol, list the exclusion criteria
+        - Give each criteria on a separate line - do not add any bullet points or other punctuation to indicate new lines.
+        - Where sub criteria exist add leading spaces to the lines.
+        - Remove any enumeration given to the criteria
+        - Do not add commentary or reorder 
         - Be concise. 
         - Do not invent information not present in the protocol.
         """,
