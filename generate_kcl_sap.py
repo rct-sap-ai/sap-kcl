@@ -10,25 +10,25 @@ import time
 # verbosity = "high", "medium", or "low"
 #PromptRegister(variable, prompt_function, reasoning_effort, verbosity)
 prompt_tasks = [
-    PromptRegister("title", "minimal","low"),
+    PromptRegister("title", "low","low"),
     PromptRegister("trial_acronym", "minimal","low"),
     PromptRegister("isrctn_number", "minimal","low"),
-    PromptRegister("protocol_version", "minimal", "low"),
-    PromptRegister("protocol_date", "minimal","low"),
-    PromptRegister("name_of_cheif_investigator", "minimal","low"),
-    PromptRegister("senior_statistician", "minimal","low"),
-    PromptRegister("description_of_trial", "minimal","low"),
-    PromptRegister("investigators", "minimal","low"),
-    PromptRegister("trial_manager", "minimal","low"),
-    PromptRegister("trial_statisticians", "minimal","low"),
-    PromptRegister("health_economist", "minimal","low"),
+    PromptRegister("protocol_version_date", "minimal", "low"),
+    PromptRegister("name_of_cheif_investigator", "low","low"),
+    PromptRegister("senior_statistician", "low","low"),
+    PromptRegister("description_of_trial", "medium","low"),
+    PromptRegister("investigators", "low","low"),
+    PromptRegister("trial_manager", "low","low"),
+    PromptRegister("trial_statisticians", "low","low"),
+    PromptRegister("health_economist", "low","low"),
     PromptRegister("primary_objectives", "minimal","low"),
     PromptRegister("secondary_objectives", "minimal","low"), 
     PromptRegister("trial_design", "minimal","low"),
     PromptRegister("randomisation_method", "minimal","low"),
+    PromptRegister("randomisation_implementation", "minimal","low"),
     PromptRegister("duration_of_treatment", "minimal","low"),
     PromptRegister("follow_up_timepoints", "minimal","low"),
-    PromptRegister("visit_windows", "minimal","low"),
+    PromptRegister("visit_windows", "low","low"),
     PromptRegister("data_collection_procedures", "minimal","low"), 
     PromptRegister("inclusion_criteria", "minimal","low"),
     PromptRegister("exclusion_criteria", "minimal","low"), # end of first section - trial design
@@ -68,6 +68,7 @@ prompt_tasks = [
     PromptRegister("interim_analysis", "minimal","low"), # end of final section - other bits
 ]
 
+prompt_tasks = prompt_tasks[0:22]
 
 # Set up template with template file and prompts   
 template = Template(
@@ -97,16 +98,16 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
 
 
 #running with test = true uses gpt-5-nano which is faster and cheaper. Use to make sure everything runs.
-write_sap(
-    protocol_path="Protocols/boppp.pdf",
-    sap_folder_path = "SAPs",
-    sap_name = "bopp_sap_v0.1_test",
-    test = True
-)
+# write_sap(
+#     protocol_path="Protocols/boppp.pdf",
+#     sap_folder_path = "SAPs",
+#     sap_name = "bopp_sap_v0.1_test",
+#     test = True
+# )
 
 #running with without test mode on uses full gpt-5. This is what we'll use in production so when refining prompts is best to use.
-# write_sap(
-#     protocol_path="Protocols/boppp.pdf",  
-#     sap_folder_path = "SAPs",
-#     sap_name = "bopp_sap_v0.1",
-# )
+write_sap(
+    protocol_path="Protocols/ACTISSIST.pdf",  
+    sap_folder_path = "SAPs",
+    sap_name = "actissist_sap_v0.1",
+)
