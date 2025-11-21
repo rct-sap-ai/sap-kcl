@@ -104,8 +104,8 @@ PROMPTS_INTRO_AND_DESIGN = {
         "description_of_trial": """
         - Write a brief introduction that outlines the background and rationale for the study.
         - do not give details of the trial design
-        - include a brief description of the research question
         - Breiefly mention the trial intervention and control arms.
+        - include a brief description of the research question
         - Do not give specific objectives of the trial.
         - Write this section using full paragraphs Do not use bullet points.
         - Do not write about the statistical analysis.
@@ -119,6 +119,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - From the protocol, write the trial’s primary objective(s) exactly as specified. 
         - Present each primary objective as a separate sentence on its own line; do not add commentary.
         - Do not add additional line breaks between objectives
+        - Do not add additional punctiation or bullet points
         - Be concise. 
         - Only include what belongs to this field. 
         - Do not invent information not present in the protocol.
@@ -209,6 +210,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         "inclusion_criteria": """
         - From the protocol, list the inclusion criteria
         - Give each criteria on a separate line - do not add any bullet points or other punctuation to indicate new lines.
+        - Remove any enumeration given to the criteria
         - Where sub criteria exist add leading spaces to the lines.
         - Do not add commentary or reorder 
         - Be concise. 
@@ -219,6 +221,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         -From the protocol, list the exclusion criteria
         - Give each criteria on a separate line - do not add any bullet points or other punctuation to indicate new lines.
         - Where sub criteria exist add leading spaces to the lines.
+        - Remove any enumeration given to the criteria
         - Do not add commentary or reorder 
         - Be concise. 
         - Do not invent information not present in the protocol.
