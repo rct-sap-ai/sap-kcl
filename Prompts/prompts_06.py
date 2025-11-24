@@ -218,7 +218,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         """,
         
         "exclusion_criteria": """
-        -From the protocol, list the exclusion criteria
+        - From the protocol, list the exclusion criteria
         - Give each criteria on a separate line - do not add any bullet points or other punctuation to indicate new lines.
         - Where sub criteria exist add leading spaces to the lines.
         - Remove any enumeration given to the criteria
@@ -479,8 +479,8 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         """,
         
         "primary_analysis_model": """
-        - Using only the extracted information from the clinical trial protocol, write a main analysis section for all primary and secondary utcomes (excluding health economic and cost-utility outcomes), suitable for inclusion in the Statistical Analysis Plan (SAP).
-        - Begin by stating the analysis population for the primary and secondary outcomes exactly as defined in the protocol (e.g., ntention-to-treat (ITT), modified ITT, per-protocol, safety); do not describe or justify the population, just name it.
+        - Using only the extracted information from the clinical trial protocol, write a main analysis section for all primary and secondary outcomes (excluding health economic and cost-utility outcomes), suitable for inclusion in the Statistical Analysis Plan (SAP).
+        - Begin by stating the analysis population for the primary and secondary outcomes exactly as defined in the protocol (e.g., intention-to-treat (ITT), modified ITT, per-protocol, safety); do not describe or justify the population, just name it.
         - For the primary outcome(s), clearly describe the planned analysis model(s), including the outcome type, the regression or modelling approach (e.g., linear regression, logistic regression, Cox proportional hazards model, mixed-effects model, repeated-measures model), and how the treatment effect will be parameterised and presented (e.g., mean difference, odds ratio, risk atio, hazard ratio, with corresponding confidence intervals).
         - Specify any planned adjustment for baseline covariates, including stratification factors used in randomisation (if applicable) and aseline values of the outcome where stated; use the terminology and factor definitions from the protocol.
         - For secondary outcomes, describe the analysis models in a similar manner, grouping outcomes that are of the same type and will be analysed using the same model; explicitly state which outcomes are analysed with each model and how the treatment effect will be resented for each group of outcomes.
