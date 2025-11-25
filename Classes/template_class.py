@@ -36,7 +36,7 @@ class Template:
         
     def save_content_as_text(self, path):
         sap_content = self.sap_content
-        with open(path, "w") as f:
+        with open(path, "w", encoding="utf-8") as f:
             for key, value in sap_content.items():
                 f.write(f"{key}: {value}\n")
         print(f"raw SAP content saved to {path}")
