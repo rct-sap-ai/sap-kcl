@@ -154,7 +154,7 @@ PROMPTS_INTRO_AND_DESIGN = {
         - Include the allocation ratio and arms randomised to, the level of randomisation (eg. individual, cluster), and method of randomisation (simple randomisation, stratifified permuted blocks, minimisation)
         - Where stratified permuted blocks are used give the stratification factors and block sizes used. If given in the protocol, provide levels of catagorical stratification factors (eg. sex (male, female), ethnicity (white british, non-white britich, other))
         - where minmisation is used, give the minimisation factors and random component
-        - Be concise.
+        - Write a single, concice, paragrpah.
         - Do not give any justfication for the method used.
         - Do not invent information not present in the protocol.
         - Example 1: Participants will be randomised useing a 1:1 ratio to treatment and control. Randomisation is at the individual level. Randomisation will be conducted using stratified permuted blocks with block sizes 4, 6, and 8. Stratification factors are sex (male, female), and site.  
@@ -245,6 +245,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Do not report health economic or cost utility outcomes.
         - Be concise and use terminology from the protocol.
         - Do not invent information not present in the protocol.
+        - Do not include any information about the analysis of the outcome.
         
         Example:
         Protocol text: "Rate of readmission to hospital within 30 or 90 days of discharge, survival (overall, progression free)."
@@ -276,6 +277,8 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Do not report health economic or cost utility outcomes.
         - Be concise and use terminology from the protocol.
         - Do not invent information not present in the protocol.
+        - Do not include any information about the analysis of the outcome.
+
         
         Example:
         Protocol text: "Rate of readmission to hospital within 30 or 90 days of discharge, survival (overall, progression free)."
@@ -354,8 +357,8 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         """,
 
        "sample_size": """
-        - Using only the extracted information from the clinical trial protocol provided above, write a comprehensive Sample Size and Power section suitable for inclusion in the Statistical Analysis Plan (SAP).
-        - Describe in detail the methods used for sample size determination, including relevant design features (e.g., number of arms, allocation ratio, parallel-group or cluster-randomised design, superiority/non-inferiority/equivalence framework) as specified in the protocol.
+        - write a Sample Size and Power section suitable for inclusion in the Statistical Analysis Plan (SAP) using information from the protocol..
+        - Describe in detail the methods used for sample size calculation.
         - Clearly state all assumptions used in the calculation, including effect size, standard deviation, event rates, control-group rates, variability parameters, correlations (e.g., for clustering or repeated measures), and any other explicitly reported inputs.
         - Specify the statistical test(s) or model(s) on which the sample size estimation is based (e.g., two-sample t-test, chi-square test, log-rank test, Cox model, mixed model), using the terminology from the protocol.
         - Report the planned power and significance level(s), stating whether the alpha level is one-sided or two-sided, as described in the protocol.
