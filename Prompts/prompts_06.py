@@ -260,7 +260,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         Time to disease progression or death (progression free survival), assessed from randomisation to disease progression, death, or final follow up.
         """,
         
-        "secondary_outcome_measures}}": """
+        "secondary_outcome_measures": """
         - Using the clinical trial protocol, identify all secondary outcome(s) and provide a complete definition for each.
         - For each secondary outcome, write a single paragraph that includes:
           • Specification of outcome (what is being measured)
