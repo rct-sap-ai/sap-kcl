@@ -229,7 +229,7 @@ PROMPTS_INTRO_AND_DESIGN = {
 }
 PROMPTS_OUTCOMES_AND_ANALYSIS = {
        
-        "{{primary_outcome_measures}}": """
+        "primary_outcome_measures": """
         - Using the clinical trial protocol, identify all primary outcome(s) and provide a complete definition for each.
         - For each primary outcome, write a single paragraph that includes:
           • Specification of outcome (what is being measured)
@@ -260,7 +260,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         Time to disease progression or death (progression free survival), assessed from randomisation to disease progression, death, or final follow up.
         """,
         
-        "{{secondary_outcome_measures}}": """
+        "secondary_outcome_measures}}": """
         - Using the clinical trial protocol, identify all secondary outcome(s) and provide a complete definition for each.
         - For each secondary outcome, write a single paragraph that includes:
           • Specification of outcome (what is being measured)
@@ -291,7 +291,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         Time to disease progression or death (progression free survival), assessed from randomisation to disease progression, death, or final follow up.
         """,
         
-        "{{mediator_of_treatment}}": """
+        "mediator_of_treatment": """
         - Using only the clinical trial protocol, identify variables that are explicitly specified as mediators of treatment effects or described as lying on the causal pathway between treatment and the primary or key secondary outcomes.
         - Include only variables that are pre-specified in the protocol; do not introduce post hoc mediators.
         - For each such variable, write one paragraph that states: the variable name, how it is assessed (instrument, scale, or units), and planned measurement timepoints, if stated.
@@ -301,7 +301,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - If no mediators are specified, output: "No mediators of treatment effects are explicitly specified in the protocol."
         """,
         
-        "{{moderator_of_treatment}}": """
+        "moderator_of_treatment": """
         - Using only the clinical trial protocol, identify variables that are explicitly specified as moderators of treatment effects, effect modifiers, or subgroup defining variables for assessing differential treatment effects.
         - Include only variables that are pre-specified in the protocol; do not introduce post hoc moderators.
         - For each such variable, write one paragraph that states: the variable name, whether it is baseline or time varying, how it is assessed (instrument, scale, units, or categories), and any relevant categories or cut points if stated.
@@ -311,7 +311,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - If no moderators are specified, output: "No moderators of treatment effects are explicitly specified in the protocol."
         """,
         
-        "{{process_indicators}}": """
+        "process_indicators": """
         - Using only the clinical trial protocol, identify variables specified as process indicators to be summarised (e.g., fidelity, exposure, adherence, engagement, reach, implementation quality).
         - Include only process indicators that are pre-specified in the protocol; do not introduce post hoc indicators.
         - For each such variable, write one paragraph that states: the indicator name, what aspect of the process it reflects (e.g., fidelity, exposure), how it is assessed (instrument, measure, units, or categories), and planned measurement timepoints, if stated.
@@ -321,7 +321,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - If no process indicators are specified, output: "No process indicators are explicitly specified in the protocol."
         """,
         
-        "{{adverse_events}}": """
+        "adverse_events": """
         - Using only the clinical trial protocol, write a concise, paragraph style summary of adverse event (harms) reporting suitable for inclusion in the Statistical Analysis Plan (SAP) Harms section.
         - Describe the adverse event related definitions and terminology that will be used (e.g., AE, AR, SAE, SAR, SUSAR, AESI), using the wording from the protocol where possible.
         - State the coding system or dictionary for adverse events (e.g., MedDRA and version) if specified in the protocol.
@@ -333,7 +333,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - If the protocol does not specify adverse event definitions, coding system, or planned summaries, write a single short paragraph stating that the protocol does not provide detailed specifications for adverse event reporting.
         """,
         
-        "{{only_baseline_measures}}": """
+        "only_baseline_measures": """
         - Using only the clinical trial protocol, identify measures that are collected pre-randomisation (e.g., baseline covariates, screening or baseline assessments) and are intended to be used or reported in the Statistical Analysis Plan (SAP).
         - Include only pre-randomisation measures that are explicitly specified in the protocol; do not introduce post hoc measures.
         - For each such measure, write one paragraph that states: the measure or variable name, any scale or instrument used (including scale names and versions where given), the type of measure (e.g., clinical, laboratory, questionnaire), and the nominal timepoint (e.g., screening, baseline) if stated.
@@ -343,7 +343,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - If no additional pre-randomisation measures are specified, output: "No additional pre-randomisation measures to be used in the SAP are explicitly specified in the protocol."
         """,
         
-        "{{additional_follow_up_measures}}": """
+        "additional_follow_up_measures": """
         - Using only the clinical trial protocol, identify post-randomisation follow-up measures that are collected in addition to the primary and secondary outcomes (e.g., exploratory outcomes, additional questionnaires, long term follow-up assessments, resource use measures).
         - Include only additional follow-up measures that are explicitly specified in the protocol; do not introduce post hoc measures.
         - For each such measure, write one paragraph that states: the measure or variable name, any scale or instrument used (including scale names and versions where given), the planned follow-up timepoint(s), and a brief description of what it assesses if stated.
