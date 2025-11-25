@@ -68,7 +68,6 @@ prompt_tasks = [
     PromptRegister("interim_analysis", "minimal","low"), # end of final section - other bits
 ]
 
-prompt_tasks = prompt_tasks[0:55]
 
 # Set up template with template file and prompts   
 template = Template(
