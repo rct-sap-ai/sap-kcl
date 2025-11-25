@@ -40,6 +40,7 @@ prompt_tasks = [
     PromptRegister("adverse_events", "minimal","low"),
     PromptRegister("only_baseline_measures", "minimal","low"),
     PromptRegister("additional_follow_up_measures", "minimal","low"),
+    PromptRegister("sample_size", "minimal","low"),
     PromptRegister("screening_recruitment_consort", "minimal","low"),
     #PromptRegister("treatment_compliance_definitition", prompts_file.generate_treatment_compliance_definitition_prompt,"minimal","low"),
     PromptRegister("adherence_to_treatment", "minimal","low"),
@@ -108,5 +109,5 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
 write_sap(
     protocol_path="Protocols/boppp.pdf",  
     sap_folder_path = "SAPs",
-    sap_name = "bopp_sap_v0.1_test",
+    sap_name = "bopp_sap_v0.1",
 )
