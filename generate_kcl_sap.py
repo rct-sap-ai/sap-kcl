@@ -68,7 +68,7 @@ prompt_tasks = [
     PromptRegister("interim_analysis", "minimal","low"), # end of final section - other bits
 ]
 
-prompt_tasks = prompt_tasks[0:22]
+prompt_tasks = prompt_tasks[0:55]
 
 # Set up template with template file and prompts   
 template = Template(
@@ -109,5 +109,5 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
 write_sap(
     protocol_path="Protocols/boppp.pdf",  
     sap_folder_path = "SAPs",
-    sap_name = "bopp_sap_v0.1",
+    sap_name = "bopp_sap_v0.1_test",
 )

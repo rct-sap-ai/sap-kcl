@@ -479,16 +479,16 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         """,
         
         "primary_analysis_model": """
-        - Using only the extracted information from the clinical trial protocol, write a main analysis section for all primary and secondary outcomes (excluding health economic and cost-utility outcomes), suitable for inclusion in the Statistical Analysis Plan (SAP).
-        - Begin by stating the analysis population for the primary and secondary outcomes exactly as defined in the protocol (e.g., intention-to-treat (ITT), modified ITT, per-protocol, safety); do not describe or justify the population, just name it.
+        - Using only the extracted information from the clinical trial protocol, write a main analysis section for the primary outcome (excluding health economic and cost-utility outcomes), suitable for inclusion in the Statistical Analysis Plan (SAP).
+        - Begin by stating the analysis population for the primary outcome exactly as defined in the protocol (e.g., intention-to-treat (ITT), modified ITT, per-protocol, safety); do not describe or justify the population, just name it.
         - For the primary outcome(s), clearly describe the planned analysis model(s), including the outcome type, the regression or modelling approach (e.g., linear regression, logistic regression, Cox proportional hazards model, mixed-effects model, repeated-measures model), and how the treatment effect will be parameterised and presented (e.g., mean difference, odds ratio, risk atio, hazard ratio, with corresponding confidence intervals).
-        - Specify any planned adjustment for baseline covariates, including stratification factors used in randomisation (if applicable) and aseline values of the outcome where stated; use the terminology and factor definitions from the protocol.
-        - For secondary outcomes, describe the analysis models in a similar manner, grouping outcomes that are of the same type and will be analysed using the same model; explicitly state which outcomes are analysed with each model and how the treatment effect will be resented for each group of outcomes.
-        - If different analysis populations are specified for some outcomes (e.g., safety outcomes, per-protocol analyses), state this riefly where relevant, using the protocol’s terminology.
-        - Do not provide analysis methods for outcomes relating to health economics or cost-utility; if such outcomes are mentioned in the rotocol, state briefly that their analysis is described elsewhere.
+        - Describe how time will enter the analysis models where relevant (e.g., as discrete visit factors, continuous time, follow-up duration in survival models, repeated-measures over visits), using the terminology from the protocol.
+        - Specify any planned adjustment for baseline covariates, including stratification factors used in randomisation (if applicable) and baseline values of the outcome where stated; use the terminology and factor definitions from the protocol.
+        - If an ITT or modified ITT approach is not taken in the first instance, state briefly what these populations are (i.e. per-protocol) and state that analyses on these populations are described later with other sensitivity analyses.
+        - Do not provide analysis methods for outcomes relating to health economics or cost-utility; if such outcomes are mentioned in the protocol, state briefly that their analysis is described elsewhere.
         - Write the output as one or more concise paragraphs, without bullet points, with enough detail that the analysis could be implemented unambiguously (e.g., clearly identifying the outcome, treatment variable, covariates, and general model structure), but ithout mathematical formulae.
         - Do not introduce new analysis models, covariates, transformations, or populations beyond those explicitly described in the protocol; if important details (e.g., covariate adjustments or specific model forms) are not specified, state briefly that these are ot clearly specified in the protocol.
-        - Be concise and focus only on the analysis models and covariate adjustments for the primary and secondary outcomes as described bove.
+        - Be concise and focus only on the analysis models and covariate adjustments for the primary outcome as described above.
         """,
 
         
@@ -511,10 +511,13 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Write the output as one or more concise paragraphs (no bullet points in the output itself), using terminology from the protocol and from the primary estimand section where appropriate.
         - Do not introduce new estimands or modify aspects of the primary estimand unless such differences are explicitly stated or clearly implied in the protocol.
         - Do not infer or invent populations, endpoints, treatment conditions, intercurrent-event strategies, or summary measures that are not documented in the protocol; if no secondary estimands differing from the primary estimand are specified, write a single sentence stating that secondary outcomes are assumed to share the same estimand as the primary outcome unless otherwise specified.
+        - If the primary and secondary outcomes will be analysed in similar ways (i.e. both questionnaire outcomes), just state that similar considerations have been made for secondary outcomes.
         """,
 
         "secondary_analysis": """
         - Using only the clinical trial protocol, describe the planned analysis approach for secondary outcomes, for inclusion in the Statistical Analysis Plan (SAP), ensuring consistency with the defined secondary estimands.
+        - If the primary and secondary outcomes will be analysed in similar ways, just state that secondary outcomes will be analysed in the same way as the primary outcome.
+        - If the secondary outcome will not be analysed in the same ways as the primary outcome, do the following:
         - Summarise the analysis models to be used for each group of secondary outcomes, specifying the outcome type, the model or method (e.g., linear regression, logistic regression, Cox proportional hazards model, mixed-effects model, repeated-measures model), and how treatment effects will be presented (e.g., mean differences, odds ratios, risk ratios, hazard ratios, with confidence intervals), as described in the protocol.
         - Identify groups of secondary outcomes that share the same model structure and covariate adjustments, and explicitly state which outcomes are analysed with each shared approach.
         - State any planned covariate adjustments for secondary outcomes, including stratification factors and baseline values of the outcome or other prognostic variables, using the terminology and factor definitions from the protocol.
@@ -525,9 +528,6 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
 
        
         "time_points": """
-        - Using only the clinical trial protocol, describe how timepoints/time will be used in the analysis of the trial outcomes, for inclusion in the Statistical Analysis Plan (SAP).
-        - State the analysis time points for each key outcome or group of outcomes (e.g., primary endpoint at 12 months, secondary endpoints at 6 and 12 months, repeated measures over all scheduled visits), as specified in the protocol.
-        - Describe how time will enter the analysis models where relevant (e.g., as discrete visit factors, continuous time, follow-up duration in survival models, repeated-measures over visits), using the terminology from the protocol.
         - If visit windows are defined, state what data will be used when measurements fall within or outside the specified windows (e.g., closest measurement within the window, rules for assigning visits, handling of out-of-window data), as described in the protocol.
         - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Time points” section of the SAP.
         - Do not infer or invent timepoints, visit windows, or analysis-time structures that are not explicitly reported in the protocol; if details of how time or visit windows are handled are not specified, state briefly that these are not clearly specified in the protocol.
