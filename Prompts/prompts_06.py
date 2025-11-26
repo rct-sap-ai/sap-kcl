@@ -549,11 +549,15 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
 
         
         "missing_items_in_scales": """
-        - Using only the clinical trial protocol, write a concise paragraph describing how missing items within multi-item scales and subscales will be handled for inclusion in the Statistical Analysis Plan (SAP).
+        -  Write a concise paragraph describing how missing items within multi-item scales and subscales will be handled for inclusion in the Statistical Analysis Plan (SAP).
         - State whether the proportion of participants with complete data on each scale/subscale will be reported (e.g., number and percentage with complete responses), if this is specified in the protocol.
+        - Explicitly distinguish between handling missing items (partial completion of a questionnaire) and missing forms (where the entire questionnaire or visit is missing). Ensure this paragraph focuses only on the former (item-level missingness).
         - If the protocol provides scale-specific missing data guidance or scoring rules (e.g., from instrument manuals), briefly summarise these rules (such as allowable numbers/proportions of missing items and how scores are to be calculated) and refer to them in general terms rather than reproducing full scoring instructions.
         - If prorating or similar approaches are specified (e.g., replacing missing items based on averages of completed items when a certain percentage or number of items is missing), describe these rules clearly in words, including any thresholds for applying prorating, as stated in the protocol.
+        - If a threshold for prorating is mentioned (e.g., 'if < 80% of items are missing'), explicitly state what happens when that threshold is exceeded (e.g., 'the total score will be set to missing').
         - Make clear whether different scales/subscales use different missing-item rules, and, if so, summarise these differences briefly.
+        - If the protocol specifies rounding rules for calculated scores (e.g., rounding imputed averages to the nearest integer), include this detail.
+        - Check for specific instructions regarding "Not Applicable" responses (e.g., if they are treated as missing or zero) and include if present.
         - Write the output as a single concise paragraph (no bullet points in the output itself), using the terminology from the protocol where possible.
         - Do not infer or invent prorating rules, thresholds, or other missing-item handling procedures that are not explicitly described in the protocol; if the protocol does not specify how missing items within scales are handled, state briefly that the handling of missing items in scales/subscales is not clearly specified.
         """,
@@ -563,23 +567,25 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Using only the clinical trial protocol, write a concise paragraph describing how missing baseline covariate data will be handled in analyses planned for the Statistical Analysis Plan (SAP).
         - State whether missing baseline data are expected to affect the primary analysis, and, if relevant, note that some extended or exploratory analyses may use additional baseline variables that could have missing values, as described in the protocol.
         - Describe how the extent of missing baseline data will be reported (e.g., number and percentage of participants with complete data for each baseline covariate), if this is specified.
-        - Summarise the planned approach to handling missing baseline covariate data in the analysis (e.g., complete-case analysis, single imputation, multiple imputation, imputation “using a method suitable to the variable” per a named recommendation or reference), using the wording and references given in the protocol (such as White and Thompson) without adding new methods.
+        - Summarise the planned approach to handling missing baseline covariate data in the analysis (e.g., mean imputation, single imputation, multiple imputation, imputation “using a method suitable to the variable” per a named recommendation or reference), using the wording and references given in the protocol (such as White and Thompson) without adding new methods.
+        - If the protocol does not specify a method for handling missing baseline data, state that mean imputation will be performed for missing continuous variables and mode imputation will be used for missing categorical variables.
         - If different approaches are planned for different types of baseline variables (e.g., continuous vs categorical), briefly summarise these distinctions where specified.
         - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Missing baseline data” section of the SAP.
-        - Do not infer or invent expectations about missingness, reporting methods, or imputation approaches that are not explicitly described in the protocol; if the handling of missing baseline data is not clearly specified, state this briefly.
+        - Do not infer or invent expectations based on external sources; however, if the protocol is silent on this matter, explicitly state that mean imputation will be used for continuous variables and mode imputation for categorical variables.
         """,
 
         "missing_data_sensitivity_analysis": """
-        - Using only the clinical trial protocol, write a concise paragraph outlining any planned sensitivity analyses for missing outcome data for inclusion in the Statistical Analysis Plan (SAP).
+        - Write a concise paragraph outlining any planned sensitivity analyses for missing outcome data for inclusion in the Statistical Analysis Plan (SAP).
         - Describe which outcomes and timepoints the sensitivity analyses apply to and indicate which primary analysis they are intended to assess the robustness of (e.g., mixed-model analyses under a MAR assumption).
         - Summarise the general approach to each planned sensitivity analysis (e.g., alternative modelling assumptions, multiple imputation under different imputation models, pattern-mixture or selection models, delta-based or tipping-point analyses) and the underlying assumptions about the missing data mechanism (e.g., MAR vs MNAR), using the terminology from the protocol and without mathematical formulae.
         - If sensitivity analyses are planned specifically to examine scenarios where data may be missing not at random (MNAR), briefly describe the nature of these analyses and how they differ from the primary analysis, in general terms.
+        - You should NOT provide a default for Sensitivity Analysis (like "Last Observation Carried Forward" or "Tipping Point") if the protocol is silent.
         - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Missing outcome data” section of the SAP.
         - Do not infer or invent additional sensitivity analyses, missing data mechanisms, or modelling strategies that are not explicitly described in the protocol; if no sensitivity analyses for missing outcome data are specified, write a single sentence stating that no such sensitivity analyses are explicitly specified in the protocol.
         """,
 
         "multiple_comparisons": """
-        - Using only the clinical trial protocol, write a concise paragraph describing the planned approach to handling multiple comparisons/multiplicity for inclusion in the Statistical Analysis Plan (SAP).
+        - Write a concise paragraph describing the planned approach to handling multiple comparisons/multiplicity for inclusion in the Statistical Analysis Plan (SAP).
         - State whether any formal adjustment for multiplicity will be applied, and if so, describe the method (e.g., Bonferroni, Holm, Hochberg, gatekeeping procedures, family-wise error control, false discovery rate) and the scope of outcomes or comparisons to which it applies (e.g., co-primary outcomes, key secondary outcomes, multiple treatment arm comparisons).
         - If no adjustment for multiple comparisons is planned, state this explicitly and, where described in the protocol, briefly summarise how results from multiple outcomes or comparisons are intended to be interpreted (e.g., separate interpretation of each secondary outcome, emphasis on estimation and confidence intervals rather than strict hypothesis testing).
         - If different multiplicity strategies are specified for different sets of outcomes (e.g., co-primary vs secondary outcomes, primary vs exploratory comparisons), summarise these distinctions clearly.
@@ -588,17 +594,18 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         """,
 
         "analysis_for_noncompliance": """
-        - Using only the clinical trial protocol, write a concise paragraph describing any planned analyses to address non-compliance with the allocated treatment for inclusion in the Statistical Analysis Plan (SAP).
+        - Write a concise paragraph describing any planned analyses to address non-compliance with the allocated treatment for inclusion in the Statistical Analysis Plan (SAP).
         - State whether a per-protocol, as-treated, complier-average causal effect (CACE), or other non-compliance–focused analysis is planned, and briefly describe the general approach in words (e.g., analysis restricted to participants meeting predefined adherence criteria, instrumental variable methods using randomisation as an instrument), as specified in the protocol.
         - Make clear which outcomes these non-compliance analyses will apply to (e.g., primary outcome only, primary and key secondary outcomes) and how their role is positioned relative to the primary intention-to-treat analysis (e.g., supplementary or sensitivity analyses).
         - If non-compliance thresholds or definitions (e.g., minimum dose, number of sessions, or proportion of medication taken) are specified, summarise these briefly using the protocol terminology.
+        - If the protocol mentions non-compliance analyses but does not define thresholds, populations, or methods clearly, state this explicitly rather than attempting to complete missing details.
         - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Method for handling non-compliance (per protocol/CACE analyses)” section of the SAP.
         - Do not infer or invent additional non-compliance analyses, definitions, thresholds, or modelling strategies that are not explicitly described in the protocol; if no specific analyses for non-compliance are planned, write a single sentence stating that no additional analyses addressing non-compliance are explicitly specified in the protocol.
         """,
 
 
         "model_assumption_checks": """
-        - Using only the clinical trial protocol, write a concise paragraph describing the planned checks of model assumptions and any pre-specified remedies if assumptions are not met, for inclusion in the Statistical Analysis Plan (SAP).
+        - Write a concise paragraph describing the planned checks of model assumptions and any pre-specified remedies if assumptions are not met, for inclusion in the Statistical Analysis Plan (SAP).
         - Summarise which assumptions will be checked for the main analysis models (e.g., normality of residuals, homoscedasticity, linearity, proportional hazards, independence, appropriate link function) and how these will be assessed (e.g., residual plots, Q–Q plots, tests of proportional hazards), using the terminology from the protocol.
         - Where specified, describe planned actions if assumptions appear to be violated (e.g., data transformation, use of robust standard errors, alternative link functions or distributions, non-parametric methods, alternative time-to-event models), without introducing new methods.
         - If the protocol states that certain diagnostics will be performed when describing the data (e.g., checking normality of residuals, inspection for outliers), briefly include these as part of the assumption-checking description.
@@ -665,3 +672,4 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
     }
 
 PROMPTS_DICTIONARY = PROMPTS_TITLE_ADMIN | PROMPTS_INTRO_AND_DESIGN |PROMPTS_PEOPLE | PROMPTS_OUTCOMES_AND_ANALYSIS
+
