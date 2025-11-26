@@ -30,7 +30,7 @@ class Template:
         )
 
         today = date.today()
-        str_today = today.strftime("%m/%d/%y")
+        str_today = today.strftime("%d/%m/%y")
         self.sap_content .update({"todays_date": str_today})
 
         
