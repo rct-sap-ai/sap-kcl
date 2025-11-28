@@ -16,6 +16,7 @@ prompt_tasks = [
     PromptRegister("protocol_version_date", "minimal", "low"),
     PromptRegister("name_of_cheif_investigator", "low","low"),
     PromptRegister("senior_statistician", "low","low"),
+    PromptRegister("trial_statistician", "low","low"),
     PromptRegister("description_of_trial", "medium","low"),
     PromptRegister("investigators", "low","low"),
     PromptRegister("trial_manager", "low","low"),
@@ -68,6 +69,7 @@ prompt_tasks = [
     PromptRegister("any_additional_exploratory_analysis", "minimal","low"),
     PromptRegister("any_exploratory_mediator_and_moderator_analysis", "minimal","low"),
     PromptRegister("interim_analysis", "minimal","low"), # end of final section - other bits
+    PromptRegister("table_outcomes", "low","low"),
 ]
 
 
@@ -108,7 +110,7 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
 
 #running with without test mode on uses full gpt-5. This is what we'll use in production so when refining prompts is best to use.
 write_sap(
-    protocol_path="Protocols/boppp.pdf",  
+    protocol_path="Protocols/Feeling_safer.pdf",  
     sap_folder_path = "SAPs",
-    sap_name = "bopp_sap_v0.1",
+    sap_name = "feeling_safer_sap_v0.1",
 )
