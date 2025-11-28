@@ -669,7 +669,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Do not infer or invent interim analyses, internal pilot phases, objectives, timings, stopping rules, or alpha/sample-size adjustments that are not explicitly reported in the protocol; if certain aspects are mentioned but not detailed (e.g., stopping boundaries), state briefly that further details are not specified in the protocol.
         """,
 
-        "{{table_outcomes}}": """
+        "table_outcomes": """
         - Using only the information available from the clinical trial protocol and any previously extracted measure descriptions, construct an HTML table listing all outcome-related measures defined in the protocol (e.g., primary, secondary, additional follow-up, process indicators, and any other pre-specified outcome measures).
         - The table must be valid HTML suitable for pasting into Microsoft Word, consisting only of a single <table> element with a header row (<thead>) and body (<tbody>), with no surrounding explanatory text, markdown, or styling.
         - The header row must contain exactly the following column titles, in this order:
