@@ -75,7 +75,7 @@ prompt_tasks = [
 
 # Set up template with template file and prompts   
 template = Template(
-    template_path = "Templates/sapai_kcl_template_v0.1.docx", 
+    template_path = "Templates/sapai_kcl_template_v0.2_clean.docx", 
     system_message_function=prompts_file.system_message, 
     prompt_register=prompt_tasks,
     prompts_dictionary = prompts_file.PROMPTS_DICTIONARY
@@ -101,16 +101,16 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
 
 
 #running with test = true uses gpt-5-nano which is faster and cheaper. Use to make sure everything runs.
-# write_sap(
-#     protocol_path="Protocols/boppp.pdf",
-#     sap_folder_path = "SAPs",
-#     sap_name = "bopp_sap_v0.1_test",
-#     test = True
-# )
-
-#running with without test mode on uses full gpt-5. This is what we'll use in production so when refining prompts is best to use.
 write_sap(
     protocol_path="Protocols/Feeling_safer.pdf",  
     sap_folder_path = "SAPs",
-    sap_name = "feeling_safer_sap_v0.1",
+    sap_name = "feeling_safer_sap_v0.1_test",
+    test = True
 )
+
+#running with without test mode on uses full gpt-5. This is what we'll use in production so when refining prompts is best to use.
+# write_sap(
+#     protocol_path="Protocols/Feeling_safer.pdf",  
+#     sap_folder_path = "SAPs",
+#     sap_name = "feeling_safer_sap_v0.1",
+# )
