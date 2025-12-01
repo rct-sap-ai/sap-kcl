@@ -39,34 +39,34 @@ prompt_tasks = [
     PromptRegister("moderator_of_treatment", "low","low"), 
     PromptRegister("process_indicators", "low","low"),
     PromptRegister("adverse_events", "low","low"),
-    PromptRegister("only_baseline_measures", "low","low"),
-    PromptRegister("additional_follow_up_measures", "low","low"),
+    #PromptRegister("only_baseline_measures", "low","low"),
+    #PromptRegister("additional_follow_up_measures", "low","low"),
     PromptRegister("sample_size", "low","low"),
     PromptRegister("timing_of_analysis", "low","low"),
-    PromptRegister("screening_recruitment_consort", "minimal","low"),
+    #PromptRegister("screening_recruitment_consort", "minimal","low"),
     #PromptRegister("treatment_compliance_definitition", prompts_file.generate_treatment_compliance_definitition_prompt,"minimal","low"),
     PromptRegister("adherence_to_treatment", "minimal","low"),
-    PromptRegister("descriptive_statistics", "minimal","low"),
+    #PromptRegister("descriptive_statistics", "minimal","low"),
     PromptRegister("descriptive_of_intervention", "minimal","low"),
     PromptRegister("descriptive_concomitant_medications", "minimal","low"),
     PromptRegister("visit_window_deviation", "minimal","low"), # end of second section - outcomes and descriptive analysis
     PromptRegister("primary_estimand", "minimal","low"),
-    PromptRegister("confidence_interval_p_value", "minimal","low"),
+    #PromptRegister("confidence_interval_p_value", "minimal","low"),
     PromptRegister("primary_analysis_model", "minimal","low"),
     PromptRegister("intercurrent_events_and_analysis", "minimal","low"), 
-    PromptRegister("secondary_estimands", "minimal","low"),
+    #PromptRegister("secondary_estimands", "minimal","low"),
     PromptRegister("secondary_analysis", "minimal","low"),
-    PromptRegister("time_points", "minimal","low"),  # end of third section - main analysis
-    PromptRegister("stratification_and_clustering", "minimal","low"),
+    #PromptRegister("time_points", "minimal","low"),  # end of third section - main analysis
+    #PromptRegister("stratification_and_clustering", "minimal","low"),
     PromptRegister("missing_items_in_scales", "minimal","low"),
-    PromptRegister("missing_baseline_data", "minimal","low"),
+    #PromptRegister("missing_baseline_data", "minimal","low"),
     PromptRegister("missing_data_sensitivity_analysis", "minimal","low"),
     PromptRegister("multiple_comparisons", "minimal","low"),
     PromptRegister("analysis_for_noncompliance","minimal","low"),
     PromptRegister("model_assumption_checks", "minimal","low"),
     PromptRegister("other_sensitivity_analysis", "minimal","low"),
     PromptRegister("subgroup_analysis", "minimal","low"),
-    PromptRegister("any_additional_exploratory_analysis", "minimal","low"),
+    #PromptRegister("any_additional_exploratory_analysis", "minimal","low"),
     PromptRegister("any_exploratory_mediator_and_moderator_analysis", "minimal","low"),
     PromptRegister("interim_analysis", "minimal","low"), # end of final section - other bits
     PromptRegister("table_outcomes", "low","low"),
@@ -102,9 +102,9 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
 
 #running with test = true uses gpt-5-nano which is faster and cheaper. Use to make sure everything runs.
 write_sap(
-    protocol_path="Protocols/Feeling_safer.pdf",  
+    protocol_path="Protocols/boppp.pdf",  
     sap_folder_path = "SAPs",
-    sap_name = "feeling_safer_sap_v0.1_test",
+    sap_name = "boppp_sap_v0.1_test",
     test = True
 )
 

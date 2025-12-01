@@ -268,10 +268,9 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
           • Timing of assessment (timepoint or window)
           • Specific measurement units if applicable
           • For scales and questionnaires, include the scale range and direction of interpretation (e.g., "PHQ-9 score ranging from 0 to 27, where higher scores indicate more severe depression")
-          • For outcomes measured at multiple timepoints, clearly state the timepoints
           • Any transformations or calculations used to derive the outcome
-        - Write each outcome as a separate paragraph, even if outcomes are listed together in the protocol.
-        - Decompose composite outcomes or outcomes with multiple timepoints into individual components. For example, if the protocol states "Rate of readmission to hospital within 30 or 90 days", write separate paragraphs for the 30 day outcome and the 90 day outcome.
+        - Output should be bulleted list
+        - Decompose composite outcomes or outcomes with multiple timepoints into individual components. For example, if the protocol states "Rate of readmission to hospital within 30 or 90 days", write separate paragraphs/bullet points for the 30 day outcome and the 90 day outcome.
         - For time to event outcomes, clearly state the starting point (e.g., randomisation), the event definition, and censoring approach if specified.
         - For composite outcomes, list all components and specify how they combine (e.g., "time to first occurrence of death, myocardial infarction, or stroke").
         - Do not report health economic or cost utility outcomes.
@@ -325,39 +324,20 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         """,
         
         "adverse_events": """
-        - Using only the clinical trial protocol, write a concise, paragraph style summary of adverse event (harms) reporting suitable for inclusion in the Statistical Analysis Plan (SAP) Harms section.
-        - Describe the adverse event related definitions and terminology that will be used (e.g., AE, AR, SAE, SAR, SUSAR, AESI), using the wording from the protocol where possible.
+        - If adverse events of special interest (AESIs) are defined in the protocol, state the wording from the protocol where possible.
         - State the coding system or dictionary for adverse events (e.g., MedDRA and version) if specified in the protocol.
         - State the severity or grading system (e.g., CTCAE version 5.0, mild/moderate/severe) if specified in the protocol.
         - Describe the reporting period for adverse events (e.g., from first dose until 30 days after last dose, during treatment period and follow up) if specified in the protocol.
         - Summarise which adverse event summaries and tabulations are planned according to the protocol (e.g., overall incidence, by treatment arm, by system organ class and preferred term, by severity, by relationship to treatment, serious vs non-serious events, AESIs, and relevant time windows such as on treatment or follow up), without adding new analyses.
-        - Be concise and write in continuous prose (one to three short paragraphs), not bullet points.
+        - Be concise and write in continuous prose (one to two short paragraphs), not bullet points.
+        - Do not repeat definitions of adverse events, serious adverse events, etc. We are only interested in repeating protocol text if adverse events of special interest are defined.
+        - Do not comment on safety reporting procedures to TSC/DMC or regulatory bodies, etc.
         - Do not infer or invent definitions, coding systems, grading systems, time windows, or analyses that are not present in the protocol.
         - If the protocol does not specify adverse event definitions, coding system, or planned summaries, write a single short paragraph stating that the protocol does not provide detailed specifications for adverse event reporting.
         """,
-        
-        "only_baseline_measures": """
-        - Using only the clinical trial protocol, identify measures that are collected pre-randomisation (e.g., baseline covariates, screening or baseline assessments) and are intended to be used or reported in the Statistical Analysis Plan (SAP).
-        - Include only pre-randomisation measures that are explicitly specified in the protocol; do not introduce post hoc measures.
-        - For each such measure, write one paragraph that states: the measure or variable name, any scale or instrument used (including scale names and versions where given), the type of measure (e.g., clinical, laboratory, questionnaire), and the nominal timepoint (e.g., screening, baseline) if stated.
-        - Be concise and use the terminology from the protocol where possible.
-        - Do not infer or invent measures, scales, timepoints, or other details that are not present in the protocol.
-        - Do not describe or propose any statistical analyses; only list and describe the pre-randomisation measures.
-        - If no additional pre-randomisation measures are specified, output: "No additional pre-randomisation measures to be used in the SAP are explicitly specified in the protocol."
-        """,
-        
-        "additional_follow_up_measures": """
-        - Using only the clinical trial protocol, identify post-randomisation follow-up measures that are collected in addition to the primary and secondary outcomes (e.g., exploratory outcomes, additional questionnaires, long term follow-up assessments, resource use measures).
-        - Include only additional follow-up measures that are explicitly specified in the protocol; do not introduce post hoc measures.
-        - For each such measure, write one paragraph that states: the measure or variable name, any scale or instrument used (including scale names and versions where given), the planned follow-up timepoint(s), and a brief description of what it assesses if stated.
-        - Be concise and use the terminology from the protocol where possible.
-        - Do not repeat primary or secondary outcome measures that are already specified elsewhere.
-        - Do not infer or invent measures, scales, timepoints, or other details that are not present in the protocol.
-        - If no additional post-randomisation follow-up measures beyond the primary and secondary outcomes are specified, output: "No additional post-randomisation follow-up measures are explicitly specified in the protocol."
-        """,
 
        "sample_size": """
-        - write a Sample Size and Power section suitable for inclusion in the Statistical Analysis Plan (SAP) using information from the protocol..
+        - write a Sample Size and Power section suitable for inclusion in the Statistical Analysis Plan (SAP) using information from the protocol.
         - Describe in detail the methods used for sample size calculation.
         - Clearly state all assumptions used in the calculation, including effect size, standard deviation, event rates, control-group rates, variability parameters, correlations (e.g., for clustering or repeated measures), and any other explicitly reported inputs.
         - Specify the statistical test(s) or model(s) on which the sample size estimation is based (e.g., two-sample t-test, chi-square test, log-rank test, Cox model, mixed model), using the terminology from the protocol.
@@ -367,35 +347,20 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Do not provide any justifications, critiques, or explanations for the methods or assumptions used; simply report the methods and parameters as described in the extracted information.
         - Write full paragraphs (not bullet points), be concise, and focus only on the Sample Size and Power section as outlined above.
         - Do not include any mathematical formulae or perform any new calculations beyond what is stated in the protocol.
-        - Do not infer or invent methods, assumptions, or parameter values that are not present in the extracted information; if key details (e.g., certain assumptions or adjustments) are not specified, state briefly that these are not reported in the protocol.
+        - If not stated in the protocol, assume two-sided significance level. State that this is assumed.
+        - Do not describe analysis methods.
+        - Do not invent methods or parameter values that are not present in the extracted information; if key details (e.g., certain assumptions or adjustments) are not specified, state briefly that these are not reported in the protocol.
         """,
 
         "timing_of_analysis": """
-        - Using only the clinical trial protocol, write a concise section describing the timing of the final analysis suitable for inclusion in the Statistical Analysis Plan (SAP).
         - Clearly state when the final analysis will be conducted (e.g., after completion of follow-up for all participants and database lock, or at specific calendar dates or follow-up durations), using the terminology and conditions described in the protocol.
-        - Describe the time points at which key outcomes are measured, including any planned visit “windows” or allowable ranges around the nominal visit dates, if these are specified.
-        - If interim, safety, or other scheduled analyses are described in the protocol and are relevant to the timing of the final analysis, briefly summarise their timing and relationship to the final analysis.
+        - If interim, safety, or other scheduled analyses are described in the protocol and are relevant to the timing of the final analysis, briefly summarise their timing and relationship to the final analysis as described in the protocol.
         - Write in clear prose as one or more short paragraphs; do not use bullet points in the output unless the protocol itself presents timing information as a list that must be preserved.
-        - Focus only on the timing of the final analysis and outcome data collection (measurement time points and windows); do not describe statistical methods, endpoints, or analysis sets in detail.
+        - Do not describe statistical methods, endpoints, or analysis sets in detail.
         - Be concise and use the terminology from the protocol where possible.
         - Do not infer or invent any analysis timings, measurement occasions, or visit windows that are not explicitly reported in the protocol.
-        - If key details about the timing of the final analysis or the outcome measurement schedule are not specified in the protocol, state briefly that these details are not reported.
+        - If key details about the timing of the final analysis are not specified in the protocol, state briefly that these details are not reported.
         """,
-
-        "screening_recruitment_consort": """
-        - Using only the clinical trial protocol, write a concise section for the Statistical Analysis Plan (SAP) describing screening, recruitment, and the planned CONSORT flow of participants.
-        - Summarise how screening data (if collected) will be reported to describe the representativeness of the trial sample, including any information on the population approached or assessed for eligibility.
-        - Provide a brief summary of eligibility based on the inclusion and exclusion criteria as described in the protocol, focusing on how these criteria relate to screening and recruitment reporting (do not restate the full criteria verbatim unless required for clarity).
-        - Describe the information that will be included in the CONSORT flow diagram, including: numbers assessed for eligibility, eligible, consenting, refusing or declining participation, randomised/allocated, and, by treatment arm, numbers treated (or adequately/inadequately treated or compliant/non-compliant), numbers continuing in follow-up, numbers withdrawing, numbers lost to follow-up, numbers excluded from analysis, and numbers analysed, as specified in the protocol.
-        - State the level and type of withdrawal (e.g., from intervention and/or from follow-up) that will be summarised, and indicate the timepoints at which withdrawal and lost to follow-up data will be presented if these are specified.
-        - Describe how withdrawal and lost to follow-up data will be presented (e.g., counts and percentages by treatment arm and timepoint, reasons for withdrawal where available), including what details will be summarised, as outlined in the protocol.
-        - List the baseline characteristics that are planned to be summarised to describe the recruited sample, using the terminology and structure given in the protocol (e.g., demographic, clinical, and other key prognostic variables), without proposing new variables.
-        - Write the output in one or more clear paragraphs suitable for the SAP; do not use bullet points in the output unless the protocol itself presents key items as a list that must be preserved.
-        - Do not describe or propose any new statistical analyses; focus only on the planned reporting of screening, recruitment, baseline characteristics, and the CONSORT flow of participants.
-        - Be concise and use the terminology from the protocol where possible.
-        - Do not infer or invent any screening, recruitment, or flow-diagram elements, timepoints, or baseline characteristics that are not explicitly reported in the protocol; if specific details (e.g., collection of screening logs, certain follow-up timepoints, or reasons for withdrawal) are not specified, state briefly that these details are not reported.
-        """,
-
         
         "adherence_to_treatment": """
         - Using only the clinical trial protocol, write a concise description of how adherence to the allocated treatment/intervention will be assessed and summarised for inclusion in the Statistical Analysis Plan (SAP).
@@ -404,15 +369,6 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Describe how adherence will be presented in the SAP (e.g., descriptively by treatment arm and timepoint, numbers and percentages adherent, summaries of continuous adherence measures such as percentage of doses taken), using the terminology from the protocol where possible.
         - Write the output as a single short paragraph (no bullet points in the output itself), be concise, and do not provide any justification or discussion beyond stating what is planned.
         - Do not infer or invent adherence definitions, thresholds, assessment methods, timepoints, or summaries that are not explicitly reported in the protocol; if details of adherence assessment or presentation are not specified, state briefly that these are not reported.
-        """,
-
-        "descriptive_statistics": """
-        - Using only the clinical trial protocol, write a concise paragraph specifying the planned descriptive statistics for outcome measures and baseline characteristics for inclusion in the Statistical Analysis Plan (SAP).
-        - For outcome measures, describe what descriptive summaries will be presented (e.g., means and standard deviations, medians and interquartile ranges, counts and percentages, change-from-baseline summaries), and indicate by which groups (e.g., treatment arms, overall) and at which timepoints or visits these summaries will be presented, as specified in the protocol.
-        - For baseline characteristics, describe which types of variables (e.g., demographic, clinical, prognostic) will be summarised and how they will be summarised (e.g., continuous variables as means and standard deviations or medians and interquartile ranges; categorical variables as counts and percentages), and state whether summaries will be presented by treatment arm and/or overall, according to the protocol.
-        - Do not include or propose any statistical tests or p-values for assessing imbalance in baseline characteristics; focus only on descriptive summaries.
-        - Write the output as a single concise paragraph (no bullet points in the output itself), using the terminology from the protocol where possible.
-        - Do not infer or invent types of summaries, variables, groups, or timepoints that are not explicitly reported in the protocol; if specific details of planned descriptive statistics are not specified, state briefly that these details are not reported.
         """,
 
         "descriptive_of_intervention": """
@@ -426,13 +382,10 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
 
 
         "descriptive_concomitant_medications": """
-        - Using only the clinical trial protocol, write a concise paragraph describing how concomitant medication data will be summarised for inclusion in the Statistical Analysis Plan (SAP).
-        - Specify which concomitant medication variables will be summarised (e.g., any use, specific drug classes, prohibited or rescue medications, baseline vs on-treatment medications), and whether any coding system (e.g., ATC, WHO Drug) will be used, if stated in the protocol.
-        - Describe how concomitant medications will be presented (e.g., counts and percentages by treatment arm, by medication class or specific agents, summaries of number of concomitant medications per participant), and indicate the time periods or timepoints over which these summaries will be made (e.g., baseline, during treatment, follow-up), as specified in the protocol.
-        - If relevant, describe any planned distinction between allowed, prohibited, rescue, or protocol-defined concomitant medications and how these will be summarised.
-        - Write the output as a single concise paragraph (no bullet points in the output itself), using the terminology from the protocol where possible.
-        - Do not describe or propose any statistical tests; focus only on descriptive summaries of concomitant medication data.
+        - If the protocol states that data on concomitant medications will be collected, write a brief paragraph to summarise how this information will be summarised. Do not describe or propose any statistical tests, only focus on descriptive summaries.
         - Do not infer or invent concomitant medication variables, coding systems, time periods, or summary methods that are not explicitly reported in the protocol; if certain details are not specified, state briefly that these are not reported.
+        - If the protocol does not say that data on concomitant medications will be collected, return this statement: 'The protocol does not mention collection of concomitant medication data.'
+        - Write the output as a single concise paragraph (no bullet points in the output itself), using the terminology from the protocol where possible.
         """,
 
         "visit_window_deviation": """
@@ -472,14 +425,6 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Do not provide any justification or interpretation of the effect sizes; only state what will be reported and how they will be calculated according to the protocol.
         - Do not infer or invent any effect sizes, outcomes, timepoints, or calculation methods that are not explicitly reported in the protocol; if no additional effect sizes are specified, write a single sentence: "No additional effect sizes beyond those used for the primary analysis are explicitly specified in the protocol."
         """,
-
-        "confidence_interval_p_value": """
-        - Using only the clinical trial protocol, state the nominal significance level (alpha) and the confidence interval level(s) that will be used for reporting treatment effects in the Statistical Analysis Plan (SAP).
-        - Specify whether the significance level is one-sided or two-sided if this is stated in the protocol (if not mentioned then use two-sided), and indicate if different alpha levels or confidence interval levels are planned for different outcomes or analyses (e.g., primary vs secondary outcomes, interim analyses), as described in the protocol.
-        - Write the output as a single concise sentence or short paragraph suitable for direct inclusion in the SAP (no bullet points in the output itself).
-        - Do not include mathematical formulae or perform any new calculations; simply report the levels and types of p-values and confidence intervals as specified.
-        - Do not infer or invent significance levels, sidedness, or confidence interval levels that are not explicitly reported in the protocol; if these details are not specified, state briefly that the nominal significance level and/or confidence interval level are not clearly specified in the protocol.
-        """,
         
         "primary_analysis_model": """
         - Using only the extracted information from the clinical trial protocol, write a main analysis section for the primary outcome (excluding health economic and cost-utility outcomes), suitable for inclusion in the Statistical Analysis Plan (SAP).
@@ -505,18 +450,6 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Do not describe or propose new intercurrent events, rates, handling strategies, or supplementary analyses that are not explicitly reported in the protocol; if no anticipated intercurrent events or related supplementary analyses are specified, write a single sentence stating that these are not explicitly specified in the protocol.
         """,
 
-
-        "secondary_estimands": """
-        - Using only the clinical trial protocol, describe estimands for secondary outcomes where these differ from the primary estimand, for inclusion in the Statistical Analysis Plan (SAP).
-        - Identify secondary outcomes whose estimands differ from the primary estimand in any of the five aspects (Population, Endpoint, Treatment condition, Intercurrent events, Population-level summary), and summarise these differences clearly.
-        - For each such secondary estimand, briefly describe in words: the target population, the endpoint and timepoint(s), the treatment condition(s) being compared, the handling of key intercurrent events (if specified), and the population-level summary measure.
-        - Group secondary outcomes that share the same estimand structure, and state explicitly which outcomes follow each estimand where this is described in the protocol.
-        - Write the output as one or more concise paragraphs (no bullet points in the output itself), using terminology from the protocol and from the primary estimand section where appropriate.
-        - Do not introduce new estimands or modify aspects of the primary estimand unless such differences are explicitly stated or clearly implied in the protocol.
-        - Do not infer or invent populations, endpoints, treatment conditions, intercurrent-event strategies, or summary measures that are not documented in the protocol; if no secondary estimands differing from the primary estimand are specified, write a single sentence stating that secondary outcomes are assumed to share the same estimand as the primary outcome unless otherwise specified.
-        - If the primary and secondary outcomes will be analysed in similar ways (i.e. both questionnaire outcomes), just state that similar considerations have been made for secondary outcomes.
-        """,
-
         "secondary_analysis": """
         - Using only the clinical trial protocol, describe the planned analysis approach for secondary outcomes, for inclusion in the Statistical Analysis Plan (SAP), ensuring consistency with the defined secondary estimands.
         - If the primary and secondary outcomes will be analysed in similar ways, just state that secondary outcomes will be analysed in the same way as the primary outcome.
@@ -528,24 +461,6 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Write the output as one or more concise paragraphs (no bullet points in the output itself), providing sufficient detail for the analyses to be implemented unambiguously, but without mathematical formulae or new methods.
         - Do not introduce new models, covariates, transformations, or analysis populations beyond those explicitly described in the protocol; if the protocol does not clearly specify the analysis approach for certain secondary outcomes, state briefly that the analysis method for those outcomes is not clearly specified.
         """,
-
-       
-        "time_points": """
-        - If visit windows are defined, state what data will be used when measurements fall within or outside the specified windows (e.g., closest measurement within the window, rules for assigning visits, handling of out-of-window data), as described in the protocol.
-        - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Time points” section of the SAP.
-        - Do not infer or invent timepoints, visit windows, or analysis-time structures that are not explicitly reported in the protocol; if details of how time or visit windows are handled are not specified, state briefly that these are not clearly specified in the protocol.
-        """,
-
-
-        "stratification_and_clustering": """
-        - Using only the clinical trial protocol, describe how stratification factors and any potential clustering will be accounted for in the analysis models, for inclusion in the Statistical Analysis Plan (SAP).
-        - State whether stratified randomisation is used and, if so, identify the stratification factors and indicate that the primary (and, if specified, secondary) analysis models will adjust for these factors, using the terminology from the protocol.
-        - If the trial has a clustered or multi-level design (e.g., cluster randomisation, repeated measures within centres, therapists, or practices), describe how clustering will be handled in the analysis (e.g., random effects/mixed models, generalised estimating equations with robust standard errors, cluster-level summaries), as specified in the protocol.
-        - If both stratification and clustering are present, briefly explain how both will be incorporated into the analysis models (e.g., adjustment for stratification factors as fixed effects and inclusion of a random effect for cluster).
-        - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Stratification and clustering” section of the SAP.
-        - Do not infer or invent stratification factors, clustering structures, or modelling approaches that are not explicitly reported in the protocol; if stratification and/or clustering are used but their handling in the analysis is not specified, state briefly that the approach to accounting for these is not clearly specified in the protocol.
-        """,
-
 
         
         "missing_items_in_scales": """
@@ -560,18 +475,6 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Check for specific instructions regarding "Not Applicable" responses (e.g., if they are treated as missing or zero) and include if present.
         - Write the output as a single concise paragraph (no bullet points in the output itself), using the terminology from the protocol where possible.
         - Do not infer or invent prorating rules, thresholds, or other missing-item handling procedures that are not explicitly described in the protocol; if the protocol does not specify how missing items within scales are handled, state briefly that the handling of missing items in scales/subscales is not clearly specified.
-        """,
-
-
-        "missing_baseline_data": """
-        - Using only the clinical trial protocol, write a concise paragraph describing how missing baseline covariate data will be handled in analyses planned for the Statistical Analysis Plan (SAP).
-        - State whether missing baseline data are expected to affect the primary analysis, and, if relevant, note that some extended or exploratory analyses may use additional baseline variables that could have missing values, as described in the protocol.
-        - Describe how the extent of missing baseline data will be reported (e.g., number and percentage of participants with complete data for each baseline covariate), if this is specified.
-        - Summarise the planned approach to handling missing baseline covariate data in the analysis (e.g., mean imputation, single imputation, multiple imputation, imputation “using a method suitable to the variable” per a named recommendation or reference), using the wording and references given in the protocol (such as White and Thompson) without adding new methods.
-        - If the protocol does not specify a method for handling missing baseline data, state that mean imputation will be performed for missing continuous variables and mode imputation will be used for missing categorical variables.
-        - If different approaches are planned for different types of baseline variables (e.g., continuous vs categorical), briefly summarise these distinctions where specified.
-        - Write the output as a single concise paragraph (no bullet points in the output itself), suitable for direct insertion under the “Missing baseline data” section of the SAP.
-        - Do not infer or invent expectations based on external sources; however, if the protocol is silent on this matter, explicitly state that mean imputation will be used for continuous variables and mode imputation for categorical variables.
         """,
 
         "missing_data_sensitivity_analysis": """
@@ -632,16 +535,6 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Write the output as one short paragraph (no bullet points in the output itself), providing enough detail that the planned subgroup analyses could be implemented unambiguously.
         - If the protocol explicitly states that no subgroup analyses are planned, or if no subgroup analyses are described, return exactly the sentence: "No subgroup analysis will be conducted."
         - Do not infer or invent subgroup factors, outcomes, models, or interaction structures that are not explicitly reported in the protocol.
-        """,
-
-        
-        "any_additional_exploratory_analysis": """
-        - Using only the clinical trial protocol, write a concise description of any additional exploratory analyses planned for inclusion in the Statistical Analysis Plan (SAP).
-        - For each exploratory analysis, briefly state the outcomes involved, the analysis population (e.g., ITT, per-protocol, specific subgroups), and the general form of the analysis model or method (e.g., regression model, correlation analysis, additional time-to-event analysis), using the terminology from the protocol.
-        - Make clear that these analyses are exploratory and distinguish them from the primary and secondary analyses where this is indicated in the protocol.
-        - Write the output as one short paragraph (no bullet points in the output itself), providing enough detail that the planned exploratory analyses could be implemented in general terms, but without mathematical formulae or introducing new methods.
-        - If the protocol states that no exploratory analyses are planned, or if no exploratory analyses are described, return exactly the sentence: "No additional analysis will be conducted."
-        - Do not infer or invent exploratory outcomes, populations, or analytical approaches that are not explicitly reported in the protocol.
         """,
 
         
