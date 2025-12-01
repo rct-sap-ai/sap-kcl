@@ -563,28 +563,22 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         """,
 
         "table_outcomes": """
-        - Using only the information available from the clinical trial protocol and any previously extracted measure descriptions, construct an HTML table listing all outcome-related measures defined in the protocol (e.g., primary, secondary, additional follow-up, process indicators, and any other pre-specified outcome measures).
-        - The table must be valid HTML suitable for pasting into Microsoft Word, consisting only of a single <table> element with a header row (<thead>) and body (<tbody>), with no surrounding explanatory text, markdown, or styling.
-        - The header row must contain exactly the following column titles, in this order:
-          - Outcome type (Primary/Secondary etc.)
-          - Title
-          - Timescale
-          - Items
-          - Scoring description
-          - How to handle missing items
-          - Interpretation (direction)
-        - Include one row per distinct measure. For each measure:
-          - "Outcome type (Primary/Secondary etc.)": state the type as defined in the protocol (e.g., Primary, Secondary, Exploratory, Process, Follow-up).
-          - "Title": use the exact name or short label of the measure/scale from the protocol.
-          - "Timescale": state when the measure is collected or analysed (e.g., Baseline, 6 months, 12 months, all follow-up visits), using protocol wording where possible.
-          - "Items": briefly describe the number/nature of items (e.g., "10-item questionnaire", "Single item", "Subscale of XYZ scale") if specified.
-          - "Scoring description": provide a short description of how the measure is scored (e.g., total score range, subscale scores, higher vs lower values) as described in the protocol or instrument guidance.
-          - "How to handle missing items": summarise any specified rules for missing items within the scale/subscale (e.g., prorating rules, required proportion of completed items); if no rules are given, enter "Not specified in protocol".
-          - "Interpretation (direction)": state how to interpret the score direction if stated (e.g., "Higher scores = better outcome", "Higher scores = worse symptoms"); if not given, enter "Not specified in protocol".
+        - Using only the information available from the clinical trial protocol and any previously extracted measure descriptions, construct a text list of all outcome-related measures defined in the protocol (e.g., primary, secondary, additional follow-up, process indicators, and any other pre-specified outcome measures).
+        - Output the list as plain text using bullet points, with one top-level bullet per distinct measure and indented sub-bullets for its details.
+        - For each measure, use the following structure in this exact order:
+          - Top-level bullet: a brief identifier for the measure (e.g., its title or a short label).
+          - Indented sub-bullets:
+            - Outcome type (Primary/Secondary etc.): state the type as defined in the protocol (e.g., Primary, Secondary, Exploratory, Process, Follow-up).
+            - Title: use the exact name or short label of the measure/scale from the protocol.
+            - Timescale: state when the measure is collected or analysed (e.g., Baseline, 6 months, 12 months, all follow-up visits), using protocol wording where possible.
+            - Items: briefly describe the number/nature of items (e.g., "10-item questionnaire", "Single item", "Subscale of XYZ scale") if specified.
+            - Scoring description: provide a short description of how the measure is scored (e.g., total score range, subscale scores, higher vs lower values) as described in the protocol or instrument guidance.
+            - How to handle missing items: summarise any specified rules for missing items within the scale/subscale (e.g., prorating rules, required proportion of completed items); if no rules are given, write "Not specified in protocol".
+            - Interpretation (direction): state how to interpret the score direction if stated (e.g., "Higher scores = better outcome", "Higher scores = worse symptoms"); if not given, write "Not specified in protocol".
         - Do not invent or infer any measures, timepoints, scoring rules, missing-item rules, or interpretations that are not explicitly supported by the protocol or instrument guidance cited in the protocol.
-        - If some cells cannot be completed from the protocol, fill them with the text "Not specified in protocol".
-        - Output only the HTML for the <table> element, with <thead>, <tbody>, <tr>, <th>, and <td> tags as appropriate, and no additional text or formatting.
+        - If some details cannot be completed from the protocol, fill the corresponding sub-bullet with the text "Not specified in protocol".
         """
+
 
 
     }
