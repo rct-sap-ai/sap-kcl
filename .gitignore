@@ -2,6 +2,9 @@ SAPs/*.docx
 SAPs/*.txt
 Protocols/*.pdf
 
+#vscode files
+*workspace
+.vscode*
 
 *.DS_store
 
