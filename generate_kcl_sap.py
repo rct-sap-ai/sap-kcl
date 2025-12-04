@@ -33,8 +33,8 @@ prompt_tasks = [
     PromptRegister("data_collection_procedures", "minimal","low"), 
     PromptRegister("inclusion_criteria", "minimal","low"),
     PromptRegister("exclusion_criteria", "minimal","low"), # end of first section - trial design
-    PromptRegister("primary_outcome_measures", "low","low"),
-    PromptRegister("secondary_outcome_measures", "low","low"),
+    PromptRegister("primary_outcome_measures", "medium","low"),
+    PromptRegister("secondary_outcome_measures", "medium","low"),
     PromptRegister("mediator_of_treatment", "low","low"),
     PromptRegister("moderator_of_treatment", "low","low"), 
     PromptRegister("process_indicators", "low","low"),
@@ -101,16 +101,16 @@ def write_sap(protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
 
 
 #running with test = true uses gpt-5-nano which is faster and cheaper. Use to make sure everything runs.
-write_sap(
-    protocol_path="Protocols/boppp.pdf",  
-    sap_folder_path = "SAPs",
-    sap_name = "boppp_sap_v0.1_test",
-    test = True
-)
+# write_sap(
+#     protocol_path="Protocols/boppp.pdf",  
+#     sap_folder_path = "SAPs",
+#     sap_name = "boppp_sap_v0.1_test",
+#     test = True
+# )
 
 #running with without test mode on uses full gpt-5. This is what we'll use in production so when refining prompts is best to use.
-# write_sap(
-#     protocol_path="Protocols/Feeling_safer.pdf",  
-#     sap_folder_path = "SAPs",
-#     sap_name = "feeling_safer_sap_v0.1",
-# )
+write_sap(
+    protocol_path="Protocols/Feeling_safer.pdf",  
+    sap_folder_path = "SAPs",
+    sap_name = "feeling_safer_sap_v0.1",
+)
