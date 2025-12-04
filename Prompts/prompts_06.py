@@ -233,65 +233,48 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Using the clinical trial protocol, identify all primary outcome(s) and provide a complete definition for each.
         - For each primary outcome, write a single paragraph that includes:
           • Specification of outcome (what is being measured)
-          • Timing of assessment (timepoint or window)
-          • Specific measurement units if applicable
-          • For scales and questionnaires, include the scale range and direction of interpretation (e.g., "PHQ-9 score ranging from 0 to 27, where higher scores indicate more severe depression")
-          • For outcomes measured at multiple timepoints, clearly state which timepoint is the PRIMARY timepoint for the main analysis
-          • Any transformations or calculations used to derive the outcome
+          • The measurement instrument or method (e.g., questionnaire name, lab test, clinical assessment)
+          • Timing of assessment (timepoint or window). Do not mention assessments at baseline.
+          • Specific measurement units if applicable. If not units relevant do not mention units.
+          • For outcomes measured at multiple timepoints, clearly state which timepoint is the PRIMARY timepoint for the main analysis and state that other timepoints will be analysed as secondary outcomes.
+          • Any transformations or calculations used to derive the outcome. If no transformations or calculations are used do not mention this.
         - Write each outcome as a separate paragraph, even if outcomes are listed together in the protocol.
-        - Decompose composite outcomes or outcomes with multiple timepoints into individual components. For example, if the protocol states "Rate of readmission to hospital within 30 or 90 days", write separate paragraphs for the 30 day outcome and the 90 day outcome.
         - For time to event outcomes, clearly state the starting point (e.g., randomisation), the event definition, and censoring approach if specified.
         - For composite outcomes, list all components and specify how they combine (e.g., "time to first occurrence of death, myocardial infarction, or stroke").
         - Do not report health economic or cost utility outcomes.
         - Be concise and use terminology from the protocol.
         - Do not invent information not present in the protocol.
         - Do not include any information about the analysis of the outcome.
+        - Do not mention assessments at baseline in the outcome section.
         
-        Example:
-        Protocol text: "Rate of readmission to hospital within 30 or 90 days of discharge, survival (overall, progression free)."
-        
-        Correct output:
-        
-        Number of participants readmitted to hospital within 30 days of discharge.
-        
-        Number of participants readmitted to hospital within 90 days of discharge.
-        
-        Time to death from any cause (overall survival), assessed from randomisation to death or final follow up.
-        
-        Time to disease progression or death (progression free survival), assessed from randomisation to disease progression, death, or final follow up.
+        Example:          
+        Severity of persecutory delusions as measured by the Psychotic Symptoms Rating Scale - Delusions (PSYRATS-Delusions) total score at 6 months post-randomisation (primary timepoint), with assessments at, 3 months, and 9 months analysed as secondary outcomes.
         """,
         
         "secondary_outcome_measures": """
         - Using the clinical trial protocol, identify all secondary outcome(s) and provide a complete definition for each.
         - For each secondary outcome, write a single paragraph that includes:
           • Specification of outcome (what is being measured)
+          • The measurement instrument or method (e.g., questionnaire name, lab test, clinical assessment)
           • Timing of assessment (timepoint or window)
-          • Specific measurement units if applicable
-          • For scales and questionnaires, include the scale range and direction of interpretation (e.g., "PHQ-9 score ranging from 0 to 27, where higher scores indicate more severe depression")
-          • Any transformations or calculations used to derive the outcome
-        - Output should be bulleted list
-        - Decompose composite outcomes or outcomes with multiple timepoints into individual components. For example, if the protocol states "Rate of readmission to hospital within 30 or 90 days", write separate paragraphs/bullet points for the 30 day outcome and the 90 day outcome.
+          • Specific measurement units if applicable. If not units relevant do not mention units.
+          • Any transformations or calculations used to derive the outcome. If no transformations or calculations are used do not mention transformations.
+        - Write each outcome as a separate paragraph, even if outcomes are listed together in the protocol.
         - For time to event outcomes, clearly state the starting point (e.g., randomisation), the event definition, and censoring approach if specified.
         - For composite outcomes, list all components and specify how they combine (e.g., "time to first occurrence of death, myocardial infarction, or stroke").
         - Do not report health economic or cost utility outcomes.
         - Be concise and use terminology from the protocol.
         - Do not invent information not present in the protocol.
         - Do not include any information about the analysis of the outcome.
+        - Do not mention units or transformations if not relevant to the particular outcome. Do not write "no utis or transformations" or similar.
+        - Do not mention assessments at baseline in the outcome section.
 
-        
+
         Example:
-        Protocol text: "Rate of readmission to hospital within 30 or 90 days of discharge, survival (overall, progression free)."
-        
-        Correct output:
-        
-        Number of participants readmitted to hospital within 30 days of discharge.
-        
-        Number of participants readmitted to hospital within 90 days of discharge.
-        
-        Time to death from any cause (overall survival), assessed from randomisation to death or final follow up.
-        
-        Time to disease progression or death (progression free survival), assessed from randomisation to disease progression, death, or final follow up.
+        Severity of persecutory delusions as measured by the Psychotic Symptoms Rating Scale - Delusions (PSYRATS-Delusions) total score at 3 and 6, and 9 months post-randomisation, .
         """,
+
+    
         
         "mediator_of_treatment": """
         - Using only the clinical trial protocol, identify variables that are explicitly specified as mediators of treatment effects or described as lying on the causal pathway between treatment and the primary or key secondary outcomes.
@@ -322,6 +305,8 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Do not describe or propose any statistical analysis of process indicators; only list and describe the indicators to be summarised.
         - If no process indicators are specified, output: "No process indicators are explicitly specified in the protocol."
         """,
+
+
         
         "adverse_events": """
         - If adverse events of special interest (AESIs) are defined in the protocol, state the wording from the protocol where possible.
@@ -334,6 +319,23 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Do not comment on safety reporting procedures to TSC/DMC or regulatory bodies, etc.
         - Do not infer or invent definitions, coding systems, grading systems, time windows, or analyses that are not present in the protocol.
         - If the protocol does not specify adverse event definitions, coding system, or planned summaries, write a single short paragraph stating that the protocol does not provide detailed specifications for adverse event reporting.
+        """,
+
+        "table_outcomes": """
+        - Using only the information available from the clinical trial protocol and any previously extracted measure descriptions, construct a text list of all outcome-related measures defined in the protocol (e.g., primary, secondary, additional follow-up, process indicators, and any other pre-specified outcome measures).
+        - Output the list as plain text using bullet points, with one top-level bullet per distinct measure and indented sub-bullets for its details.
+        - For each measure, use the following structure in this exact order:
+          - Top-level bullet: a brief identifier for the measure (e.g., its title or a short label).
+          - Indented sub-bullets:
+            - Outcome type (Primary/Secondary etc.): state the type as defined in the protocol (e.g., Primary, Secondary, Exploratory, Process, Follow-up).
+            - Title: use the exact name or short label of the measure/scale from the protocol.
+            - Timescale: state when the measure is collected or analysed (e.g., Baseline, 6 months, 12 months, all follow-up visits), using protocol wording where possible.
+            - Items: briefly describe the number/nature of items (e.g., "10-item questionnaire", "Single item", "Subscale of XYZ scale") if specified.
+            - Scoring description: provide a short description of how the measure is scored (e.g., total score range, subscale scores, higher vs lower values) as described in the protocol or instrument guidance.
+            - How to handle missing items: summarise any specified rules for missing items within the scale/subscale (e.g., prorating rules, required proportion of completed items); if no rules are given, write "Not specified in protocol".
+            - Interpretation (direction): state how to interpret the score direction if stated (e.g., "Higher scores = better outcome", "Higher scores = worse symptoms"); if not given, write "Not specified in protocol".
+        - Do not invent or infer any measures, timepoints, scoring rules, missing-item rules, or interpretations that are not explicitly supported by the protocol or instrument guidance cited in the protocol.
+        - If some details cannot be completed from the protocol, fill the corresponding sub-bullet with the text "Not specified in protocol".
         """,
 
        "sample_size": """
@@ -562,22 +564,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         - Do not infer or invent interim analyses, internal pilot phases, objectives, timings, stopping rules, or alpha/sample-size adjustments that are not explicitly reported in the protocol; if certain aspects are mentioned but not detailed (e.g., stopping boundaries), state briefly that further details are not specified in the protocol.
         """,
 
-        "table_outcomes": """
-        - Using only the information available from the clinical trial protocol and any previously extracted measure descriptions, construct a text list of all outcome-related measures defined in the protocol (e.g., primary, secondary, additional follow-up, process indicators, and any other pre-specified outcome measures).
-        - Output the list as plain text using bullet points, with one top-level bullet per distinct measure and indented sub-bullets for its details.
-        - For each measure, use the following structure in this exact order:
-          - Top-level bullet: a brief identifier for the measure (e.g., its title or a short label).
-          - Indented sub-bullets:
-            - Outcome type (Primary/Secondary etc.): state the type as defined in the protocol (e.g., Primary, Secondary, Exploratory, Process, Follow-up).
-            - Title: use the exact name or short label of the measure/scale from the protocol.
-            - Timescale: state when the measure is collected or analysed (e.g., Baseline, 6 months, 12 months, all follow-up visits), using protocol wording where possible.
-            - Items: briefly describe the number/nature of items (e.g., "10-item questionnaire", "Single item", "Subscale of XYZ scale") if specified.
-            - Scoring description: provide a short description of how the measure is scored (e.g., total score range, subscale scores, higher vs lower values) as described in the protocol or instrument guidance.
-            - How to handle missing items: summarise any specified rules for missing items within the scale/subscale (e.g., prorating rules, required proportion of completed items); if no rules are given, write "Not specified in protocol".
-            - Interpretation (direction): state how to interpret the score direction if stated (e.g., "Higher scores = better outcome", "Higher scores = worse symptoms"); if not given, write "Not specified in protocol".
-        - Do not invent or infer any measures, timepoints, scoring rules, missing-item rules, or interpretations that are not explicitly supported by the protocol or instrument guidance cited in the protocol.
-        - If some details cannot be completed from the protocol, fill the corresponding sub-bullet with the text "Not specified in protocol".
-        """
+
 
 
 

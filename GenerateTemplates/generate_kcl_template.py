@@ -32,8 +32,8 @@ prompt_tasks = [
     PromptRegister("data_collection_procedures", "minimal","low"), 
     PromptRegister("inclusion_criteria", "minimal","low"),
     PromptRegister("exclusion_criteria", "minimal","low"), # end of first section - trial design
-    PromptRegister("primary_outcome_measures", "low","low"),
-    PromptRegister("secondary_outcome_measures", "low","low"),
+    PromptRegister("primary_outcome_measures", "medium","low"),
+    PromptRegister("secondary_outcome_measures", "medium","low"),
     PromptRegister("mediator_of_treatment", "low","low"),
     PromptRegister("moderator_of_treatment", "low","low"), 
     PromptRegister("process_indicators", "low","low"),
