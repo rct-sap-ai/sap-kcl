@@ -1,8 +1,11 @@
 from pathlib import Path
+from tempfile import template
 from docxtpl import DocxTemplate
 from Classes.chat_classes import OpenAIChat, OpenAIChatAsync
+from Classes.protocol_classes import Protocol
 import asyncio
 from datetime import date
+import time 
 
 
 
@@ -12,13 +15,17 @@ class Template:
         template_path: str | Path,
         system_message_function,
         prompt_register,
-        prompts_dictionary
+        prompts_dictionary,
+        template_name,
+        prompts_name
     ) -> None:
 
         self.template_path = template_path
         self.system_message_function = system_message_function # a function of protocol text
         self.prompt_register = prompt_register
         self.prompts_dictionary = prompts_dictionary
+        self.template_name = template_name
+        self.prompts_name = prompts_name
 
     
     def get_sap_content(self, protocol_text, model = "gpt-5-2025-08-07"):
@@ -32,6 +39,10 @@ class Template:
         today = date.today()
         str_today = today.strftime("%d/%m/%y")
         self.sap_content .update({"todays_date": str_today})
+
+        self.sap_content.update(
+            {"template_prompt_version": f"{self.template_name} with prompts {self.prompts_name}"}
+            )
 
         
     def save_content_as_text(self, path):
@@ -52,3 +63,20 @@ class Template:
             print(f"SAP saved to {output_path}")
         else:
              raise ValueError("sap_content must be set before populating template.")
+        
+    def write_sap(self, protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
+        t0 = time.time()
+
+        protocol = Protocol(protocol_path)
+        if not test:
+            self.get_sap_content(protocol.protocol_txt)
+        else:
+            print("Test enabled - running with gpt5 nano")
+            self.get_sap_content(protocol.protocol_txt, model = "gpt-5-nano")
+
+        self.save_content_as_text(path = f"{sap_folder_path}/{sap_name}_content.txt")
+        self.populate(sap_folder = sap_folder_path, sap_name = f"{sap_name}.docx")
+
+        t1 = time.time()
+        total_time = round(t1- t0)
+        print(f"SAP written in {total_time} seconds")
