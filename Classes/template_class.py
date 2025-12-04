@@ -41,7 +41,7 @@ class Template:
         self.sap_content .update({"todays_date": str_today})
 
         self.sap_content.update(
-            {"template_prompt_version": f"Template: {self.template_name}, Prompts: {self.prompts_name}"}
+            {"template_prompt_version": f"{self.template_name} with prompts {self.prompts_name}"}
             )
 
         

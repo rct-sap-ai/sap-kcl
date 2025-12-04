@@ -79,5 +79,5 @@ kcl_template_v02 = Template(
     prompt_register=prompt_tasks,
     prompts_dictionary = prompts_file.PROMPTS_DICTIONARY,
     template_name = "sapai_kcl_template_v0.2_clean.docx", # this is identifying information that is recorded in the SAP
-    prompts_name = "prompts_06.py version 0.1"
+    prompts_name = "v6, 04/12/2025"
 )
