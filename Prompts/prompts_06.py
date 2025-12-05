@@ -334,8 +334,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
             - Scoring description: provide a short description of how the measure is scored (e.g., total score range, subscale scores, higher vs lower values) as described in the protocol or instrument guidance.
             - How to handle missing items: summarise any specified rules for missing items within the scale/subscale (e.g., prorating rules, required proportion of completed items); if no rules are given, write "Not specified in protocol".
             - Interpretation (direction): state how to interpret the score direction if stated (e.g., "Higher scores = better outcome", "Higher scores = worse symptoms"); if not given, write "Not specified in protocol".
-        - Do not invent or infer any measures, timepoints, scoring rules, missing-item rules, or interpretations that are not explicitly supported by the protocol or instrument guidance cited in the protocol.
-        - If some details cannot be completed from the protocol, fill the corresponding sub-bullet with the text "Not specified in protocol".
+        - If some details cannot be completed from the protocol, use your best ability to complete these fields.".
         """,
 
        "sample_size": """
