@@ -68,7 +68,7 @@ prompt_tasks = [
     #PromptRegister("any_additional_exploratory_analysis", "minimal","low"),
     PromptRegister("any_exploratory_mediator_and_moderator_analysis", "minimal","low"),
     PromptRegister("interim_analysis", "minimal","low"), # end of final section - other bits
-    PromptRegister("table_outcomes", "low","low"),
+    PromptRegister("table_outcomes", "medium","low"),
 ]
 
 
