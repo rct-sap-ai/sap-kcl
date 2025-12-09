@@ -20,12 +20,13 @@ class OpenAIChat:
         self.system_message = system_message
         # If OPENAI_API_KEY is in env, this works without passing api_key explicitly
         self.client = OpenAI()
-        self.delay_sec = delay_sec
         
-    def get_response(self, prompt: str, reasoning_effort="minimal", verbosity="low"):
+    def get_response(self, prompt: str, reasoning_effort="minimal", verbosity="low", system_message=None):
+        if system_message is  None:
+            system_message = self.system_message
         response = self.client.responses.create(
             model=self.model_name,
-            instructions=self.system_message,
+            instructions=system_message,
             input=prompt,
             reasoning={ "effort": reasoning_effort},
             text={ "verbosity": verbosity}
@@ -55,7 +56,6 @@ class OpenAIChat:
                 response_content = "ERROR"
             results[var_name] = response_content
             
-            time.sleep(self.delay_sec)
         return(results)
     
 
