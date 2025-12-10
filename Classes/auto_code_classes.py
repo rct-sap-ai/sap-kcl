@@ -6,7 +6,7 @@ import time
 class AutoCodePipeline:
     """Complete pipeline using full document for each extraction step"""
 
-    def __init__(self, chat_bot, validate = False):
+    def __init__(self, chat_bot, validate: bool = False):
         self.timepoint_bot = TimepointExtractor(chat_bot)
         self.variable_bot = VariableExtractor(chat_bot)
         self.analysis_bot = AnalysisExtractor(chat_bot)
@@ -15,7 +15,7 @@ class AutoCodePipeline:
         self.errors: list[tuple[str, str]] = []
         self.validate = validate
 
-    def extract_all(self, content_dictionary: dict) -> dict[str, Any]:
+    def extract_all(self, content_dictionary: dict) -> dict[str, Any] | None:
         """Extract all data with validation - uses FULL document for each step"""
 
         print("=" * 60)
@@ -26,7 +26,7 @@ class AutoCodePipeline:
         variables_content = content_dictionary.get("variables_content", "")
         analysis_content = content_dictionary.get("analysis_content", "")
 
-        input_content = timepoint_content + variables_content +  analysis_content
+        input_content = timepoint_content + variables_content + analysis_content
 
         # Step 1: Extract timepoints from FULL document
         print("[1/3] Extracting timepoints...")
@@ -35,14 +35,12 @@ class AutoCodePipeline:
             self.errors.append(("timepoints", timepoint_error))
             print(f"\n    💬 {timepoint_error}\n")
 
-
         # Step 2: Extract variables from FULL document
         print("\n[2/3] Extracting variables...")
         variables, variable_error = self.variable_bot.extract_variables(variables_content, timepoints)
         if variable_error:
             self.errors.append(("variables", variable_error))
             print(f"\n    💬 {variable_error}\n")
-
 
         # Step 3: Extract analyses from FULL document
         print("\n[3/3] Extracting analyses...")
@@ -51,10 +49,10 @@ class AutoCodePipeline:
             self.errors.append(("analyses", analysis_error))
             print(f"\n    💬 {analysis_error}\n")
 
-        result = {
+        result: dict[str, Any] = {
             "timepoints": timepoints,
             "variables": variables,
-            "analyses": analyses
+            "analyses": analyses,
         }
 
         # Check if everything failed
@@ -74,7 +72,7 @@ class AutoCodePipeline:
             return None
 
         # Step 4: Validate
-        validation_result = None
+        validation_result: dict[str, Any] | None = None
         if self.validate and (timepoints or variables or analyses):
             print("\n" + "=" * 60)
             print("VALIDATION PHASE")
@@ -85,14 +83,14 @@ class AutoCodePipeline:
             print(f"\n  Completeness: {validation_result.get('completeness_score', 0)}/10")
             print(f"  Accuracy: {validation_result.get('accuracy_score', 0)}/10")
 
-            if validation_result.get('issues'):
+            if validation_result.get("issues"):
                 print(f"\n  Issues found:")
-                for issue in validation_result['issues'][:5]:
+                for issue in validation_result["issues"][:5]:
                     print(f"    - {issue}")
 
-            if validation_result.get('missing_elements'):
+            if validation_result.get("missing_elements"):
                 print(f"\n  Missing elements:")
-                for missing in validation_result['missing_elements'][:5]:
+                for missing in validation_result["missing_elements"][:5]:
                     print(f"    - {missing}")
 
         # Step 5: Evaluate
@@ -107,13 +105,13 @@ class AutoCodePipeline:
         print(f"    - Analyses: {metrics['items_extracted']['analyses']}")
         print(f"\n  Format valid: {metrics['format_valid']}")
 
-        if metrics['issues']:
+        if metrics["issues"]:
             print(f"\n  Format issues:")
-            for issue in metrics['issues']:
+            for issue in metrics["issues"]:
                 print(f"    - {issue}")
 
         # Add metadata
-        result['metadata'] = {
+        result["metadata"] = {
             "extraction_timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
             # "model_used": Config.MODEL,
             # "document_size_chars": len(sap_text),
@@ -136,21 +134,23 @@ class AutoCodePipeline:
         }
 
         if validation_result:
-            result['metadata']['validation'] = validation_result
+            result["metadata"]["validation"] = validation_result
 
         # Final summary message
         if self.errors:
             print("\n" + "=" * 60)
             print("⚠️  PARTIAL SUCCESS")
             print("=" * 60)
-            print(f"\nI managed to extract some information, but had trouble with {len(self.errors)} section(s).")
+            print(
+                f"\nI managed to extract some information, but had trouble with {len(self.errors)} section(s)."
+            )
             print("Check the output file for what I found!")
 
         return result
 
     def save_to_json(self, data: dict[str, Any], output_path: str):
         """Save extracted data to JSON file"""
-        with open(output_path, 'w') as f:
+        with open(output_path, "w") as f:
             json.dump(data, indent=2, fp=f)
         print(f"\n✓ Saved to {output_path}")
 
@@ -163,15 +163,15 @@ class AutoCodeExtractor:
         self.max_retries = nax_retries
 
     def get_response(self, prompt: str) -> str:
-        instructions=(
+        instructions = (
             "You are a helpful assistant that extracts structured data from "
             "statistical analysis plans. Always respond with valid JSON only."
         )
         try:
-            response = self.chat_bot.get_response(prompt = prompt, system_message = instructions)
+            response = self.chat_bot.get_response(prompt=prompt, system_message=instructions)
         except Exception as e:
             print(f"An error occurred while getting response: {e}")
-            response["content"] = ""
+            response = {"content": ""}
         return response.get("content", "")
 
 
@@ -203,7 +203,7 @@ class TimepointExtractor(AutoCodeExtractor):
         - Output ONLY the JSON array, no explanation, no markdown
         """
 
-        last_error = None
+        last_error: str | None = None
         for attempt in range(self.max_retries):
             response = self.get_response(prompt=prompt)
 
@@ -245,7 +245,7 @@ class TimepointExtractor(AutoCodeExtractor):
                     )
 
                 for tp in timepoints:
-                    if not isinstance(tp, dict) or 'value' not in tp or 'label' not in tp:
+                    if not isinstance(tp, dict) or "value" not in tp or "label" not in tp:
                         last_error = "Timepoints were not in the correct format"
                         raise ValueError("Invalid timepoint format")
 
@@ -277,7 +277,7 @@ class TimepointExtractor(AutoCodeExtractor):
 class VariableExtractor(AutoCodeExtractor):
     """Bot 2: Extract variables from FULL SAP text"""
 
-    def extract_variables(self, sap_text: str, timepoints: list[dict]) -> tuple[list[dict[str, Any]], str]:
+    def extract_variables(self, sap_text: str, timepoints: list[dict]) -> tuple[list[dict[str, Any]], str | None]:
         """Extract variables with retry logic using FULL document"""
 
         print(f"    Using full document: {len(sap_text):,} chars")
@@ -310,7 +310,7 @@ Rules:
 - Output ONLY the JSON array
 """
 
-        last_error = None
+        last_error: str | None = None
         for attempt in range(self.max_retries):
             response = self.get_response(prompt=prompt)
 
@@ -356,11 +356,11 @@ Rules:
                     if not isinstance(var, dict):
                         last_error = "Variables were not in the correct format"
                         raise ValueError("Invalid variable format")
-                    required = ['label', 'variable_name', 'timepoints', 'type']
+                    required = ["label", "variable_name", "timepoints", "type"]
                     if not all(k in var for k in required):
                         last_error = "Variables missing required fields"
                         raise ValueError("Missing required fields")
-                    if var['type'] not in valid_types:
+                    if var["type"] not in valid_types:
                         last_error = f"Invalid variable type: {var['type']}"
                         raise ValueError(f"Invalid type: {var['type']}")
 
@@ -427,7 +427,7 @@ Rules:
 - Output ONLY the JSON array
 """
 
-        last_error = None
+        last_error: str | None = None
         for attempt in range(self.max_retries):
             response = self.get_response(prompt=prompt)
 
@@ -467,17 +467,17 @@ Rules:
                         "The analysis plan section might be missing or described in a way I don't recognize."
                     )
 
-                variable_names = {v['variable_name'] for v in variables} if variables else set()
+                variable_names = {v["variable_name"] for v in variables} if variables else set()
                 for analysis in analyses:
                     if not isinstance(analysis, dict):
                         last_error = "Analyses were not in the correct format"
                         raise ValueError("Invalid analysis format")
-                    required = ['name', 'model', 'outcome']
+                    required = ["name", "model", "outcome"]
                     if not all(k in analysis for k in required):
                         last_error = "Analyses missing required fields"
                         raise ValueError("Missing required fields")
 
-                    if variable_names and analysis['outcome'] not in variable_names:
+                    if variable_names and analysis["outcome"] not in variable_names:
                         print(f"      ⚠ Warning: outcome '{analysis['outcome']}' not in variables")
 
                 print(f"    ✓ Extracted {len(analyses)} analyses")
@@ -503,6 +503,7 @@ Rules:
             "- The document uses unusual statistical terminology"
         )
         return [], error_msg
+
 
 # ============================================================
 # VALIDATION BOT
@@ -545,7 +546,7 @@ Scores are 0-10 (10 = perfect). Output ONLY JSON.
                 "accuracy_score": 0,
                 "issues": ["Validation failed: no response"],
                 "missing_elements": [],
-                "suggestions": []
+                "suggestions": [],
             }
 
         # Clean response
@@ -567,8 +568,9 @@ Scores are 0-10 (10 = perfect). Output ONLY JSON.
                 "accuracy_score": 0,
                 "issues": [f"Validation parse error: {e}"],
                 "missing_elements": [],
-                "suggestions": []
+                "suggestions": [],
             }
+
 
 # ============================================================
 # EVALUATION
@@ -578,55 +580,161 @@ class ExtractionEvaluator:
     """Evaluate extraction quality with metrics"""
 
     @staticmethod
-    def evaluate(sap_text: str, extracted_data: dict, validation_result: dict| None) -> dict:
+    def evaluate(sap_text: str, extracted_data: dict, validation_result: dict | None) -> dict:
         """Calculate metrics for the extraction"""
 
-        metrics = {
+        metrics: dict[str, Any] = {
             "items_extracted": {
-                "timepoints": len(extracted_data.get('timepoints', [])),
-                "variables": len(extracted_data.get('variables', [])),
-                "analyses": len(extracted_data.get('analyses', []))
+                "timepoints": len(extracted_data.get("timepoints", [])),
+                "variables": len(extracted_data.get("variables", [])),
+                "analyses": len(extracted_data.get("analyses", [])),
             },
             "format_valid": True,
-            "issues": []
+            "issues": [],
         }
 
         try:
-            timepoints = extracted_data.get('timepoints', [])
+            timepoints = extracted_data.get("timepoints", [])
             if timepoints:
-                values = [tp['value'] for tp in timepoints]
+                values = [tp["value"] for tp in timepoints]
                 if values != list(range(len(values))):
-                    metrics['issues'].append("Timepoint values not sequential")
+                    metrics["issues"].append("Timepoint values not sequential")
 
-            variables = extracted_data.get('variables', [])
-            valid_timepoint_values = {tp['value'] for tp in timepoints}
+            variables = extracted_data.get("variables", [])
+            valid_timepoint_values = {tp["value"] for tp in timepoints}
             for var in variables:
-                for tp_val in var.get('timepoints', []):
+                for tp_val in var.get("timepoints", []):
                     if tp_val not in valid_timepoint_values:
-                        metrics['issues'].append(
+                        metrics["issues"].append(
                             f"Variable '{var['variable_name']}' references invalid timepoint {tp_val}"
                         )
 
-            analyses = extracted_data.get('analyses', [])
-            valid_var_names = {var['variable_name'] for var in variables}
+            analyses = extracted_data.get("analyses", [])
+            valid_var_names = {var["variable_name"] for var in variables}
             for analysis in analyses:
-                if analysis['outcome'] not in valid_var_names:
-                    metrics['issues'].append(
+                if analysis["outcome"] not in valid_var_names:
+                    metrics["issues"].append(
                         f"Analysis '{analysis['name']}' references invalid variable '{analysis['outcome']}'"
                     )
 
         except Exception as e:
-            metrics['format_valid'] = False
-            metrics['issues'].append(f"Format validation error: {e}")
+            metrics["format_valid"] = False
+            metrics["issues"].append(f"Format validation error: {e}")
 
         if validation_result:
-            metrics['validation'] = {
-                "completeness_score": validation_result.get('completeness_score', 0),
-                "accuracy_score": validation_result.get('accuracy_score', 0),
-                "llm_issues": validation_result.get('issues', []),
-                "missing_elements": validation_result.get('missing_elements', [])
+            metrics["validation"] = {
+                "completeness_score": validation_result.get("completeness_score", 0),
+                "accuracy_score": validation_result.get("accuracy_score", 0),
+                "llm_issues": validation_result.get("issues", []),
+                "missing_elements": validation_result.get("missing_elements", []),
             }
 
         return metrics
-    
 
+
+# ============================================================
+# CONVERSATIONAL EDITING LAYER
+# ============================================================
+
+class AutoCodeConversation:
+    """
+    Holds the autocode extraction result and lets a caller iteratively refine
+    timepoints / variables / analyses via natural-language instructions.
+
+    Usage pattern (backend):
+
+        convo = AutoCodeConversation(chat_bot, content_dict, initial_result)
+        convo.apply_user_edit("timepoints", "remove the 6 month timepoint")
+        convo.apply_user_edit("variables", "rename the primary outcome label")
+        final_result = convo.result
+    """
+
+    def __init__(
+        self,
+        chat_bot,
+        content_dictionary: dict[str, str],
+        initial_result: dict[str, Any],
+    ):
+        """
+        chat_bot: an OpenAIChat instance
+        content_dictionary: same dict you passed into AutoCodePipeline.extract_all
+                            (so we can pull the right SAP context per section)
+        initial_result: the dict returned by AutoCodePipeline.extract_all
+        """
+        self.chat_bot = chat_bot
+        self.content_dictionary = content_dictionary
+        self.result = initial_result
+
+    def _get_context_for_type(self, item_type: str) -> str:
+        """Return the relevant SAP content for the given item_type."""
+        if item_type == "timepoints":
+            return self.content_dictionary.get("timepoint_content", "")
+        elif item_type == "variables":
+            return self.content_dictionary.get("variables_content", "")
+        elif item_type == "analyses":
+            return self.content_dictionary.get("analysis_content", "")
+        else:
+            return ""
+
+    def apply_user_edit(self, item_type: str, user_instruction: str) -> dict[str, Any]:
+        """
+        Apply a user instruction to one of:
+          - "timepoints"
+          - "variables"
+          - "analyses"
+
+        This calls the model via OpenAIChat.edit_json_items and updates self.result in-place.
+
+        Returns the updated full result dict.
+        """
+
+        if item_type not in ("timepoints", "variables", "analyses"):
+            raise ValueError(f"Unknown item_type: {item_type}")
+
+        current_items = self.result.get(item_type, [])
+        if not isinstance(current_items, list):
+            raise ValueError(f"Expected list for {item_type}, got {type(current_items)}")
+
+        current_json = json.dumps(current_items, indent=2)
+        sap_context = self._get_context_for_type(item_type)
+
+        edited_json_str = self.chat_bot.edit_json_items(
+            item_type=item_type,
+            sap_context=sap_context[:5000],  # keep context at a reasonable length
+            current_json=current_json,
+            user_instruction=user_instruction,
+        )
+
+        try:
+            new_items = json.loads(edited_json_str)
+        except json.JSONDecodeError as e:
+            print(f"⚠ Could not parse edited JSON for {item_type}: {e}")
+            print(f"  Model output was:\n{edited_json_str[:300]}")
+            # Keep previous items if parse fails
+            return self.result
+
+        if not isinstance(new_items, list):
+            print(f"⚠ Model returned non-list JSON for {item_type}; keeping previous items.")
+            return self.result
+
+        self.result[item_type] = new_items
+        return self.result
+
+
+def run_autocode_with_conversation(
+    chat_bot,
+    content_dictionary: dict[str, str],
+    validate: bool = False,
+) -> AutoCodeConversation:
+    """
+    Convenience helper:
+      1) runs the AutoCodePipeline extraction
+      2) wraps result in an AutoCodeConversation
+
+    Returns an AutoCodeConversation instance.
+    """
+    pipeline = AutoCodePipeline(chat_bot, validate=validate)
+    result = pipeline.extract_all(content_dictionary)
+    if result is None:
+        raise RuntimeError("Autocode extraction failed completely.")
+    return AutoCodeConversation(chat_bot, content_dictionary, result)
