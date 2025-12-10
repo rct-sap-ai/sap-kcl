@@ -7,9 +7,13 @@ from Prompts import prompts_06 as prompts_file
 
 import time
 
+# ----------------------------------------------------------------------
+# Prompt setup
+# ----------------------------------------------------------------------
 # reasoning_effort = "high", "medium", "low", or "minimal"
-# verbosity = "high", "medium", or "low"
+# verbosity       = "high", "medium", or "low"
 # PromptRegister(variable, reasoning_effort, verbosity)
+
 prompt_tasks = [
     PromptRegister("title", "low", "low"),
     PromptRegister("trial_acronym", "minimal", "low"),
@@ -20,87 +24,133 @@ prompt_tasks = [
     PromptRegister("secondary_analysis", "minimal", "low"),
 ]
 
-# Set up template with template file and prompts
+# ----------------------------------------------------------------------
+# Template instance used across helpers
+# ----------------------------------------------------------------------
+
 simple_template = Template(
     template_path="Templates/sapai_kcl_template_v0.2_clean.docx",
     system_message_function=prompts_file.system_message,
     prompt_register=prompt_tasks,
     prompts_dictionary=prompts_file.PROMPTS_DICTIONARY,
-    template_name="simple test template",  # identifying information that is recorded in the SAP
+    template_name="simple test template",  # identifying information recorded in the SAP
     prompts_name="v6, 04/12/2025",
 )
 
+# ----------------------------------------------------------------------
+# Helper: run SAP generation from a protocol text
+# ----------------------------------------------------------------------
 
-# ----------------------------------------------------------------------
-# Helper to run SAP generation from a protocol text
-# ----------------------------------------------------------------------
+
 def get_sap_content_for_protocol(protocol_txt: str, model: str = "gpt-5-nano"):
     """
     Convenience wrapper to populate the template using a protocol text.
-    This calls Template.get_sap_content and stores the result in
-    simple_template.sap_content.
+
+    This will:
+      - call simple_template.get_sap_content(...)
+      - populate simple_template.sap_content (usually a dict of sections)
     """
     simple_template.get_sap_content(protocol_txt, model=model)
     return simple_template
 
 
 # ----------------------------------------------------------------------
-# Build a content_dictionary for the autocode pipeline
+# Helper: build content_dictionary for the autocode pipeline
 # ----------------------------------------------------------------------
+
+
 def build_autocode_content_dictionary_from_sap() -> dict[str, str]:
     """
     Build the content_dictionary expected by AutoCodePipeline / run_autocode_with_conversation.
 
-    We know from inspection that:
-      - simple_template.sap_content is a dict
-      - keys like 'primary_outcome_measures', 'secondary_outcome_measures',
-        'timing_of_analysis', 'primary_analysis_model', and 'secondary_analysis'
-        are plain strings containing the generated SAP text.
+    Preferred behaviour:
+      - If simple_template.sap_content is a dict (the usual case), we use specific
+        sections to feed each extractor.
+      - If it's a plain string, we fall back to giving the full SAP text to all three.
 
-    We map:
-      - timepoint_content  <- timing_of_analysis
-      - variables_content  <- primary_outcome_measures + secondary_outcome_measures
-      - analysis_content   <- primary_analysis_model + secondary_analysis
+    Heuristic mapping when sap_content is a dict:
+      - timepoint_content:
+          primary_outcome_measures
+          + secondary_outcome_measures
+          + timing_of_analysis
+          + primary_analysis_model
+          + secondary_analysis
+
+      - variables_content:
+          primary_outcome_measures
+          + secondary_outcome_measures
+          + primary_analysis_model
+          + secondary_analysis
+
+      - analysis_content:
+          primary_analysis_model
+          + secondary_analysis
+          + timing_of_analysis
     """
 
-    sap_content = getattr(simple_template, "sap_content", {})
+    sap_data = getattr(simple_template, "sap_content", "")
 
-    # Fallback: if something changes and sap_content is not a dict, treat it as one big block
-    if not isinstance(sap_content, dict):
-        full_text = str(sap_content) if sap_content is not None else ""
-        return {
-            "timepoint_content": full_text,
-            "variables_content": full_text,
-            "analysis_content": full_text,
+    # Case 1: sap_content is already a dict of sections (most likely in your setup)
+    if isinstance(sap_data, dict):
+
+        def get_section(key: str) -> str:
+            val = sap_data.get(key, "")
+            return val if isinstance(val, str) else ""
+
+        # Build each "view" as a concatenation of relevant sections
+        timepoint_content = "\n\n".join(
+            [
+                get_section("primary_outcome_measures"),
+                get_section("secondary_outcome_measures"),
+                get_section("timing_of_analysis"),
+                get_section("primary_analysis_model"),
+                get_section("secondary_analysis"),
+            ]
+        )
+
+        variables_content = "\n\n".join(
+            [
+                get_section("primary_outcome_measures"),
+                get_section("secondary_outcome_measures"),
+                get_section("primary_analysis_model"),
+                get_section("secondary_analysis"),
+            ]
+        )
+
+        analysis_content = "\n\n".join(
+            [
+                get_section("primary_analysis_model"),
+                get_section("secondary_analysis"),
+                get_section("timing_of_analysis"),
+            ]
+        )
+
+        content_dictionary = {
+            "timepoint_content": timepoint_content or "",
+            "variables_content": variables_content or "",
+            "analysis_content": analysis_content or "",
         }
+        return content_dictionary
 
-    # TIMEPOINTS: timing_of_analysis
-    timepoint_content = sap_content.get("timing_of_analysis", "")
+    # Case 2: sap_content is a single string – fall back to "full-doc everywhere"
+    sap_text = sap_data or ""
+    if not isinstance(sap_text, str):
+        # Just in case someone changed Template internals
+        sap_text = str(sap_text)
 
-    # VARIABLES: primary + secondary outcome measures
-    variables_parts = [
-        sap_content.get("primary_outcome_measures", ""),
-        sap_content.get("secondary_outcome_measures", ""),
-    ]
-    variables_content = "\n\n".join([part for part in variables_parts if part])
-
-    # ANALYSES: primary + secondary analysis sections
-    analysis_parts = [
-        sap_content.get("primary_analysis_model", ""),
-        sap_content.get("secondary_analysis", ""),
-    ]
-    analysis_content = "\n\n".join([part for part in analysis_parts if part])
-
-    return {
-        "timepoint_content": timepoint_content,
-        "variables_content": variables_content,
-        "analysis_content": analysis_content,
+    content_dictionary = {
+        "timepoint_content": sap_text,
+        "variables_content": sap_text,
+        "analysis_content": sap_text,
     }
+    return content_dictionary
 
 
 # ----------------------------------------------------------------------
 # End-to-end helper returning an AutoCodeConversation
 # ----------------------------------------------------------------------
+
+
 def get_autocode_conversation_for_protocol(
     protocol_txt: str,
     model: str = "gpt-5-nano",
@@ -109,15 +159,13 @@ def get_autocode_conversation_for_protocol(
     """
     End-to-end helper that:
       1) runs the SAP generation for a given protocol text
-      2) builds the autocode content_dictionary from the SAP text
-      3) runs the AutoCodePipeline (via run_autocode_with_conversation)
+      2) builds the autocode content_dictionary from the SAP content
+      3) runs the AutoCodePipeline wrapped in an AutoCodeConversation
       4) returns an AutoCodeConversation object for interactive editing
 
-    Usage example:
+    Usage:
 
-        protocol = Protocol("Protocols/boppp.pdf")
-        convo = get_autocode_conversation_for_protocol(protocol.protocol_txt)
-
+        convo = get_autocode_conversation_for_protocol(protocol_txt)
         # initial JSON:
         convo.result["timepoints"]
 
@@ -131,7 +179,7 @@ def get_autocode_conversation_for_protocol(
     # Step 1: populate the template from the protocol text
     get_sap_content_for_protocol(protocol_txt, model=model)
 
-    # Step 2: build content dictionary from the relevant SAP sections
+    # Step 2: build content dictionary from the SAP (section-aware if possible)
     content_dictionary = build_autocode_content_dictionary_from_sap()
 
     # Step 3: set up chat bot and run autocode pipeline with conversational wrapper
