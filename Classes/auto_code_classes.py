@@ -1,10 +1,14 @@
-from typing import Any
+from typing import Any, Dict, List, Optional, Tuple
 import json
 import time
 
 
+# ============================================================
+# BASE PIPELINE
+# ============================================================
+
 class AutoCodePipeline:
-    """Complete pipeline using full document for each extraction step"""
+    """Complete pipeline using SAP-derived content for each extraction step"""
 
     def __init__(self, chat_bot, validate: bool = False):
         self.timepoint_bot = TimepointExtractor(chat_bot)
@@ -12,44 +16,51 @@ class AutoCodePipeline:
         self.analysis_bot = AnalysisExtractor(chat_bot)
         self.validation_bot = ValidationBot(chat_bot)
         self.evaluator = ExtractionEvaluator()
-        self.errors: list[tuple[str, str]] = []
+        self.errors: List[Tuple[str, str]] = []
         self.validate = validate
 
-    def extract_all(self, content_dictionary: dict) -> dict[str, Any] | None:
-        """Extract all data with validation - uses FULL document for each step"""
+    def extract_all(self, content_dictionary: Dict[str, str]) -> Dict[str, Any]:
+        """Extract all data with validation - uses specific content for each step"""
 
         print("=" * 60)
         print("EXTRACTION PHASE")
         print("=" * 60)
 
-        timepoint_content = content_dictionary.get("timepoint_content", "")
-        variables_content = content_dictionary.get("variables_content", "")
-        analysis_content = content_dictionary.get("analysis_content", "")
+        timepoint_content = content_dictionary.get("timepoint_content", "") or ""
+        variables_content = content_dictionary.get("variables_content", "") or ""
+        analysis_content = content_dictionary.get("analysis_content", "") or ""
 
-        input_content = timepoint_content + variables_content + analysis_content
+        # This is used only for validation / metrics
+        input_content = (
+            (timepoint_content or "")
+            + "\n\n"
+            + (variables_content or "")
+            + "\n\n"
+            + (analysis_content or "")
+        )
 
-        # Step 1: Extract timepoints from FULL document
+        # Step 1: Extract timepoints
         print("[1/3] Extracting timepoints...")
         timepoints, timepoint_error = self.timepoint_bot.extract_timepoints(timepoint_content)
         if timepoint_error:
             self.errors.append(("timepoints", timepoint_error))
             print(f"\n    💬 {timepoint_error}\n")
 
-        # Step 2: Extract variables from FULL document
+        # Step 2: Extract variables
         print("\n[2/3] Extracting variables...")
         variables, variable_error = self.variable_bot.extract_variables(variables_content, timepoints)
         if variable_error:
             self.errors.append(("variables", variable_error))
             print(f"\n    💬 {variable_error}\n")
 
-        # Step 3: Extract analyses from FULL document
+        # Step 3: Extract analyses
         print("\n[3/3] Extracting analyses...")
         analyses, analysis_error = self.analysis_bot.extract_analyses(analysis_content, variables)
         if analysis_error:
             self.errors.append(("analyses", analysis_error))
             print(f"\n    💬 {analysis_error}\n")
 
-        result: dict[str, Any] = {
+        result: Dict[str, Any] = {
             "timepoints": timepoints,
             "variables": variables,
             "analyses": analyses,
@@ -60,19 +71,14 @@ class AutoCodePipeline:
             print("\n" + "=" * 60)
             print("⚠️  EXTRACTION INCOMPLETE")
             print("=" * 60)
-            print("\nI tried my best using the FULL document, but couldn't extract")
-            print("anything useful. This might happen if:")
+            print("\nI tried my best, but couldn't extract anything useful. This might happen if:")
             print("  - The document is not a Statistical Analysis Plan")
             print("  - The format is very unusual or non-standard")
             print("  - Key sections are missing or poorly labeled")
-            print("\nYou might want to:")
-            print("  - Check that you uploaded the right document")
-            print("  - Try a different document format")
-            print("  - Contact support if this keeps happening")
-            return None
+            return result
 
-        # Step 4: Validate
-        validation_result: dict[str, Any] | None = None
+        # Step 4: Validation (optional)
+        validation_result: Optional[Dict[str, Any]] = None
         if self.validate and (timepoints or variables or analyses):
             print("\n" + "=" * 60)
             print("VALIDATION PHASE")
@@ -83,14 +89,14 @@ class AutoCodePipeline:
             print(f"\n  Completeness: {validation_result.get('completeness_score', 0)}/10")
             print(f"  Accuracy: {validation_result.get('accuracy_score', 0)}/10")
 
-            if validation_result.get("issues"):
+            if validation_result.get('issues'):
                 print(f"\n  Issues found:")
-                for issue in validation_result["issues"][:5]:
+                for issue in validation_result['issues'][:5]:
                     print(f"    - {issue}")
 
-            if validation_result.get("missing_elements"):
+            if validation_result.get('missing_elements'):
                 print(f"\n  Missing elements:")
-                for missing in validation_result["missing_elements"][:5]:
+                for missing in validation_result['missing_elements'][:5]:
                     print(f"    - {missing}")
 
         # Step 5: Evaluate
@@ -105,62 +111,50 @@ class AutoCodePipeline:
         print(f"    - Analyses: {metrics['items_extracted']['analyses']}")
         print(f"\n  Format valid: {metrics['format_valid']}")
 
-        if metrics["issues"]:
+        if metrics['issues']:
             print(f"\n  Format issues:")
-            for issue in metrics["issues"]:
+            for issue in metrics['issues']:
                 print(f"    - {issue}")
 
-        # Add metadata
+        # Metadata (minimal for now)
         result["metadata"] = {
             "extraction_timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-            # "model_used": Config.MODEL,
-            # "document_size_chars": len(sap_text),
-            # "truncation_used": False,
-            # "validation_enabled": Config.ENABLE_VALIDATION,
-            # "metrics": metrics,
-            # "api_calls": (
-            #     self.timepoint_bot.call_count
-            #     + self.variable_bot.call_count
-            #     + self.analysis_bot.call_count
-            #     + self.validation_bot.call_count
-            # ),
-            # "total_tokens_used": (
-            #     self.timepoint_bot.total_tokens
-            #     + self.variable_bot.total_tokens
-            #     + self.analysis_bot.total_tokens
-            #     + self.validation_bot.total_tokens
-            # ),
-            # "errors": [{"type": err_type, "message": err_msg} for err_type, err_msg in self.errors]
+            "validation_enabled": self.validate,
+            "metrics": metrics,
+            "errors": [{"type": t, "message": m} for t, m in self.errors],
         }
 
         if validation_result:
             result["metadata"]["validation"] = validation_result
 
-        # Final summary message
         if self.errors:
             print("\n" + "=" * 60)
             print("⚠️  PARTIAL SUCCESS")
             print("=" * 60)
             print(
-                f"\nI managed to extract some information, but had trouble with {len(self.errors)} section(s)."
+                f"\nI managed to extract some information, "
+                f"but had trouble with {len(self.errors)} section(s)."
             )
-            print("Check the output file for what I found!")
 
         return result
 
-    def save_to_json(self, data: dict[str, Any], output_path: str):
+    def save_to_json(self, data: Dict[str, Any], output_path: str):
         """Save extracted data to JSON file"""
         with open(output_path, "w") as f:
             json.dump(data, indent=2, fp=f)
         print(f"\n✓ Saved to {output_path}")
 
 
+# ============================================================
+# BASE EXTRACTOR
+# ============================================================
+
 class AutoCodeExtractor:
     """Base class for autoCode format extraction with retry logic"""
 
-    def __init__(self, chat_bot, nax_retries: int = 1):
+    def __init__(self, chat_bot, max_retries: int = 1):
         self.chat_bot = chat_bot
-        self.max_retries = nax_retries
+        self.max_retries = max_retries
 
     def get_response(self, prompt: str) -> str:
         instructions = (
@@ -175,35 +169,39 @@ class AutoCodeExtractor:
         return response.get("content", "")
 
 
+# ============================================================
+# EXTRACTION BOTS
+# ============================================================
+
 class TimepointExtractor(AutoCodeExtractor):
-    """Bot 1: Extract timepoints from FULL SAP text"""
+    """Bot 1: Extract timepoints"""
 
-    def extract_timepoints(self, sap_text: str) -> tuple[list[dict[str, Any]], str | None]:
-        """Extract timepoints with retry logic using FULL document"""
+    def extract_timepoints(self, sap_text: str) -> Tuple[List[Dict[str, Any]], Optional[str]]:
+        """Extract timepoints with retry logic using SAP-derived text"""
 
-        print(f"    Using full document: {len(sap_text):,} chars")
+        print(f"    Using content: {len(sap_text):,} chars")
 
         prompt = f"""Extract all timepoints mentioned in this Statistical Analysis Plan.
 
-        SAP Text (COMPLETE DOCUMENT):
-        {sap_text}
+SAP Text:
+{sap_text}
 
-        Your task: Find all time measurements mentioned (baseline, followup visits, etc.)
+Your task: Find all time measurements mentioned (baseline, follow-up visits, etc.)
 
-        Return a JSON array in this EXACT format:
-        [
-        {{"value": 0, "label": "Baseline"}},
-        {{"value": 1, "label": "6 weeks"}}
-        ]
+Return a JSON array in this EXACT format:
+[
+  {{"value": 0, "label": "Baseline"}},
+  {{"value": 1, "label": "6 months"}}
+]
 
-        Rules:
-        - value 0 = baseline, value 1 = first followup, value 2 = second followup, etc.
-        - label = exact description from SAP
-        - Include ALL timepoints you find
-        - Output ONLY the JSON array, no explanation, no markdown
-        """
+Rules:
+- value 0 = baseline, value 1 = first follow-up, value 2 = second follow-up, etc.
+- label = exact description from SAP or the prompts
+- Include ALL timepoints you find
+- Output ONLY the JSON array, no explanation, no markdown
+"""
 
-        last_error: str | None = None
+        last_error = None
         for attempt in range(self.max_retries):
             response = self.get_response(prompt=prompt)
 
@@ -218,17 +216,17 @@ class TimepointExtractor(AutoCodeExtractor):
                     break
 
             # Clean response
-            response = response.strip()
-            if response.startswith("```json"):
-                response = response[7:]
-            if response.startswith("```"):
-                response = response[3:]
-            if response.endswith("```"):
-                response = response[:-3]
-            response = response.strip()
+            cleaned = response.strip()
+            if cleaned.startswith("```json"):
+                cleaned = cleaned[7:]
+            if cleaned.startswith("```"):
+                cleaned = cleaned[3:]
+            if cleaned.endswith("```"):
+                cleaned = cleaned[:-3]
+            cleaned = cleaned.strip()
 
             try:
-                timepoints = json.loads(response)
+                timepoints = json.loads(cleaned)
 
                 # Validate format
                 if not isinstance(timepoints, list):
@@ -239,9 +237,8 @@ class TimepointExtractor(AutoCodeExtractor):
                     last_error = "No timepoints found in the document"
                     print(f"    ⚠ Warning: AI found 0 timepoints")
                     return [], (
-                        "Sorry, I couldn't find any timepoints mentioned in your document. "
-                        "The SAP might not clearly specify when measurements are taken, or they "
-                        "might be described in an unusual way."
+                        "Sorry, I couldn't find any timepoints mentioned. "
+                        "The SAP or prompts might not clearly specify when measurements are taken."
                     )
 
                 for tp in timepoints:
@@ -260,33 +257,32 @@ class TimepointExtractor(AutoCodeExtractor):
                     continue
                 else:
                     print(f"    ✗ Failed: {e}")
-                    print(f"    Response preview: {response[:300]}")
+                    print(f"    Response preview: {cleaned[:300]}")
                     break
 
         # Fallback message
         error_msg = (
             f"Sorry friend, I tried {self.max_retries} times but couldn't extract timepoints. "
-            f"{last_error if last_error else 'Unknown error'}. This might mean:\n"
-            "- The timepoints aren't clearly labeled in the document\n"
-            "- The document format is unusual\n"
-            "- The SAP doesn't contain explicit timepoint information"
+            f"{last_error if last_error else 'Unknown error'}."
         )
         return [], error_msg
 
 
 class VariableExtractor(AutoCodeExtractor):
-    """Bot 2: Extract variables from FULL SAP text"""
+    """Bot 2: Extract variables"""
 
-    def extract_variables(self, sap_text: str, timepoints: list[dict]) -> tuple[list[dict[str, Any]], str | None]:
-        """Extract variables with retry logic using FULL document"""
+    def extract_variables(
+        self, sap_text: str, timepoints: List[Dict[str, Any]]
+    ) -> Tuple[List[Dict[str, Any]], Optional[str]]:
+        """Extract variables with retry logic using SAP-derived text"""
 
-        print(f"    Using full document: {len(sap_text):,} chars")
+        print(f"    Using content: {len(sap_text):,} chars")
 
         timepoints_str = json.dumps(timepoints, indent=2) if timepoints else "[]"
 
         prompt = f"""Extract all outcome variables from this Statistical Analysis Plan.
 
-SAP Text (COMPLETE DOCUMENT):
+SAP Text:
 {sap_text}
 
 Available timepoints:
@@ -310,7 +306,7 @@ Rules:
 - Output ONLY the JSON array
 """
 
-        last_error: str | None = None
+        last_error = None
         for attempt in range(self.max_retries):
             response = self.get_response(prompt=prompt)
 
@@ -325,17 +321,17 @@ Rules:
                     break
 
             # Clean response
-            response = response.strip()
-            if response.startswith("```json"):
-                response = response[7:]
-            if response.startswith("```"):
-                response = response[3:]
-            if response.endswith("```"):
-                response = response[:-3]
-            response = response.strip()
+            cleaned = response.strip()
+            if cleaned.startswith("```json"):
+                cleaned = cleaned[7:]
+            if cleaned.startswith("```"):
+                cleaned = cleaned[3:]
+            if cleaned.endswith("```"):
+                cleaned = cleaned[:-3]
+            cleaned = cleaned.strip()
 
             try:
-                variables = json.loads(response)
+                variables = json.loads(cleaned)
 
                 # Validate format
                 if not isinstance(variables, list):
@@ -346,9 +342,8 @@ Rules:
                     last_error = "No variables found in the document"
                     print(f"    ⚠ Warning: AI found 0 variables")
                     return [], (
-                        "Sorry, I couldn't find any outcome variables in your document. "
-                        "The SAP might not clearly define primary/secondary outcomes, or they might "
-                        "be described differently than expected."
+                        "Sorry, I couldn't find any outcome variables. "
+                        "The SAP might not clearly define primary/secondary outcomes."
                     )
 
                 valid_types = {"continuous", "binary", "categorical", "count", "time_to_event"}
@@ -375,33 +370,31 @@ Rules:
                     continue
                 else:
                     print(f"    ✗ Failed: {e}")
-                    print(f"    Response preview: {response[:300]}")
+                    print(f"    Response preview: {cleaned[:300]}")
                     break
 
-        # Fallback message
         error_msg = (
             f"Sorry homie, I tried {self.max_retries} times but couldn't extract variables. "
-            f"{last_error if last_error else 'Unknown error'}. This might mean:\n"
-            "- The outcome variables aren't clearly defined\n"
-            "- The document uses non-standard terminology\n"
-            "- The SAP doesn't have a clear outcomes section"
+            f"{last_error if last_error else 'Unknown error'}."
         )
         return [], error_msg
 
 
 class AnalysisExtractor(AutoCodeExtractor):
-    """Bot 3: Extract analyses from FULL SAP text"""
+    """Bot 3: Extract analyses"""
 
-    def extract_analyses(self, sap_text: str, variables: list[dict]) -> tuple[list[dict[str, Any]], str | None]:
-        """Extract analyses with retry logic using FULL document"""
+    def extract_analyses(
+        self, sap_text: str, variables: List[Dict[str, Any]]
+    ) -> Tuple[List[Dict[str, Any]], Optional[str]]:
+        """Extract analyses with retry logic using SAP-derived text"""
 
-        print(f"    Using full document: {len(sap_text):,} chars")
+        print(f"    Using content: {len(sap_text):,} chars")
 
         variables_str = json.dumps(variables, indent=2) if variables else "[]"
 
         prompt = f"""Extract all planned statistical analyses from this Statistical Analysis Plan.
 
-SAP Text (COMPLETE DOCUMENT):
+SAP Text:
 {sap_text}
 
 Available variables:
@@ -427,7 +420,7 @@ Rules:
 - Output ONLY the JSON array
 """
 
-        last_error: str | None = None
+        last_error = None
         for attempt in range(self.max_retries):
             response = self.get_response(prompt=prompt)
 
@@ -442,17 +435,17 @@ Rules:
                     break
 
             # Clean response
-            response = response.strip()
-            if response.startswith("```json"):
-                response = response[7:]
-            if response.startswith("```"):
-                response = response[3:]
-            if response.endswith("```"):
-                response = response[:-3]
-            response = response.strip()
+            cleaned = response.strip()
+            if cleaned.startswith("```json"):
+                cleaned = cleaned[7:]
+            if cleaned.startswith("```"):
+                cleaned = cleaned[3:]
+            if cleaned.endswith("```"):
+                cleaned = cleaned[:-3]
+            cleaned = cleaned.strip()
 
             try:
-                analyses = json.loads(response)
+                analyses = json.loads(cleaned)
 
                 # Validate format
                 if not isinstance(analyses, list):
@@ -463,8 +456,8 @@ Rules:
                     last_error = "No analyses found in the document"
                     print(f"    ⚠ Warning: AI found 0 analyses")
                     return [], (
-                        "Sorry, I couldn't find any statistical analyses described in your document. "
-                        "The analysis plan section might be missing or described in a way I don't recognize."
+                        "Sorry, I couldn't find any statistical analyses described. "
+                        "The analysis plan section might be missing or unclear."
                     )
 
                 variable_names = {v["variable_name"] for v in variables} if variables else set()
@@ -478,7 +471,9 @@ Rules:
                         raise ValueError("Missing required fields")
 
                     if variable_names and analysis["outcome"] not in variable_names:
-                        print(f"      ⚠ Warning: outcome '{analysis['outcome']}' not in variables")
+                        print(
+                            f"      ⚠ Warning: outcome '{analysis['outcome']}' not in variables"
+                        )
 
                 print(f"    ✓ Extracted {len(analyses)} analyses")
                 return analyses, None
@@ -491,16 +486,12 @@ Rules:
                     continue
                 else:
                     print(f"    ✗ Failed: {e}")
-                    print(f"    Response preview: {response[:300]}")
+                    print(f"    Response preview: {cleaned[:300]}")
                     break
 
-        # Fallback message
         error_msg = (
             f"Sorry buddy, I tried {self.max_retries} times but couldn't extract analyses. "
-            f"{last_error if last_error else 'Unknown error'}. This might mean:\n"
-            "- The statistical analysis plan isn't clearly described\n"
-            "- The methods section is incomplete\n"
-            "- The document uses unusual statistical terminology"
+            f"{last_error if last_error else 'Unknown error'}."
         )
         return [], error_msg
 
@@ -512,8 +503,8 @@ Rules:
 class ValidationBot(AutoCodeExtractor):
     """Validates extracted data against the SAP"""
 
-    def validate_extraction(self, sap_text: str, extracted_data: dict) -> dict:
-        """Validate the complete extraction - uses first 15k chars for efficiency"""
+    def validate_extraction(self, sap_text: str, extracted_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Validate the complete extraction"""
 
         sap_excerpt = sap_text[:1000000]
         print(f"    Using excerpt for validation: {len(sap_excerpt):,} chars")
@@ -549,18 +540,17 @@ Scores are 0-10 (10 = perfect). Output ONLY JSON.
                 "suggestions": [],
             }
 
-        # Clean response
-        response = response.strip()
-        if response.startswith("```json"):
-            response = response[7:]
-        if response.startswith("```"):
-            response = response[3:]
-        if response.endswith("```"):
-            response = response[:-3]
-        response = response.strip()
+        cleaned = response.strip()
+        if cleaned.startswith("```json"):
+            cleaned = cleaned[7:]
+        if cleaned.startswith("```"):
+            cleaned = cleaned[3:]
+        if cleaned.endswith("```"):
+            cleaned = cleaned[:-3]
+        cleaned = cleaned.strip()
 
         try:
-            validation = json.loads(response)
+            validation = json.loads(cleaned)
             return validation
         except json.JSONDecodeError as e:
             return {
@@ -580,10 +570,12 @@ class ExtractionEvaluator:
     """Evaluate extraction quality with metrics"""
 
     @staticmethod
-    def evaluate(sap_text: str, extracted_data: dict, validation_result: dict | None) -> dict:
+    def evaluate(
+        sap_text: str, extracted_data: Dict[str, Any], validation_result: Optional[Dict[str, Any]]
+    ) -> Dict[str, Any]:
         """Calculate metrics for the extraction"""
 
-        metrics: dict[str, Any] = {
+        metrics: Dict[str, Any] = {
             "items_extracted": {
                 "timepoints": len(extracted_data.get("timepoints", [])),
                 "variables": len(extracted_data.get("variables", [])),
@@ -597,8 +589,9 @@ class ExtractionEvaluator:
             timepoints = extracted_data.get("timepoints", [])
             if timepoints:
                 values = [tp["value"] for tp in timepoints]
-                if values != list(range(len(values))):
-                    metrics["issues"].append("Timepoint values not sequential")
+                # They don't *have* to be sequential, but it's a nice check
+                if sorted(values) != values:
+                    metrics["issues"].append("Timepoint values not sorted ascending")
 
             variables = extracted_data.get("variables", [])
             valid_timepoint_values = {tp["value"] for tp in timepoints}
@@ -632,333 +625,172 @@ class ExtractionEvaluator:
         return metrics
 
 
+# ============================================================
+# CONVERSATIONAL WRAPPER
+# ============================================================
+
 class AutoCodeConversation:
     """
-    Lightweight conversational wrapper around the AutoCodePipeline result.
-
-    - Holds the current JSON result in `self.result`
-    - Lets the user edit sections (timepoints / variables / analyses) with
-      natural language instructions.
-    - You can either:
-        - call `apply_user_edit("timepoints", "remove the 36-month timepoint")`
-        - or call `chat("No, you've added an extra timepoint at 6 months, remove it.")`
-          and let the assistant infer which section to edit.
+    Wraps an AutoCodePipeline result and allows conversational edits
+    to timepoints / variables / analyses.
     """
 
     def __init__(
         self,
         chat_bot,
-        initial_result: dict,
-        original_content: dict | None = None,
+        pipeline: AutoCodePipeline,
+        content_dictionary: Dict[str, str],
+        initial_result: Dict[str, Any],
     ):
         self.chat_bot = chat_bot
-        self.result: dict = initial_result
-        self.original_content: dict | None = original_content
-        self.history: list[dict[str, str]] = []  # optional conversational log
+        self.pipeline = pipeline
+        self.content_dictionary = content_dictionary
+        self.result: Dict[str, Any] = initial_result
+        self.history: List[Dict[str, str]] = []  # simple text history
 
-    # ------------------------------------------------------------------
-    # Core helper: call LLM to edit a specific section
-    # ------------------------------------------------------------------
-    def _edit_section_with_llm(self, section: str, user_message: str) -> list[dict]:
+    # ---------------------------- internal helpers ----------------------------
+
+    def _edit_section_with_llm(self, section_name: str, user_message: str) -> Any:
         """
-        Ask the model to update ONE section (timepoints / variables / analyses)
-        based on a free-text user instruction.
-
-        Returns the updated list for that section.
+        Ask the model to edit the JSON for a single section (timepoints/variables/analyses)
+        based on a free-text user request.
         """
 
-        if section not in {"timepoints", "variables", "analyses"}:
-            raise ValueError(f"Unknown section '{section}' – must be 'timepoints', 'variables', or 'analyses'.")
-
-        current_section_json = self.result.get(section, [])
+        current_section = self.result.get(section_name, [])
+        current_json = json.dumps(current_section, indent=2)
 
         system_message = (
-            "You are helping edit a structured JSON specification for a Statistical Analysis Plan.\n"
-            "You will receive:\n"
-            "  - The name of the section being edited (timepoints, variables, or analyses)\n"
-            "  - The CURRENT JSON array for that section\n"
-            "  - A human instruction describing the edits to make\n\n"
-            "Your job is to apply ONLY the requested edits and return the UPDATED JSON ARRAY.\n\n"
-            "CRITICAL RULES:\n"
-            "  - Respond with VALID JSON **array** only (no extra keys, no wrapper object).\n"
-            "  - Do NOT include explanations, comments, or markdown fences.\n"
-            "  - Preserve existing entries unless the user explicitly asks to change/remove them.\n"
-            "  - Maintain the same field names and structure as the input JSON.\n"
+            "You are helping a statistician edit a structured JSON representation of a "
+            "Statistical Analysis Plan. You MUST:\n"
+            "- Respect the JSON schema already in use for that section.\n"
+            "- Keep field names identical.\n"
+            "- Only modify what the user asks you to change.\n"
+            "- Return ONLY valid JSON (no comments, no markdown).\n"
         )
 
-        prompt = f"""
-Section being edited: {section}
+        prompt = f"""We are editing the '{section_name}' section.
 
-Current JSON for this section:
-{json.dumps(current_section_json, indent=2)}
+Current JSON for {section_name}:
+{current_json}
 
-User instruction:
-{user_message}
+User request:
+\"\"\"{user_message}\"\"\"
 
-Return ONLY the updated JSON array for this section.
-"""
 
-        response = self.chat_bot.get_response(
-            prompt=prompt,
-            system_message=system_message,
-            reasoning_effort="medium",
-            verbosity="low",
-        )
-        raw = (response.get("content", "") or "").strip()
-
-        # Strip accidental markdown fences if present
-        if raw.startswith("```json"):
-            raw = raw[7:]
-        if raw.startswith("```"):
-            raw = raw[3:]
-        if raw.endswith("```"):
-            raw = raw[:-3]
-        raw = raw.strip()
+Update ONLY the JSON for this section to satisfy the user's request.
+Return ONLY the updated JSON (no explanation, no markdown)."""
 
         try:
-            updated_section = json.loads(raw)
-        except json.JSONDecodeError as e:
-            print(f"[AutoCodeConversation] JSON parse error while editing '{section}': {e}")
-            print("  Raw response (first 300 chars):", raw[:300])
-            # Fail-safe: keep original section
-            updated_section = current_section_json
+            response = self.chat_bot.get_response(prompt=prompt, system_message=system_message)
+            raw = (response.get("content", "") or "").strip()
+        except Exception as e:
+            print(f"Edit error for section '{section_name}': {e}")
+            return current_section
 
-        if not isinstance(updated_section, list):
-            print(f"[AutoCodeConversation] Updated section for '{section}' is not a list – keeping original.")
-            updated_section = current_section_json
+        # Clean potential fences
+        cleaned = raw
+        if cleaned.startswith("```json"):
+            cleaned = cleaned[7:]
+        if cleaned.startswith("```"):
+            cleaned = cleaned[3:]
+        if cleaned.endswith("```"):
+            cleaned = cleaned[:-3]
+        cleaned = cleaned.strip()
+
+        try:
+            updated_section = json.loads(cleaned)
+        except json.JSONDecodeError as e:
+            print(f"⚠ Failed to parse edited JSON for {section_name}: {e}")
+            print(f"   Raw response (first 300 chars): {cleaned[:300]}")
+            return current_section
 
         return updated_section
 
-    # ------------------------------------------------------------------
-    # Direct section edit (explicit)
-    # ------------------------------------------------------------------
-    def apply_user_edit(self, section: str, user_message: str) -> dict:
-        """
-        Explicitly edit a specific section.
-
-        Example:
-            convo.apply_user_edit(
-                "timepoints",
-                "No, you've added an extra timepoint at 6 months, please remove it."
-            )
-        """
-        self.history.append({"role": "user", "section": section, "message": user_message})
-        updated_section = self._edit_section_with_llm(section, user_message)
-        self.result[section] = updated_section
-        self.history.append({"role": "assistant", "section": section, "message": "[JSON updated]"})
-        return self.result
-
-    # ------------------------------------------------------------------
-    # Helper: infer which section the user is talking about
-    # ------------------------------------------------------------------
     def _infer_section_from_message(self, user_message: str) -> str:
         """
-        Very small heuristic + LLM-backed classifier to decide which section
-        ('timepoints', 'variables', or 'analyses') the user is likely referring to.
+        Very simple heuristic to decide which section the user is referring to.
         """
 
-        msg = user_message.lower()
+        text = user_message.lower()
 
-        # Heuristics first (cheap + robust for common cases)
-        if any(word in msg for word in ["timepoint", "time point", "month", "week", "visit", "session", "baseline", "follow-up", "follow up"]):
+        # Obvious keywords
+        if any(k in text for k in ["timepoint", "time point", "month", "visit", "follow-up", "follow up"]):
             return "timepoints"
-        if any(word in msg for word in ["variable", "outcome", "endpoint", "eq-5d", "eq5d", "survival time"]):
+        if any(k in text for k in ["variable", "outcome", "endpoint", "measure"]):
             return "variables"
-        if any(word in msg for word in ["analysis", "model", "cox", "ancova", "mixed model", "regression", "logistic"]):
+        if any(k in text for k in ["analysis", "model", "cox", "ancova", "mixed model", "regression"]):
             return "analyses"
 
-        # If unclear, ask the model to classify
-        system_message = (
-            "You are a classifier that decides which part of a Statistical Analysis Plan JSON "
-            "the user wants to modify.\n"
-            "You MUST answer with exactly one of: timepoints, variables, analyses.\n"
-            "Do not add any explanation or punctuation."
-        )
-
-        prompt = """
-We have three editable sections:
-- timepoints: when outcomes are measured (baseline, months, visits, sessions)
-- variables: which outcomes are measured and at which timepoints
-- analyses: statistical models, covariates, and comparisons
-
-User message:
-\"\"\"%s\"\"\" 
-
-Which section should be edited? Answer with one word only:
-timepoints
-variables
-analyses
-""" % user_message
-
-        response = self.chat_bot.get_response(
-            prompt=prompt,
-            system_message=system_message,
-            reasoning_effort="minimal",
-            verbosity="low",
-        )
-        sec_raw = (response.get("content", "") or "").strip().lower()
-
-        if "time" in sec_raw or "point" in sec_raw:
+        # Fallback: if they mention '6 months', '12 months', etc, assume timepoints
+        if any(m in text for m in ["6 months", "12 months", "18 months", "24 months", "30 months", "36 months"]):
             return "timepoints"
-        if "analysis" in sec_raw or "analyses" in sec_raw or "model" in sec_raw:
-            return "analyses"
-        if "variable" in sec_raw or "outcome" in sec_raw:
-            return "variables"
 
-        # very conservative default
-        return "variables"
+        # Default to timepoints (safest for manual tweaking)
+        return "timepoints"
 
-    # ------------------------------------------------------------------
-    # High-level chat: user just types and we decide what to edit
-    # ------------------------------------------------------------------
-    def chat(self, user_message: str) -> dict:
+    # ---------------------------- public API ----------------------------------
+
+    def apply_user_edit(self, section_name: str, user_message: str) -> Dict[str, Any]:
         """
-        Chatty interface: user does NOT need to name the section.
+        Explicitly edit one section based on a free-text instruction.
+        section_name ∈ {"timepoints", "variables", "analyses"}.
+        Returns the full updated result dict.
+        """
+        if section_name not in {"timepoints", "variables", "analyses"}:
+            raise ValueError(f"Unknown section_name '{section_name}'")
 
-        Example:
-            convo.chat("No, you've added an extra timepoint at 6 months, can you take it out?")
+        updated = self._edit_section_with_llm(section_name, user_message)
+        self.result[section_name] = updated
+
+        # Log to simple history
+        self.history.append(
+            {
+                "role": "user",
+                "section": section_name,
+                "message": user_message,
+            }
+        )
+        self.history.append(
+            {
+                "role": "assistant",
+                "section": section_name,
+                "message": f"Updated {section_name} JSON.",
+            }
+        )
+
+        return self.result
+
+    def chat(self, user_message: str) -> Dict[str, Any]:
+        """
+        Chatty interface: infer which section the user is talking about,
+        apply the edit, return updated result.
         """
         section = self._infer_section_from_message(user_message)
-        self.history.append({"role": "user", "section": section, "message": user_message})
-
-        updated_section = self._edit_section_with_llm(section, user_message)
-        self.result[section] = updated_section
-
-        self.history.append({"role": "assistant", "section": section, "message": "[JSON updated]"})
-        return self.result
+        print(f"(AutoCodeConversation) Interpreting this as an edit to '{section}'")
+        return self.apply_user_edit(section, user_message)
 
 
-# ----------------------------------------------------------------------
-# Top-level helper: run pipeline + wrap in AutoCodeConversation
-# ----------------------------------------------------------------------
+# ============================================================
+# CONVENIENCE ENTRY POINT
+# ============================================================
+
 def run_autocode_with_conversation(
     chat_bot,
-    content_dictionary: dict,
+    content_dictionary: Dict[str, str],
     validate: bool = False,
 ) -> AutoCodeConversation:
     """
-    Convenience function to:
-      1) run the AutoCodePipeline on the supplied content_dictionary
-      2) wrap the result in an AutoCodeConversation for interactive editing
+    Convenience function that:
+      1) Runs the AutoCodePipeline on content_dictionary
+      2) Wraps the result in an AutoCodeConversation
+      3) Returns the conversation object for interactive editing
     """
-
-    pipeline = AutoCodePipeline(chat_bot, validate=validate)
+    pipeline = AutoCodePipeline(chat_bot=chat_bot, validate=validate)
     result = pipeline.extract_all(content_dictionary)
-
-    if result is None:
-        raise RuntimeError("AutoCodePipeline extraction failed; no result to wrap in conversation.")
-
     convo = AutoCodeConversation(
         chat_bot=chat_bot,
+        pipeline=pipeline,
+        content_dictionary=content_dictionary,
         initial_result=result,
-        original_content=content_dictionary,
     )
     return convo
-
-
-# ============================================================
-# CONVERSATIONAL EDITING LAYER
-# ============================================================
-
-class AutoCodeConversation:
-    """
-    Holds the autocode extraction result and lets a caller iteratively refine
-    timepoints / variables / analyses via natural-language instructions.
-
-    Usage pattern (backend):
-
-        convo = AutoCodeConversation(chat_bot, content_dict, initial_result)
-        convo.apply_user_edit("timepoints", "remove the 6 month timepoint")
-        convo.apply_user_edit("variables", "rename the primary outcome label")
-        final_result = convo.result
-    """
-
-    def __init__(
-        self,
-        chat_bot,
-        content_dictionary: dict[str, str],
-        initial_result: dict[str, Any],
-    ):
-        """
-        chat_bot: an OpenAIChat instance
-        content_dictionary: same dict you passed into AutoCodePipeline.extract_all
-                            (so we can pull the right SAP context per section)
-        initial_result: the dict returned by AutoCodePipeline.extract_all
-        """
-        self.chat_bot = chat_bot
-        self.content_dictionary = content_dictionary
-        self.result = initial_result
-
-    def _get_context_for_type(self, item_type: str) -> str:
-        """Return the relevant SAP content for the given item_type."""
-        if item_type == "timepoints":
-            return self.content_dictionary.get("timepoint_content", "")
-        elif item_type == "variables":
-            return self.content_dictionary.get("variables_content", "")
-        elif item_type == "analyses":
-            return self.content_dictionary.get("analysis_content", "")
-        else:
-            return ""
-
-    def apply_user_edit(self, item_type: str, user_instruction: str) -> dict[str, Any]:
-        """
-        Apply a user instruction to one of:
-          - "timepoints"
-          - "variables"
-          - "analyses"
-
-        This calls the model via OpenAIChat.edit_json_items and updates self.result in-place.
-
-        Returns the updated full result dict.
-        """
-
-        if item_type not in ("timepoints", "variables", "analyses"):
-            raise ValueError(f"Unknown item_type: {item_type}")
-
-        current_items = self.result.get(item_type, [])
-        if not isinstance(current_items, list):
-            raise ValueError(f"Expected list for {item_type}, got {type(current_items)}")
-
-        current_json = json.dumps(current_items, indent=2)
-        sap_context = self._get_context_for_type(item_type)
-
-        edited_json_str = self.chat_bot.edit_json_items(
-            item_type=item_type,
-            sap_context=sap_context[:5000],  # keep context at a reasonable length
-            current_json=current_json,
-            user_instruction=user_instruction,
-        )
-
-        try:
-            new_items = json.loads(edited_json_str)
-        except json.JSONDecodeError as e:
-            print(f"⚠ Could not parse edited JSON for {item_type}: {e}")
-            print(f"  Model output was:\n{edited_json_str[:300]}")
-            # Keep previous items if parse fails
-            return self.result
-
-        if not isinstance(new_items, list):
-            print(f"⚠ Model returned non-list JSON for {item_type}; keeping previous items.")
-            return self.result
-
-        self.result[item_type] = new_items
-        return self.result
-
-
-def run_autocode_with_conversation(
-    chat_bot,
-    content_dictionary: dict[str, str],
-    validate: bool = False,
-) -> AutoCodeConversation:
-    """
-    Convenience helper:
-      1) runs the AutoCodePipeline extraction
-      2) wraps result in an AutoCodeConversation
-
-    Returns an AutoCodeConversation instance.
-    """
-    pipeline = AutoCodePipeline(chat_bot, validate=validate)
-    result = pipeline.extract_all(content_dictionary)
-    if result is None:
-        raise RuntimeError("Autocode extraction failed completely.")
-    return AutoCodeConversation(chat_bot, content_dictionary, result)
