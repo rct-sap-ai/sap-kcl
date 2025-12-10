@@ -632,6 +632,230 @@ class ExtractionEvaluator:
         return metrics
 
 
+class AutoCodeConversation:
+    """
+    Lightweight conversational wrapper around the AutoCodePipeline result.
+
+    - Holds the current JSON result in `self.result`
+    - Lets the user edit sections (timepoints / variables / analyses) with
+      natural language instructions.
+    - You can either:
+        - call `apply_user_edit("timepoints", "remove the 36-month timepoint")`
+        - or call `chat("No, you've added an extra timepoint at 6 months, remove it.")`
+          and let the assistant infer which section to edit.
+    """
+
+    def __init__(
+        self,
+        chat_bot,
+        initial_result: dict,
+        original_content: dict | None = None,
+    ):
+        self.chat_bot = chat_bot
+        self.result: dict = initial_result
+        self.original_content: dict | None = original_content
+        self.history: list[dict[str, str]] = []  # optional conversational log
+
+    # ------------------------------------------------------------------
+    # Core helper: call LLM to edit a specific section
+    # ------------------------------------------------------------------
+    def _edit_section_with_llm(self, section: str, user_message: str) -> list[dict]:
+        """
+        Ask the model to update ONE section (timepoints / variables / analyses)
+        based on a free-text user instruction.
+
+        Returns the updated list for that section.
+        """
+
+        if section not in {"timepoints", "variables", "analyses"}:
+            raise ValueError(f"Unknown section '{section}' – must be 'timepoints', 'variables', or 'analyses'.")
+
+        current_section_json = self.result.get(section, [])
+
+        system_message = (
+            "You are helping edit a structured JSON specification for a Statistical Analysis Plan.\n"
+            "You will receive:\n"
+            "  - The name of the section being edited (timepoints, variables, or analyses)\n"
+            "  - The CURRENT JSON array for that section\n"
+            "  - A human instruction describing the edits to make\n\n"
+            "Your job is to apply ONLY the requested edits and return the UPDATED JSON ARRAY.\n\n"
+            "CRITICAL RULES:\n"
+            "  - Respond with VALID JSON **array** only (no extra keys, no wrapper object).\n"
+            "  - Do NOT include explanations, comments, or markdown fences.\n"
+            "  - Preserve existing entries unless the user explicitly asks to change/remove them.\n"
+            "  - Maintain the same field names and structure as the input JSON.\n"
+        )
+
+        prompt = f"""
+Section being edited: {section}
+
+Current JSON for this section:
+{json.dumps(current_section_json, indent=2)}
+
+User instruction:
+{user_message}
+
+Return ONLY the updated JSON array for this section.
+"""
+
+        response = self.chat_bot.get_response(
+            prompt=prompt,
+            system_message=system_message,
+            reasoning_effort="medium",
+            verbosity="low",
+        )
+        raw = (response.get("content", "") or "").strip()
+
+        # Strip accidental markdown fences if present
+        if raw.startswith("```json"):
+            raw = raw[7:]
+        if raw.startswith("```"):
+            raw = raw[3:]
+        if raw.endswith("```"):
+            raw = raw[:-3]
+        raw = raw.strip()
+
+        try:
+            updated_section = json.loads(raw)
+        except json.JSONDecodeError as e:
+            print(f"[AutoCodeConversation] JSON parse error while editing '{section}': {e}")
+            print("  Raw response (first 300 chars):", raw[:300])
+            # Fail-safe: keep original section
+            updated_section = current_section_json
+
+        if not isinstance(updated_section, list):
+            print(f"[AutoCodeConversation] Updated section for '{section}' is not a list – keeping original.")
+            updated_section = current_section_json
+
+        return updated_section
+
+    # ------------------------------------------------------------------
+    # Direct section edit (explicit)
+    # ------------------------------------------------------------------
+    def apply_user_edit(self, section: str, user_message: str) -> dict:
+        """
+        Explicitly edit a specific section.
+
+        Example:
+            convo.apply_user_edit(
+                "timepoints",
+                "No, you've added an extra timepoint at 6 months, please remove it."
+            )
+        """
+        self.history.append({"role": "user", "section": section, "message": user_message})
+        updated_section = self._edit_section_with_llm(section, user_message)
+        self.result[section] = updated_section
+        self.history.append({"role": "assistant", "section": section, "message": "[JSON updated]"})
+        return self.result
+
+    # ------------------------------------------------------------------
+    # Helper: infer which section the user is talking about
+    # ------------------------------------------------------------------
+    def _infer_section_from_message(self, user_message: str) -> str:
+        """
+        Very small heuristic + LLM-backed classifier to decide which section
+        ('timepoints', 'variables', or 'analyses') the user is likely referring to.
+        """
+
+        msg = user_message.lower()
+
+        # Heuristics first (cheap + robust for common cases)
+        if any(word in msg for word in ["timepoint", "time point", "month", "week", "visit", "session", "baseline", "follow-up", "follow up"]):
+            return "timepoints"
+        if any(word in msg for word in ["variable", "outcome", "endpoint", "eq-5d", "eq5d", "survival time"]):
+            return "variables"
+        if any(word in msg for word in ["analysis", "model", "cox", "ancova", "mixed model", "regression", "logistic"]):
+            return "analyses"
+
+        # If unclear, ask the model to classify
+        system_message = (
+            "You are a classifier that decides which part of a Statistical Analysis Plan JSON "
+            "the user wants to modify.\n"
+            "You MUST answer with exactly one of: timepoints, variables, analyses.\n"
+            "Do not add any explanation or punctuation."
+        )
+
+        prompt = """
+We have three editable sections:
+- timepoints: when outcomes are measured (baseline, months, visits, sessions)
+- variables: which outcomes are measured and at which timepoints
+- analyses: statistical models, covariates, and comparisons
+
+User message:
+\"\"\"%s\"\"\" 
+
+Which section should be edited? Answer with one word only:
+timepoints
+variables
+analyses
+""" % user_message
+
+        response = self.chat_bot.get_response(
+            prompt=prompt,
+            system_message=system_message,
+            reasoning_effort="minimal",
+            verbosity="low",
+        )
+        sec_raw = (response.get("content", "") or "").strip().lower()
+
+        if "time" in sec_raw or "point" in sec_raw:
+            return "timepoints"
+        if "analysis" in sec_raw or "analyses" in sec_raw or "model" in sec_raw:
+            return "analyses"
+        if "variable" in sec_raw or "outcome" in sec_raw:
+            return "variables"
+
+        # very conservative default
+        return "variables"
+
+    # ------------------------------------------------------------------
+    # High-level chat: user just types and we decide what to edit
+    # ------------------------------------------------------------------
+    def chat(self, user_message: str) -> dict:
+        """
+        Chatty interface: user does NOT need to name the section.
+
+        Example:
+            convo.chat("No, you've added an extra timepoint at 6 months, can you take it out?")
+        """
+        section = self._infer_section_from_message(user_message)
+        self.history.append({"role": "user", "section": section, "message": user_message})
+
+        updated_section = self._edit_section_with_llm(section, user_message)
+        self.result[section] = updated_section
+
+        self.history.append({"role": "assistant", "section": section, "message": "[JSON updated]"})
+        return self.result
+
+
+# ----------------------------------------------------------------------
+# Top-level helper: run pipeline + wrap in AutoCodeConversation
+# ----------------------------------------------------------------------
+def run_autocode_with_conversation(
+    chat_bot,
+    content_dictionary: dict,
+    validate: bool = False,
+) -> AutoCodeConversation:
+    """
+    Convenience function to:
+      1) run the AutoCodePipeline on the supplied content_dictionary
+      2) wrap the result in an AutoCodeConversation for interactive editing
+    """
+
+    pipeline = AutoCodePipeline(chat_bot, validate=validate)
+    result = pipeline.extract_all(content_dictionary)
+
+    if result is None:
+        raise RuntimeError("AutoCodePipeline extraction failed; no result to wrap in conversation.")
+
+    convo = AutoCodeConversation(
+        chat_bot=chat_bot,
+        initial_result=result,
+        original_content=content_dictionary,
+    )
+    return convo
+
+
 # ============================================================
 # CONVERSATIONAL EDITING LAYER
 # ============================================================
