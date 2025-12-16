@@ -3,6 +3,7 @@ from tempfile import template
 from docxtpl import DocxTemplate
 from Classes.chat_classes import OpenAIChat, OpenAIChatAsync
 from Classes.protocol_classes import Protocol
+from Classes.auto_code_classes import AutoCodePipeline
 import asyncio
 from datetime import date
 import time 
@@ -80,3 +81,26 @@ class Template:
         t1 = time.time()
         total_time = round(t1- t0)
         print(f"SAP written in {total_time} seconds")
+
+    def get_autocode_json(self, output_path = None, model = "gpt-5-2025-08-07"):
+        if getattr(self, "sap_content", None) is not None:
+            chat_bot = OpenAIChat(
+                model_name = model, 
+                system_message = ""
+            )
+            pipeline = AutoCodePipeline(chat_bot)
+            
+            # TODO: This may need to be adjusted based on how sap_content is structured for a specific tempalte
+            # could let a set of strings be passed to the template class init specifying which sections of sap content to use.
+            content_for_autocode = {
+                "timepoint_content": self.sap_content.get("primary_outcome_measures", "") + "\n" + self.sap_content.get("secondary_outcome_measures", ""),
+                "variables_content": self.sap_content.get("primary_outcome_measures", "") + "\n" + self.sap_content.get("secondary_outcome_measures", ""),
+                "analysis_content": self.sap_content.get("primary_analysis_model", "") + "\n" + self.sap_content.get("secondary_analysis", "")
+            }
+
+            result = pipeline.extract_all(content_for_autocode)
+            if output_path:
+                pipeline.save_to_json(result, output_path)
+            return result
+        else:
+            raise ValueError("sap_content must be set before creating autocode json.")
