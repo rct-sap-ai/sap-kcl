@@ -1,6 +1,5 @@
 import os
 from typing import Iterable, Optional
-
 import PyPDF2
 
 class Protocol:

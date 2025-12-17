@@ -1,7 +1,7 @@
 import streamlit as st
 import json
-from Classes.protocol_classes import Protocol
-from GenerateTemplates.generate_simple_template import get_autocode_conversation_for_protocol
+from auto_sap.classes.protocol_classes import Protocol
+from auto_sap.generate_templates.generate_simple_template import get_autocode_conversation_for_protocol
 
 st.set_page_config(page_title="SAP Auto-Code Assistant", layout="wide")
 

@@ -8,10 +8,12 @@ from openai import OpenAI
 from docx import Document
 from pypdf import PdfReader
 
-from GenerateTemplates.generate_simple_template import (
+
+
+from auto_sap.generate_templates.generate_simple_template import (
     get_autocode_conversation_for_protocol,
 )
-from Classes.interactive_autocode_conversation import (
+from auto_sap.classes.interactive_autocode_conversation import (
     AdvancedAutoCodeConversation,
 )
 

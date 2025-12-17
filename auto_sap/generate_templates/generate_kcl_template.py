@@ -1,7 +1,7 @@
-from Classes.template_class import Template
-from Classes.prompt_register_class import PromptRegister
+from auto_sap.classes.template_class import Template
+from auto_sap.classes.prompt_register_class import PromptRegister
 
-from Prompts import prompts_06 as prompts_file
+from auto_sap.prompts import prompts_06 as prompts_file
 
 import time 
 
