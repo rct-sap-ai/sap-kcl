@@ -1,9 +1,9 @@
 from pathlib import Path
 from tempfile import template
 from docxtpl import DocxTemplate
-from Classes.chat_classes import OpenAIChat, OpenAIChatAsync
-from Classes.protocol_classes import Protocol
-from Classes.auto_code_classes import AutoCodePipeline
+from auto_sap.classes.chat_classes import OpenAIChat, OpenAIChatAsync
+from auto_sap.classes.protocol_classes import Protocol
+from auto_sap.classes.auto_code_classes import AutoCodePipeline
 import asyncio
 from datetime import date
 import time 
