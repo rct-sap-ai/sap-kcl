@@ -4,7 +4,7 @@ from auto_sap.classes.chat_classes import OpenAIChat
 from auto_sap.classes.auto_code_classes import run_autocode_with_conversation
 
 from auto_sap.prompts import prompts_06 as prompts_file
-
+from importlib.resources import files
 import time
 
 # ----------------------------------------------------------------------
@@ -29,7 +29,7 @@ prompt_tasks = [
 # ----------------------------------------------------------------------
 
 simple_template = Template(
-    template_path="Templates/sapai_kcl_template_v0.2_clean.docx",
+    template_path=files("auto_sap").joinpath("templates/sapai_kcl_template_v0.2_clean.docx"),
     system_message_function=prompts_file.system_message,
     prompt_register=prompt_tasks,
     prompts_dictionary=prompts_file.PROMPTS_DICTIONARY,
