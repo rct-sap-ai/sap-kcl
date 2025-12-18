@@ -29,21 +29,25 @@ class Template:
         self.prompts_name = prompts_name
 
     
-    def get_sap_content(self, protocol_text, model = "gpt-5-2025-08-07"):
+     async def get_sap_content_async(self, protocol_text, model="gpt-5-2025-08-07"):
         chat_bot = OpenAIChatAsync(
-            model_name = model, 
-            system_message = self.system_message_function(protocol_text))
-        self.sap_content = asyncio.run(
-            chat_bot.run_prompts_register(prompt_register=self.prompt_register, prompt_dictionary=self.prompts_dictionary)
+            model_name=model, 
+            system_message=self.system_message_function(protocol_text))
+        
+        self.sap_content = await chat_bot.run_prompts_register(
+            prompt_register=self.prompt_register, 
+            prompt_dictionary=self.prompts_dictionary
         )
 
         today = date.today()
         str_today = today.strftime("%d/%m/%y")
-        self.sap_content .update({"todays_date": str_today})
-
+        self.sap_content.update({"todays_date": str_today})
         self.sap_content.update(
             {"template_prompt_version": f"{self.template_name} with prompts {self.prompts_name}"}
-            )
+        )
+    
+    def get_sap_content(self, protocol_text, model="gpt-5-2025-08-07"):
+        asyncio.run(self.get_sap_content_async(protocol_text, model))
 
         
     def save_content_as_text(self, path):
