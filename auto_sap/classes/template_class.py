@@ -29,7 +29,7 @@ class Template:
         self.prompts_name = prompts_name
 
     
-     async def get_sap_content_async(self, protocol_text, model="gpt-5-2025-08-07"):
+    async def get_sap_content_async(self, protocol_text, model="gpt-5-2025-08-07"):
         chat_bot = OpenAIChatAsync(
             model_name=model, 
             system_message=self.system_message_function(protocol_text))
