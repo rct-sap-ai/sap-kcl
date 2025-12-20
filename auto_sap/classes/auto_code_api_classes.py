@@ -10,7 +10,7 @@ class auto_code_api:
             self.api_url = "http://127.0.0.1:8000/api/"
             self.TOKEN = os.getenv("AUTOCODE_API_TOKEN_DEV")
         else:
-            self.api_url = "https://autocodeapi.example.com/api/"
+            self.api_url = "https://www.statsplan.com/api/"
             self.TOKEN = os.getenv("AUTOCODE_API_TOKEN_PROD")
 
         self.headers = {
