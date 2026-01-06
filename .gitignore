@@ -1,6 +1,5 @@
-SAPs/*.docx
-SAPs/*.txt
-Protocols/*.pdf
+SAPs/*
+Protocols/*
 
 #vscode files
 *workspace
