@@ -399,23 +399,42 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
         """,
 
         "primary_estimand": """
-        - Using only the clinical trial protocol, describe the primary estimand(s) in SAP-ready text.
-        - If a single primary estimand is specified, begin with one short paragraph summarising it in words, then present its components under the five aspects: Population, Endpoint, Treatment condition, Intercurrent events, and Population-level summary.
-        - If multiple primary estimands are defined, provide a brief introductory paragraph and then, for each estimand, give the five aspects clearly labelled so they can be placed under:
-          • Population:
-          • Endpoint:
-          • Treatment condition:
-          • Intercurrent events:
-          • Population-level summary:
-        - For the Population, describe the target population for the estimand as defined in the protocol (e.g., all randomised participants, all participants who received at least one dose, specific subgroups), using the protocol terminology.
-        - For the Endpoint, state the outcome(s) and timepoint(s) relevant to the estimand, including any composite or derived measures, exactly as specified in the protocol.
-        - For the Treatment condition, describe the treatment regimens or arms being contrasted (including dose, duration, and any relevant co-interventions) as they are defined for the estimand in the protocol.
-        - For Intercurrent events, list the intercurrent events considered relevant to the estimand (e.g., treatment discontinuation, rescue medication, death, switch to alternative therapy) and, where stated, describe the handling strategy for each (e.g., treatment-policy, hypothetical, composite, while-on-treatment, principal stratum), using the protocol wording where possible and not inventing strategy labels.
-        - For the Population-level summary, state the contrast or summary measure for the estimand (e.g., difference in means, ratio of means, risk difference, risk ratio, odds ratio, hazard ratio, difference in restricted mean survival time), and the time horizon or follow-up if specified.
-        - Use clear prose and, where appropriate, bullet points so that the output can be placed directly under the headings given in the SAP template.
-        - Do not introduce any additional estimands, populations, endpoints, intercurrent events, or population-level summaries beyond those explicitly described in the protocol.
-        - Do not describe estimation methods, statistical models, or inference procedures here; focus only on defining the estimand(s).
-        - Do not infer or invent any missing details; if one of the five aspects is not explicitly defined in the protocol, state briefly under that aspect that it is not clearly specified.
+        - If the trial is a pilot trial, just return the following statement: The primary goal is to assess the feasibility of delivering a full-scale trial. Such a future trial may be defined using the following estimand framework.
+        - Using only the clinical trial protocol, briefly describe the primary question of interest. For example: "What is the mean difference in MADRS scores at 12 months between patients with treatment-resistant depression allocated to psilocybin versus placebo?"
+        """,
+
+        "estimand_population": """
+        - For the Population, describe the target population for the primary estimand as defined in the protocol (e.g., all randomised participants, all participants who received at least one dose, specific subgroups), using the protocol terminology. If not defined, simply mention target disease area. For example: "Patients with severe chronic eczema (as defined by trial inclusion/exclusion criteria)"
+        - Do not describe methods, models, focus only on a simple statement.
+        - Do not infer or invent any missing details.
+        - Do not include anything for secondary outcomes.
+        """,
+
+        "estimand_endpoint": """
+        - For the Endpoint, state the outcome(s) and timepoint(s) relevant to the primary estimand, including any composite or derived measures, exactly as specified in the protocol.
+        - Do not describe methods, models, focus only on a simple statement.
+        - Do not infer or invent any missing details.
+        """,
+
+        "estimand_tcond": """
+        - For the Treatment condition, describe the treatment regimens or arms being contrasted (including dose, duration, and any relevant co-interventions) as they are defined for the primary estimand in the protocol.
+        - Do not describe methods, models, focus only on a simple statement.
+        - Do not infer or invent any missing details.
+        - Do not include anything for secondary outcomes.
+        """,
+
+        "estimand_popsum": """
+        - For the Population-level summary, state the contrast or summary measure for the primary estimand (e.g., difference in means, ratio of means, risk difference, risk ratio, odds ratio, hazard ratio, difference in restricted mean survival time), and the time horizon or follow-up if specified.
+        - Do not describe methods, models, focus only on a simple statement.
+        - Do not infer or invent any missing details.
+        - Do not include anything for secondary outcomes.
+        """,
+
+        "estimand_intercurrent": """
+        - For Intercurrent events, list the intercurrent events considered relevant to the primary estimand (e.g., treatment discontinuation, rescue medication, death, switch to alternative therapy) and, where stated, describe the handling strategy for each (e.g., treatment-policy, hypothetical, composite, while-on-treatment, principal stratum), using the protocol wording where possible and not inventing strategy labels.  
+        - Do not describe methods, models, focus only on a simple statement.
+        - Do not infer or invent any missing details.
+        - Do not include anything for secondary outcomes.
         """,
 
         "effect_size": """

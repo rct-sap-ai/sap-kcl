@@ -51,6 +51,11 @@ prompt_tasks = [
     PromptRegister("descriptive_concomitant_medications", "minimal","low"),
     PromptRegister("visit_window_deviation", "minimal","low"), # end of second section - outcomes and descriptive analysis
     PromptRegister("primary_estimand", "minimal","low"),
+    PromptRegister("estimand_population","minimal","low"),
+    PromptRegister("estimand_endpoint","minimal","low"),
+    PromptRegister("estimand_tcond","minimal","low"),  
+    PromptRegister("estimand_popsum","minimal","low"),
+    PromptRegister("estimand_intercurrent","medium","low"),             
     #PromptRegister("confidence_interval_p_value", "minimal","low"),
     PromptRegister("primary_analysis_model", "minimal","low"),
     PromptRegister("intercurrent_events_and_analysis", "minimal","low"), 
