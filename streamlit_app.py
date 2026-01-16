@@ -90,7 +90,7 @@ with tab1:
                     if uploaded_file.type == "text/plain":
                         protocol_txt = uploaded_file.read().decode("utf-8")
                     elif uploaded_file.type == "application/pdf":
-                        from pypdf import PdfReader
+                        from PyPDF2 import PdfReader
                         import io
                         pdf_reader = PdfReader(io.BytesIO(uploaded_file.read()))
                         protocol_txt = "\n".join(page.extract_text() for page in pdf_reader.pages)
