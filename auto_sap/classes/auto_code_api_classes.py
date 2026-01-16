@@ -5,13 +5,21 @@ import dotenv
 dotenv.load_dotenv()
 
 class auto_code_api:
-    def __init__(self, dev = False):
-        if dev:
-            self.api_url = "http://127.0.0.1:8000/api/"
-            self.TOKEN = os.getenv("AUTOCODE_API_TOKEN_DEV")
+    def __init__(self, token=None, dev=False):
+        # Determine the URL
+        self.api_url = "http://127.0.0.1:8000/api/" if dev else "https://www.statsplan.com/api/"
+        
+        # 1. Use the passed token 
+        # 2. If None, fall back to the correct environment variable
+        if token:
+            self.TOKEN = token
         else:
-            self.api_url = "https://www.statsplan.com/api/"
-            self.TOKEN = os.getenv("AUTOCODE_API_TOKEN_PROD")
+            env_key = "AUTOCODE_API_TOKEN_DEV" if dev else "AUTOCODE_API_TOKEN_PROD"
+            self.TOKEN = os.getenv(env_key)
+
+        # Throw a clear error if no token was found anywhere
+        if not self.TOKEN:
+            raise ValueError(f"API Token not found. Please provide it or set {env_key}")
 
         self.headers = {
             "Authorization": f"Token {self.TOKEN}",
@@ -63,6 +71,13 @@ class auto_code_api:
     def get_methods(self):
         response = self.get_("method/")
         return response
+    
+    def get_variable_type_id(self, title):
+        variable_types = self.get_("variable_type/")
+        for vt in variable_types:
+            if vt['title'] == title:
+                return vt['id']
+        raise LookupErrorError(f"Variable type with title '{title}' not found.")
 
 
 class trial_creator:
@@ -104,19 +119,42 @@ class trial_creator:
 
         return timepoint_ids
     
-    def update_timevar(self, label = "Timepoint", variable = "timepoint", variable_type = "Categorical"):
-        timevar = self.api.post_(endpoint = "measure/", data = {
-            "label": label,
-            "variable": variable,
-            "variable_type": variable_type}
-        )
-        self.time_variable_id = timevar['id']
+    def add_measure(self, variable_data, value_labels = None):
+        if value_labels is not None:
+            value_label_ids = []
+            for label in value_labels:
+                value_label =self.api.post_(endpoint = "value_label/", data = label)
+                value_label_ids.append(value_label['id'])
+            variable_data['value_labels'] = value_label_ids
 
+
+        variable_type_id = self.api.get_variable_type_id(variable_data['variable_type'])
+        variable_data['variable_type'] = variable_type_id
+
+        measure = self.api.post_(endpoint = "measure/", data = variable_data)
+        
+        return measure
+
+    def update_timevar(self, variable_data, value_labels):
+        timevar = self.add_measure(variable_data, value_labels)
+        self.time_variable_id = timevar['id']
         new_data = {
             "time_variable": self.time_variable_id,
         }
         self.patch_trial(new_data = new_data)
         return timevar
+    
+    def update_allocation_variable(self, variable_data, value_labels):
+        allocation_var = "Method not yet implemented"
+        print("Allocation variable update not yet implemented.")
+        
+        # allocation_var = self.add_measure(variable_data, value_labels)
+        # self.allocation_variable_id = allocation_var['id']
+        # new_data = {
+        #     "allocation_variable": self.allocation_variable_id,
+        # }
+        # self.patch_trial(new_data = new_data)
+        return allocation_var
 
     def update_allocation_groups(self, allocation_group_list):
         allocation_group_ids = []
@@ -165,7 +203,9 @@ class trial_creator:
                 "variable": outcome['variable'],
                 "variable_type": outcome['variable_type']
             }
-            measure_response = self.api.post_(endpoint = "measure/", data = measure_data)
+            value_labels = outcome.get('value_labels', None)
+
+            measure_response = self.add_measure(measure_data, value_labels)
             measure_id = measure_response['id']
             timepoint_list = self.get_timepoints()
         
@@ -239,9 +279,7 @@ class trial_creator:
         trial_data = self.api.get_(endpoint = f"trial/{self.trial_id}", params = {"expand": "true"})
         return trial_data
     
-    def get_methods(self):
-        response = self.api.get_("method/")
-        return response
+
     
 
         
