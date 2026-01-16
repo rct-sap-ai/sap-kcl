@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+import json
 
 st.set_page_config(
     page_title="SAP AutoCode",
@@ -27,7 +28,7 @@ with st.sidebar:
         
         # Try to import backend
         try:
-            from GenerateTemplates.generate_simple_template import get_autocode_conversation_for_protocol
+            from auto_sap.generate_templates.generate_simple_template import get_autocode_conversation_for_protocol
             backend_available = True
             st.success("✅ Backend loaded")
         except ImportError as e:
@@ -102,6 +103,9 @@ with tab1:
                         st.error("Unsupported file type")
                         st.stop()
                     
+                    # Import here after API key is set
+                    from auto_sap.generate_templates.generate_simple_template import get_autocode_conversation_for_protocol
+                    
                     # Generate SAP using your actual backend
                     st.info("Calling auto code extraction pipeline...")
                     conversation = get_autocode_conversation_for_protocol(protocol_txt)
@@ -132,7 +136,6 @@ with tab2:
             st.json(st.session_state.conversation.result)
         
         # Download button
-        import json
         json_str = json.dumps(st.session_state.conversation.result, indent=2)
         st.download_button(
             label="💾 Download JSON",
