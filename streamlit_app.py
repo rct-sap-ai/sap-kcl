@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import json
+import pandas as pd
 
 st.set_page_config(
     page_title="SAP AutoCode",
@@ -132,8 +133,21 @@ with tab2:
         st.success(f"Working on: {st.session_state.get('protocol_name', 'Protocol')}")
         
         # Show current JSON
-        with st.expander("📊 View Current JSON", expanded=False):
-            st.json(st.session_state.conversation.result)
+        data = st.session_state.conversation.result
+
+        timepoints_df = pd.DataFrame(data["timepoints"])
+        variables_df = pd.DataFrame(data["variables"])
+        analyses_df = pd.DataFrame(data["analyses"])
+
+        with st.expander("📊 Timepoints", expanded=False):
+            st.dataframe(timepoints_df, use_container_width=True)
+
+        with st.expander("📊 Variables", expanded=False):
+            st.dataframe(variables_df, use_container_width=True)
+
+        with st.expander("📊 Analyses", expanded=False):
+            st.dataframe(analyses_df, use_container_width=True)
+
         
         # Download button
         json_str = json.dumps(st.session_state.conversation.result, indent=2)
