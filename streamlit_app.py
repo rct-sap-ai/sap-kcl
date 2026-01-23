@@ -128,25 +128,65 @@ with tab1:
 
 with tab2:
     st.markdown("### Refine SAP JSON")
-    
+
     if st.session_state.conversation is not None:
         st.success(f"Working on: {st.session_state.get('protocol_name', 'Protocol')}")
-        
-        # Show current JSON
-        data = st.session_state.conversation.result
 
-        timepoints_df = pd.DataFrame(data["timepoints"])
-        variables_df = pd.DataFrame(data["variables"])
-        analyses_df = pd.DataFrame(data["analyses"])
+        if "last_editor" not in st.session_state:
+            st.session_state.last_editor = None
+
+        def load_dfs_from_json():
+            data = st.session_state.conversation.result
+            st.session_state.timepoints_df = pd.DataFrame(data["timepoints"])
+            st.session_state.variables_df = pd.DataFrame(data["variables"])
+            st.session_state.analyses_df = pd.DataFrame(data["analyses"])
+    
+
+        
+        if "timepoints_df" not in st.session_state or st.session_state.last_editor == "chat":
+            load_dfs_from_json()
+            st.session_state.last_editor = None
 
         with st.expander("📊 Timepoints", expanded=False):
-            st.dataframe(timepoints_df, use_container_width=True)
+            st.session_state.timepoints_df = st.data_editor(
+                st.session_state.timepoints_df,
+                num_rows="dynamic",
+                use_container_width=True,
+                key="timepoints_editor"
+            )
 
         with st.expander("📊 Variables", expanded=False):
-            st.dataframe(variables_df, use_container_width=True)
+            st.session_state.variables_df = st.data_editor(
+                st.session_state.variables_df,
+                num_rows="dynamic",
+                use_container_width=True,
+                key="variables_editor"
+            )
 
         with st.expander("📊 Analyses", expanded=False):
-            st.dataframe(analyses_df, use_container_width=True)
+            st.session_state.analyses_df = st.data_editor(
+                st.session_state.analyses_df,
+                num_rows="dynamic",
+                use_container_width=True,
+                key="analyses_editor"
+            )
+
+        if not st.session_state.timepoints_df.empty:
+            st.session_state.conversation.result["timepoints"] = (
+                st.session_state.timepoints_df.to_dict("records")
+            )
+
+        if not st.session_state.variables_df.empty:
+            st.session_state.conversation.result["variables"] = (
+                st.session_state.variables_df.to_dict("records")
+            )
+
+        if not st.session_state.analyses_df.empty:
+            st.session_state.conversation.result["analyses"] = (
+                st.session_state.analyses_df.to_dict("records")
+        )
+        
+        st.session_state.last_editor = "table"
 
         
         # Download button
@@ -179,6 +219,8 @@ with tab2:
                 try:
                     # Use conversation.chat() to refine
                     st.session_state.conversation.chat(user_input)
+                    st.session_state.last_editor = "chat"
+
                     
                     # Show updated JSON
                     response = f"✅ Updated! Check the JSON above to see changes."

@@ -15,11 +15,11 @@ import time
 # PromptRegister(variable, reasoning_effort, verbosity)
 
 prompt_tasks = [
-    PromptRegister("title", "low", "low"),
+    PromptRegister("title", "minimal", "low"),
     PromptRegister("trial_acronym", "minimal", "low"),
-    PromptRegister("primary_outcome_measures", "medium", "low"),
-    PromptRegister("secondary_outcome_measures", "medium", "low"),
-    PromptRegister("timing_of_analysis", "low", "low"),
+    PromptRegister("primary_outcome_measures", "minimal", "low"),
+    PromptRegister("secondary_outcome_measures", "minimal", "low"),
+    PromptRegister("timing_of_analysis", "minimal", "low"),
     PromptRegister("primary_analysis_model", "minimal", "low"),
     PromptRegister("secondary_analysis", "minimal", "low"),
 ]
