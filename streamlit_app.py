@@ -12,7 +12,7 @@ st.set_page_config(
 st.title("🏥 KCL Clinical Trials Unit")
 st.header("SAP AutoCode System")
 st.markdown("Automated Statistical Analysis Plan generation from trial protocols")
-
+st.markdown("**edits made**")
 # Sidebar for API key
 with st.sidebar:
     st.markdown("### 🔑 API Configuration")
