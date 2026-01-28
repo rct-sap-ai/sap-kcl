@@ -1,9 +1,12 @@
 from auto_sap.classes.auto_code_api_classes import auto_code_api, trial_creator
 import json
+import zipfile
+import io
+import os
 
 #set up connection to auto_code API. Only set dev = True if you have access to a local development server.
 # The API class looks for an environment variable named AUTOCODE_API_TOKEN_DEV or AUTOCODE_API_TOKEN_PROD. This can be passed using the 'token' argument if preferred.
-api = auto_code_api(dev = False)
+api = auto_code_api(dev = True )
 
 # Inputs:
 aconym = "API_TRIAL_EXAMPLE"
@@ -76,5 +79,18 @@ time_var_response = trial_manager.update_timevar(variable_data = time_var, value
 allocation_var_response = trial_manager.update_allocation_variable(variable_data = allocation_var, value_labels = allocation_value_labels)
 trial_manager.update_outcomes(outcomes)
 trial_manager.add_analyses(analysis_list)
-    
+report_response = trial_manager.create_main_analysis_report()
+print(report_response)
+code_response = trial_manager.get_code_for_main_analysis()
+
+extract_path = 'Generated Code/Eg1/'
+os.makedirs(extract_path, exist_ok=True)
+
+with zipfile.ZipFile(io.BytesIO(code_response)) as zip_ref:
+    zip_ref.extractall(extract_path)
+
+print(f"Files extracted to: {extract_path}")
+
+
+
 

@@ -39,7 +39,16 @@ class auto_code_api:
         response = requests.post(url, json=data, headers=self.headers)
         response.raise_for_status() 
 
-        return response.json()
+        if response.content:
+            return response.json()
+        return None
+    
+    def post_file(self, data, endpoint: str):
+        """Download a file from a POST endpoint and return binary content."""
+        url = f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}"
+        response = requests.post(url, json=data, headers=self.headers)
+        response.raise_for_status()
+        return response.content
 
 
     def get_(self, endpoint: str, params: dict = None):
@@ -60,8 +69,7 @@ class auto_code_api:
         response.raise_for_status()
         return response.json()
     
-    def clear_trial(self, endpoint: str, trial_id: int):
-
+    def clear_data_for_trial(self, endpoint: str, trial_id: int):
         url = f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}clear-trial/?trial_id={trial_id}"
         response = requests.delete(url, headers=self.headers)
         response.raise_for_status()
@@ -130,12 +138,14 @@ class trial_creator:
 
         variable_type_id = self.api.get_variable_type_id(variable_data['variable_type'])
         variable_data['variable_type'] = variable_type_id
+        variable_data['value_labels'] = value_label_ids if value_labels is not None else []
 
         measure = self.api.post_(endpoint = "measure/", data = variable_data)
         
         return measure
-
+    
     def update_timevar(self, variable_data, value_labels):
+        self.update_timepoints(value_labels)
         timevar = self.add_measure(variable_data, value_labels)
         self.time_variable_id = timevar['id']
         new_data = {
@@ -225,7 +235,7 @@ class trial_creator:
         return outcome_ids
     
     def update_outcomes(self, outcome_list):
-        self.api.clear_trial(endpoint=f"outcome_variable/", trial_id=self.trial_id)
+        self.api.clear_data_for_trial(endpoint=f"outcome_variable/", trial_id=self.trial_id)
         outcome_ids = self.add_outcomes(outcome_list)
         return outcome_ids
     
@@ -279,7 +289,15 @@ class trial_creator:
         trial_data = self.api.get_(endpoint = f"trial/{self.trial_id}", params = {"expand": "true"})
         return trial_data
     
-
+    def create_main_analysis_report(self):
+        print("Creating main analysis report...")
+        response = self.api.post_(endpoint = f"trial/{self.trial_id}/create_main_analysis_report/", data = {})
+        return response
     
-
-        
+    def get_code_for_main_analysis(self):
+        print("Fetching code for main analysis report...")
+        response = self.api.post_file(
+            endpoint = f"trial/{self.trial_id}/get_code_for_report/", 
+            data = {'report_title': 'Main Analysis'})
+        return response
+    
