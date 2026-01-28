@@ -6,7 +6,9 @@ import os
 
 #set up connection to auto_code API. Only set dev = True if you have access to a local development server.
 # The API class looks for an environment variable named AUTOCODE_API_TOKEN_DEV or AUTOCODE_API_TOKEN_PROD. This can be passed using the 'token' argument if preferred.
-api = auto_code_api(dev = True )
+
+dev_flag = True
+api = auto_code_api(dev = dev_flag)
 
 # Inputs:
 aconym = "API_TRIAL_EXAMPLE"
@@ -45,28 +47,35 @@ possible_methods = api.get_methods()
 print("POSSIBLE METHODS:")
 print(json.dumps(possible_methods, indent=4))
 
+descriptive_method_id = 1
+if dev_flag:
+    descriptive_method_id = 1  # In DEV, the IDs may differ
+linear_model_method_id = 2
+if dev_flag:
+    linear_model_method_id = 3  # In DEV, the IDs may differ
+
 analysis_list = [
           {
             "outcome_label": "Depression Score",
             "timepoint": "Baseline",
-            "method": 1,
+            "method": descriptive_method_id,
             "table": "baseline"
         },  {
             "outcome_label": "Anxiety Score",
             "timepoint": "Baseline",
-            "method": 1,
+            "method": descriptive_method_id,
             "table": "baseline"
         },
         {
             "outcome_label": "Depression Score",
             "timepoint": "8 Weeks",
-            "method": 2,
+            "method": linear_model_method_id,
             "table": "main_analysis"
         },
                 {
             "outcome_label": "Anxiety Score",
             "timepoint": "6 Months",
-            "method": 2,
+            "method": linear_model_method_id,
             "table": "main_analysis"
         }
     ]
