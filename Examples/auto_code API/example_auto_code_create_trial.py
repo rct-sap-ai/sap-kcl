@@ -14,8 +14,13 @@ api = auto_code_api(dev = dev_flag)
 aconym = "API_TRIAL_EXAMPLE"
 title = "API Trial Example"
 
-allocation_var = {'variable': 'allocation', 'label': 'Allocation Group', 'variable_type': 'Categorical'}
-allocation_value_labels = [
+
+design_variables = [
+    {'design_parameter': "allocation", 'variable':"treatment_group", 'label': "Treatment Group"},
+    #{'design_parameter': "centre", 'variable':"site", 'label': "Site"}, uncomment for multicentre example
+]
+
+allocation_groups = [
     {"value": 0, "label": "Control"},
     {"value": 1, "label": "Intervention"},
 ]
@@ -85,7 +90,8 @@ trial_manager = trial_creator(api, acronym = aconym, title = title)
 
 # Sending data
 time_var_response = trial_manager.update_timevar(variable_data = time_var, value_labels = timepoint_value_labels)
-allocation_var_response = trial_manager.update_allocation_variable(variable_data = allocation_var, value_labels = allocation_value_labels)
+allocation_groups_response = trial_manager.update_allocation_groups(allocation_group_list = allocation_groups)
+trial_manager.update_design_variables(design_variables)
 trial_manager.update_outcomes(outcomes)
 trial_manager.add_analyses(analysis_list)
 report_response = trial_manager.create_main_analysis_report()

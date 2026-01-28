@@ -131,6 +131,7 @@ class trial_creator:
         if value_labels is not None:
             value_label_ids = []
             for label in value_labels:
+                print("Posting value label:", label)
                 value_label =self.api.post_(endpoint = "value_label/", data = label)
                 value_label_ids.append(value_label['id'])
             variable_data['value_labels'] = value_label_ids
@@ -165,6 +166,30 @@ class trial_creator:
         # }
         # self.patch_trial(new_data = new_data)
         return allocation_var
+    
+    def update_design_variables(self, design_variable_list):
+        
+        design_variable_ids = []
+        for dv in design_variable_list:
+            variable_data = {
+                "variable": dv['variable'],
+                "label": dv['label'],
+                "variable_type": "Binary"
+            }
+            measure_response = self.add_measure(variable_data, value_labels = None)
+            measure_id = measure_response['id']
+            
+            dv_data = {
+                "variable": measure_id,
+                "parameter": dv['design_parameter'],
+                "trial": self.trial_id,
+            }
+            response = self.api.post_(endpoint = "design_variable/", data = dv_data)
+            print("Posted design variable:", response)
+            design_variable_ids.append(response['id'])
+        self.design_variable_ids = design_variable_ids
+
+        return design_variable_ids
 
     def update_allocation_groups(self, allocation_group_list):
         allocation_group_ids = []
