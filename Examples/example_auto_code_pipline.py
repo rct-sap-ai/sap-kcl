@@ -51,6 +51,7 @@ timepoints_return = timepoint_extractor.extract_timepoints(timepoint_content)
 timepoints_list = timepoints_return[0]
 print("\n Extracted timepoints are: \n", timepoints_list)
 
+# Validator: Should probably move this to a validator class/file or add to the TimpointExtractor class
 def is_valid_timepoints(lst):
     # Check if it's a list
     if not isinstance(lst, list):
