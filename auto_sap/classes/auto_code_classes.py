@@ -186,7 +186,7 @@ class TimepointExtractor(AutoCodeExtractor):
 SAP Text:
 {sap_text}
 
-Your task: Find all time measurements mentioned (baseline, follow-up visits, etc.)
+Your task: Extract the timepoints from the follow_up_timepoints field.
 
 Return a JSON array in this EXACT format:
 [
@@ -196,8 +196,9 @@ Return a JSON array in this EXACT format:
 
 Rules:
 - value 0 = baseline, value 1 = first follow-up, value 2 = second follow-up, etc.
-- label = exact description from SAP or the prompts
+- label = exact description of timepoint. For post baseline timepoints, only include number and units (e.g., "6 months", "12 weeks")
 - Include ALL timepoints you find
+- Do not include any duplicate timepoints
 - Output ONLY the JSON array, no explanation, no markdown
 """
 
@@ -291,18 +292,20 @@ Available timepoints:
 Return a JSON array in this EXACT format:
 [
   {{
-    "label": "Primary outcome: Depression score (PHQ-9)",
-    "variable_name": "phq9_total",
-    "timepoints": [0, 1, 2],
-    "type": "continuous"
+    "label": "Depression score (PHQ-9)",
+    "variable": "phq9_total",
+    "timepoints": ["Baseline", "8 Weeks", "6 Months"],
+    "variable_type": "Continuous"
   }}
 ]
 
+
+
 Rules:
-- label = human readable description
-- variable_name = valid Python/R name (lowercase, underscores)
-- timepoints = list of timepoint values from above
-- type = one of: continuous, binary, categorical, count, time_to_event
+- label = human readable description less than 80 characters.
+- variable = lowercase variable name with underscores, no spaces. max 28 characters.
+- timepoints = list of timepoint labels from above
+- variable_type = one of: Continuous, Binary, Categorical, Count, Time to event
 - Output ONLY the JSON array
 """
 
@@ -346,7 +349,7 @@ Rules:
                         "The SAP might not clearly define primary/secondary outcomes."
                     )
 
-                valid_types = {"continuous", "binary", "categorical", "count", "time_to_event"}
+                valid_types = {"Continuous", "Binary", "Categorical", "Count", "Time to event"}
                 for var in variables:
                     if not isinstance(var, dict):
                         last_error = "Variables were not in the correct format"
@@ -407,7 +410,6 @@ Return a JSON array in this EXACT format:
     "model": "linear_mixed_model",
     "outcome": "phq9_total",
     "covariates": ["baseline_phq9", "age"],
-    "comparison": "treatment vs control"
   }}
 ]
 
