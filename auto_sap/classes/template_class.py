@@ -7,6 +7,7 @@ from auto_sap.classes.auto_code_classes import AutoCodePipeline
 import asyncio
 from datetime import date
 import time 
+import json
 
 
 
@@ -56,6 +57,11 @@ class Template:
             for key, value in sap_content.items():
                 f.write(f"{key}: {value}\n")
         print(f"raw SAP content saved to {path}")
+
+    def save_content_as_json(self, path):
+        sap_content = self.sap_content
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(sap_content, f, indent=4)
             
 
     def populate(self, sap_folder, sap_name = 'SAP.docx'):
@@ -78,7 +84,7 @@ class Template:
         else:
             print("Test enabled - running with gpt5 nano")
             self.get_sap_content(protocol.protocol_txt, model = "gpt-5-nano")
-
+        self.save_content_as_json(path = f"{sap_folder_path}/{sap_name}.json")
         self.save_content_as_text(path = f"{sap_folder_path}/{sap_name}_content.txt")
         self.populate(sap_folder = sap_folder_path, sap_name = f"{sap_name}.docx")
 
