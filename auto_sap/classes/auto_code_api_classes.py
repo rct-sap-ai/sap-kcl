@@ -326,3 +326,100 @@ class trial_creator:
             data = {'report_title': 'Main Analysis'})
         return response
     
+
+def get_sap_code_from_json(code_json, dev_flag = True):
+
+    # To do, replace defaults with inputs from streamlit app. 
+    # timepoint_value_labels = sap_json.get("timepoints", [])
+    # outcomes = sap_json.get("variables", [])
+    # analyses_list = sap_json.get("analyses", [])
+
+
+    aconym = "API_TRIAL_EXAMPLE"
+    title = "API Trial Example"
+
+    design_variables = [
+        {'design_parameter': "allocation", 'variable':"treatment_group", 'label': "Treatment Group"},
+        #{'design_parameter': "centre", 'variable':"site", 'label': "Site"}, uncomment for multicentre example
+    ]
+
+    allocation_groups = [
+        {"value": 0, "label": "Control"},
+        {"value": 1, "label": "Intervention"},
+    ]
+
+    time_var = {'variable': 'timepoint', 'label': 'Timepoint', 'variable_type': 'Categorical'}
+  
+    timepoint_value_labels = [
+        {"value": 0, "label": "Baseline"},
+        {"value": 1, "label": "8 Weeks"},
+        {"value": 2, "label": "6 Months"},
+    ]
+    outcomes = [
+        {
+            "label": "Depression Score",
+            "variable_type": "Continuous",
+            "variable": "depression",
+            "timepoints": ["Baseline", "8 Weeks", "6 Months"]
+        },
+        {
+            "label": "Anxiety Score",
+            "variable_type": "Continuous",
+            "variable": "anxiety",
+            "timepoints": ["Baseline", "6 Months"]
+        },
+    ]
+
+    descriptive_method_id = 1
+    if dev_flag:
+        descriptive_method_id = 1  # In DEV, the IDs may differ
+    linear_model_method_id = 2
+    if dev_flag:
+        linear_model_method_id = 3  # In DEV, the IDs may differ
+
+    analyses_list = [
+            {
+                "outcome_label": "Depression Score",
+                "timepoint": "Baseline",
+                "method": descriptive_method_id,
+                "table": "baseline"
+            },  {
+                "outcome_label": "Anxiety Score",
+                "timepoint": "Baseline",
+                "method": descriptive_method_id,
+                "table": "baseline"
+            },
+            {
+                "outcome_label": "Depression Score",
+                "timepoint": "8 Weeks",
+                "method": linear_model_method_id,
+                "table": "main_analysis"
+            },
+                    {
+                "outcome_label": "Anxiety Score",
+                "timepoint": "6 Months",
+                "method": linear_model_method_id,
+                "table": "main_analysis"
+            }
+        ]
+
+
+    """Given a SAP autocode JSON, fetch the generated code as a zip file."""
+    api = auto_code_api(dev=dev_flag)
+
+    # Creating the trial 
+    trial_manager = trial_creator(api, acronym = aconym, title = title)
+
+    # Sending data
+    trial_manager.update_timevar(variable_data = time_var, value_labels = timepoint_value_labels)
+    trial_manager.update_allocation_groups(allocation_group_list = allocation_groups)
+    trial_manager.update_design_variables(design_variables)
+    trial_manager.update_outcomes(outcomes)
+    trial_manager.add_analyses(analyses_list)
+    report_response = trial_manager.create_main_analysis_report()
+    print(report_response)
+    code_zip_file = trial_manager.get_code_for_main_analysis()
+
+   
+    return code_zip_file
+

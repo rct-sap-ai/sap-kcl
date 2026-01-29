@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import json
 import pandas as pd
-
+from auto_sap.classes.auto_code_api_classes import get_sap_code_from_json
 st.set_page_config(
     page_title="SAP AutoCode",
     page_icon="📊",
@@ -196,6 +196,13 @@ with tab2:
             data=json_str,
             file_name="sap_autocode.json",
             mime="application/json"
+        )
+
+        st.download_button(
+            label="💾 Get Code",
+            data=get_sap_code_from_json(st.session_state.conversation.result),
+            file_name="sap_autocode.zip",
+            mime="application/zip"
         )
         
         # Chat interface
