@@ -1,4 +1,4 @@
-from auto_sap.classes.auto_code_api_classes import auto_code_api, trial_creator
+from auto_sap.classes.auto_code_api_classes import AutoCodeAPI, TrialCreator
 import json
 import zipfile
 import io
@@ -7,8 +7,8 @@ import os
 #set up connection to auto_code API. Only set dev = True if you have access to a local development server.
 # The API class looks for an environment variable named AUTOCODE_API_TOKEN_DEV or AUTOCODE_API_TOKEN_PROD. This can be passed using the 'token' argument if preferred.
 
-dev_flag = True
-api = auto_code_api(dev = dev_flag)
+dev_flag = False
+api = AutoCodeAPI(dev = dev_flag)
 
 # Inputs:
 aconym = "API_TRIAL_EXAMPLE"
@@ -31,7 +31,6 @@ timepoint_value_labels = [
     {"value": 1, "label": "8 Weeks"},
     {"value": 2, "label": "6 Months"},
 ]
-# Outcomes must include timepoints as a list using timepoint labels defined above.
 outcomes = [
     {
         "label": "Depression Score",
@@ -86,7 +85,7 @@ analysis_list = [
     ]
 
 # Creating the trial 
-trial_manager = trial_creator(api, acronym = aconym, title = title)
+trial_manager = TrialCreator(api, acronym = aconym, title = title)
 
 # Sending data
 time_var_response = trial_manager.update_timevar(variable_data = time_var, value_labels = timepoint_value_labels)

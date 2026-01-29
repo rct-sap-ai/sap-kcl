@@ -1,10 +1,11 @@
 import requests
 import os
 import dotenv
+import json
 
 dotenv.load_dotenv()
 
-class auto_code_api:
+class AutoCodeAPI:
     def __init__(self, token=None, dev=False):
         # Determine the URL
         self.api_url = "http://127.0.0.1:8000/api/" if dev else "https://www.statsplan.com/api/"
@@ -88,7 +89,7 @@ class auto_code_api:
         raise LookupErrorError(f"Variable type with title '{title}' not found.")
 
 
-class trial_creator:
+class TrialCreator:
     def __init__(self, api_instance, acronym: str, title: str = ""):
         self.api = api_instance
         trial_data = self.api.get_("trial/", params = {"acronym": acronym, "title": title})
@@ -245,8 +246,10 @@ class trial_creator:
             timepoint_list = self.get_timepoints()
         
             for tp in outcome['timepoints']:
-     
+                print("checking tp dict for label:", tp)
+                print("available timepoints:", timepoint_list)
                 tp_dict = next((item for item in timepoint_list if item.get('label') == tp), None)
+                print("found tp dict:", tp_dict)
                 tp_id = tp_dict['id']
                 outcome_variable_data = {
                     "outcome": measure_id,
@@ -329,14 +332,22 @@ class trial_creator:
 
 def get_sap_code_from_json(code_json, dev_flag = True):
 
-    # To do, replace defaults with inputs from streamlit app. 
-    # timepoint_value_labels = sap_json.get("timepoints", [])
-    # outcomes = sap_json.get("variables", [])
-    # analyses_list = sap_json.get("analyses", [])
+    # To do, replace defaults with inputs from streamlit app.
+    print("\n Extracting timepoints from autocode JSON...") 
+    timepoint_value_labels = code_json.get("timepoints", [])
+    print(timepoint_value_labels)
+
+    print("\n Extracting outcomes from autocode JSON...")
+    
 
 
-    aconym = "API_TRIAL_EXAMPLE"
-    title = "API Trial Example"
+    outcomes = code_json.get("variables", [])
+    print(outcomes)
+    # analyses_list = code_json.get("analyses", [])
+
+
+    aconym = "STEAMTrial"
+    title = "Streamlit Trial Example"
 
     design_variables = [
         {'design_parameter': "allocation", 'variable':"treatment_group", 'label': "Treatment Group"},
@@ -350,25 +361,25 @@ def get_sap_code_from_json(code_json, dev_flag = True):
 
     time_var = {'variable': 'timepoint', 'label': 'Timepoint', 'variable_type': 'Categorical'}
   
-    timepoint_value_labels = [
-        {"value": 0, "label": "Baseline"},
-        {"value": 1, "label": "8 Weeks"},
-        {"value": 2, "label": "6 Months"},
-    ]
-    outcomes = [
-        {
-            "label": "Depression Score",
-            "variable_type": "Continuous",
-            "variable": "depression",
-            "timepoints": ["Baseline", "8 Weeks", "6 Months"]
-        },
-        {
-            "label": "Anxiety Score",
-            "variable_type": "Continuous",
-            "variable": "anxiety",
-            "timepoints": ["Baseline", "6 Months"]
-        },
-    ]
+    # timepoint_value_labels = [
+    #     {"value": 0, "label": "Baseline"},
+    #     {"value": 1, "label": "8 Weeks"},
+    #     {"value": 2, "label": "6 Months"},
+    # ]
+    # outcomes = [
+    #     {
+    #         "label": "Depression Score",
+    #         "variable_type": "Continuous",
+    #         "variable": "depression",
+    #         "timepoints": ["Baseline", "8 Weeks", "6 Months"]
+    #     },
+    #     {
+    #         "label": "Anxiety Score",
+    #         "variable_type": "Continuous",
+    #         "variable": "anxiety",
+    #         "timepoints": ["Baseline", "6 Months"]
+    #     },
+    # ]
 
     descriptive_method_id = 1
     if dev_flag:
@@ -405,10 +416,10 @@ def get_sap_code_from_json(code_json, dev_flag = True):
 
 
     """Given a SAP autocode JSON, fetch the generated code as a zip file."""
-    api = auto_code_api(dev=dev_flag)
+    api = AutoCodeAPI(dev=dev_flag)
 
     # Creating the trial 
-    trial_manager = trial_creator(api, acronym = aconym, title = title)
+    trial_manager = TrialCreator(api, acronym = aconym, title = title)
 
     # Sending data
     trial_manager.update_timevar(variable_data = time_var, value_labels = timepoint_value_labels)
