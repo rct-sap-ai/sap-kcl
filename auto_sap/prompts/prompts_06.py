@@ -400,7 +400,7 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
 
         "primary_estimand": """
         - If the trial is a pilot trial, just return the following statement: The primary goal is to assess the feasibility of delivering a full-scale trial. Such a future trial may be defined using the following estimand framework.
-        - Using only the clinical trial protocol, briefly describe the primary question of interest. For example: "What is the mean difference in MADRS scores at 12 months between patients with treatment-resistant depression allocated to psilocybin versus placebo?"
+        - Using only the clinical trial protocol, briefly state the primary question of interest. For example: "What is the mean difference in MADRS scores at 12 months between patients with treatment-resistant depression allocated to psilocybin versus placebo?"
         """,
 
         "estimand_population": """
@@ -570,16 +570,16 @@ PROMPTS_OUTCOMES_AND_ANALYSIS = {
 
         
         "interim_analysis": """
-        - Using only the extracted information from the clinical trial protocol, write a section on Interim Analysis and Internal Pilot for inclusion in the Statistical Analysis Plan (SAP).
-        - First, clearly state whether any interim analysis and/or internal pilot phase is planned in the study.
-        - If an interim analysis and/or internal pilot is planned, describe in concise prose:
+        - Using only the extracted information from the clinical trial protocol, write a section on Interim Analysis for inclusion in the Statistical Analysis Plan (SAP).
+        - First, clearly state whether any interim analysis is planned in the study.
+        - If an interim analysis is planned, describe in concise prose:
           - the objectives and timing of the interim analysis or internal pilot (e.g., information fraction, calendar time, recruitment milestones, or follow-up duration),
           - the statistical methods and any stopping rules or decision criteria to be used (e.g., for efficacy, futility, or safety),
           - any adjustments to significance levels or sample size (e.g., alpha spending, group-sequential design, sample size re-estimation),
           - and, where specified, the roles and responsibilities of the Data Monitoring Committee or equivalent oversight body.
         - Write the output as one or more short paragraphs; do not use bullet points in the output itself unless the protocol presents key elements as a list that must be preserved.
-        - If no interim analysis or internal pilot is planned, return exactly the sentence: "No interim analyses or internal pilot phases are planned, and no adjustments to significance levels will be made."
-        - Do not infer or invent interim analyses, internal pilot phases, objectives, timings, stopping rules, or alpha/sample-size adjustments that are not explicitly reported in the protocol; if certain aspects are mentioned but not detailed (e.g., stopping boundaries), state briefly that further details are not specified in the protocol.
+        - If no interim analysis is planned, return exactly the sentence: "No interim analyses are planned, and no adjustments to significance levels will be made."
+        - Do not infer or invent interim analyses, timings, stopping rules, or alpha/sample-size adjustments that are not explicitly reported in the protocol; if certain aspects are mentioned but not detailed (e.g., stopping boundaries), state briefly that further details are not specified in the protocol.
         """,
 
 
