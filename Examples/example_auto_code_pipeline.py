@@ -1,24 +1,41 @@
 """
 Examples/example_auto_code_pipline.py
 
-Stage 1 + Stage 2 sandbox runner for SAPAI / AutoCode pipeline:
+Stage 1 + Stage 2 + Stage 3 sandbox runner for SAPAI / AutoCode pipeline:
+
 - Loads a pre-extracted SAP JSON from {SAPAI_SHARED_PATH}/SAPs/{sap_name}.json
 - Creates a TrialCreator object using AutoCodeAPI
-- Stage 1: Extracts timepoints using TimepointExtractor + OpenAIChat
-- Stage 1: Validates deterministically:
+
+Stage 1: Timepoints
+- Extracts timepoints using TimepointExtractor + OpenAIChat
+- Validates deterministically:
     - list of dicts
     - keys are exactly {'value','label'}
     - value is int
     - label is non-empty str
     - value is UNIQUE (canonical identifier)
-- Stage 2: Extracts variables using VariableExtractor + OpenAIChat
-- Stage 2: Validates deterministically:
+
+Stage 2: Variables (Outcomes)
+- Extracts variables using VariableExtractor + OpenAIChat
+- Validates deterministically:
     - list of dicts
     - keys are exactly {'variable','label','variable_type','timepoints'}
     - variable is non-empty str, unique, <= 28 chars (error)
     - label is non-empty str, warn if > 80 chars
     - variable_type is in allowed enum (error)
     - timepoints is list[int] and each is in extracted timepoint values (error)
+
+Stage 3: Analyses (deterministic initial pass)
+- Pulls allowed analysis methods via auto_code_api.get_methods()
+- Picks descriptive + linear methods (keyword match; easy to swap to exact match)
+- Generates a minimal analysis_list:
+    - baseline descriptives for each outcome at timepoint 0 (if present)
+    - main analysis linear model at max(timepoints) (if max != 0)
+- Validates deterministically:
+    - outcome_variable exists in outcomes
+    - timepoint exists for that outcome
+    - method is one of allowed method IDs
+    - table is non-empty string
 
 Assumptions:
 - SAPAI_SHARED_PATH is set in your environment or .env
@@ -70,7 +87,6 @@ def validate_timepoints(timepoints) -> list[str]:
             errors.append(f"item {i} has keys {keys} (expected exactly {expected_keys})")
             continue
 
-        # value checks
         v = item.get("value", None)
         if not isinstance(v, int):
             errors.append(f"item {i} value must be int (got {type(v).__name__})")
@@ -80,7 +96,6 @@ def validate_timepoints(timepoints) -> list[str]:
             else:
                 seen_values.add(v)
 
-        # label checks
         lab = item.get("label", None)
         if not isinstance(lab, str) or not lab.strip():
             errors.append(f"item {i} label must be a non-empty string")
@@ -90,21 +105,15 @@ def validate_timepoints(timepoints) -> list[str]:
 
 def validate_variables(variables, valid_timepoint_values: set[int]) -> tuple[list[str], list[str]]:
     """
-    Deterministic validator for variables.
+    Deterministic validator for variables/outcomes.
 
-    Expected schema (per variable):
+    Expected schema (per variable/outcome):
       {
         "variable": <str, <=28 chars>,
         "label": <str>,
         "variable_type": <str>,
         "timepoints": <list[int]>
       }
-
-    Constraints:
-      - variable must be unique, non-empty, <= 28 chars (error)
-      - label should be <= 80 chars (warning if longer)
-      - variable_type must be in allowed enum (error)
-      - timepoints must be list[int] and all values must exist in timepoints (error)
 
     Returns:
       (errors, warnings)
@@ -137,7 +146,6 @@ def validate_variables(variables, valid_timepoint_values: set[int]) -> tuple[lis
         vtype = item.get("variable_type")
         tps = item.get("timepoints")
 
-        # variable
         if not isinstance(var, str) or not var.strip():
             errors.append(f"variable item {i} variable must be a non-empty string")
         else:
@@ -147,20 +155,17 @@ def validate_variables(variables, valid_timepoint_values: set[int]) -> tuple[lis
                 errors.append(f"duplicate variable name '{var}' (item {i})")
             seen_vars.add(var)
 
-        # label
         if not isinstance(lab, str) or not lab.strip():
             errors.append(f"variable item {i} label must be a non-empty string")
         else:
             if len(lab) > 80:
                 warnings.append(f"variable item {i} label is >80 chars (may harm table output): '{lab[:80]}…'")
 
-        # variable_type
         if not isinstance(vtype, str) or vtype not in allowed_types:
             errors.append(
                 f"variable item {i} variable_type must be one of {sorted(allowed_types)} (got {vtype})"
             )
 
-        # timepoints
         if not isinstance(tps, list) or not all(isinstance(x, int) for x in tps):
             errors.append(f"variable item {i} timepoints must be a list[int]")
         else:
@@ -169,6 +174,90 @@ def validate_variables(variables, valid_timepoint_values: set[int]) -> tuple[lis
                 errors.append(f"variable item {i} references missing timepoints: {missing}")
 
     return (errors, warnings)
+
+
+def pick_method_id(methods: list[dict], keyword: str) -> str:
+    """
+    Find a method id by keyword in method name/label/title.
+    Expects items like: {"id": "...", "name": "..."} (or label/method/title).
+    """
+    keyword_l = keyword.lower()
+
+    def get_name(m: dict) -> str:
+        for k in ("name", "label", "method", "title"):
+            if k in m and isinstance(m[k], str):
+                return m[k]
+        return ""
+
+    for m in methods:
+        if not isinstance(m, dict):
+            continue
+        name = get_name(m).lower()
+        if keyword_l in name:
+            return m.get("id") or m.get("method_id")
+
+    raise ValueError(f"Could not find method id containing keyword: '{keyword}'")
+
+
+def validate_analyses(analysis_list, outcomes: list[dict], allowed_method_ids: set) -> list[str]:
+    """
+    Deterministic validator for analyses.
+
+    Expected schema (per analysis):
+      {
+        "outcome_variable": <str>,
+        "timepoint": <int>,
+        "method": <method_id>,
+        "table": <str>
+      }
+    """
+    errors = []
+
+    if not isinstance(analysis_list, list):
+        return ["analysis_list is not a list"]
+
+    outcome_tp = {}
+    for o in outcomes:
+        v = o.get("variable")
+        tps = o.get("timepoints")
+        if isinstance(v, str) and isinstance(tps, list):
+            outcome_tp[v] = set(tps)
+
+    expected_keys = {"outcome_variable", "timepoint", "method", "table"}
+
+    for i, a in enumerate(analysis_list):
+        if not isinstance(a, dict):
+            errors.append(f"analysis item {i} is not a dict")
+            continue
+
+        keys = set(a.keys())
+        if keys != expected_keys:
+            errors.append(f"analysis item {i} has keys {keys} (expected exactly {expected_keys})")
+            continue
+
+        ov = a.get("outcome_variable")
+        tp = a.get("timepoint")
+        mid = a.get("method")
+        tab = a.get("table")
+
+        if not isinstance(ov, str) or ov not in outcome_tp:
+            errors.append(f"analysis item {i} outcome_variable '{ov}' not found in outcomes")
+        else:
+            if not isinstance(tp, int):
+                errors.append(f"analysis item {i} timepoint must be int")
+            else:
+                if tp not in outcome_tp[ov]:
+                    errors.append(
+                        f"analysis item {i} timepoint {tp} not valid for outcome '{ov}' (allowed {sorted(outcome_tp[ov])})"
+                    )
+
+        if mid not in allowed_method_ids:
+            errors.append(f"analysis item {i} method '{mid}' not in allowed methods from api.get_methods()")
+
+        if not isinstance(tab, str) or not tab.strip():
+            errors.append(f"analysis item {i} table must be non-empty string")
+
+    return errors
 
 
 def main():
@@ -241,7 +330,6 @@ def main():
 
     timepoints_return = timepoint_extractor.extract_timepoints(timepoint_content)
 
-    # Robust unpacking: extractor may return list, or tuple/list where [0] is list
     if isinstance(timepoints_return, (list, tuple)) and len(timepoints_return) > 0 and isinstance(timepoints_return[0], list):
         timepoints_list = timepoints_return[0]
     elif isinstance(timepoints_return, list):
@@ -254,9 +342,6 @@ def main():
 
     print("\nExtracted timepoints are:\n", timepoints_list)
 
-    # ----------------------------
-    # Validate timepoints
-    # ----------------------------
     errors = validate_timepoints(timepoints_list)
     print("\nTimepoint validation:")
     if errors:
@@ -268,11 +353,10 @@ def main():
         print("✅ timepoints valid")
 
     # ----------------------------
-    # Step 3: Variables extraction
+    # Step 3: Variables extraction (Outcomes)
     # ----------------------------
     print("\n\nVariable content extraction")
 
-    # Adjust these keys to match your SAP JSON fields (add/remove as needed)
     variable_content = (
         (sap_json.get("primary_outcome_measures", "") or "")
         + "\n"
@@ -282,7 +366,7 @@ def main():
     ).strip()
 
     if not variable_content:
-        print("⚠️ No variable content found in SAP JSON fields (primary/secondary/other_variables). Skipping Stage 2.")
+        print("⚠️ No variable content found in SAP JSON fields (primary/secondary/other_variables). Skipping Stage 2/3.")
         print("\nDone (Stage 1 complete).")
         return
 
@@ -294,35 +378,95 @@ def main():
 
     variables_return = variable_extractor.extract_variables(variable_content)
 
-    # Robust unpacking: extractor may return list, or tuple/list where [0] is list
     if isinstance(variables_return, (list, tuple)) and len(variables_return) > 0 and isinstance(variables_return[0], list):
-        variables_list = variables_return[0]
+        outcomes = variables_return[0]
     elif isinstance(variables_return, list):
-        variables_list = variables_return
+        outcomes = variables_return
     else:
         raise TypeError(
             f"Unexpected return type from extract_variables: {type(variables_return)}; "
             f"value: {repr(variables_return)[:500]}"
         )
 
-    print("\nExtracted variables are:\n", variables_list)
+    print("\nExtracted outcomes are:\n", outcomes)
 
     valid_timepoint_values = {tp["value"] for tp in timepoints_list}
-    var_errors, var_warnings = validate_variables(variables_list, valid_timepoint_values)
+    var_errors, var_warnings = validate_variables(outcomes, valid_timepoint_values)
 
-    print("\nVariable validation:")
+    print("\nOutcome/variable validation:")
     for w in var_warnings:
         print("⚠️", w)
 
     if var_errors:
-        print("❌ invalid variables")
+        print("❌ invalid outcomes")
         for e in var_errors:
             print(" -", e)
-        raise ValueError("Variables validation failed; see errors above.")
+        raise ValueError("Variables/outcomes validation failed; see errors above.")
     else:
-        print("✅ variables valid")
+        print("✅ outcomes valid")
 
-    print("\nDone (Stage 1 + Stage 2 complete).")
+    # ----------------------------
+    # Step 4: Analyses generation (Stage 3)
+    # ----------------------------
+    print("\n\nAnalyses stage (API methods + minimal analysis_list)")
+
+    methods = auto_code_api.get_methods()
+    if not isinstance(methods, list) or len(methods) == 0:
+        raise ValueError("api.get_methods() returned no methods or unexpected format")
+
+    allowed_method_ids = set()
+    for m in methods:
+        if isinstance(m, dict):
+            mid = m.get("id") or m.get("method_id")
+            if mid:
+                allowed_method_ids.add(mid)
+
+    if not allowed_method_ids:
+        raise ValueError("Could not extract any method IDs from api.get_methods() response")
+
+    descriptive_method_id = pick_method_id(methods, "descriptive")
+    linear_model_method_id = pick_method_id(methods, "linear")
+
+    print("Picked descriptive_method_id:", descriptive_method_id)
+    print("Picked linear_model_method_id:", linear_model_method_id)
+
+    analysis_list = []
+
+    for o in outcomes:
+        ov = o["variable"]
+        tps = o["timepoints"]
+
+        if 0 in tps:
+            analysis_list.append({
+                "outcome_variable": ov,
+                "timepoint": 0,
+                "method": descriptive_method_id,
+                "table": "baseline"
+            })
+
+        if len(tps) > 0:
+            last_tp = max(tps)
+            if last_tp != 0:
+                analysis_list.append({
+                    "outcome_variable": ov,
+                    "timepoint": last_tp,
+                    "method": linear_model_method_id,
+                    "table": "main_analysis"
+                })
+
+    print("\nGenerated analysis_list:\n", analysis_list)
+
+    analysis_errors = validate_analyses(analysis_list, outcomes, allowed_method_ids)
+    print("\nAnalyses validation:")
+    if analysis_errors:
+        print("❌ invalid analyses")
+        for e in analysis_errors:
+            print(" -", e)
+        raise ValueError("Analyses validation failed; see errors above.")
+    else:
+        print("✅ analyses valid")
+
+    print("\nDone (Stage 1 + Stage 2 + Stage 3 complete).")
 
 
 if __name__ == "__main__":
