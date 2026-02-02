@@ -36,13 +36,13 @@ outcomes = [
         "label": "Depression Score",
         "variable_type": "Continuous",
         "variable": "depression",
-        "timepoints": ["Baseline", "8 Weeks", "6 Months"]
+        "timepoints": [0, 1, 2]
     },
     {
         "label": "Anxiety Score",
         "variable_type": "Continuous",
         "variable": "anxiety",
-        "timepoints": ["Baseline", "6 Months"]
+        "timepoints": [0, 2]
     },
 ]
 

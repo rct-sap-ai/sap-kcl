@@ -246,9 +246,9 @@ class TrialCreator:
             timepoint_list = self.get_timepoints()
         
             for tp in outcome['timepoints']:
-                print("checking tp dict for label:", tp)
+                print("checking tp dict for value:", tp)
                 print("available timepoints:", timepoint_list)
-                tp_dict = next((item for item in timepoint_list if item.get('label') == tp), None)
+                tp_dict = next((item for item in timepoint_list if item.get('value') == tp), None)
                 print("found tp dict:", tp_dict)
                 tp_id = tp_dict['id']
                 outcome_variable_data = {
