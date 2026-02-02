@@ -60,25 +60,25 @@ if dev_flag:
 
 analysis_list = [
           {
-            "outcome_label": "Depression Score",
-            "timepoint": "Baseline",
+            "outcome_variable": "depression",
+            "timepoint": 0,
             "method": descriptive_method_id,
             "table": "baseline"
         },  {
-            "outcome_label": "Anxiety Score",
-            "timepoint": "Baseline",
+            "outcome_variable": "anxiety",
+            "timepoint": 0,
             "method": descriptive_method_id,
             "table": "baseline"
         },
         {
-            "outcome_label": "Depression Score",
-            "timepoint": "8 Weeks",
+            "outcome_variable": "depression",
+            "timepoint": 1,
             "method": linear_model_method_id,
             "table": "main_analysis"
         },
                 {
-            "outcome_label": "Anxiety Score",
-            "timepoint": "6 Months",
+            "outcome_variable": "anxiety",
+            "timepoint": 2,
             "method": linear_model_method_id,
             "table": "main_analysis"
         }

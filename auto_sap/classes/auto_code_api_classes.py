@@ -268,23 +268,23 @@ class TrialCreator:
         return outcome_ids
     
     def get_outcome_variable_id_from_outcome_label_timepoint(self, analysis, measures_list, timepoint_list, outcome_variable_list):
-        outcome_label = analysis['outcome_label']
-        timepoint_label = analysis['timepoint']
+        outcome_variable = analysis['outcome_variable']
+        timepoint_value = analysis['timepoint']
 
-        measure = next((item for item in measures_list if item.get('label') == outcome_label), None)
+        measure = next((item for item in measures_list if item.get('variable') == outcome_variable), None)
         if measure is None:
-            raise LookupError("Cannot find measure with label:", outcome_label)
+            raise LookupError("Cannot find measure with variable:", outcome_variable)
         measure_id = measure['id']
         
-        tp_dict = next((item for item in timepoint_list if item.get('label') == timepoint_label), None)
+        tp_dict = next((item for item in timepoint_list if item.get('value') == timepoint_value), None)
         if tp_dict is None:
-            raise LookupError("Cannot find timepoint with label:", timepoint_label)
+            raise LookupError("Cannot find timepoint with label:", timepoint_value)
         tp_id = tp_dict['id']
 
 
         outcome_variable = next((item for item in outcome_variable_list if item.get('outcome') == measure_id and item.get('timepoint') == tp_id), None)
         if outcome_variable is None:
-            raise LookupError(f"Cannot find outcome variable for {outcome_label} at {timepoint_label}. Check that this outcome is measured a the specified timepoint.")
+            raise LookupError(f"Cannot find outcome variable for {outcome_variable} at {timepoint_value}. Check that this outcome is measured a the specified timepoint.")
         outcome_variable_id = outcome_variable['id']
         
         return {'outcome_variable_id': outcome_variable_id, 'measure_id': measure_id, 'timepoint_id': tp_id}
