@@ -29,6 +29,7 @@ sap_json = {
 
 trial_creator.add_sap_json(sap_json)
 
-retrieved_sap_json = trial_creator.get_sap_json()
+trial_id = trial_creator.trial_id
+retrieved_sap_json = api.get_sap_json(trial_id = trial_id)
 print("Retrieved SAP JSON from API:")
 print(json.dumps(retrieved_sap_json, indent=4))
