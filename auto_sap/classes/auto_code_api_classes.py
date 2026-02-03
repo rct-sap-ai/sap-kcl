@@ -87,6 +87,10 @@ class AutoCodeAPI:
             if vt['title'] == title:
                 return vt['id']
         raise LookupErrorError(f"Variable type with title '{title}' not found.")
+    
+    def get_sap_json(self, trial_id):
+        sap_json = self.get_(endpoint = f"sap_json/latest/?trial={trial_id}")
+        return sap_json['sap_json']
 
 
 class TrialCreator:
@@ -115,6 +119,23 @@ class TrialCreator:
         response = self.api.patch_(endpoint = f"trial/{self.trial_id}", data =   new_data)
         return response
 
+    def get_sap_json(self):
+        sap_json = self.api.get_sap_json(self.trial_id)
+        return sap_json['sap_json']
+    
+    def add_sap_json(self, sap_json):
+
+
+        data = {
+            "sap_json": sap_json,
+            "trial": self.trial_id
+        }
+
+        print("Adding SAP JSON to trial...")
+        print(data)
+
+        response = self.api.post_(endpoint = "sap_json/", data = data)
+        return response
 
     def update_timepoints(self, timepoint_list):
         timepoint_ids = []
