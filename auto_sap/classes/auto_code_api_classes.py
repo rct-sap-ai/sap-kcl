@@ -94,25 +94,31 @@ class AutoCodeAPI:
 
 
 class TrialCreator:
-    def __init__(self, api_instance, acronym: str, title: str = ""):
+    def __init__(self, api_instance, acronym: str = "", title: str = "", trial_id: int = None):
         self.api = api_instance
-        trial_data = self.api.get_("trial/", params = {"acronym": acronym, "title": title})
- 
 
-        trial_id = trial_data[0]['id'] if trial_data != [] else None
-        if trial_id == None:
-            print("Creating new trial...")
-            trial_data = self.api.post_(
-                data = {
-                    "acronym": acronym,
-                    "title": title
-                },
-                endpoint = "trial/"
-            )
-            self.trial_id = trial_data['id']
-        else:
-            print("Using existing trial...")
+        if trial_id:
+            print(f"Using provided trial ID: {trial_id}")
             self.trial_id = trial_id
+            return
+        else:
+            print(f"Looking for existing trial with acronym '{acronym}' and title '{title}'...")
+            trial_data = self.api.get_("trial/", params = {"acronym": acronym, "title": title})
+
+            trial_id = trial_data[0]['id'] if trial_data != [] else None
+            if trial_id == None:
+                print("Creating new trial...")
+                trial_data = self.api.post_(
+                    data = {
+                        "acronym": acronym,
+                        "title": title
+                    },
+                    endpoint = "trial/"
+                )
+                self.trial_id = trial_data['id']
+            else:
+                print("Using existing trial...")
+                self.trial_id = trial_id
     
         
     def patch_trial(self, new_data):
