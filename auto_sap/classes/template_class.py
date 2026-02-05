@@ -1,3 +1,4 @@
+from io import BytesIO
 from pathlib import Path
 from tempfile import template
 from docxtpl import DocxTemplate
@@ -64,17 +65,31 @@ class Template:
             json.dump(sap_content, f, indent=4)
             
 
-    def populate(self, sap_folder, sap_name = 'SAP.docx'):
+    def render_template(self):
         if getattr(self, "sap_content", None) is not None:
             sap_content = self.sap_content
             template = DocxTemplate(self.template_path)
             template.render(sap_content)
-            output_path = Path(sap_folder) / sap_name
-            template.save(output_path)
-            print(f"SAP saved to {output_path}")
+            return(template)
         else:
              raise ValueError("sap_content must be set before populating template.")
+
+    def populate(self, sap_folder, sap_name = 'SAP.docx'):
+        rendered_template = self.render_template()
+        output_path = Path(sap_folder) / sap_name
+        template.save(output_path)
+        print(f"SAP saved to {output_path}")
+
         
+    def populate_to_bytes(self):
+        """Generate document and return as BytesIO for download"""
+        rendered_template = self.render_template()
+        # Save to BytesIO instead of file
+        doc_io = BytesIO()
+        template.save(doc_io)
+        doc_io.seek(0) 
+        return doc_io
+     
     def write_sap(self, protocol_path, sap_name, sap_folder_path = "SAPs", test = False):
         t0 = time.time()
 
