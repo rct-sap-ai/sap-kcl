@@ -86,7 +86,7 @@ class Template:
         rendered_template = self.render_template()
         # Save to BytesIO instead of file
         doc_io = BytesIO()
-        template.save(doc_io)
+        rendered_template.save(doc_io)
         doc_io.seek(0) 
         return doc_io
      
