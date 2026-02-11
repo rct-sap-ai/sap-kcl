@@ -213,7 +213,9 @@ Return a JSON array in this EXACT format:
 ]
 
 Rules:
-- value 0 = baseline, value 1 = first follow-up, value 2 = second follow-up, etc.
+- Always start with 0 = Baseline
+- Order the timepoints in the order they occur with Baseline always first (value=0)
+- eg. 0 = Baseline, 1 = 6 weeks, 2 = 2 months, 3 = 10 weeks, etc.
 - label = exact description of timepoint. For post baseline timepoints, only include number and units (e.g., "6 months", "12 weeks"). 
 - Do not state post-randomisation or similar.
 - Include ALL timepoints you find
@@ -287,7 +289,7 @@ Rules:
         )
         return [], error_msg
     
-    def validate_timepoints(timepoints) -> list[str]:
+    def validate_timepoints(self, timepoints) -> list[str]:
         """
         Deterministic validator for extracted timepoints.
 
