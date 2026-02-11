@@ -176,6 +176,24 @@ class AutoCodeExtractor:
 class TimepointExtractor(AutoCodeExtractor):
     """Bot 1: Extract timepoints"""
 
+    def get_timpoint_content(self, sap_json: Dict[str, Any]) -> str:
+        print("\n\nTimepoint content extraction")
+
+        timepoint_content = (
+            (sap_json.get("follow_up_timepoints", "") or "")
+            + "\n"
+            + (sap_json.get("primary_outcome_measures", "") or "")
+            + "\n"
+            + (sap_json.get("secondary_outcome_measures", "") or "")
+        ).strip()
+
+        if not timepoint_content:
+            raise ValueError(
+                "No timepoint content found. Expected at least one of: "
+                "follow_up_timepoints, primary_outcome_measures, secondary_outcome_measures."
+            )
+        return timepoint_content
+
     def extract_timepoints(self, sap_text: str) -> Tuple[List[Dict[str, Any]], Optional[str]]:
         """Extract timepoints with retry logic using SAP-derived text"""
 
@@ -196,7 +214,8 @@ Return a JSON array in this EXACT format:
 
 Rules:
 - value 0 = baseline, value 1 = first follow-up, value 2 = second follow-up, etc.
-- label = exact description of timepoint. For post baseline timepoints, only include number and units (e.g., "6 months", "12 weeks")
+- label = exact description of timepoint. For post baseline timepoints, only include number and units (e.g., "6 months", "12 weeks"). 
+- Do not state post-randomisation or similar.
 - Include ALL timepoints you find
 - Do not include any duplicate timepoints
 - Output ONLY the JSON array, no explanation, no markdown
@@ -267,6 +286,53 @@ Rules:
             f"{last_error if last_error else 'Unknown error'}."
         )
         return [], error_msg
+    
+    def validate_timepoints(timepoints) -> list[str]:
+        """
+        Deterministic validator for extracted timepoints.
+
+        Expected schema (per timepoint):
+        {"value": int, "label": str}
+
+        Additional invariant:
+        - 'value' must be UNIQUE across the list (used as canonical identifier)
+
+        Returns:
+        List of error strings. Empty list => valid.
+        """
+        errors = []
+
+        if not isinstance(timepoints, list):
+            return ["timepoints is not a list"]
+
+        seen_values = set()
+
+        for i, item in enumerate(timepoints):
+            if not isinstance(item, dict):
+                errors.append(f"item {i} is not a dict")
+                continue
+
+            expected_keys = {"value", "label"}
+            keys = set(item.keys())
+
+            if keys != expected_keys:
+                errors.append(f"item {i} has keys {keys} (expected exactly {expected_keys})")
+                continue
+
+            v = item.get("value", None)
+            if not isinstance(v, int):
+                errors.append(f"item {i} value must be int (got {type(v).__name__})")
+            else:
+                if v in seen_values:
+                    errors.append(f"duplicate timepoint value: {v} (item {i})")
+                else:
+                    seen_values.add(v)
+
+            lab = item.get("label", None)
+            if not isinstance(lab, str) or not lab.strip():
+                errors.append(f"item {i} label must be a non-empty string")
+
+        return errors 
 
 
 class VariableExtractor(AutoCodeExtractor):

@@ -55,52 +55,6 @@ from auto_sap.classes.chat_classes import OpenAIChat
 from auto_sap.classes.auto_code_api_classes import TrialCreator, AutoCodeAPI
 
 
-def validate_timepoints(timepoints) -> list[str]:
-    """
-    Deterministic validator for extracted timepoints.
-
-    Expected schema (per timepoint):
-      {"value": int, "label": str}
-
-    Additional invariant:
-      - 'value' must be UNIQUE across the list (used as canonical identifier)
-
-    Returns:
-      List of error strings. Empty list => valid.
-    """
-    errors = []
-
-    if not isinstance(timepoints, list):
-        return ["timepoints is not a list"]
-
-    seen_values = set()
-
-    for i, item in enumerate(timepoints):
-        if not isinstance(item, dict):
-            errors.append(f"item {i} is not a dict")
-            continue
-
-        expected_keys = {"value", "label"}
-        keys = set(item.keys())
-
-        if keys != expected_keys:
-            errors.append(f"item {i} has keys {keys} (expected exactly {expected_keys})")
-            continue
-
-        v = item.get("value", None)
-        if not isinstance(v, int):
-            errors.append(f"item {i} value must be int (got {type(v).__name__})")
-        else:
-            if v in seen_values:
-                errors.append(f"duplicate timepoint value: {v} (item {i})")
-            else:
-                seen_values.add(v)
-
-        lab = item.get("label", None)
-        if not isinstance(lab, str) or not lab.strip():
-            errors.append(f"item {i} label must be a non-empty string")
-
-    return errors
 
 
 def validate_variables(variables, valid_timepoint_values: set[int]) -> tuple[list[str], list[str]]:
@@ -306,27 +260,17 @@ def main():
     # ----------------------------
     # Step 2: Timepoints extraction
     # ----------------------------
+
+   
+    timepoint_extractor = TimepointExtractor(chat_bot=chat_bot)
+
     print("\n\nTimepoint content extraction")
 
-    timepoint_content = (
-        (sap_json.get("follow_up_timepoints", "") or "")
-        + "\n"
-        + (sap_json.get("primary_outcome_measures", "") or "")
-        + "\n"
-        + (sap_json.get("secondary_outcome_measures", "") or "")
-    ).strip()
-
-    if not timepoint_content:
-        raise ValueError(
-            "No timepoint content found. Expected at least one of: "
-            "follow_up_timepoints, primary_outcome_measures, secondary_outcome_measures."
-        )
-
+    timepoint_content = timepoint_extractor.get_timpoint_content(sap_json)
     print("\n--- timepoint_content (start) ---\n")
     print(timepoint_content)
     print("\n--- timepoint_content (end) ---\n")
 
-    timepoint_extractor = TimepointExtractor(chat_bot=chat_bot)
 
     timepoints_return = timepoint_extractor.extract_timepoints(timepoint_content)
 
@@ -342,7 +286,7 @@ def main():
 
     print("\nExtracted timepoints are:\n", timepoints_list)
 
-    errors = validate_timepoints(timepoints_list)
+    errors = TimepointExtractor.validate_timepoints(timepoints_list)
     print("\nTimepoint validation:")
     if errors:
         print("❌ invalid timepoints")
@@ -376,7 +320,7 @@ def main():
 
     variable_extractor = VariableExtractor(chat_bot=chat_bot)
 
-    variables_return = variable_extractor.extract_variables(variable_content)
+    variables_return = variable_extractor.extract_variables(sap_text = variable_content, timepoints = timepoints_list)
 
     if isinstance(variables_return, (list, tuple)) and len(variables_return) > 0 and isinstance(variables_return[0], list):
         outcomes = variables_return[0]
