@@ -266,7 +266,7 @@ def main():
 
     print("\n\nTimepoint content extraction")
 
-    timepoint_content = timepoint_extractor.get_timpoint_content(sap_json)
+    timepoint_content = timepoint_extractor.get_timepoint_content(sap_json)
     print("\n--- timepoint_content (start) ---\n")
     print(timepoint_content)
     print("\n--- timepoint_content (end) ---\n")
@@ -286,7 +286,7 @@ def main():
 
     print("\nExtracted timepoints are:\n", timepoints_list)
 
-    errors = TimepointExtractor.validate_timepoints(timepoints_list)
+    errors = timepoint_extractor.validate_timepoints(timepoints_list)
     print("\nTimepoint validation:")
     if errors:
         print("❌ invalid timepoints")
