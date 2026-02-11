@@ -176,7 +176,7 @@ class AutoCodeExtractor:
 class TimepointExtractor(AutoCodeExtractor):
     """Bot 1: Extract timepoints"""
 
-    def get_timpoint_content(self, sap_json: Dict[str, Any]) -> str:
+    def get_timepoint_content(self, sap_json: Dict[str, Any]) -> str:
         print("\n\nTimepoint content extraction")
 
         timepoint_content = (
