@@ -1,6 +1,9 @@
+from turtle import pd
 from typing import Any, Dict, List, Optional, Tuple
 import json
 import time
+import pandas as pd
+from altair import value
 
 
 # ============================================================
@@ -322,6 +325,10 @@ Rules:
                 continue
 
             v = item.get("value", None)
+            if value is None:
+                raise ValueError("value is missing")
+
+
             if not isinstance(v, int):
                 errors.append(f"item {i} value must be int (got {type(v).__name__})")
             else:
