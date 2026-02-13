@@ -179,7 +179,7 @@ class AutoCodeExtractor:
 class TimepointExtractor(AutoCodeExtractor):
     """Bot 1: Extract timepoints"""
 
-    def get_timepoint_content(self, sap_json: Dict[str, Any]) -> str:
+    def get_content(self, sap_json: Dict[str, Any]) -> str:
         print("\n\nTimepoint content extraction")
 
         timepoint_content = (
@@ -197,7 +197,7 @@ class TimepointExtractor(AutoCodeExtractor):
             )
         return timepoint_content
 
-    def extract_timepoints(self, sap_text: str) -> Tuple[List[Dict[str, Any]], Optional[str]]:
+    def extract(self, sap_text: str) -> Tuple[List[Dict[str, Any]], Optional[str]]:
         """Extract timepoints with retry logic using SAP-derived text"""
 
         print(f"    Using content: {len(sap_text):,} chars")
@@ -292,7 +292,7 @@ Rules:
         )
         return [], error_msg
     
-    def validate_timepoints(self, timepoints) -> list[str]:
+    def validate(self, timepoints) -> list[str]:
         """
         Deterministic validator for extracted timepoints.
 
@@ -347,7 +347,27 @@ Rules:
 class VariableExtractor(AutoCodeExtractor):
     """Bot 2: Extract variables"""
 
-    def extract_variables(
+    def get_content(self, sap_json):
+        variable_content = (
+            (sap_json.get("primary_outcome_measures", "") or "")
+            + "\n"
+            + (sap_json.get("secondary_outcome_measures", "") or "")
+            + "\n"
+            + (sap_json.get("other_variables", "") or "")
+        ).strip()
+
+        if not variable_content:
+            raise ValueError(
+                "No variable content found. Expected at least one of: "
+                "primary_outcome_measures, secondary_outcome_measures, other_variables."
+            )
+        
+
+
+
+        return(variable_content)
+
+    def extract(
         self, sap_text: str, timepoints: List[Dict[str, Any]]
     ) -> Tuple[List[Dict[str, Any]], Optional[str]]:
         """Extract variables with retry logic using SAP-derived text"""
@@ -358,45 +378,35 @@ class VariableExtractor(AutoCodeExtractor):
 
         prompt = f"""Extract all outcome variables from this Statistical Analysis Plan.
 
-SAP Text:
-{sap_text}
+        SAP Text:
+        {sap_text}
 
-Available timepoints:
-{timepoints_str}
+        Available timepoints:
+        {timepoints_str}
 
-Return a JSON array in this EXACT format:
-[
-  {{
-    "label": "Depression score (PHQ-9)",
-    "variable": "phq9_total",
-    "timepoints": ["Baseline", "8 Weeks", "6 Months"],
-    "variable_type": "Continuous"
-  }}
-]
+        Return a JSON array in this EXACT format:
+        [
+        {{
+            "label": "Depression score (PHQ-9)",
+            "variable": "phq9_total",
+            "timepoints": [0, 1, 2],
+            "variable_type": "Continuous"
+        }}
+        ]
 
 
 
-Rules:
-- label = human readable description less than 80 characters.
-- variable = lowercase variable name with underscores, no spaces. max 28 characters.
-- timepoints = list of timepoint labels from above
-- variable_type = one of: Continuous, Binary, Categorical, Count, Time to event
-- Output ONLY the JSON array
-"""
+        Rules:
+        - label = human readable description less than 80 characters.
+        - variable = short lowercase variable name with underscores, no spaces. max 28 characters.
+        - Use aberviations and acronyms to ensure variable is less than 28 characters.
+        - timepoints = list of timepoint values from above
+        - variable_type = one of: Continuous, Binary, Categorical, Count, Time to event
+        - Output ONLY the JSON array
+        """
 
-        last_error = None
         for attempt in range(self.max_retries):
             response = self.get_response(prompt=prompt)
-
-            if not response or response.strip() == "":
-                last_error = "The AI returned an empty response"
-                if attempt < self.max_retries - 1:
-                    print(f"    ⚠ Empty response, retry {attempt + 1}/{self.max_retries}")
-                    time.sleep(2)
-                    continue
-                else:
-                    print(f"    ✗ Failed: Empty response")
-                    break
 
             # Clean response
             cleaned = response.strip()
@@ -408,54 +418,190 @@ Rules:
                 cleaned = cleaned[:-3]
             cleaned = cleaned.strip()
 
+            errors = None
             try:
                 variables = json.loads(cleaned)
+            except json.JSONDecodeError as e:
+                errors = f"Could not parse the AI's response as valid JSON: {str(e)}"
+               
+            if not errors:
+                errors, warnings = self.validate(variables, timepoints)
 
-                # Validate format
-                if not isinstance(variables, list):
-                    last_error = "Response was not a list format"
-                    raise ValueError("Response is not a list")
+            for w in warnings:
+                print("Warning:", w)
 
-                if len(variables) == 0:
-                    last_error = "No variables found in the document"
-                    print(f"    ⚠ Warning: AI found 0 variables")
-                    return [], (
-                        "Sorry, I couldn't find any outcome variables. "
-                        "The SAP might not clearly define primary/secondary outcomes."
-                    )
-
-                valid_types = {"Continuous", "Binary", "Categorical", "Count", "Time to event"}
-                for var in variables:
-                    if not isinstance(var, dict):
-                        last_error = "Variables were not in the correct format"
-                        raise ValueError("Invalid variable format")
-                    required = ["label", "variable_name", "timepoints", "type"]
-                    if not all(k in var for k in required):
-                        last_error = "Variables missing required fields"
-                        raise ValueError("Missing required fields")
-                    if var["type"] not in valid_types:
-                        last_error = f"Invalid variable type: {var['type']}"
-                        raise ValueError(f"Invalid type: {var['type']}")
-
-                print(f"    ✓ Extracted {len(variables)} variables")
-                return variables, None
-
-            except (json.JSONDecodeError, ValueError) as e:
-                last_error = f"Could not parse the AI's response: {str(e)}"
+            if errors:
                 if attempt < self.max_retries - 1:
-                    print(f"    ⚠ Parse error, retry {attempt + 1}/{self.max_retries}: {e}")
-                    time.sleep(2)
+                    print(f"    ⚠ Error in response: {errors}, retry {attempt + 1}/{self.max_retries}")
+                    time.sleep(1)
                     continue
                 else:
-                    print(f"    ✗ Failed: {e}")
-                    print(f"    Response preview: {cleaned[:300]}")
-                    break
+                    print(f"    ✗ Failed: {errors}")
+                    error_msg = (
+                        f"Sorry homie, I tried {self.max_retries} times but couldn't extract variables. \n {errors}."
+                    )           
+                    return [], errors
+            else:
+                return variables, None
 
-        error_msg = (
-            f"Sorry homie, I tried {self.max_retries} times but couldn't extract variables. "
-            f"{last_error if last_error else 'Unknown error'}."
+
+
+        
+    
+    def validate(
+        self,
+        variables_input,
+        timepoints_list,
+    ) -> tuple[list[str], list[str]]:
+
+        valid_timepoint_values = {
+            tp["value"] for tp in timepoints_list
+        }
+
+        errors, warnings = self.validate_variables_list(
+            variables_input,
+            valid_timepoint_values,
         )
-        return [], error_msg
+
+        return errors, warnings
+
+
+    def validate_variables_list(
+        self,
+        variables_input: list | str,
+        valid_timepoint_values: set[int],
+    ) -> tuple[list[str], list[str]]:
+
+        errors: list[str] = []
+        warnings: list[str] = []
+
+        variables, parse_errors = self._parse_variables(variables_input)
+        if parse_errors:
+            return parse_errors, []
+
+        if not variables:
+            return ["No variables found in variables list"], []
+
+        seen_vars: set[str] = set()
+
+        for i, item in enumerate(variables):
+            item_errors, item_warnings = self._validate_variable_item(
+                item,
+                i,
+                seen_vars,
+                valid_timepoint_values,
+            )
+            errors.extend(item_errors)
+            warnings.extend(item_warnings)
+
+        return errors, warnings
+    
+    def _parse_variables(
+        self,
+        variables_input,
+    ) -> tuple[list | None, list[str]]:
+
+        if isinstance(variables_input, str):
+            try:
+                parsed = json.loads(variables_input)
+            except (json.JSONDecodeError, ValueError) as e:
+                return None, [f"Could not parse JSON: {str(e)}"]
+        else:
+            parsed = variables_input
+
+        if not isinstance(parsed, list):
+            return None, ["variables must be a list"]
+
+        return parsed, []
+    
+    def _validate_variable_item(
+        self,
+        item,
+        index: int,
+        seen_vars: set[str],
+        valid_timepoint_values: set[int],
+    ) -> tuple[list[str], list[str]]:
+
+
+
+        allowed_types = {
+            "Continuous",
+            "Binary",
+            "Count",
+            "Categorical",
+            "TimeToEvent",
+        }
+
+        expected_keys = {
+            "variable",
+            "label",
+            "variable_type",
+            "timepoints",
+        }
+
+        errors: list[str] = []
+        warnings: list[str] = []
+
+        if not isinstance(item, dict):
+            return [f"variable item {index} is not a dict"], []
+
+        if set(item.keys()) != expected_keys:
+            return [
+                f"variable item {index} must contain exactly {expected_keys}"
+            ], []
+
+        var = item["variable"]
+        lab = item["label"]
+        vtype = item["variable_type"]
+        tps = item["timepoints"]
+
+        if not isinstance(var, str) or not var.strip():
+            errors.append(
+                f"variable item {index} variable must be non empty string"
+            )
+        else:
+            if len(var) > 28:
+                errors.append(
+                    f"variable  {lab} variable, '{var}' exceeds 28 chars"
+                )
+            if var in seen_vars:
+                warnings.append(
+                    f"duplicate variable name '{var}' (item {index})"
+                )
+            seen_vars.add(var)
+
+        if not isinstance(lab, str) or not lab.strip():
+            errors.append(
+                f"variable item {index} label must be non empty string"
+            )
+        elif len(lab) > 80:
+            warnings.append(
+                f"variable item {index} label > 80 chars"
+            )
+
+        if vtype not in allowed_types:
+            errors.append(
+                f"variable item {index} variable_type must be one of "
+                f"{sorted(allowed_types)}"
+            )
+
+        if not isinstance(tps, list) or not all(isinstance(x, int) for x in tps):
+            errors.append(
+                f"variable item {index} timepoints must be list[int]"
+            )
+        else:
+            missing = [
+                x for x in tps if x not in valid_timepoint_values
+            ]
+            if missing:
+                errors.append(
+                    f"variable item {index} references missing timepoints {missing}"
+                )
+
+        return errors, warnings
+
+
+
 
 
 class AnalysisExtractor(AutoCodeExtractor):
