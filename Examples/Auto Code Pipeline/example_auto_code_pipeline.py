@@ -25,22 +25,22 @@ Stage 2: Variables (Outcomes)
     - variable_type is in allowed enum (error)
     - timepoints is list[int] and each is in extracted timepoint values (error)
 
-Stage 3: Analyses (deterministic initial pass)
+Stage 3: Analyses (AI-driven extraction with validator)
+- Extracts analyses using AnalysisExtractor + OpenAIChat
 - Pulls allowed analysis methods via auto_code_api.get_methods()
-- Picks descriptive + linear methods (keyword match; easy to swap to exact match)
-- Generates a minimal analysis_list:
-    - baseline descriptives for each outcome at timepoint 0 (if present)
-    - main analysis linear model at max(timepoints) (if max != 0)
+- Loops through outcomes and uses AI to pick appropriate analysis methods
+- Automatically creates baseline descriptives for each outcome at timepoint 0 (if present)
 - Validates deterministically:
     - outcome_variable exists in outcomes
     - timepoint exists for that outcome
     - method is one of allowed method IDs
     - table is non-empty string
+    - warns if baseline descriptives are missing
 
 Assumptions:
 - SAPAI_SHARED_PATH is set in your environment or .env
 - auto_sap imports resolve in your environment
-- auto_sap.classes.auto_code_classes contains TimepointExtractor and VariableExtractor
+- auto_sap.classes.auto_code_classes contains TimepointExtractor, VariableExtractor, and AnalysisExtractor
 """
 
 from pathlib import Path
@@ -50,7 +50,7 @@ import json
 import dotenv
 dotenv.load_dotenv()
 
-from auto_sap.classes.auto_code_classes import TimepointExtractor, VariableExtractor
+from auto_sap.classes.auto_code_classes import TimepointExtractor, VariableExtractor, AnalysisExtractor
 from auto_sap.classes.chat_classes import OpenAIChat
 from auto_sap.classes.auto_code_api_classes import TrialCreator, AutoCodeAPI
 
@@ -60,88 +60,7 @@ from auto_sap.classes.auto_code_api_classes import TrialCreator, AutoCodeAPI
 
 
 
-def pick_method_id(methods: list[dict], keyword: str) -> str:
-    """
-    Find a method id by keyword in method name/label/title.
-    Expects items like: {"id": "...", "name": "..."} (or label/method/title).
-    """
-    keyword_l = keyword.lower()
-
-    def get_name(m: dict) -> str:
-        for k in ("name", "label", "method", "title"):
-            if k in m and isinstance(m[k], str):
-                return m[k]
-        return ""
-
-    for m in methods:
-        if not isinstance(m, dict):
-            continue
-        name = get_name(m).lower()
-        if keyword_l in name:
-            return m.get("id") or m.get("method_id")
-
-    raise ValueError(f"Could not find method id containing keyword: '{keyword}'")
-
-
-def validate_analyses(analysis_list, outcomes: list[dict], allowed_method_ids: set) -> list[str]:
-    """
-    Deterministic validator for analyses.
-
-    Expected schema (per analysis):
-      {
-        "outcome_variable": <str>,
-        "timepoint": <int>,
-        "method": <method_id>,
-        "table": <str>
-      }
-    """
-    errors = []
-
-    if not isinstance(analysis_list, list):
-        return ["analysis_list is not a list"]
-
-    outcome_tp = {}
-    for o in outcomes:
-        v = o.get("variable")
-        tps = o.get("timepoints")
-        if isinstance(v, str) and isinstance(tps, list):
-            outcome_tp[v] = set(tps)
-
-    expected_keys = {"outcome_variable", "timepoint", "method", "table"}
-
-    for i, a in enumerate(analysis_list):
-        if not isinstance(a, dict):
-            errors.append(f"analysis item {i} is not a dict")
-            continue
-
-        keys = set(a.keys())
-        if keys != expected_keys:
-            errors.append(f"analysis item {i} has keys {keys} (expected exactly {expected_keys})")
-            continue
-
-        ov = a.get("outcome_variable")
-        tp = a.get("timepoint")
-        mid = a.get("method")
-        tab = a.get("table")
-
-        if not isinstance(ov, str) or ov not in outcome_tp:
-            errors.append(f"analysis item {i} outcome_variable '{ov}' not found in outcomes")
-        else:
-            if not isinstance(tp, int):
-                errors.append(f"analysis item {i} timepoint must be int")
-            else:
-                if tp not in outcome_tp[ov]:
-                    errors.append(
-                        f"analysis item {i} timepoint {tp} not valid for outcome '{ov}' (allowed {sorted(outcome_tp[ov])})"
-                    )
-
-        if mid not in allowed_method_ids:
-            errors.append(f"analysis item {i} method '{mid}' not in allowed methods from api.get_methods()")
-
-        if not isinstance(tab, str) or not tab.strip():
-            errors.append(f"analysis item {i} table must be non-empty string")
-
-    return errors
+# Helper functions removed - now part of AnalysisExtractor class
 
 
 def main():
@@ -241,17 +160,12 @@ def main():
     print("\n--- variable_content (end) ---\n")
 
 
-    variables_return = variable_extractor.extract(sap_text = variable_content, timepoints = timepoints_list)
+    outcomes, error = variable_extractor.extract(sap_text = variable_content, timepoints = timepoints_list)
+    if error:
+        print("❌ Error during variable extraction:", error)
+        raise ValueError(f"Variable extraction failed: {error}")
 
-    if isinstance(variables_return, (list, tuple)) and len(variables_return) > 0 and isinstance(variables_return[0], list):
-        outcomes = variables_return[0]
-    elif isinstance(variables_return, list):
-        outcomes = variables_return
-    else:
-        raise TypeError(
-            f"Unexpected return type from extract_variables: {type(variables_return)}; "
-            f"value: {repr(variables_return)[:500]}"
-        )
+
 
     print("\nExtracted outcomes are:\n", outcomes)
 
@@ -271,11 +185,20 @@ def main():
     
 
     # ----------------------------
-    # Step 4: Analyses generation (Stage 3)
+    # Step 4: Analyses extraction (Stage 3)
     # ----------------------------
-    print("\n\nAnalyses stage (API methods + minimal analysis_list)")
+    analysis_extractor = AnalysisExtractor(chat_bot=chat_bot)
 
+    print("\n\nAnalysis content extraction")
+
+    analysis_content = analysis_extractor.get_content(sap_json)
+    print("\n--- analysis_content (start) ---\n")
+    print(analysis_content[:500] + "..." if len(analysis_content) > 500 else analysis_content)
+    print("\n--- analysis_content (end) ---\n")
+
+    # Get available methods from API
     methods = auto_code_api.get_methods()
+    print("\nAvailable methods from API:\n", methods)
     if not isinstance(methods, list) or len(methods) == 0:
         raise ValueError("api.get_methods() returned no methods or unexpected format")
 
@@ -289,47 +212,36 @@ def main():
     if not allowed_method_ids:
         raise ValueError("Could not extract any method IDs from api.get_methods() response")
 
-    descriptive_method_id = pick_method_id(methods, "descriptive")
-    linear_model_method_id = pick_method_id(methods, "linear")
+    print(f"\nFound {len(methods)} available methods from API")
 
-    print("Picked descriptive_method_id:", descriptive_method_id)
-    print("Picked linear_model_method_id:", linear_model_method_id)
+    # Extract analyses using AI
+    analysis_list, error = analysis_extractor.extract(
+        sap_text=analysis_content,
+        outcomes=outcomes,
+        timepoints=timepoints_list,
+        methods=methods
+    )
 
-    analysis_list = []
+    if error:
+        print("❌ Error during analysis extraction:", error)
+        raise ValueError(f"Analysis extraction failed: {error}")
 
-    for o in outcomes:
-        ov = o["variable"]
-        tps = o["timepoints"]
+    print("\nExtracted analyses:\n", analysis_list)
 
-        if 0 in tps:
-            analysis_list.append({
-                "outcome_variable": ov,
-                "timepoint": 0,
-                "method": descriptive_method_id,
-                "table": "baseline"
-            })
-
-        if len(tps) > 0:
-            last_tp = max(tps)
-            if last_tp != 0:
-                analysis_list.append({
-                    "outcome_variable": ov,
-                    "timepoint": last_tp,
-                    "method": linear_model_method_id,
-                    "table": "main_analysis"
-                })
-
-    print("\nGenerated analysis_list:\n", analysis_list)
-
-    analysis_errors = validate_analyses(analysis_list, outcomes, allowed_method_ids)
+    # Validate analyses
+    errors, warnings = analysis_extractor.validate(analysis_list, outcomes, allowed_method_ids)
     print("\nAnalyses validation:")
-    if analysis_errors:
+    if errors:
         print("❌ invalid analyses")
-        for e in analysis_errors:
+        for e in errors:
             print(" -", e)
         raise ValueError("Analyses validation failed; see errors above.")
     else:
         print("✅ analyses valid")
+        if warnings:
+            print("Warnings:")
+            for w in warnings:
+                print(" -", w)
 
     print("\nDone (Stage 1 + Stage 2 + Stage 3 complete).")
 
