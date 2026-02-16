@@ -253,7 +253,7 @@ class TrialCreator:
     def get_measures(self):
         # Fetch the single trial object
         trial_data = self.api.get_(endpoint = f"trial/{self.trial_id}")
-        return trial_data[0].get('measures', [])
+        return trial_data.get('measures', [])
 
     #outcomes list is a list of dicts with keys: label, variable, variable_type, timepoints
 
