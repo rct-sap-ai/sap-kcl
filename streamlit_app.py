@@ -9,7 +9,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🏥 KCL Clinical Trials Unit")
+st.title("🏥 IoPPN Clinical Trials Unit")
 st.header("SAP AutoCode System")
 st.markdown("Automated Statistical Analysis Plan generation from trial protocols")
 st.markdown("**edits made**")
