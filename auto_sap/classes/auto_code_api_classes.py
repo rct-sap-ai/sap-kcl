@@ -27,13 +27,6 @@ class AutoCodeAPI:
             "Content-Type": "application/json"
         }
 
-        self.variable_types = [
-            "Time to event",
-            "Count",
-            "Continuous",
-            "Binary",
-            "Categorical",
-         ]
 
     def post_(self, data, endpoint: str):
         url = f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}"
@@ -82,7 +75,7 @@ class AutoCodeAPI:
         return response
     
     def get_variable_type_id(self, title):
-        variable_types = self.get_("variable_type/")
+        variable_types = self.get_("variable_type/")    
         for vt in variable_types:
             if vt['title'] == title:
                 return vt['id']
@@ -250,9 +243,33 @@ class TrialCreator:
         outcome_vars = self.api.get_("outcome_variable/", params = {"trial": self.trial_id})
         return outcome_vars
     
-    def get_measures(self):
-        trial_data = self.api.get_(endpoint = f"outcome_variable/?trial={self.trial_id}")
-        return trial_data
+
+    def extract_measure_fields(self, measures: list) -> list[dict]:
+        """Extract key fields from measures list, grouped by variable with all timepoints collected."""
+        variable_types = self.api.get_("variable_type/")
+        grouped = {}
+        for m in measures:
+            outcome = m["outcome"]
+            var = outcome["variable"]
+            tp_value = m["timepoint"]["value"]
+
+            if var not in grouped:
+                grouped[var] = {
+                    "label": outcome["label"],
+                    "variable": var,
+                    "variable_type": next((item['title'] for item in variable_types if item['id'] == outcome['variable_type']), None),
+                    "timepoints": [],
+                }
+            grouped[var]["timepoints"].append(tp_value)
+
+
+
+        return list(grouped.values())
+    
+    def get_processed_measures(self):
+        measures = self.get_outcome_variables()
+        processed_measures = self.extract_measure_fields(measures)
+        return processed_measures
     
     #outcomes list is a list of dicts with keys: label, variable, variable_type, timepoints
 
