@@ -332,7 +332,34 @@ class TrialCreator:
         
         return {'outcome_variable_id': outcome_variable_id, 'measure_id': measure_id, 'timepoint_id': tp_id}
 
+
+    def extract_processed_analysis(self, analyses: list) -> list[dict]:
+        """Extract key fields from analyses list, grouped by (outcome_variable, method) with timepoints as a list."""
+        grouped = {}
+        for a in analyses:
+            outcome = a["outcome"]
+            tp_value = a["timepoint"]["value"]
+            method = a["method"]
+            method_id = method["id"] if isinstance(method, dict) else method
+
+            key = (outcome["variable"], method_id)
+            if key not in grouped:
+                grouped[key] = {
+                    "outcome_variable": outcome["variable"],
+                    "outcome_label": outcome["label"],
+                    "method": method_id,
+                    "timepoints": [],
+                }
+            grouped[key]["timepoints"].append(tp_value)
+
+        return list(grouped.values())
     
+    def get_processed_analyses(self):
+        analyses = self.api.get_("analysis/?trial=" + str(self.trial_id))
+        processed_analyses = self.extract_processed_analysis(analyses)
+
+        return processed_analyses
+
     def add_analyses(self, analysis_list):
         analysis_ids = []
         timepoint_list = self.get_timepoints()
