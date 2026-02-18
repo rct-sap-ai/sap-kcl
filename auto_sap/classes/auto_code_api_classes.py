@@ -368,21 +368,28 @@ class TrialCreator:
 
         order = 0
         for analysis in analysis_list:
-            order += 1
-            ids = self.get_outcome_variable_id_from_outcome_label_timepoint(analysis, measures_list, timepoint_list, outcome_variable_list)
-            analysis_data = {
-                "trial": self.trial_id,
-                "outcome": ids['measure_id'],
-                "timepoint": ids['timepoint_id'],
-                "method": analysis['method'],
-                "order": order,
-            }
-            print("\n\nPosting analysis data:", analysis_data)
-            response = self.api.post_(endpoint = "analysis/", data = analysis_data)
-            analysis_ids.append(response['id'])
+            measure_item = next((item for item in measures_list if item.get('variable') == analysis['outcome_variable']), None)
+            measure_id = measure_item['id'] if measure_item else None
+            for tp in analysis['timepoints']:
+                order += 1
+                ids = self.get_outcome_variable_id_from_outcome_label_timepoint(analysis, measures_list, timepoint_list, outcome_variable_list)
+                analysis_data = {
+                    "trial": self.trial_id,
+                    "outcome": measure_id,
+                    "timepoint": tp,
+                    "method": analysis['method'],
+                    "order": order,
+                }
+                response = self.api.post_(endpoint = "analysis/", data = analysis_data)
+                analysis_ids.append(response['id'])
         self.analysis_ids = analysis_ids
         return analysis_ids
     
+    def update_analyses(self, analysis_list):
+        self.api.clear_data_for_trial(endpoint=f"analysis/", trial_id=self.trial_id)
+        analysis_ids = self.add_analyses(analysis_list)
+        return analysis_ids
+
     def get_trial_details(self):
         trial_data = self.api.get_(endpoint = f"trial/{self.trial_id}", params = {"expand": "true"})
         return trial_data
