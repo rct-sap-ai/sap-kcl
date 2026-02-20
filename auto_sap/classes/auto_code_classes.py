@@ -711,7 +711,7 @@ Rules:
 - outcome_variable = must match "variable" field from outcomes list
 - timepoint = integer value, typically the last/maximum timepoint for that outcome
 - method = must be an "id" value from the available methods list
-- table = descriptive name for the table (e.g., "main_analysis", "primary_outcome", "secondary_outcomes")
+- table = set to be "main-analysis" 
 - Choose the most appropriate statistical method based on:
   * variable_type (Continuous → linear/mixed model, Binary → logistic, etc.)
   * what the SAP describes for that outcome
@@ -852,6 +852,7 @@ Rules:
 
             # Validate method
             if mid not in allowed_method_ids:
+                print(f"*******checking if {mid} is in {allowed_method_ids}")
                 errors.append(f"analysis item {i} method '{mid}' not in allowed methods from API")
 
             # Validate table

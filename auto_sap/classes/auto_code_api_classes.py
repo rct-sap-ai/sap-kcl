@@ -62,13 +62,6 @@ class AutoCodeAPI:
         response = requests.put(url, json=data, headers=self.headers)
         response.raise_for_status()
         return response.json()
-    
-    def clear_data_for_trial(self, endpoint: str, trial_id: int):
-        url = f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}clear-trial/?trial_id={trial_id}"
-        response = requests.delete(url, headers=self.headers)
-        response.raise_for_status()
-        return response.status_code
-    
    
     def get_methods(self):
         response = self.get_("method/")
@@ -274,8 +267,8 @@ class TrialCreator:
     #outcomes list is a list of dicts with keys: label, variable, variable_type, timepoints
 
 
-    def add_outcomes(self, outcome_list):
-        outcome_ids = []
+    def update_outcomes(self, outcome_list):
+        outcome_variable_list = []
         for outcome in outcome_list:
             measure_data = {
                 "label": outcome['label'],
@@ -294,22 +287,16 @@ class TrialCreator:
                 tp_dict = next((item for item in timepoint_list if item.get('value') == tp), None)
                 print("found tp dict:", tp_dict)
                 tp_id = tp_dict['id']
-                outcome_variable_data = {
+                outcome_variable_list.append({
                     "outcome": measure_id,
                     "timepoint": tp_id,
-                    "trial": self.trial_id
-                }
+                })
 
-                response = self.api.post_(endpoint = "outcome_variable/", data = outcome_variable_data)
-            outcome_ids.append(response['id'])
-        self.outcome_ids = outcome_ids
-        return outcome_ids
+        updated_outcomes = self.api.put_(endpoint = f"trial/{self.trial_id}/set-outcome-variables", data = outcome_variable_list)
+
+        return updated_outcomes
     
-    def update_outcomes(self, outcome_list):
-        self.api.clear_data_for_trial(endpoint=f"outcome_variable/", trial_id=self.trial_id)
-        outcome_ids = self.add_outcomes(outcome_list)
-        return outcome_ids
-    
+
     def get_outcome_variable_id_from_outcome_label_timepoint(self, analysis, measures_list, timepoint_list, outcome_variable_list):
         outcome_variable = analysis['outcome_variable']
         timepoint_value = analysis['timepoint']
@@ -335,60 +322,60 @@ class TrialCreator:
 
     def extract_processed_analysis(self, analyses: list) -> list[dict]:
         """Extract key fields from analyses list, grouped by (outcome_variable, method) with timepoints as a list."""
-        grouped = {}
-        for a in analyses:
-            outcome = a["outcome"]
-            tp_value = a["timepoint"]["value"]
-            method = a["method"]
-            method_id = method["id"] if isinstance(method, dict) else method
-
-            key = (outcome["variable"], method_id)
-            if key not in grouped:
-                grouped[key] = {
-                    "outcome_variable": outcome["variable"],
-                    "outcome_label": outcome["label"],
-                    "method": method_id,
-                    "timepoints": [],
-                }
-            grouped[key]["timepoints"].append(tp_value)
-
-        return list(grouped.values())
+        analysis_list = []
+        for analysis in analyses:
+            analysis_list.append({
+                "method": analysis["method"],
+                "outcome_variable": analysis["outcome"]["variable"],
+                "timepoint": analysis["timepoint"]["value"],
+                "table": analysis["table"]["slug"]
+            })
+        return analysis_list
+        
     
     def get_processed_analyses(self):
-        analyses = self.api.get_("analysis/?trial=" + str(self.trial_id))
-        processed_analyses = self.extract_processed_analysis(analyses)
-
+        raw_analyses = self.api.get_(endpoint = f"analysis/?trial={self.trial_id}")
+        processed_analyses = self.extract_processed_analysis(raw_analyses)
         return processed_analyses
 
-    def add_analyses(self, analysis_list):
+    def get_analysis_validator_args(self):
+        methods = self.api.get_(endpoint = "method")
+        method_ids = set()
+        for method in methods:
+            method_ids.add(method["id"])
+
+        outcome_list = self.get_processed_measures()
+        return {
+            "allowed_method_ids": method_ids,
+            "outcomes": outcome_list
+        }
+
+    def update_analyses(self, analysis_list):
         analysis_ids = []
         timepoint_list = self.get_timepoints()
         measures_list = self.api.get_(endpoint = "measure/")
         outcome_variable_list = self.get_outcome_variables()
+        existing_analyses = self.api.get_(endpoint = f"analysis/?trial={self.trial_id}")
 
         order = 0
+        analysis_data_list = []
         for analysis in analysis_list:
             measure_item = next((item for item in measures_list if item.get('variable') == analysis['outcome_variable']), None)
             measure_id = measure_item['id'] if measure_item else None
             for tp in analysis['timepoints']:
                 order += 1
                 ids = self.get_outcome_variable_id_from_outcome_label_timepoint(analysis, measures_list, timepoint_list, outcome_variable_list)
-                analysis_data = {
-                    "trial": self.trial_id,
+                analysis_id = next((item['id'] for item in existing_analyses if item.get('outcome') == ids['outcome_variable_id'] and item.get('method') == analysis['method']), None)
+                analysis_data_list.append({
                     "outcome": measure_id,
                     "timepoint": tp,
                     "method": analysis['method'],
                     "order": order,
-                }
-                response = self.api.post_(endpoint = "analysis/", data = analysis_data)
-                analysis_ids.append(response['id'])
-        self.analysis_ids = analysis_ids
-        return analysis_ids
+                })
+        response = self.api.put_(endpoint = f"trial/{self.trial_id}/set-analyses", data = analysis_data_list)
+        return response
     
-    def update_analyses(self, analysis_list):
-        self.api.clear_data_for_trial(endpoint=f"analysis/", trial_id=self.trial_id)
-        analysis_ids = self.add_analyses(analysis_list)
-        return analysis_ids
+
 
     def get_trial_details(self):
         trial_data = self.api.get_(endpoint = f"trial/{self.trial_id}", params = {"expand": "true"})

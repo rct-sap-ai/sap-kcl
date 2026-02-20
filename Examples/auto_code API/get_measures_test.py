@@ -5,20 +5,19 @@ from auto_sap.classes.chat_classes import OpenAIChat
 
 #set up connection to auto_code API. Only set dev = True if you have access to a local development server.
 # The API class looks for an environment variable named AUTOCODE_API_TOKEN_DEV or AUTOCODE_API_TOKEN_PROD. This can be passed using the 'token' argument if preferred.
+try_update = True
 
-dev_flag = False
+trial_id = 17 # use trial 17 for dev, trial 20 for prod
+dev_flag = True
 api = AutoCodeAPI(dev = dev_flag)
 
-trial = api.get_("trial/20/")
+trial = api.get_(f"trial/{trial_id}/")
 
 print(trial)
 
-trial_creator = TrialCreator(api, trial_id = 20)
+trial_creator = TrialCreator(api, trial_id = trial_id)
 measures = trial_creator.get_outcome_variables()
-print("Measures for trial 20:", measures)
-
-
-
+print(f"Measures for trial {trial_id}:", measures)
 
 
 extracted = trial_creator.extract_measure_fields(measures = measures)
@@ -33,3 +32,8 @@ errors, warnings = variable_extractor.validate(extracted, timepoints_list = time
 
 print("Errors:", errors)
 print("Warnings:", warnings)    
+
+if try_update:
+    print("Attempting to update measures with extracted data...")
+    update_response = trial_creator.update_outcomes(extracted)
+    print("Update response:", update_response)
