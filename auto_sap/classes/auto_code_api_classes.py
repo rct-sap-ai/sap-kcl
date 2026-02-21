@@ -328,7 +328,6 @@ class TrialCreator:
                 "method": analysis["method"],
                 "outcome_variable": analysis["outcome"]["variable"],
                 "timepoint": analysis["timepoint"]["value"],
-                "table": analysis["table"]["slug"]
             })
         return analysis_list
         
@@ -350,28 +349,25 @@ class TrialCreator:
             "outcomes": outcome_list
         }
 
+
+
     def update_analyses(self, analysis_list):
-        analysis_ids = []
         timepoint_list = self.get_timepoints()
         measures_list = self.api.get_(endpoint = "measure/")
-        outcome_variable_list = self.get_outcome_variables()
-        existing_analyses = self.api.get_(endpoint = f"analysis/?trial={self.trial_id}")
 
         order = 0
         analysis_data_list = []
         for analysis in analysis_list:
             measure_item = next((item for item in measures_list if item.get('variable') == analysis['outcome_variable']), None)
             measure_id = measure_item['id'] if measure_item else None
-            for tp in analysis['timepoints']:
-                order += 1
-                ids = self.get_outcome_variable_id_from_outcome_label_timepoint(analysis, measures_list, timepoint_list, outcome_variable_list)
-                analysis_id = next((item['id'] for item in existing_analyses if item.get('outcome') == ids['outcome_variable_id'] and item.get('method') == analysis['method']), None)
-                analysis_data_list.append({
-                    "outcome": measure_id,
-                    "timepoint": tp,
-                    "method": analysis['method'],
-                    "order": order,
-                })
+            tp = next((item for item in timepoint_list if item.get('value') == analysis['timepoint']), None)
+            tp_id = tp['id'] if tp else None
+            analysis_data_list.append({
+                "outcome": measure_id,
+                "timepoint": tp_id,
+                "method": analysis['method'],
+                "order": order,
+            })
         response = self.api.put_(endpoint = f"trial/{self.trial_id}/set-analyses", data = analysis_data_list)
         return response
     
@@ -425,26 +421,7 @@ def get_sap_code_from_json(code_json, dev_flag = True):
 
     time_var = {'variable': 'timepoint', 'label': 'Timepoint', 'variable_type': 'Categorical'}
   
-    # timepoint_value_labels = [
-    #     {"value": 0, "label": "Baseline"},
-    #     {"value": 1, "label": "8 Weeks"},
-    #     {"value": 2, "label": "6 Months"},
-    # ]
-    # outcomes = [
-    #     {
-    #         "label": "Depression Score",
-    #         "variable_type": "Continuous",
-    #         "variable": "depression",
-    #         "timepoints": ["0", "1", "2"]
-    #     },
-    #     {
-    #         "label": "Anxiety Score",
-    #         "variable_type": "Continuous",
-    #         "variable": "anxiety",
-    #         "timepoints": ["0", "2"]
-    #     },
-    # ]
-
+  
     descriptive_method_id = 1
     if dev_flag:
         descriptive_method_id = 1  # In DEV, the IDs may differ

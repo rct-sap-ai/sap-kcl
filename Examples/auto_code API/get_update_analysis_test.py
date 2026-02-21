@@ -45,9 +45,9 @@ if run_analysis:
     #     print(row)
 
 
-    updated_analysis = trial_creator.update_analyses(analysis_list)
+    updated_analysis = trial_creator.update_analyses(analysis_list2)
 
-    #print("Updated analyses response:", updated_analysis)
+    print("Updated analyses response:", updated_analysis)
 
 
     # "outcome_variable": "phq9_total",

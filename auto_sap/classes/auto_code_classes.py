@@ -676,7 +676,6 @@ class AnalysisExtractor(AutoCodeExtractor):
                         "outcome_variable": outcome["variable"],
                         "timepoint": 0,
                         "method": descriptive_method_id,
-                        "table": "baseline"
                     })
             print(f"    ✓ Added {len([a for a in analysis_list if a['timepoint'] == 0])} baseline descriptive analyses")
 
@@ -703,7 +702,6 @@ Return a JSON array in this EXACT format:
     "outcome_variable": "phq9_total",
     "timepoint": 2,
     "method": "method_id_from_list",
-    "table": "main_analysis"
   }}
 ]
 
@@ -711,7 +709,6 @@ Rules:
 - outcome_variable = must match "variable" field from outcomes list
 - timepoint = integer value, typically the last/maximum timepoint for that outcome
 - method = must be an "id" value from the available methods list
-- table = set to be "main-analysis" 
 - Choose the most appropriate statistical method based on:
   * variable_type (Continuous → linear/mixed model, Binary → logistic, etc.)
   * what the SAP describes for that outcome
@@ -799,7 +796,6 @@ Rules:
             "outcome_variable": <str>,
             "timepoint": <int>,
             "method": <method_id>,
-            "table": <str>
           }
 
         Returns:
@@ -819,7 +815,7 @@ Rules:
             if isinstance(v, str) and isinstance(tps, list):
                 outcome_tp[v] = set(tps)
 
-        expected_keys = {"outcome_variable", "timepoint", "method", "table"}
+        expected_keys = {"outcome_variable", "timepoint", "method"}
 
         for i, a in enumerate(analysis_list):
             if not isinstance(a, dict):
@@ -834,7 +830,6 @@ Rules:
             ov = a.get("outcome_variable")
             tp = a.get("timepoint")
             mid = a.get("method")
-            tab = a.get("table")
 
             # Validate outcome_variable
             if not isinstance(ov, str) or ov not in outcome_tp:
@@ -855,9 +850,6 @@ Rules:
                 print(f"*******checking if {mid} is in {allowed_method_ids}")
                 errors.append(f"analysis item {i} method '{mid}' not in allowed methods from API")
 
-            # Validate table
-            if not isinstance(tab, str) or not tab.strip():
-                errors.append(f"analysis item {i} table must be non-empty string")
 
         # Check for missing baseline descriptives
         baseline_outcomes = {o["variable"] for o in outcomes if 0 in o.get("timepoints", [])}
