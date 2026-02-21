@@ -72,7 +72,7 @@ class AutoCodeAPI:
         for vt in variable_types:
             if vt['title'] == title:
                 return vt['id']
-        raise LookupErrorError(f"Variable type with title '{title}' not found.")
+        raise LookupError(f"Variable type with title '{title}' not found.")
     
     def get_sap_json(self, trial_id):
         sap_json = self.get_(endpoint = f"sap_json/latest/?trial={trial_id}")
@@ -128,6 +128,40 @@ class TrialCreator:
 
         response = self.api.post_(endpoint = "sap_json/", data = data)
         return response
+    
+    def get_time_variable(self):
+        trial_data = self.api.get_(endpoint = f"trial/{self.trial_id}")
+        time_variable_id = trial_data.get('time_variable', None)
+        if time_variable_id is None:
+            print("No time variable set for this trial.")
+            return None
+        time_variable_data = self.api.get_(endpoint = f"measure/{time_variable_id}")
+        return time_variable_data
+    
+    def update_time_variable(self, label: str, variable: str):
+        """
+        Create or update the time variable for this trial.
+
+        Args:
+            label: Human-readable label for the time variable
+            variable: Short variable name (e.g., 'timepoint')
+        """
+        # Get the Categorical variable type ID
+
+        # Create the measure data
+        measure_data = {
+            "label": label,
+            "variable": variable,
+            "variable_type": "Categorical"
+        }
+
+        # Add the measure (no value_labels needed for time variable)
+        time_var_measure = self.add_measure(measure_data, value_labels=None)
+
+        # Update the trial's time_variable field
+        self.patch_trial(new_data={"time_variable": time_var_measure['id']})
+
+        return time_var_measure
 
     def update_timepoints(self, timepoint_list):
         timepoint_ids = []
@@ -140,6 +174,46 @@ class TrialCreator:
 
 
         return timepoint_ids
+    
+    def get_design_variables(self):
+        design_variables = self.api.get_(f"design_variable/?trial={self.trial_id}")
+        enriched_design_vars = []
+        for dv in design_variables:
+            variable_id = dv['variable']
+            measure_data = self.api.get_(endpoint=f"measure/{variable_id}")
+            measure_data['parameter'] = dv['parameter']
+            enriched_design_vars.append(measure_data)
+        return enriched_design_vars
+
+    def update_design_variable(self, parameter: str, label: str, variable: str):
+        """
+        Create or update a design variable for this trial.
+
+        Args:
+            parameter: Design parameter slug (e.g., 'allocation', 'centre')
+            label: Human-readable label for the variable
+            variable: Short variable name (e.g., 'treatment_group', 'site')
+        """
+        # Create the measure data (Categorical type)
+        measure_data = {
+            "label": label,
+            "variable": variable,
+            "variable_type": "Categorical"
+        }
+
+        # Add the measure (no value_labels needed)
+        design_var_measure = self.add_measure(measure_data, value_labels=None)
+
+        # Post to design_variable endpoint
+        design_var_data = {
+            "trial": self.trial_id,
+            "parameter": parameter,  # slug field
+            "variable": design_var_measure['id']  # measure ID
+        }
+
+        response = self.api.post_(endpoint="design_variable/", data=design_var_data)
+
+        return response
     
     def add_measure(self, variable_data, value_labels = None):
         if value_labels is not None:
