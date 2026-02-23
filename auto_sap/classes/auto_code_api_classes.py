@@ -278,20 +278,25 @@ class TrialCreator:
         self.design_variable_ids = design_variable_ids
 
         return design_variable_ids
+    
+    def get_allocation_groups(self):
+        response = self.api.get_(endpoint = f"allocation_group/?trials={self.trial_id}")
+        return response
 
     def update_allocation_groups(self, allocation_group_list):
-        allocation_group_ids = []
+        cleaned_list = []
         for ag in allocation_group_list:
-            response = self.api.post_(endpoint = "allocation_group/", data = ag)
-            allocation_group_ids.append(response['id'])
-        self.allocation_group_ids = allocation_group_ids
+            if 'value' not in ag or 'label' not in ag:
+                raise ValueError("Each allocation group must have 'value' and 'label' keys.")
+            cleaned_list.append({
+                "value": ag['value'],
+                "label": ag['label']
+            })
 
-        new_data = {
-            "allocation_groups": self.allocation_group_ids,
-        }
-        self.patch_trial(new_data = new_data)
 
-        return allocation_group_ids
+        response = self.patch_trial(new_data = {"allocation_groups": cleaned_list})
+
+        return response
 
   
 
