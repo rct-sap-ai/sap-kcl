@@ -676,6 +676,7 @@ class AnalysisExtractor(AutoCodeExtractor):
                         "outcome_variable": outcome["variable"],
                         "timepoints": [0],
                         "method": descriptive_method_id,
+                        "covariates": [],
                     })
             print(f"    ✓ Added {len([a for a in analysis_list if 0 in a.get('timepoints', [])])} baseline descriptive analyses")
 
@@ -694,7 +695,7 @@ Available outcomes:
 Available analysis methods:
 {methods_str}
 
-Your task: For each outcome variable, determine the appropriate analysis method and timepoints for the MAIN analysis.
+Your task: For each outcome variable, determine the appropriate analysis method, timepoints, and covariates for the MAIN analysis.
 
 Return a JSON array in this EXACT format:
 [
@@ -702,6 +703,7 @@ Return a JSON array in this EXACT format:
     "outcome_variable": "phq9_total",
     "timepoints": [2,3,4],
     "method": "method_id_from_list",
+    "covariates": ["age", "baseline_score"]
   }}
 ]
 
@@ -709,6 +711,7 @@ Rules:
 - outcome_variable = must match "variable" field from outcomes list
 - timepoints = list of integer values, include all post randomisation timepoints relevant for the main analysis of that outcome
 - method = must be an "id" value from the available methods list
+- covariates = list of variable name strings matching "variable" fields from the outcomes list; include only variables mentioned as covariates or adjustment variables in the SAP for that outcome; use an empty list [] if none are specified
 - Choose the most appropriate statistical method based on:
   * variable_type (Continuous → linear/mixed model, Binary → logistic, etc.)
   * what the SAP describes for that outcome

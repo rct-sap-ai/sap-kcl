@@ -46,8 +46,6 @@ if run_analysis:
     #     print(row)
 
 if update_analysis:
-    analysis_list2[0]["timepoints"] = [0]
-    analysis_list2[1]["timepoints"] = [1]
     updated_analysis = trial_creator.update_analyses(analysis_list2)
 
     print("Updated analyses response:", updated_analysis)

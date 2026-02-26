@@ -406,10 +406,14 @@ class TrialCreator:
             timepoints = analysis.get("timepoints", [])
             timepoint_values = [tp["value"] for tp in timepoints] if isinstance(timepoints, list) else []
 
+            covariates = analysis.get("covariates", [])
+            covariate_variables = [c["variable"] for c in covariates] if isinstance(covariates, list) else []
+
             analysis_list.append({
                 "method": analysis["method"],
                 "outcome_variable": analysis["outcome"]["variable"],
                 "timepoints": timepoint_values,
+                "covariates": covariate_variables,
             })
         return analysis_list
         
@@ -451,11 +455,14 @@ class TrialCreator:
                 if tp:
                     timepoint_ids.append(tp['id'])
 
+            covariate_vars = analysis.get("covariates", [])
+
             analysis_data_list.append({
                 "outcome": measure_id,
                 "timepoints": timepoint_ids,
                 "method": analysis['method'],
                 "order": order,
+                "covariates": covariate_vars,
             })
         response = self.api.put_(endpoint = f"trial/{self.trial_id}/set-analyses", data = analysis_data_list)
         return response
