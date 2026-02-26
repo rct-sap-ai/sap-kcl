@@ -3,7 +3,7 @@ from auto_sap.classes.auto_code_classes import TimepointExtractor, VariableExtra
 from auto_sap.classes.chat_classes import OpenAIChat
 
 
-dev_flag = True
+dev_flag = False
 run_analysis = True
 update_analysis = True
 api = AutoCodeAPI(dev=dev_flag)
@@ -38,8 +38,8 @@ if run_analysis:
         analysis_list=analysis_list2, 
         outcomes=outcome_list, 
         allowed_method_ids=method_ids)
-    print(f"errors: {errors}")
-    print(f"warnings: {warnings}")
+    print(f"\n \n errors: {errors}")
+    print(f"\n\n warnings: {warnings}")
 
     # print(f"Processed analyses for trial : {trial_id}")
     # for row in analysis_list:

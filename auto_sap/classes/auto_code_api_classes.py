@@ -456,13 +456,18 @@ class TrialCreator:
                     timepoint_ids.append(tp['id'])
 
             covariate_vars = analysis.get("covariates", [])
+            covariate_ids = []
+            for cov_var in covariate_vars:
+                cov_item = next((item for item in measures_list if item.get('variable') == cov_var), None)
+                if cov_item:
+                    covariate_ids.append(cov_item['id'])
 
             analysis_data_list.append({
                 "outcome": measure_id,
                 "timepoints": timepoint_ids,
                 "method": analysis['method'],
                 "order": order,
-                "covariates": covariate_vars,
+                "covariates": covariate_ids,
             })
         response = self.api.put_(endpoint = f"trial/{self.trial_id}/set-analyses", data = analysis_data_list)
         return response

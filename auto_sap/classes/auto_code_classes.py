@@ -799,6 +799,7 @@ Rules:
             "outcome_variable": <str>,
             "timepoints": <list[int]>,
             "method": <method_id>,
+            "covariates": <list[str]>,
           }
 
         Returns:
@@ -810,15 +811,17 @@ Rules:
         if not isinstance(analysis_list, list):
             return ["analysis_list is not a list"], []
 
-        # Build outcome->timepoints mapping
+        # Build outcome->timepoints mapping and set of valid variable names
         outcome_tp = {}
+        valid_variables = set()
         for o in outcomes:
             v = o.get("variable")
             tps = o.get("timepoints")
             if isinstance(v, str) and isinstance(tps, list):
                 outcome_tp[v] = set(tps)
+                valid_variables.add(v)
 
-        expected_keys = {"outcome_variable", "timepoints", "method"}
+        expected_keys = {"outcome_variable", "timepoints", "method", "covariates"}
 
         for i, a in enumerate(analysis_list):
             if not isinstance(a, dict):
@@ -833,6 +836,7 @@ Rules:
             ov = a.get("outcome_variable")
             tps = a.get("timepoints")
             mid = a.get("method")
+            covs = a.get("covariates")
 
             # Validate outcome_variable
             if not isinstance(ov, str) or ov not in outcome_tp:
@@ -856,6 +860,17 @@ Rules:
             if mid not in allowed_method_ids:
                 print(f"*******checking if {mid} is in {allowed_method_ids}")
                 errors.append(f"analysis item {i} method '{mid}' not in allowed methods from API")
+
+            # Validate covariates
+            if not isinstance(covs, list):
+                errors.append(f"analysis item {i} covariates must be a list")
+            else:
+                for cov in covs:
+                    if not isinstance(cov, str):
+                        errors.append(f"analysis item {i} covariates must contain strings, found {type(cov).__name__}")
+                        break
+                    if cov not in valid_variables:
+                        errors.append(f"analysis item {i} covariate '{cov}' not found in outcomes")
 
 
         # Check for missing baseline descriptives
