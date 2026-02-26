@@ -77,7 +77,7 @@ class Template:
     def populate(self, sap_folder, sap_name = 'SAP.docx'):
         rendered_template = self.render_template()
         output_path = Path(sap_folder) / sap_name
-        template.save(output_path)
+        rendered_template.save(output_path)
         print(f"SAP saved to {output_path}")
 
         
