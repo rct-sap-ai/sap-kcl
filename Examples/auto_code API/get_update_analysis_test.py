@@ -5,6 +5,7 @@ from auto_sap.classes.chat_classes import OpenAIChat
 
 dev_flag = True
 run_analysis = True
+update_analysis = True
 api = AutoCodeAPI(dev=dev_flag)
 
 chat_bot = OpenAIChat(model_name="gpt-5-nano")
@@ -44,15 +45,17 @@ if run_analysis:
     # for row in analysis_list:
     #     print(row)
 
-
+if update_analysis:
+    analysis_list2[0]["timepoints"] = [0]
+    analysis_list2[1]["timepoints"] = [1]
     updated_analysis = trial_creator.update_analyses(analysis_list2)
 
     print("Updated analyses response:", updated_analysis)
 
 
+    # Expected analysis schema:
     # "outcome_variable": "phq9_total",
-    # "timepoint": 2,
-    # "method": "method_id_from_list",
-    # "table": "main_analysis"
+    # "timepoints": [2],
+    # "method": "method_id_from_list"
 
 #TODO: Get update analysis working. Move all this into methods. Run from streamlit.

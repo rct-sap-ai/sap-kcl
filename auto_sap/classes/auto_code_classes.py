@@ -674,10 +674,10 @@ class AnalysisExtractor(AutoCodeExtractor):
                 if 0 in outcome.get("timepoints", []):
                     analysis_list.append({
                         "outcome_variable": outcome["variable"],
-                        "timepoint": 0,
+                        "timepoints": [0],
                         "method": descriptive_method_id,
                     })
-            print(f"    ✓ Added {len([a for a in analysis_list if a['timepoint'] == 0])} baseline descriptive analyses")
+            print(f"    ✓ Added {len([a for a in analysis_list if 0 in a.get('timepoints', [])])} baseline descriptive analyses")
 
         # Now use AI to determine main analyses for each outcome
         outcomes_str = json.dumps(outcomes, indent=2)
@@ -694,26 +694,26 @@ Available outcomes:
 Available analysis methods:
 {methods_str}
 
-Your task: For each outcome variable, determine the appropriate analysis method and timepoint for the MAIN analysis.
+Your task: For each outcome variable, determine the appropriate analysis method and timepoints for the MAIN analysis.
 
 Return a JSON array in this EXACT format:
 [
   {{
     "outcome_variable": "phq9_total",
-    "timepoint": 2,
+    "timepoints": [2,3,4],
     "method": "method_id_from_list",
   }}
 ]
 
 Rules:
 - outcome_variable = must match "variable" field from outcomes list
-- timepoint = integer value, typically the last/maximum timepoint for that outcome
+- timepoints = list of integer values, include all post randomisation timepoints relevant for the main analysis of that outcome
 - method = must be an "id" value from the available methods list
 - Choose the most appropriate statistical method based on:
   * variable_type (Continuous → linear/mixed model, Binary → logistic, etc.)
   * what the SAP describes for that outcome
   * standard practice for that outcome type
-- Do NOT include baseline (timepoint=0) descriptive analyses - those are handled separately
+- Do NOT include baseline (timepoint 0) descriptive analyses - those are handled separately
 - Include one main analysis per outcome variable
 - Output ONLY the JSON array, no explanation
 """
@@ -794,7 +794,7 @@ Rules:
         Expected schema (per analysis):
           {
             "outcome_variable": <str>,
-            "timepoint": <int>,
+            "timepoints": <list[int]>,
             "method": <method_id>,
           }
 
@@ -815,7 +815,7 @@ Rules:
             if isinstance(v, str) and isinstance(tps, list):
                 outcome_tp[v] = set(tps)
 
-        expected_keys = {"outcome_variable", "timepoint", "method"}
+        expected_keys = {"outcome_variable", "timepoints", "method"}
 
         for i, a in enumerate(analysis_list):
             if not isinstance(a, dict):
@@ -828,22 +828,26 @@ Rules:
                 continue
 
             ov = a.get("outcome_variable")
-            tp = a.get("timepoint")
+            tps = a.get("timepoints")
             mid = a.get("method")
 
             # Validate outcome_variable
             if not isinstance(ov, str) or ov not in outcome_tp:
                 errors.append(f"analysis item {i} outcome_variable '{ov}' not found in outcomes")
             else:
-                # Validate timepoint for this outcome
-                if not isinstance(tp, int):
-                    errors.append(f"analysis item {i} timepoint must be int")
+                # Validate timepoints for this outcome
+                if not isinstance(tps, list):
+                    errors.append(f"analysis item {i} timepoints must be a list")
                 else:
-                    if tp not in outcome_tp[ov]:
-                        errors.append(
-                            f"analysis item {i} timepoint {tp} not valid for outcome '{ov}' "
-                            f"(allowed {sorted(outcome_tp[ov])})"
-                        )
+                    for tp in tps:
+                        if not isinstance(tp, int):
+                            errors.append(f"analysis item {i} timepoints must contain integers, found {type(tp).__name__}")
+                            break
+                        if tp not in outcome_tp[ov]:
+                            errors.append(
+                                f"analysis item {i} timepoint {tp} not valid for outcome '{ov}' "
+                                f"(allowed {sorted(outcome_tp[ov])})"
+                            )
 
             # Validate method
             if mid not in allowed_method_ids:
@@ -853,7 +857,7 @@ Rules:
 
         # Check for missing baseline descriptives
         baseline_outcomes = {o["variable"] for o in outcomes if 0 in o.get("timepoints", [])}
-        baseline_analyses = {a["outcome_variable"] for a in analysis_list if a.get("timepoint") == 0}
+        baseline_analyses = {a["outcome_variable"] for a in analysis_list if 0 in a.get("timepoints", [])}
         missing_baseline = baseline_outcomes - baseline_analyses
         if missing_baseline:
             warnings.append(

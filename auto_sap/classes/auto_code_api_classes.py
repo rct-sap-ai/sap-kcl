@@ -1,7 +1,6 @@
 import requests
 import os
 import dotenv
-import json
 
 dotenv.load_dotenv()
 
@@ -400,13 +399,17 @@ class TrialCreator:
 
 
     def extract_processed_analysis(self, analyses: list) -> list[dict]:
-        """Extract key fields from analyses list, grouped by (outcome_variable, method) with timepoints as a list."""
+        """Extract key fields from analyses list with timepoints as a list of values."""
         analysis_list = []
         for analysis in analyses:
+            # timepoints is now M2M, so it's a list of timepoint objects
+            timepoints = analysis.get("timepoints", [])
+            timepoint_values = [tp["value"] for tp in timepoints] if isinstance(timepoints, list) else []
+
             analysis_list.append({
                 "method": analysis["method"],
                 "outcome_variable": analysis["outcome"]["variable"],
-                "timepoint": analysis["timepoint"]["value"],
+                "timepoints": timepoint_values,
             })
         return analysis_list
         
@@ -439,11 +442,18 @@ class TrialCreator:
         for analysis in analysis_list:
             measure_item = next((item for item in measures_list if item.get('variable') == analysis['outcome_variable']), None)
             measure_id = measure_item['id'] if measure_item else None
-            tp = next((item for item in timepoint_list if item.get('value') == analysis['timepoint']), None)
-            tp_id = tp['id'] if tp else None
+
+            # timepoints is now a list, map each value to its ID
+            timepoint_values = analysis.get('timepoints', [])
+            timepoint_ids = []
+            for tp_value in timepoint_values:
+                tp = next((item for item in timepoint_list if item.get('value') == tp_value), None)
+                if tp:
+                    timepoint_ids.append(tp['id'])
+
             analysis_data_list.append({
                 "outcome": measure_id,
-                "timepoint": tp_id,
+                "timepoints": timepoint_ids,
                 "method": analysis['method'],
                 "order": order,
             })
