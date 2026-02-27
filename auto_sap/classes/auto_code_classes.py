@@ -529,7 +529,7 @@ class VariableExtractor(AutoCodeExtractor):
             "Binary",
             "Count",
             "Categorical",
-            "TimeToEvent",
+            "Time to event",
         }
 
         expected_keys = {
