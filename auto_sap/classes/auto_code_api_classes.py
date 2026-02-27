@@ -461,6 +461,8 @@ class TrialCreator:
                 cov_item = next((item for item in measures_list if item.get('variable') == cov_var), None)
                 if cov_item:
                     covariate_ids.append(cov_item['id'])
+                else:
+                    print(f"Warning: covariate variable '{cov_var}' not found in measures list — skipping")
 
             analysis_data_list.append({
                 "outcome": measure_id,
