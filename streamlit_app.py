@@ -11,17 +11,17 @@ st.set_page_config(
 html_path = Path(__file__).parent / "landing.html"
 html = html_path.read_text()
 
-# Split at the trust bar so we can insert the button after the hero
-parts = html.split('<div class="sl-trust">')
+# Split after the tagline, before the hero-sub paragraph
+parts = html.split('<p class="sl-hero-sub">')
 
-# Render hero section
+# Render hero up to tagline
 st.html(parts[0])
 
-# Login button right under the hero
+# Login button
 col1, col2, col3 = st.columns([1, 1, 1])
 with col2:
-    if st.button("\U0001f52c Create Your SAP", type="primary", use_container_width=True):
+    if st.button("Draft Your SAP", type="primary", use_container_width=True):
         st.login()
 
 # Render the rest
-st.html('<div class="sl-trust">' + parts[1])
+st.html('<p class="sl-hero-sub">' + parts[1])
