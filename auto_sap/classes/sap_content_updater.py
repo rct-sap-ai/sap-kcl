@@ -1,6 +1,7 @@
 import json
 
 from auto_sap.classes.auto_code_api_classes import TrialCreator
+from auto_sap.classes.auto_code_classes import TimepointExtractor, VariableExtractor
 
 
 class SAPContentUpdater:
@@ -24,6 +25,8 @@ class SAPContentUpdater:
     def __init__(self, trial_manager: TrialCreator, chat_bot):
         self.trial_manager = trial_manager
         self.chat_bot = chat_bot
+        self._timepoint_extractor = TimepointExtractor(chat_bot)
+        self._variable_extractor = VariableExtractor(chat_bot)
 
     # ------------------------------------------------------------------ #
     # Internal helpers                                                     #
@@ -41,41 +44,57 @@ class SAPContentUpdater:
             response = {"content": ""}
         return response.get("content", "")
 
-    def _generate_timepoints_text(self, timepoints: list) -> str:
+    def _generate_timepoints_text(self, timepoints: list, existing_content: str) -> str:
+        existing_section = (
+            f"\nExisting SAP text (use for additional context on timepoint descriptions):\n{existing_content}\n"
+            if existing_content else ""
+        )
         prompt = f"""Write a brief description of the follow-up timepoints for a clinical trial SAP.
 
-Timepoints (ordered):
+# Timepoint List (ordered) - this is the source of truth for which timepoints are included.:
 {json.dumps(timepoints, indent=2)}
 
-        - Using the above timepoints list, describe all follow-up time points at which outcomes are measured. 
-        - Write in complete sentences, using the timepoint labels (not values).
-        - Present each timepoint on a new line, in chronological order.
-        - Do not use bullet points or dashes to introduce new lines. 
+# Protocol based timepoint descriptions (if available, use these to enrich the descriptions of the timepoints above):
+{existing_section}
+
+# Instructions
+        - For each timepoint in the Timpoint list above, write a concise description of the timepoint. Place each timepoint description on a new line, in the same order as the timepoints are listed above.
+        - Write in complete sentences and give full descriptions of each timepoint using the provided protocol-based descriptions as additional context where available.
+        - Do not use bullet points or dashes to introduce new lines.
         - Do not add additional line breaks between timepoints
-        - Be concise. 
-        - Do not invent information not present in the protocol.
+        - Be concise.
+        - Do not invent information not present in the data provided.
         - Do not include details on visit windows."""
         return self._get_response(prompt).strip()
 
-    def _generate_outcomes_text(self, measures: list, timepoints: list) -> tuple[str, str]:
+    def _generate_outcomes_text(self, measures: list, timepoints: list, existing_content: str) -> tuple[str, str]:
         timepoint_labels = {tp["value"]: tp["label"] for tp in timepoints}
+        existing_section = (
+            f"\nExisting SAP text (use as the source of truth for which outcomes are primary and which are secondary):\n{existing_content}\n"
+            if existing_content else ""
+        )
         prompt = f"""Write descriptions of the primary and secondary outcome measures for a clinical trial SAP.
 
-The following outcome variables have been extracted from the trial database (treat the first as the primary outcome):
+The following outcome variables have been extracted from the trial database and should be used as the source of truth.:
 {json.dumps(measures, indent=2)}
 
 Timepoint reference (value → label):
 {json.dumps(timepoint_labels, indent=2)}
 
+
+This text is extracted from the protocol and should be used for additional context on the outcome measures, but the database list above is the source of truth for which outcomes are included and which is primary vs secondary:
+{existing_section}
 Return a JSON object:
 {{
-  "primary_outcome_measures": "<description of the first/primary outcome>",
-  "secondary_outcome_measures": "<description of remaining secondary outcomes>"
+  "primary_outcome_measures": "<description of the primary outcome(s)>",
+  "secondary_outcome_measures": "<description of the secondary outcomes>"
 }}
 
 Guidelines for primary_outcome_measures:
+- Use the existing SAP text above as the source of truth for which outcomes are primary and which are secondary. If no existing text is present, treat the first outcome in the database list as primary.
 - For each primary outcome, write a single paragraph that includes: specification of the outcome (what is being measured), the variable type, and the timepoints at which it is measured (use timepoint labels, not values).
-- For outcomes measured at multiple timepoints, clearly state which is the primary timepoint for the main analysis and note that other timepoints will be analysed as secondary outcomes.
+- Use the additional information to provide a richer description of the outcome measure, but do not contradict the database list above in terms of which outcomes are included. Where it is not obvious, include the label in brackets after defining the outcome.
+- For outcomes measured at multiple timepoints, only describe the primary outcome timepoint in the primary outcome section; describe additional timepoints for that outcome in the secondary outcome section.
 - Do not mention assessments at baseline in the outcome description.
 - Do not include any information about the analysis of the outcome.
 - Be concise.
@@ -83,6 +102,7 @@ Guidelines for primary_outcome_measures:
 Guidelines for secondary_outcome_measures:
 - For each secondary outcome, write a single paragraph that includes: specification of the outcome, the variable type, and the timepoints at which it is measured (use timepoint labels, not values).
 - Write each outcome as a separate paragraph.
+- Use the additional information to provide a richer description of the outcome measure, but do not contradict the database list above in terms of which outcomes are included. Where it is not obvious, include the label in brackets after defining the outcome.
 - Do not mention assessments at baseline in the outcome description.
 - Do not include any information about the analysis of the outcome.
 - Be concise.
@@ -141,19 +161,33 @@ Guidelines:
     # Public API — individual field updaters                              #
     # ------------------------------------------------------------------ #
 
+    def _get_timepoint_content(self, sap_json: dict) -> str:
+        try:
+            return self._timepoint_extractor.get_content(sap_json)
+        except ValueError:
+            return ""
+
+    def _get_variable_content(self, sap_json: dict) -> str:
+        try:
+            return self._variable_extractor.get_content(sap_json)
+        except ValueError:
+            return ""
+
     def update_follow_up_timepoints(self, sap_json: dict) -> dict:
         """Regenerate the follow_up_timepoints field in sap_json and return it."""
         timepoints = self.trial_manager.get_timepoints()
+        existing_content = self._get_timepoint_content(sap_json)
         print("Generating follow_up_timepoints...")
-        sap_json["follow_up_timepoints"] = self._generate_timepoints_text(timepoints)
+        sap_json["follow_up_timepoints"] = self._generate_timepoints_text(timepoints, existing_content)
         return sap_json
 
     def update_primary_outcome_measures(self, sap_json: dict) -> dict:
         """Regenerate the primary_outcome_measures field in sap_json and return it."""
         timepoints = self.trial_manager.get_timepoints()
         measures = self.trial_manager.get_processed_measures()
+        existing_content = self._get_variable_content(sap_json)
         print("Generating primary_outcome_measures...")
-        primary, _ = self._generate_outcomes_text(measures, timepoints)
+        primary, _ = self._generate_outcomes_text(measures, timepoints, existing_content)
         sap_json["primary_outcome_measures"] = primary
         return sap_json
 
@@ -161,8 +195,9 @@ Guidelines:
         """Regenerate the secondary_outcome_measures field in sap_json and return it."""
         timepoints = self.trial_manager.get_timepoints()
         measures = self.trial_manager.get_processed_measures()
+        existing_content = self._get_variable_content(sap_json)
         print("Generating secondary_outcome_measures...")
-        _, secondary = self._generate_outcomes_text(measures, timepoints)
+        _, secondary = self._generate_outcomes_text(measures, timepoints, existing_content)
         sap_json["secondary_outcome_measures"] = secondary
         return sap_json
 
