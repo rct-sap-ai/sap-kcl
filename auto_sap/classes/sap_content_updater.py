@@ -92,7 +92,7 @@ Return a JSON object:
 
 Guidelines for primary_outcome_measures:
 - Use the existing SAP text above as the source of truth for which outcomes are primary and which are secondary. If no existing text is present, treat the first outcome in the database list as primary.
-- For each primary outcome, write a single paragraph that includes: specification of the outcome (what is being measured), the variable type, and the timepoints at which it is measured (use timepoint labels, not values).
+- For each primary outcome, write a single paragraph that includes: specification of the outcome (what is being measured), the variable type, and the timepoint for which the primary outcome is defined, naming the timpepoint wiht its label.
 - Use the additional information to provide a richer description of the outcome measure, but do not contradict the database list above in terms of which outcomes are included. Where it is not obvious, include the label in brackets after defining the outcome.
 - For outcomes measured at multiple timepoints, only describe the primary outcome timepoint in the primary outcome section; describe additional timepoints for that outcome in the secondary outcome section.
 - Do not mention assessments at baseline in the outcome description.
@@ -131,14 +131,15 @@ Output ONLY the JSON object, no markdown."""
 
     def _generate_analysis_methods_text(self, analyses: list, methods: list) -> str:
         method_lookup = {
-            m["id"]: m.get("title", m.get("slug", str(m["id"])))
+            m["id"]: {"title": m.get("title", str(m["id"])), "description": m.get("description", "")}
             for m in methods
         }
         enriched = [
             {
-                "outcome_variable": a["outcome_variable"],
+                "outcome_label": a["label"],
                 "timepoints": a["timepoints"],
-                "method": method_lookup.get(a["method"], str(a["method"])),
+                "method": method_lookup.get(a["method"], {}).get("title", str(a["method"])),
+                "method_description": method_lookup.get(a["method"], {}).get("description", ""),
                 "covariates": a.get("covariates", []),
             }
             for a in analyses
@@ -149,11 +150,14 @@ The following analyses have been extracted from the trial database:
 {json.dumps(enriched, indent=2)}
 
 Guidelines:
-- For each outcome variable, describe the planned analysis model, including the modelling approach (e.g., linear regression, logistic regression, mixed-effects model) and how the treatment effect will be parameterised and presented (e.g., mean difference, odds ratio).
+- For each outcome variable, describe the planned analysis model, including the modelling approach (e.g., linear regression, logistic regression, mixed-effects model).
+- Where outcomes are analysed using the same method, group them together in the description to avoid repetition. Begin the descirption with an explicit list of the outcoes to be analysed at that timepoint using outome labels and timepoint labels.
+- If not empty, base the description on the description field of the method. Populate any details in {} with relevant information. Edit as required so it reads well and is concise, but do not remove any details that are present in the method description.
 - Specify any planned adjustment for baseline covariates where listed in the data above.
 - Write the output as one or more concise paragraphs, without bullet points.
 - Do not introduce analysis models, covariates, or populations beyond those present in the data above.
 - Be concise and use professional statistical terminology.
+- Only use outcome or covariate labels. do not use variable names from the database in the text
 - Output only the plain text."""
         return self._get_response(prompt).strip()
 
