@@ -8,6 +8,10 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+# ── URL of the public SAPAI Open deployment ───────────────────────────────────
+SAPAI_OPEN_URL = "https://sapai-open.up.railway.app"  # TODO: update when live
+
+# ── Logo ──────────────────────────────────────────────────────────────────────
 logo_path = Path(__file__).parent / "sapai_logo.png"
 if logo_path.exists():
     st.html(f'''
@@ -16,16 +20,114 @@ if logo_path.exists():
         </div>
     ''')
 
+# ── Load landing HTML, split at the hero paragraph ───────────────────────────
 html_path = Path(__file__).parent / "landing.html"
 html = html_path.read_text()
-
 parts = html.split('<p class="sl-hero-sub">')
 
 st.html(parts[0])
 
-col1, col2, col3 = st.columns([1, 1, 1])
-with col2:
-    if st.button("Draft Your SAP", type="primary", use_container_width=True):
-        st.login()
+# ── Session state ─────────────────────────────────────────────────────────────
+if "show_chooser" not in st.session_state:
+    st.session_state.show_chooser = False
 
+# ── Hero CTA area ─────────────────────────────────────────────────────────────
+col1, col2, col3 = st.columns([1, 1.6, 1])
+
+with col2:
+    if not st.session_state.show_chooser:
+        if st.button("Draft Your SAP", type="primary", use_container_width=True):
+            st.session_state.show_chooser = True
+            st.rerun()
+
+    else:
+        # ── Chooser card ──────────────────────────────────────────────────────
+        st.html("""
+        <div style="
+            background:#fff;
+            border:1px solid #e5e7eb;
+            border-radius:16px;
+            padding:2rem 1.8rem 1.5rem;
+            box-shadow:0 4px 24px rgba(0,0,0,0.06);
+            text-align:center;
+            margin-bottom:0.5rem;
+        ">
+            <p style="
+                font-family:'Plus Jakarta Sans',sans-serif;
+                font-size:0.7rem;
+                font-weight:700;
+                text-transform:uppercase;
+                letter-spacing:0.1em;
+                color:#9ca3af;
+                margin-bottom:0.5rem;
+            ">Select your access type</p>
+            <p style="
+                font-family:'Plus Jakarta Sans',sans-serif;
+                font-size:1.05rem;
+                font-weight:700;
+                color:#111;
+                margin-bottom:0.25rem;
+            ">How are you accessing SAPAI?</p>
+            <p style="
+                font-family:'Plus Jakarta Sans',sans-serif;
+                font-size:0.82rem;
+                color:#6b7280;
+                margin-bottom:0;
+            ">KCL users sign in with Google. Everyone else can use SAPAI Open with their own API key.</p>
+        </div>
+        """)
+
+        btn_col1, btn_col2 = st.columns(2, gap="small")
+
+        with btn_col1:
+            st.html("""
+            <p style="
+                font-family:'Plus Jakarta Sans',sans-serif;
+                font-size:0.72rem;
+                font-weight:600;
+                text-transform:uppercase;
+                letter-spacing:0.08em;
+                color:#2d6a4f;
+                text-align:center;
+                margin-bottom:0.3rem;
+            ">KCL member</p>
+            """)
+            if st.button(
+                "Sign in with Google →",
+                type="primary",
+                use_container_width=True,
+                key="kcl_login",
+                help="King's College London Clinical Trials Unit members"
+            ):
+                st.login()
+
+        with btn_col2:
+            st.html("""
+            <p style="
+                font-family:'Plus Jakarta Sans',sans-serif;
+                font-size:0.72rem;
+                font-weight:600;
+                text-transform:uppercase;
+                letter-spacing:0.08em;
+                color:#6b7280;
+                text-align:center;
+                margin-bottom:0.3rem;
+            ">External / Open access</p>
+            """)
+            st.link_button(
+                "Go to SAPAI Open →",
+                url=SAPAI_OPEN_URL,
+                use_container_width=True,
+                help="Use your own OpenAI API key — open to everyone"
+            )
+
+        st.html('<div style="height:0.6rem;"></div>')
+
+        _, back_col, _ = st.columns([2, 1, 2])
+        with back_col:
+            if st.button("← Back", use_container_width=True, key="back_btn"):
+                st.session_state.show_chooser = False
+                st.rerun()
+
+# ── Rest of landing page ──────────────────────────────────────────────────────
 st.html('<p class="sl-hero-sub">' + parts[1])
