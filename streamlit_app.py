@@ -4,189 +4,126 @@ import json
 import pandas as pd
 from auto_sap.classes.auto_code_api_classes import get_sap_code_from_json
 st.set_page_config(
-    page_title="SAP AutoCode",
+    page_title="SAPAI",
     page_icon="📊",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
 
-st.title("🏥 KCL Clinical Trials Unit")
-st.header("SAP AutoCode System")
-st.markdown("Automated Statistical Analysis Plan generation from trial protocols")
-st.markdown("**edits made**")
-# Sidebar for API key
-with st.sidebar:
-    st.markdown("### 🔑 API Configuration")
-    
-    api_key = st.text_input(
-        "OpenAI API Key",
-        type="password",
-        help="Enter your OpenAI API key. Get one at https://platform.openai.com/api-keys"
-    )
-    
-    if api_key:
-        os.environ["OPENAI_API_KEY"] = api_key
-        st.success("✅ API key configured")
-        
-        # Try to import backend
-        try:
-            from auto_sap.generate_templates.generate_simple_template import get_autocode_conversation_for_protocol
-            backend_available = True
-            st.success("✅ Backend loaded")
-        except ImportError as e:
-            backend_available = False
-            st.error(f"❌ Backend error: {e}")
+# ── URL of the public SAPAI Open deployment ───────────────────────────────────
+SAPAI_OPEN_URL = "https://sapai-open.up.railway.app"  # TODO: update when live
+
+# ── Logo ──────────────────────────────────────────────────────────────────────
+logo_path = Path(__file__).parent / "sapai_logo.png"
+if logo_path.exists():
+    st.html(f'''
+        <div style="text-align:center;padding:1rem 0 0;">
+            <img src="data:image/png;base64,{__import__("base64").b64encode(logo_path.read_bytes()).decode()}" style="height:60px;">
+        </div>
+    ''')
+
+# ── Load landing HTML, split at the hero paragraph ───────────────────────────
+html_path = Path(__file__).parent / "landing.html"
+html = html_path.read_text()
+parts = html.split('<p class="sl-hero-sub">')
+
+st.html(parts[0])
+
+# ── Session state ─────────────────────────────────────────────────────────────
+if "show_chooser" not in st.session_state:
+    st.session_state.show_chooser = False
+
+# ── Hero CTA area ─────────────────────────────────────────────────────────────
+col1, col2, col3 = st.columns([1, 1.6, 1])
+
+with col2:
+    if not st.session_state.show_chooser:
+        if st.button("Draft Your SAP", type="primary", use_container_width=True):
+            st.session_state.show_chooser = True
+            st.rerun()
+
     else:
-        st.warning("⚠️ Please enter your OpenAI API key to continue")
-        backend_available = False
-    
-    st.markdown("---")
-    st.markdown("### About")
-    st.markdown("Upload a clinical trial protocol and generate a structured SAP JSON.")
-    st.markdown("**Validation:** 82% accuracy on first draft")
-    st.markdown("\n[Get OpenAI API Key](https://platform.openai.com/api-keys)")
+        # ── Chooser card ──────────────────────────────────────────────────────
+        st.html("""
+        <div style="
+            background:#fff;
+            border:1px solid #e5e7eb;
+            border-radius:16px;
+            padding:2rem 1.8rem 1.5rem;
+            box-shadow:0 4px 24px rgba(0,0,0,0.06);
+            text-align:center;
+            margin-bottom:0.5rem;
+        ">
+            <p style="
+                font-family:'Plus Jakarta Sans',sans-serif;
+                font-size:0.7rem;
+                font-weight:700;
+                text-transform:uppercase;
+                letter-spacing:0.1em;
+                color:#9ca3af;
+                margin-bottom:0.5rem;
+            ">Select your access type</p>
+            <p style="
+                font-family:'Plus Jakarta Sans',sans-serif;
+                font-size:1.05rem;
+                font-weight:700;
+                color:#111;
+                margin-bottom:0.25rem;
+            ">How are you accessing SAPAI?</p>
+            <p style="
+                font-family:'Plus Jakarta Sans',sans-serif;
+                font-size:0.82rem;
+                color:#6b7280;
+                margin-bottom:0;
+            ">KCL users sign in with Google. Everyone else can use SAPAI Open with their own API key.</p>
+        </div>
+        """)
 
-# Initialize session state
-if 'conversation' not in st.session_state:
-    st.session_state.conversation = None
-if 'chat_history' not in st.session_state:
-    st.session_state.chat_history = []
+        btn_col1, btn_col2 = st.columns(2, gap="small")
 
-# Show instructions if no API key
-if not api_key:
-    st.info("👈 Please enter your OpenAI API key in the sidebar to get started")
-    st.markdown("""
-    ### Getting Started
-    
-    1. Get an OpenAI API key from [platform.openai.com](https://platform.openai.com/api-keys)
-    2. Enter it in the sidebar
-    3. Upload your clinical trial protocol
-    4. Generate your SAP!
-    
-    **Your API key is only used for this session and is never stored.**
-    """)
-    st.stop()
-
-tab1, tab2, tab3 = st.tabs(["Generate SAP", "Refine & Chat", "About"])
-
-with tab1:
-    st.markdown("### Upload Protocol")
-    st.info("Upload your clinical trial protocol to generate a Statistical Analysis Plan")
-    
-    uploaded_file = st.file_uploader(
-        "Upload Clinical Trial Protocol",
-        type=['pdf', 'docx', 'txt'],
-        help="Supported formats: PDF, Word, Text"
-    )
-    
-    if uploaded_file:
-        st.success(f"Uploaded: {uploaded_file.name}")
-        
-        # Show cost estimate
-        st.warning("⚠️ **Cost Estimate:** Generating a SAP typically costs $0.50 to $2.00 depending on protocol length. This will be charged to your OpenAI account.")
-        
-        if st.button("Generate SAP JSON", type="primary", disabled=not backend_available):
-            with st.spinner("Processing protocol with LLM... This may take 2-5 minutes"):
-                try:
-                    # Read protocol text
-                    if uploaded_file.type == "text/plain":
-                        protocol_txt = uploaded_file.read().decode("utf-8")
-                    elif uploaded_file.type == "application/pdf":
-                        from PyPDF2 import PdfReader
-                        import io
-                        pdf_reader = PdfReader(io.BytesIO(uploaded_file.read()))
-                        protocol_txt = "\n".join(page.extract_text() for page in pdf_reader.pages)
-                    elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-                        from docx import Document
-                        import io
-                        doc = Document(io.BytesIO(uploaded_file.read()))
-                        protocol_txt = "\n".join(p.text for p in doc.paragraphs)
-                    else:
-                        st.error("Unsupported file type")
-                        st.stop()
-                    
-                    # Import here after API key is set
-                    from auto_sap.generate_templates.generate_simple_template import get_autocode_conversation_for_protocol
-                    
-                    # Generate SAP using your actual backend
-                    st.info("Calling auto code extraction pipeline...")
-                    conversation = get_autocode_conversation_for_protocol(protocol_txt)
-                    
-                    # Store in session state
-                    st.session_state.conversation = conversation
-                    st.session_state.protocol_name = uploaded_file.name
-                    
-                    st.success("✅ SAP JSON generated successfully!")
-                    st.balloons()
-                    
-                    # Show preview
-                    with st.expander("📊 View Generated JSON", expanded=True):
-                        st.json(conversation.result)
-                    
-                except Exception as e:
-                    st.error(f"Error generating SAP: {str(e)}")
-                    st.exception(e)
-
-with tab2:
-    st.markdown("### Refine SAP JSON")
-
-    if st.session_state.conversation is not None:
-        st.success(f"Working on: {st.session_state.get('protocol_name', 'Protocol')}")
-
-        if "last_editor" not in st.session_state:
-            st.session_state.last_editor = None
-
-        def load_dfs_from_json():
-            data = st.session_state.conversation.result
-            st.session_state.timepoints_df = pd.DataFrame(data["timepoints"])
-            st.session_state.variables_df = pd.DataFrame(data["variables"])
-            st.session_state.analyses_df = pd.DataFrame(data["analyses"])
-    
-
-        
-        if "timepoints_df" not in st.session_state or st.session_state.last_editor == "chat":
-            load_dfs_from_json()
-            st.session_state.last_editor = None
-
-        with st.expander("📊 Timepoints", expanded=False):
-            st.session_state.timepoints_df = st.data_editor(
-                st.session_state.timepoints_df,
-                num_rows="dynamic",
+        with btn_col1:
+            st.html("""
+            <p style="
+                font-family:'Plus Jakarta Sans',sans-serif;
+                font-size:0.72rem;
+                font-weight:600;
+                text-transform:uppercase;
+                letter-spacing:0.08em;
+                color:#2d6a4f;
+                text-align:center;
+                margin-bottom:0.3rem;
+            ">KCL member</p>
+            """)
+            if st.button(
+                "Sign in with Google →",
+                type="primary",
                 use_container_width=True,
-                key="timepoints_editor"
-            )
+                key="kcl_login",
+                help="King's College London Clinical Trials Unit members"
+            ):
+                st.login()
 
-        with st.expander("📊 Variables", expanded=False):
-            st.session_state.variables_df = st.data_editor(
-                st.session_state.variables_df,
-                num_rows="dynamic",
+        with btn_col2:
+            st.html("""
+            <p style="
+                font-family:'Plus Jakarta Sans',sans-serif;
+                font-size:0.72rem;
+                font-weight:600;
+                text-transform:uppercase;
+                letter-spacing:0.08em;
+                color:#6b7280;
+                text-align:center;
+                margin-bottom:0.3rem;
+            ">External / Open access</p>
+            """)
+            st.link_button(
+                "Go to SAPAI Open →",
+                url=SAPAI_OPEN_URL,
                 use_container_width=True,
-                key="variables_editor"
+                help="Use your own OpenAI API key — open to everyone"
             )
 
-        with st.expander("📊 Analyses", expanded=False):
-            st.session_state.analyses_df = st.data_editor(
-                st.session_state.analyses_df,
-                num_rows="dynamic",
-                use_container_width=True,
-                key="analyses_editor"
-            )
-
-        if not st.session_state.timepoints_df.empty:
-            st.session_state.conversation.result["timepoints"] = (
-                st.session_state.timepoints_df.to_dict("records")
-            )
-
-        if not st.session_state.variables_df.empty:
-            st.session_state.conversation.result["variables"] = (
-                st.session_state.variables_df.to_dict("records")
-            )
-
-        if not st.session_state.analyses_df.empty:
-            st.session_state.conversation.result["analyses"] = (
-                st.session_state.analyses_df.to_dict("records")
-        )
-        
-        st.session_state.last_editor = "table"
+        st.html('<div style="height:0.6rem;"></div>')
 
         
         # Download button
@@ -243,38 +180,5 @@ with tab2:
     else:
         st.info("Generate a SAP first in the 'Generate SAP' tab")
 
-with tab3:
-    st.markdown("""
-    ### System Overview
-    
-    This system automatically generates Statistical Analysis Plans (SAPs) from clinical trial protocols using Large Language Models.
-    
-    **Process:**
-    1. Enter your OpenAI API key
-    2. Upload your trial protocol (PDF, Word, or Text)
-    3. System extracts key information using specialized prompts
-    4. Generates structured JSON with:
-       - Timepoints
-       - Variables & Outcomes  
-       - Statistical Methods
-       - Analysis Populations
-       - And more...
-    5. Refine interactively via chat
-    
-    **Cost:**
-    - Typical cost: $0.50 - $2.00 per protocol
-    - Charged to your OpenAI account
-    - You maintain full control
-    
-    **Validation Results:**
-    - 82% items generated correctly on first draft
-    - 12% minor errors (easily correctable)
-    - 6% major errors (require manual review)
-    
-    **Privacy:**
-    - Your API key is only used during your session
-    - Never stored or logged
-    - Your protocols are processed securely
-    
-    **Developed by:** King's College London Clinical Trials Unit
-    """)
+# ── Rest of landing page ──────────────────────────────────────────────────────
+st.html('<p class="sl-hero-sub">' + parts[1])
