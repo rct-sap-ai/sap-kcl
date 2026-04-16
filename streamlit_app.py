@@ -1,6 +1,8 @@
 import streamlit as st
-from pathlib import Path
-
+import os
+import json
+import pandas as pd
+from auto_sap.classes.auto_code_api_classes import get_sap_code_from_json
 st.set_page_config(
     page_title="SAPAI",
     page_icon="📊",
@@ -123,11 +125,60 @@ with col2:
 
         st.html('<div style="height:0.6rem;"></div>')
 
-        _, back_col, _ = st.columns([2, 1, 2])
-        with back_col:
-            if st.button("← Back", use_container_width=True, key="back_btn"):
-                st.session_state.show_chooser = False
-                st.rerun()
+        
+        # Download button
+        json_str = json.dumps(st.session_state.conversation.result, indent=2)
+        st.download_button(
+            label="💾 Download JSON",
+            data=json_str,
+            file_name="sap_autocode.json",
+            mime="application/json"
+        )
+
+        st.download_button(
+            label="💾 Get Code",
+            data=get_sap_code_from_json(st.session_state.conversation.result),
+            file_name="sap_autocode.zip",
+            mime="application/zip"
+        )
+        
+        # Chat interface
+        st.markdown("### 💬 Refine via Chat")
+        st.info("Ask questions or request edits (e.g., 'remove timepoint Visit 6' or 'what would you suggest for outcomes?')")
+        
+        # Display chat history
+        for msg in st.session_state.chat_history:
+            with st.chat_message(msg["role"]):
+                st.write(msg["content"])
+        
+        # Chat input
+        if user_input := st.chat_input("Type your message..."):
+            # Add user message to history
+            st.session_state.chat_history.append({"role": "user", "content": user_input})
+            
+            with st.chat_message("user"):
+                st.write(user_input)
+            
+            with st.spinner("Processing..."):
+                try:
+                    # Use conversation.chat() to refine
+                    st.session_state.conversation.chat(user_input)
+                    st.session_state.last_editor = "chat"
+
+                    
+                    # Show updated JSON
+                    response = f"✅ Updated! Check the JSON above to see changes."
+                    st.session_state.chat_history.append({"role": "assistant", "content": response})
+                    
+                    with st.chat_message("assistant"):
+                        st.write(response)
+                    
+                    st.rerun()
+                    
+                except Exception as e:
+                    st.error(f"Error: {str(e)}")
+    else:
+        st.info("Generate a SAP first in the 'Generate SAP' tab")
 
 # ── Rest of landing page ──────────────────────────────────────────────────────
 st.html('<p class="sl-hero-sub">' + parts[1])

@@ -8,12 +8,12 @@ saps_path = Path(os.getenv("SAPAI_SHARED_PATH")) / "SAPs"
 protocols_path = Path(os.getenv("SAPAI_SHARED_PATH")) / "Protocols"
 
 
+
+
 template.write_sap(
-    protocol_path=protocols_path / "boppp.pdf",  
+    protocol_path= Path(protocols_path) / "ACTISSIST.pdf",
     sap_folder_path = saps_path,
-    sap_name = "boppp_test",
-    test = True
+    sap_name = "ACTISSIST_sap_v0.1",
 )
 
 
-template.get_sap_content(protocol_text = "This is a test protocol. It is only being used to test the SAP generation process, so it does not contain any real information about a trial.", model = "gpt-5-nano")

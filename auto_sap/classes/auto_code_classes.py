@@ -1,6 +1,9 @@
+from turtle import pd
 from typing import Any, Dict, List, Optional, Tuple
 import json
 import time
+import pandas as pd
+from altair import value
 
 
 # ============================================================
@@ -176,7 +179,25 @@ class AutoCodeExtractor:
 class TimepointExtractor(AutoCodeExtractor):
     """Bot 1: Extract timepoints"""
 
-    def extract_timepoints(self, sap_text: str) -> Tuple[List[Dict[str, Any]], Optional[str]]:
+    def get_content(self, sap_json: Dict[str, Any]) -> str:
+        print("\n\nTimepoint content extraction")
+
+        timepoint_content = (
+            (sap_json.get("follow_up_timepoints", "") or "")
+            + "\n"
+            + (sap_json.get("primary_outcome_measures", "") or "")
+            + "\n"
+            + (sap_json.get("secondary_outcome_measures", "") or "")
+        ).strip()
+
+        if not timepoint_content:
+            raise ValueError(
+                "No timepoint content found. Expected at least one of: "
+                "follow_up_timepoints, primary_outcome_measures, secondary_outcome_measures."
+            )
+        return timepoint_content
+
+    def extract(self, sap_text: str) -> Tuple[List[Dict[str, Any]], Optional[str]]:
         """Extract timepoints with retry logic using SAP-derived text"""
 
         print(f"    Using content: {len(sap_text):,} chars")
@@ -186,7 +207,7 @@ class TimepointExtractor(AutoCodeExtractor):
 SAP Text:
 {sap_text}
 
-Your task: Find all time measurements mentioned (baseline, follow-up visits, etc.)
+Your task: Extract the timepoints from the follow_up_timepoints field.
 
 Return a JSON array in this EXACT format:
 [
@@ -195,9 +216,13 @@ Return a JSON array in this EXACT format:
 ]
 
 Rules:
-- value 0 = baseline, value 1 = first follow-up, value 2 = second follow-up, etc.
-- label = exact description from SAP or the prompts
+- Always start with 0 = Baseline
+- Order the timepoints in the order they occur with Baseline always first (value=0)
+- eg. 0 = Baseline, 1 = 6 weeks, 2 = 2 months, 3 = 10 weeks, etc.
+- label = exact description of timepoint. For post baseline timepoints, only include number and units (e.g., "6 months", "12 weeks"). 
+- Do not state post-randomisation or similar.
 - Include ALL timepoints you find
+- Do not include any duplicate timepoints
 - Output ONLY the JSON array, no explanation, no markdown
 """
 
@@ -266,12 +291,83 @@ Rules:
             f"{last_error if last_error else 'Unknown error'}."
         )
         return [], error_msg
+    
+    def validate(self, timepoints) -> list[str]:
+        """
+        Deterministic validator for extracted timepoints.
+
+        Expected schema (per timepoint):
+        {"value": int, "label": str}
+
+        Additional invariant:
+        - 'value' must be UNIQUE across the list (used as canonical identifier)
+
+        Returns:
+        List of error strings. Empty list => valid.
+        """
+        errors = []
+
+        if not isinstance(timepoints, list):
+            return ["timepoints is not a list"]
+
+        seen_values = set()
+
+        for i, item in enumerate(timepoints):
+            if not isinstance(item, dict):
+                errors.append(f"item {i} is not a dict")
+                continue
+
+            expected_keys = {"value", "label"}
+            keys = set(item.keys())
+
+            if keys != expected_keys:
+                errors.append(f"item {i} has keys {keys} (expected exactly {expected_keys})")
+                continue
+
+            v = item.get("value", None)
+            if value is None:
+                raise ValueError("value is missing")
+
+
+            if not isinstance(v, int):
+                errors.append(f"item {i} value must be int (got {type(v).__name__})")
+            else:
+                if v in seen_values:
+                    errors.append(f"duplicate timepoint value: {v} (item {i})")
+                else:
+                    seen_values.add(v)
+
+            lab = item.get("label", None)
+            if not isinstance(lab, str) or not lab.strip():
+                errors.append(f"item {i} label must be a non-empty string")
+
+        return errors 
 
 
 class VariableExtractor(AutoCodeExtractor):
     """Bot 2: Extract variables"""
 
-    def extract_variables(
+    def get_content(self, sap_json):
+        variable_content = (
+            (sap_json.get("primary_outcome_measures", "") or "")
+            + "\n"
+            + (sap_json.get("secondary_outcome_measures", "") or "")
+            + "\n"
+            + (sap_json.get("other_variables", "") or "")
+        ).strip()
+
+        if not variable_content:
+            raise ValueError(
+                "No variable content found. Expected at least one of: "
+                "primary_outcome_measures, secondary_outcome_measures, other_variables."
+            )
+        
+
+
+
+        return(variable_content)
+
+    def extract(
         self, sap_text: str, timepoints: List[Dict[str, Any]]
     ) -> Tuple[List[Dict[str, Any]], Optional[str]]:
         """Extract variables with retry logic using SAP-derived text"""
@@ -282,43 +378,35 @@ class VariableExtractor(AutoCodeExtractor):
 
         prompt = f"""Extract all outcome variables from this Statistical Analysis Plan.
 
-SAP Text:
-{sap_text}
+        SAP Text:
+        {sap_text}
 
-Available timepoints:
-{timepoints_str}
+        Available timepoints:
+        {timepoints_str}
 
-Return a JSON array in this EXACT format:
-[
-  {{
-    "label": "Primary outcome: Depression score (PHQ-9)",
-    "variable_name": "phq9_total",
-    "timepoints": [0, 1, 2],
-    "type": "continuous"
-  }}
-]
+        Return a JSON array in this EXACT format:
+        [
+        {{
+            "label": "Depression score (PHQ-9)",
+            "variable": "phq9_total",
+            "timepoints": [0, 1, 2],
+            "variable_type": "Continuous"
+        }}
+        ]
 
-Rules:
-- label = human readable description
-- variable_name = valid Python/R name (lowercase, underscores)
-- timepoints = list of timepoint values from above
-- type = one of: continuous, binary, categorical, count, time_to_event
-- Output ONLY the JSON array
-"""
 
-        last_error = None
+
+        Rules:
+        - label = human readable description less than 80 characters.
+        - variable = short lowercase variable name with underscores, no spaces. max 28 characters.
+        - Use aberviations and acronyms to ensure variable is less than 28 characters.
+        - timepoints = list of timepoint values from above
+        - variable_type = one of: Continuous, Binary, Categorical, Count, Time to event
+        - Output ONLY the JSON array
+        """
+
         for attempt in range(self.max_retries):
             response = self.get_response(prompt=prompt)
-
-            if not response or response.strip() == "":
-                last_error = "The AI returned an empty response"
-                if attempt < self.max_retries - 1:
-                    print(f"    ⚠ Empty response, retry {attempt + 1}/{self.max_retries}")
-                    time.sleep(2)
-                    continue
-                else:
-                    print(f"    ✗ Failed: Empty response")
-                    break
 
             # Clean response
             cleaned = response.strip()
@@ -330,94 +418,307 @@ Rules:
                 cleaned = cleaned[:-3]
             cleaned = cleaned.strip()
 
+            errors = None
             try:
                 variables = json.loads(cleaned)
+            except json.JSONDecodeError as e:
+                errors = f"Could not parse the AI's response as valid JSON: {str(e)}"
+               
+            if not errors:
+                errors, warnings = self.validate(variables, timepoints)
 
-                # Validate format
-                if not isinstance(variables, list):
-                    last_error = "Response was not a list format"
-                    raise ValueError("Response is not a list")
+            for w in warnings:
+                print("Warning:", w)
 
-                if len(variables) == 0:
-                    last_error = "No variables found in the document"
-                    print(f"    ⚠ Warning: AI found 0 variables")
-                    return [], (
-                        "Sorry, I couldn't find any outcome variables. "
-                        "The SAP might not clearly define primary/secondary outcomes."
-                    )
-
-                valid_types = {"continuous", "binary", "categorical", "count", "time_to_event"}
-                for var in variables:
-                    if not isinstance(var, dict):
-                        last_error = "Variables were not in the correct format"
-                        raise ValueError("Invalid variable format")
-                    required = ["label", "variable_name", "timepoints", "type"]
-                    if not all(k in var for k in required):
-                        last_error = "Variables missing required fields"
-                        raise ValueError("Missing required fields")
-                    if var["type"] not in valid_types:
-                        last_error = f"Invalid variable type: {var['type']}"
-                        raise ValueError(f"Invalid type: {var['type']}")
-
-                print(f"    ✓ Extracted {len(variables)} variables")
-                return variables, None
-
-            except (json.JSONDecodeError, ValueError) as e:
-                last_error = f"Could not parse the AI's response: {str(e)}"
+            if errors:
                 if attempt < self.max_retries - 1:
-                    print(f"    ⚠ Parse error, retry {attempt + 1}/{self.max_retries}: {e}")
-                    time.sleep(2)
+                    print(f"    ⚠ Error in response: {errors}, retry {attempt + 1}/{self.max_retries}")
+                    time.sleep(1)
                     continue
                 else:
-                    print(f"    ✗ Failed: {e}")
-                    print(f"    Response preview: {cleaned[:300]}")
-                    break
+                    print(f"    ✗ Failed: {errors}")
+                    error_msg = (
+                        f"Sorry homie, I tried {self.max_retries} times but couldn't extract variables. \n {errors}."
+                    )           
+                    return [], errors
+            else:
+                return variables, None
 
-        error_msg = (
-            f"Sorry homie, I tried {self.max_retries} times but couldn't extract variables. "
-            f"{last_error if last_error else 'Unknown error'}."
+
+
+        
+    
+    def validate(
+        self,
+        variables_input,
+        timepoints_list,
+    ) -> tuple[list[str], list[str]]:
+
+        valid_timepoint_values = {
+            tp["value"] for tp in timepoints_list
+        }
+
+        errors, warnings = self.validate_variables_list(
+            variables_input,
+            valid_timepoint_values,
         )
-        return [], error_msg
+
+        return errors, warnings
+
+
+    def validate_variables_list(
+        self,
+        variables_input: list | str,
+        valid_timepoint_values: set[int],
+    ) -> tuple[list[str], list[str]]:
+
+        errors: list[str] = []
+        warnings: list[str] = []
+
+        variables, parse_errors = self._parse_variables(variables_input)
+        if parse_errors:
+            return parse_errors, []
+
+        if not variables:
+            return ["No variables found in variables list"], []
+
+        seen_vars: set[str] = set()
+
+        for i, item in enumerate(variables):
+            item_errors, item_warnings = self._validate_variable_item(
+                item,
+                i,
+                seen_vars,
+                valid_timepoint_values,
+            )
+            errors.extend(item_errors)
+            warnings.extend(item_warnings)
+
+        return errors, warnings
+    
+    def _parse_variables(
+        self,
+        variables_input,
+    ) -> tuple[list | None, list[str]]:
+
+        if isinstance(variables_input, str):
+            try:
+                parsed = json.loads(variables_input)
+            except (json.JSONDecodeError, ValueError) as e:
+                return None, [f"Could not parse JSON: {str(e)}"]
+        else:
+            parsed = variables_input
+
+        if not isinstance(parsed, list):
+            return None, ["variables must be a list"]
+
+        return parsed, []
+    
+    def _validate_variable_item(
+        self,
+        item,
+        index: int,
+        seen_vars: set[str],
+        valid_timepoint_values: set[int],
+    ) -> tuple[list[str], list[str]]:
+
+
+
+        allowed_types = {
+            "Continuous",
+            "Binary",
+            "Count",
+            "Categorical",
+            "Time to event",
+        }
+
+        expected_keys = {
+            "variable",
+            "label",
+            "variable_type",
+            "timepoints",
+        }
+
+        errors: list[str] = []
+        warnings: list[str] = []
+
+        if not isinstance(item, dict):
+            return [f"variable item {index} is not a dict"], []
+
+        if set(item.keys()) != expected_keys:
+            return [
+                f"variable item {index} must contain exactly {expected_keys}"
+            ], []
+
+        var = item["variable"]
+        lab = item["label"]
+        vtype = item["variable_type"]
+        tps = item["timepoints"]
+
+        if not isinstance(var, str) or not var.strip():
+            errors.append(
+                f"variable item {index} variable must be non empty string"
+            )
+        else:
+            if len(var) > 28:
+                errors.append(
+                    f"variable  {lab} variable, '{var}' exceeds 28 chars"
+                )
+            if var in seen_vars:
+                warnings.append(
+                    f"duplicate variable name '{var}' (item {index})"
+                )
+            seen_vars.add(var)
+
+        if not isinstance(lab, str) or not lab.strip():
+            errors.append(
+                f"variable item {index} label must be non empty string"
+            )
+        elif len(lab) > 80:
+            warnings.append(
+                f"variable item {index} label > 80 chars"
+            )
+
+        if vtype not in allowed_types:
+            errors.append(
+                f"variable item {index} variable_type must be one of "
+                f"{sorted(allowed_types)}"
+            )
+
+        if not isinstance(tps, list) or not all(isinstance(x, int) for x in tps):
+            errors.append(
+                f"variable item {index} timepoints must be list[int]"
+            )
+        else:
+            missing = [
+                x for x in tps if x not in valid_timepoint_values
+            ]
+            if missing:
+                errors.append(
+                    f"variable item {index} references missing timepoints {missing}"
+                )
+
+        return errors, warnings
+
+
+
 
 
 class AnalysisExtractor(AutoCodeExtractor):
-    """Bot 3: Extract analyses"""
+    """Bot 3: Extract analyses - loops through outcomes and uses AI to pick appropriate analyses"""
 
-    def extract_analyses(
-        self, sap_text: str, variables: List[Dict[str, Any]]
+    def get_content(self, sap_json: Dict[str, Any]) -> str:
+        """Extract relevant content for analysis extraction from SAP JSON"""
+        print("\n\nAnalysis content extraction")
+
+        analysis_content = (
+            (sap_json.get("statistical_analysis_plan", "") or "")
+            + "\n"
+            + (sap_json.get("primary_outcome_measures", "") or "")
+            + "\n"
+            + (sap_json.get("secondary_outcome_measures", "") or "")
+            + "\n"
+            + (sap_json.get("analysis_methods", "") or "")
+        ).strip()
+
+        if not analysis_content:
+            raise ValueError(
+                "No analysis content found. Expected at least one of: "
+                "statistical_analysis_plan, primary_outcome_measures, secondary_outcome_measures, analysis_methods."
+            )
+
+        return analysis_content
+
+    def extract(
+        self,
+        sap_text: str,
+        outcomes: List[Dict[str, Any]],
+        timepoints: List[Dict[str, Any]],
+        methods: List[Dict[str, Any]]
     ) -> Tuple[List[Dict[str, Any]], Optional[str]]:
-        """Extract analyses with retry logic using SAP-derived text"""
+        """
+        Extract analyses with retry logic using SAP-derived text.
+        Loops through outcomes and uses AI to pick appropriate analysis methods.
+        Always creates a descriptive analysis if timepoint=0 is present.
 
+        Args:
+            sap_text: SAP content for analysis extraction
+            outcomes: List of outcome variables with timepoints
+            timepoints: List of available timepoints
+            methods: List of available analysis methods from API
+
+        Returns:
+            Tuple of (analysis_list, error_message)
+        """
         print(f"    Using content: {len(sap_text):,} chars")
 
-        variables_str = json.dumps(variables, indent=2) if variables else "[]"
+        # Build analysis list starting with baseline descriptives
+        analysis_list = []
 
-        prompt = f"""Extract all planned statistical analyses from this Statistical Analysis Plan.
+        # Find descriptive method ID for baseline
+        descriptive_method_id = None
+        for m in methods:
+            if isinstance(m, dict):
+                name = m.get("slug", "")
+                if "descriptive" in name.lower():
+                    descriptive_method_id = m.get("id") or m.get("method_id")
+                    break
+
+        if not descriptive_method_id:
+            print("    ⚠ Warning: Could not find descriptive method in methods list")
+
+        # Add baseline descriptive analysis for each outcome if timepoint 0 exists
+        timepoint_values = {tp["value"] for tp in timepoints}
+        if 0 in timepoint_values and descriptive_method_id:
+            for outcome in outcomes:
+                if 0 in outcome.get("timepoints", []):
+                    analysis_list.append({
+                        "outcome_variable": outcome["variable"],
+                        "timepoints": [0],
+                        "method": descriptive_method_id,
+                        "covariates": [],
+                    })
+            print(f"    ✓ Added {len([a for a in analysis_list if 0 in a.get('timepoints', [])])} baseline descriptive analyses")
+
+        # Now use AI to determine main analyses for each outcome
+        outcomes_str = json.dumps(outcomes, indent=2)
+        methods_str = json.dumps(methods, indent=2)
+
+        prompt = f"""Extract the appropriate statistical analysis for each outcome variable from this Statistical Analysis Plan.
 
 SAP Text:
 {sap_text}
 
-Available variables:
-{variables_str}
+Available outcomes:
+{outcomes_str}
+
+Available analysis methods:
+{methods_str}
+
+Your task: For each outcome variable, determine the appropriate analysis method, timepoints, and covariates for the MAIN analysis.
 
 Return a JSON array in this EXACT format:
 [
   {{
-    "name": "Primary analysis: Depression at 6 weeks",
-    "model": "linear_mixed_model",
-    "outcome": "phq9_total",
-    "covariates": ["baseline_phq9", "age"],
-    "comparison": "treatment vs control"
+    "outcome_variable": "phq9_total",
+    "timepoints": [2,3,4],
+    "method": "method_id_from_list",
+    "covariates": ["age", "baseline_score"]
   }}
 ]
 
 Rules:
-- name = descriptive name
-- model = statistical model type
-- outcome = must match a variable_name from variables list
-- covariates = list of covariate names (can be empty)
-- comparison = what is being compared
-- Output ONLY the JSON array
+- outcome_variable = must match "variable" field from outcomes list
+- timepoints = list of integer values, include all post randomisation timepoints relevant for the main analysis of that outcome
+- method = must be an "id" value from the available methods list
+- covariates = list of variable name strings matching "variable" fields from the outcomes list; include only variables mentioned as covariates or adjustment variables in the SAP for that outcome; use an empty list [] if none are specified
+- Choose the most appropriate statistical method based on:
+  * variable_type (Continuous → linear/mixed model, Binary → logistic, etc.)
+  * what the SAP describes for that outcome
+  * standard practice for that outcome type
+- Do NOT include baseline (timepoint 0) descriptive analyses - those are handled separately
+- Include one main analysis per outcome variable
+- Output ONLY the JSON array, no explanation
 """
 
         last_error = None
@@ -431,7 +732,7 @@ Rules:
                     time.sleep(2)
                     continue
                 else:
-                    print(f"    ✗ Failed: Empty response")
+                    print(f"    ✗ Failed: Empty response after {self.max_retries} attempts")
                     break
 
             # Clean response
@@ -445,41 +746,29 @@ Rules:
             cleaned = cleaned.strip()
 
             try:
-                analyses = json.loads(cleaned)
+                ai_analyses = json.loads(cleaned)
 
                 # Validate format
-                if not isinstance(analyses, list):
+                if not isinstance(ai_analyses, list):
                     last_error = "Response was not a list format"
                     raise ValueError("Response is not a list")
 
-                if len(analyses) == 0:
-                    last_error = "No analyses found in the document"
-                    print(f"    ⚠ Warning: AI found 0 analyses")
+                # Combine baseline descriptives with AI-generated analyses
+                analysis_list.extend(ai_analyses)
+
+                if len(analysis_list) == 0:
+                    last_error = "No analyses generated"
+                    print(f"    ⚠ Warning: No analyses were generated")
                     return [], (
-                        "Sorry, I couldn't find any statistical analyses described. "
-                        "The analysis plan section might be missing or unclear."
+                        "Sorry, I couldn't generate any analyses. "
+                        "The analysis section might be missing or unclear."
                     )
 
-                variable_names = {v["variable_name"] for v in variables} if variables else set()
-                for analysis in analyses:
-                    if not isinstance(analysis, dict):
-                        last_error = "Analyses were not in the correct format"
-                        raise ValueError("Invalid analysis format")
-                    required = ["name", "model", "outcome"]
-                    if not all(k in analysis for k in required):
-                        last_error = "Analyses missing required fields"
-                        raise ValueError("Missing required fields")
-
-                    if variable_names and analysis["outcome"] not in variable_names:
-                        print(
-                            f"      ⚠ Warning: outcome '{analysis['outcome']}' not in variables"
-                        )
-
-                print(f"    ✓ Extracted {len(analyses)} analyses")
-                return analyses, None
+                print(f"    ✓ Generated {len(analysis_list)} total analyses ({len(ai_analyses)} main + {len(analysis_list) - len(ai_analyses)} baseline)")
+                return analysis_list, None
 
             except (json.JSONDecodeError, ValueError) as e:
-                last_error = f"Could not parse the AI's response: {str(e)}"
+                last_error = f"Could not parse the AI's response as valid JSON: {str(e)}"
                 if attempt < self.max_retries - 1:
                     print(f"    ⚠ Parse error, retry {attempt + 1}/{self.max_retries}: {e}")
                     time.sleep(2)
@@ -489,11 +778,111 @@ Rules:
                     print(f"    Response preview: {cleaned[:300]}")
                     break
 
+        # Fallback message
         error_msg = (
-            f"Sorry buddy, I tried {self.max_retries} times but couldn't extract analyses. "
+            f"Sorry friend, I tried {self.max_retries} times but couldn't extract analyses. "
             f"{last_error if last_error else 'Unknown error'}."
         )
-        return [], error_msg
+        return analysis_list, error_msg  # Return whatever baseline analyses we managed to create
+
+    def validate(
+        self,
+        analysis_list: List[Dict[str, Any]],
+        outcomes: List[Dict[str, Any]],
+        allowed_method_ids: set
+    ) -> Tuple[List[str], List[str]]:
+        """
+        Deterministic validator for analyses.
+
+        Expected schema (per analysis):
+          {
+            "outcome_variable": <str>,
+            "timepoints": <list[int]>,
+            "method": <method_id>,
+            "covariates": <list[str]>,
+          }
+
+        Returns:
+            Tuple of (errors, warnings) - both are lists of strings
+        """
+        errors = []
+        warnings = []
+
+        if not isinstance(analysis_list, list):
+            return ["analysis_list is not a list"], []
+
+        # Build outcome->timepoints mapping and set of valid variable names
+        outcome_tp = {}
+        valid_variables = set()
+        for o in outcomes:
+            v = o.get("variable")
+            tps = o.get("timepoints")
+            if isinstance(v, str) and isinstance(tps, list):
+                outcome_tp[v] = set(tps)
+                valid_variables.add(v)
+
+        expected_keys = {"outcome_variable", "timepoints", "method", "covariates"}
+
+        for i, a in enumerate(analysis_list):
+            if not isinstance(a, dict):
+                errors.append(f"analysis item {i} is not a dict")
+                continue
+
+            keys = set(a.keys())
+            if keys != expected_keys:
+                errors.append(f"analysis item {i} has keys {keys} (expected exactly {expected_keys})")
+                continue
+
+            ov = a.get("outcome_variable")
+            tps = a.get("timepoints")
+            mid = a.get("method")
+            covs = a.get("covariates")
+
+            # Validate outcome_variable
+            if not isinstance(ov, str) or ov not in outcome_tp:
+                errors.append(f"analysis item {i} outcome_variable '{ov}' not found in outcomes")
+            else:
+                # Validate timepoints for this outcome
+                if not isinstance(tps, list):
+                    errors.append(f"analysis item {i} timepoints must be a list")
+                else:
+                    for tp in tps:
+                        if not isinstance(tp, int):
+                            errors.append(f"analysis item {i} timepoints must contain integers, found {type(tp).__name__}")
+                            break
+                        if tp not in outcome_tp[ov]:
+                            errors.append(
+                                f"analysis item {i} timepoint {tp} not valid for outcome '{ov}' "
+                                f"(allowed {sorted(outcome_tp[ov])})"
+                            )
+
+            # Validate method
+            if mid not in allowed_method_ids:
+                print(f"*******checking if {mid} is in {allowed_method_ids}")
+                errors.append(f"analysis item {i} method '{mid}' not in allowed methods from API")
+
+            # Validate covariates
+            if not isinstance(covs, list):
+                errors.append(f"analysis item {i} covariates must be a list")
+            else:
+                for cov in covs:
+                    if not isinstance(cov, str):
+                        errors.append(f"analysis item {i} covariates must contain strings, found {type(cov).__name__}")
+                        break
+                    if cov not in valid_variables:
+                        errors.append(f"analysis item {i} covariate '{cov}' not found in outcomes")
+
+
+        # Check for missing baseline descriptives
+        baseline_outcomes = {o["variable"] for o in outcomes if 0 in o.get("timepoints", [])}
+        baseline_analyses = {a["outcome_variable"] for a in analysis_list if 0 in a.get("timepoints", [])}
+        missing_baseline = baseline_outcomes - baseline_analyses
+        if missing_baseline:
+            warnings.append(
+                f"Missing baseline descriptive analyses for: {', '.join(sorted(missing_baseline))}"
+            )
+
+        return errors, warnings
 
 
 # ============================================================
