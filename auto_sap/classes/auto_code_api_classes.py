@@ -316,24 +316,30 @@ class TrialCreator:
     
 
     def extract_measure_fields(self, measures: list) -> list[dict]:
-        """Extract key fields from measures list, grouped by variable with all timepoints collected."""
+        """Extract key fields from measures list.
+
+        Groups outcome-variable rows by (variable, primary_outcome), so each
+        variable can produce up to two entries — one for primary timepoints and
+        one for non-primary timepoints.
+        """
         variable_types = self.api.get_("variable_type/")
         grouped = {}
         for m in measures:
             outcome = m["outcome"]
             var = outcome["variable"]
             tp_value = m["timepoint"]["value"]
+            is_primary = m.get("primary_outcome", False)
 
-            if var not in grouped:
-                grouped[var] = {
+            key = (var, is_primary)
+            if key not in grouped:
+                grouped[key] = {
                     "label": outcome["label"],
                     "variable": var,
                     "variable_type": next((item['title'] for item in variable_types if item['id'] == outcome['variable_type']), None),
                     "timepoints": [],
+                    "primary_outcome": is_primary,
                 }
-            grouped[var]["timepoints"].append(tp_value)
-
-
+            grouped[key]["timepoints"].append(tp_value)
 
         return list(grouped.values())
     
@@ -342,7 +348,7 @@ class TrialCreator:
         processed_measures = self.extract_measure_fields(measures)
         return processed_measures
     
-    #outcomes list is a list of dicts with keys: label, variable, variable_type, timepoints
+    #outcomes list is a list of dicts with keys: label, variable, variable_type, timepoints, primary_outcome
 
 
     def update_outcomes(self, outcome_list):
@@ -368,6 +374,7 @@ class TrialCreator:
                 outcome_variable_list.append({
                     "outcome": measure_id,
                     "timepoint": tp_id,
+                    "primary_outcome": outcome.get('primary_outcome', False)
                 })
 
         updated_outcomes = self.api.put_(endpoint = f"trial/{self.trial_id}/set-outcome-variables", data = outcome_variable_list)
@@ -407,6 +414,8 @@ class TrialCreator:
             timepoint_values = [tp["value"] for tp in timepoints] if isinstance(timepoints, list) else []
 
             covariates = analysis.get("covariates", [])
+            if covariates:
+                print(f"[DEBUG] covariate sample: {covariates[0]}")
             covariate_variables = [c["variable"] for c in covariates] if isinstance(covariates, list) else []
 
             analysis_list.append({
