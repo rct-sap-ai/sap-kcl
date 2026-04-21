@@ -390,7 +390,8 @@ class VariableExtractor(AutoCodeExtractor):
             "label": "Depression score (PHQ-9)",
             "variable": "phq9_total",
             "timepoints": [0, 1, 2],
-            "variable_type": "Continuous"
+            "variable_type": "Continuous",
+            "primary_outcome": true
         }}
         ]
 
@@ -402,6 +403,7 @@ class VariableExtractor(AutoCodeExtractor):
         - Use aberviations and acronyms to ensure variable is less than 28 characters.
         - timepoints = list of timepoint values from above
         - variable_type = one of: Continuous, Binary, Categorical, Count, Time to event
+        - primary_outcome = true if this is the primary endpoint, false otherwise
         - Output ONLY the JSON array
         """
 
@@ -537,6 +539,7 @@ class VariableExtractor(AutoCodeExtractor):
             "label",
             "variable_type",
             "timepoints",
+            "primary_outcome",
         }
 
         errors: list[str] = []
@@ -598,6 +601,12 @@ class VariableExtractor(AutoCodeExtractor):
                     f"variable item {index} references missing timepoints {missing}"
                 )
 
+        po = item.get("primary_outcome")
+        if not isinstance(po, bool):
+            errors.append(
+                f"variable item {index} primary_outcome must be a bool"
+            )
+
         return errors, warnings
 
 
@@ -612,13 +621,9 @@ class AnalysisExtractor(AutoCodeExtractor):
         print("\n\nAnalysis content extraction")
 
         analysis_content = (
-            (sap_json.get("statistical_analysis_plan", "") or "")
+            (sap_json.get("primary_analysis_model", "") or "")
             + "\n"
-            + (sap_json.get("primary_outcome_measures", "") or "")
-            + "\n"
-            + (sap_json.get("secondary_outcome_measures", "") or "")
-            + "\n"
-            + (sap_json.get("analysis_methods", "") or "")
+            + (sap_json.get("secondary_analysis", "") or "")
         ).strip()
 
         if not analysis_content:
