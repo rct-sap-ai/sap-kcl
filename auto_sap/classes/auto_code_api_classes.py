@@ -1,8 +1,32 @@
-import requests
 import os
+from dataclasses import dataclass
+from urllib.parse import urljoin
+
 import dotenv
+import requests
 
 dotenv.load_dotenv()
+
+
+@dataclass
+class TrialMetadata:
+    id: int
+    acronym: str
+    title: str
+    has_protocol: bool = False
+    protocol_filename: str | None = None
+    protocol_download_url: str | None = None
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "TrialMetadata":
+        return cls(
+            id=data["id"],
+            acronym=data["acronym"],
+            title=data["title"],
+            has_protocol=data.get("has_protocol", False),
+            protocol_filename=data.get("protocol_filename"),
+            protocol_download_url=data.get("protocol_download_url"),
+        )
 
 class AutoCodeAPI:
     def __init__(self, token=None, dev=False):
@@ -26,9 +50,14 @@ class AutoCodeAPI:
             "Content-Type": "application/json"
         }
 
+    def _build_url(self, endpoint: str) -> str:
+        return f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}"
+
+    def _build_external_url(self, url: str) -> str:
+        return urljoin(self.api_url, url)
 
     def post_(self, data, endpoint: str):
-        url = f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}"
+        url = self._build_url(endpoint)
         response = requests.post(url, json=data, headers=self.headers)
         response.raise_for_status() 
 
@@ -38,14 +67,14 @@ class AutoCodeAPI:
     
     def post_file(self, data, endpoint: str):
         """Download a file from a POST endpoint and return binary content."""
-        url = f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}"
+        url = self._build_url(endpoint)
         response = requests.post(url, json=data, headers=self.headers)
         response.raise_for_status()
         return response.content
 
     def post_multipart_(self, endpoint: str, files: dict, data: dict | None = None):
         """Upload a file via multipart/form-data POST. Returns parsed JSON response."""
-        url = f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}"
+        url = self._build_url(endpoint)
         # Exclude Content-Type so requests sets the multipart boundary automatically
         headers = {k: v for k, v in self.headers.items() if k != "Content-Type"}
         response = requests.post(url, files=files, data=data or {}, headers=headers)
@@ -56,19 +85,28 @@ class AutoCodeAPI:
 
 
     def get_(self, endpoint: str, params: dict = None):
-        url = f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}"
+        url = self._build_url(endpoint)
         response = requests.get(url, headers=self.headers, params=params)
         response.raise_for_status()
         return response.json()
+
+    def get_file(self, endpoint: str | None = None, url: str | None = None, params: dict = None):
+        """Download binary content from a GET endpoint or absolute/relative URL."""
+        if endpoint is None and url is None:
+            raise ValueError("Either endpoint or url must be provided.")
+        target_url = self._build_url(endpoint) if endpoint is not None else self._build_external_url(url)
+        response = requests.get(target_url, headers=self.headers, params=params)
+        response.raise_for_status()
+        return response.content
     
     def patch_(self, endpoint: str, data: dict):
-        url = f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}" +"/"
+        url = self._build_url(endpoint) +"/"
         response = requests.patch(url, json=data, headers=self.headers)
         response.raise_for_status()
         return response.json()
     
     def put_(self, endpoint: str, data: dict):
-        url = f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}" +"/"
+        url = self._build_url(endpoint) +"/"
         response = requests.put(url, json=data, headers=self.headers)
         response.raise_for_status()
         return response.json()
@@ -87,6 +125,23 @@ class AutoCodeAPI:
     def get_sap_json(self, trial_id):
         sap_json = self.get_(endpoint = f"sap_json/latest/?trial={trial_id}")
         return sap_json['sap_json']
+
+    def get_trial_metadata(self, trial_id: int) -> TrialMetadata:
+        trial_data = self.get_(endpoint=f"trial/{trial_id}")
+        return TrialMetadata.from_dict(trial_data)
+
+    def get_protocol_bytes(self, trial_id: int) -> bytes | None:
+        trial_metadata = self.get_trial_metadata(trial_id)
+        if not trial_metadata.has_protocol or not trial_metadata.protocol_download_url:
+            return None
+        return self.get_file(url=trial_metadata.protocol_download_url)
+
+    def get_protocol_file(self, trial_id: int) -> tuple[bytes | None, str | None]:
+        trial_metadata = self.get_trial_metadata(trial_id)
+        if not trial_metadata.has_protocol or not trial_metadata.protocol_download_url:
+            return None, None
+        protocol_bytes = self.get_file(url=trial_metadata.protocol_download_url)
+        return protocol_bytes, trial_metadata.protocol_filename
 
 
 class TrialCreator:
@@ -511,16 +566,19 @@ class TrialCreator:
             )
 
     def get_protocol(self):
-        """Retrieve the protocol for this trial.
+        """Retrieve raw protocol file bytes for this trial if available."""
+        return self.api.get_protocol_bytes(self.trial_id)
 
-        Returns:
-            Parsed JSON response from the API (typically contains the file URL).
-        """
-        return self.api.get_(endpoint=f"trial/{self.trial_id}/protocol/")
+    def get_protocol_file(self) -> tuple[bytes | None, str | None]:
+        """Retrieve raw protocol file bytes and filename for this trial if available."""
+        return self.api.get_protocol_file(self.trial_id)
 
     def get_trial_details(self):
         trial_data = self.api.get_(endpoint = f"trial/{self.trial_id}", params = {"expand": "true"})
         return trial_data
+
+    def get_trial_metadata(self) -> TrialMetadata:
+        return self.api.get_trial_metadata(self.trial_id)
     
     def create_main_analysis_report(self):
         print("Creating main analysis report...")
@@ -619,4 +677,3 @@ def get_sap_code_from_json(code_json, dev_flag = True):
 
    
     return code_zip_file
-
