@@ -347,14 +347,16 @@ Rules:
 class VariableExtractor(AutoCodeExtractor):
     """Bot 2: Extract variables"""
 
-    def get_content(self, sap_json):
-        variable_content = (
-            (sap_json.get("primary_outcome_measures", "") or "")
-            + "\n"
-            + (sap_json.get("secondary_outcome_measures", "") or "")
-            + "\n"
-            + (sap_json.get("other_variables", "") or "")
-        ).strip()
+    def get_content(self, sap_json, primary_outcome = False):
+        if primary_outcome:
+            variable_content = (
+                (sap_json.get("primary_outcome_measures", "") or "")
+            ).strip()
+        else:
+            variable_content = (
+                (sap_json.get("secondary_outcome_measures", "") or "")
+            ).strip()
+            
 
         if not variable_content:
             raise ValueError(
@@ -368,7 +370,7 @@ class VariableExtractor(AutoCodeExtractor):
         return(variable_content)
 
     def extract(
-        self, sap_text: str, timepoints: List[Dict[str, Any]]
+        self, sap_text: str, timepoints: List[Dict[str, Any]], primary_outcome: bool = False
     ) -> Tuple[List[Dict[str, Any]], Optional[str]]:
         """Extract variables with retry logic using SAP-derived text"""
 
@@ -390,8 +392,7 @@ class VariableExtractor(AutoCodeExtractor):
             "label": "Depression score (PHQ-9)",
             "variable": "phq9_total",
             "timepoints": [0, 1, 2],
-            "variable_type": "Continuous",
-            "primary_outcome": true
+            "variable_type": "Continuous"
         }}
         ]
 
@@ -403,7 +404,6 @@ class VariableExtractor(AutoCodeExtractor):
         - Use aberviations and acronyms to ensure variable is less than 28 characters.
         - timepoints = list of timepoint values from above
         - variable_type = one of: Continuous, Binary, Categorical, Count, Time to event
-        - primary_outcome = true if this is the primary endpoint, false otherwise
         - Output ONLY the JSON array
         """
 
@@ -423,9 +423,11 @@ class VariableExtractor(AutoCodeExtractor):
             errors = None
             try:
                 variables = json.loads(cleaned)
+                for item in variables:
+                    item["primary_outcome"] = primary_outcome
             except json.JSONDecodeError as e:
                 errors = f"Could not parse the AI's response as valid JSON: {str(e)}"
-               
+
             if not errors:
                 errors, warnings = self.validate(variables, timepoints)
 
