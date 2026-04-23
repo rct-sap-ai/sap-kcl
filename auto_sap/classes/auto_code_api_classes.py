@@ -353,6 +353,8 @@ class TrialCreator:
 
     def update_outcomes(self, outcome_list):
         outcome_variable_list = []
+        timepoint_list = self.get_timepoints()
+
         for outcome in outcome_list:
             measure_data = {
                 "label": outcome['label'],
@@ -363,13 +365,9 @@ class TrialCreator:
 
             measure_response = self.add_measure(measure_data, value_labels)
             measure_id = measure_response['id']
-            timepoint_list = self.get_timepoints()
         
             for tp in outcome['timepoints']:
-                print("checking tp dict for value:", tp)
-                print("available timepoints:", timepoint_list)
                 tp_dict = next((item for item in timepoint_list if item.get('value') == tp), None)
-                print("found tp dict:", tp_dict)
                 tp_id = tp_dict['id']
                 outcome_variable_list.append({
                     "outcome": measure_id,
