@@ -506,7 +506,7 @@ class TrialCreator:
         with open(file_path, "rb") as f:
             files = {"protocol": (os.path.basename(file_path), f)}
             return self.api.post_multipart_(
-                endpoint=f"trials/{self.trial_id}/upload-protocol/",
+                endpoint=f"trial/{self.trial_id}/upload-protocol/",
                 files=files,
             )
 
@@ -516,7 +516,7 @@ class TrialCreator:
         Returns:
             Parsed JSON response from the API (typically contains the file URL).
         """
-        return self.api.get_(endpoint=f"trials/{self.trial_id}/protocol/")
+        return self.api.get_(endpoint=f"trial/{self.trial_id}/protocol/")
 
     def get_trial_details(self):
         trial_data = self.api.get_(endpoint = f"trial/{self.trial_id}", params = {"expand": "true"})
