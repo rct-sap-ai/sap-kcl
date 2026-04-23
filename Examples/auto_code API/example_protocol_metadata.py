@@ -5,6 +5,8 @@ from auto_sap.classes.auto_code_api_classes import AutoCodeAPI, TrialCreator
 # Set up connection to auto_code API.
 # Only set dev=True if you have access to a local development server.
 # The API class looks for an environment variable named AUTOCODE_API_TOKEN_DEV or AUTOCODE_API_TOKEN_PROD.
+# This example fetches trial metadata first, then downloads protocol bytes from
+# GET /api/trial/<id>/protocol/ via trial_manager.get_protocol_file().
 dev_flag = False
 trial_id = 20  # use trial 17 for dev, trial 20 for prod
 download_protocol = False
@@ -27,7 +29,10 @@ protocol_bytes, protocol_filename = trial_manager.get_protocol_file()
 if protocol_bytes is None:
     print("\nNo protocol is available for this trial.")
 else:
-    print(f"\nDownloaded protocol bytes: {len(protocol_bytes)}")
+    print("\nProtocol download succeeded.")
+    print(f"  filename: {protocol_filename}")
+    print(f"  bytes downloaded: {len(protocol_bytes)}")
+    print(f"  bytes endpoint used: trial/{trial_id}/protocol/")
 
     if download_protocol:
         output_dir = Path("Generated Code") / "Downloaded Protocols"

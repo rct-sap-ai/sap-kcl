@@ -62,7 +62,8 @@ class AutoCodeAPITests(unittest.TestCase):
         self.assertEqual(protocol_file, (b"%PDF-1.4 fake", "study-protocol.pdf"))
         self.assertEqual(mock_get.call_count, 4)
         self.assertEqual(mock_get.call_args_list[1].kwargs["headers"]["Authorization"], "Token test-token")
-        self.assertEqual(mock_get.call_args_list[1].args[0], "http://backend/trial/12/protocol/")
+        self.assertEqual(mock_get.call_args_list[1].args[0], "https://www.statsplan.com/api/trial/12/protocol/")
+        self.assertEqual(mock_get.call_args_list[3].args[0], "https://www.statsplan.com/api/trial/12/protocol/")
 
     @patch("auto_sap.classes.auto_code_api_classes.requests.get")
     def test_get_protocol_when_missing_returns_none(self, mock_get):

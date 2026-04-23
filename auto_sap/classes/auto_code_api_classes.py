@@ -132,15 +132,15 @@ class AutoCodeAPI:
 
     def get_protocol_bytes(self, trial_id: int) -> bytes | None:
         trial_metadata = self.get_trial_metadata(trial_id)
-        if not trial_metadata.has_protocol or not trial_metadata.protocol_download_url:
+        if not trial_metadata.has_protocol:
             return None
-        return self.get_file(url=trial_metadata.protocol_download_url)
+        return self.get_file(endpoint=f"trial/{trial_id}/protocol/")
 
     def get_protocol_file(self, trial_id: int) -> tuple[bytes | None, str | None]:
         trial_metadata = self.get_trial_metadata(trial_id)
-        if not trial_metadata.has_protocol or not trial_metadata.protocol_download_url:
+        if not trial_metadata.has_protocol:
             return None, None
-        protocol_bytes = self.get_file(url=trial_metadata.protocol_download_url)
+        protocol_bytes = self.get_file(endpoint=f"trial/{trial_id}/protocol/")
         return protocol_bytes, trial_metadata.protocol_filename
 
 
