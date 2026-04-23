@@ -43,6 +43,17 @@ class AutoCodeAPI:
         response.raise_for_status()
         return response.content
 
+    def post_multipart_(self, endpoint: str, files: dict, data: dict | None = None):
+        """Upload a file via multipart/form-data POST. Returns parsed JSON response."""
+        url = f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}"
+        # Exclude Content-Type so requests sets the multipart boundary automatically
+        headers = {k: v for k, v in self.headers.items() if k != "Content-Type"}
+        response = requests.post(url, files=files, data=data or {}, headers=headers)
+        response.raise_for_status()
+        if response.content:
+            return response.json()
+        return None
+
 
     def get_(self, endpoint: str, params: dict = None):
         url = f"{self.api_url.rstrip('/')}/{endpoint.lstrip('/')}"
@@ -482,6 +493,30 @@ class TrialCreator:
         return response
     
 
+
+    def upload_protocol(self, file_path: str):
+        """Upload a protocol file for this trial.
+
+        Args:
+            file_path: Local path to the protocol file (e.g. a PDF or DOCX).
+
+        Returns:
+            Parsed JSON response from the API.
+        """
+        with open(file_path, "rb") as f:
+            files = {"protocol": (os.path.basename(file_path), f)}
+            return self.api.post_multipart_(
+                endpoint=f"trials/{self.trial_id}/upload-protocol/",
+                files=files,
+            )
+
+    def get_protocol(self):
+        """Retrieve the protocol for this trial.
+
+        Returns:
+            Parsed JSON response from the API (typically contains the file URL).
+        """
+        return self.api.get_(endpoint=f"trials/{self.trial_id}/protocol/")
 
     def get_trial_details(self):
         trial_data = self.api.get_(endpoint = f"trial/{self.trial_id}", params = {"expand": "true"})
