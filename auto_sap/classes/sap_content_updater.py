@@ -152,7 +152,7 @@ The following analyses have been extracted from the trial database:
 Guidelines:
 - For each outcome variable, describe the planned analysis model, including the modelling approach (e.g., linear regression, logistic regression, mixed-effects model).
 - Where outcomes are analysed using the same method, group them together in the description to avoid repetition. Begin the descirption with an explicit list of the outcoes to be analysed at that timepoint using outome labels and timepoint labels.
-- If not empty, base the description on the description field of the method. Populate any details in {} with relevant information. Edit as required so it reads well and is concise, but do not remove any details that are present in the method description.
+- If not empty, base the description on the description field of the method. Populate any details in {{}} with relevant information. Edit as required so it reads well and is concise, but do not remove any details that are present in the method description.
 - Specify any planned adjustment for baseline covariates where listed in the data above.
 - Write the output as one or more concise paragraphs, without bullet points.
 - Do not introduce analysis models, covariates, or populations beyond those present in the data above.
