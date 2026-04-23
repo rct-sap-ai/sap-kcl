@@ -36,13 +36,15 @@ outcomes = [
         "label": "Depression Score",
         "variable_type": "Continuous",
         "variable": "depression",
-        "timepoints": [0, 1, 2]
+        "timepoints": [0, 1, 2],
+        "primary_outcome": True,
     },
     {
         "label": "Anxiety Score",
         "variable_type": "Continuous",
         "variable": "anxiety",
-        "timepoints": [0, 2]
+        "timepoints": [0, 2],
+        "primary_outcome": False,
     },
 ]
 

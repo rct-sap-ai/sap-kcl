@@ -91,7 +91,7 @@ Return a JSON object:
 }}
 
 Guidelines for primary_outcome_measures:
-- Use the existing SAP text above as the source of truth for which outcomes are primary and which are secondary. If no existing text is present, treat the first outcome in the database list as primary.
+- Use the `primary_outcome` field on each outcome object to determine which are primary and which are secondary. If the field is absent, fall back to the existing SAP text, or treat the first outcome in the database list as primary.
 - For each primary outcome, write a single paragraph that includes: specification of the outcome (what is being measured), the variable type, and the timepoint for which the primary outcome is defined, naming the timpepoint wiht its label.
 - Use the additional information to provide a richer description of the outcome measure, but do not contradict the database list above in terms of which outcomes are included. Where it is not obvious, include the label in brackets after defining the outcome.
 - For outcomes measured at multiple timepoints, only describe the primary outcome timepoint in the primary outcome section; describe additional timepoints for that outcome in the secondary outcome section.

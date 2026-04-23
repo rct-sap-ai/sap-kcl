@@ -347,14 +347,16 @@ Rules:
 class VariableExtractor(AutoCodeExtractor):
     """Bot 2: Extract variables"""
 
-    def get_content(self, sap_json):
-        variable_content = (
-            (sap_json.get("primary_outcome_measures", "") or "")
-            + "\n"
-            + (sap_json.get("secondary_outcome_measures", "") or "")
-            + "\n"
-            + (sap_json.get("other_variables", "") or "")
-        ).strip()
+    def get_content(self, sap_json, primary_outcome = False):
+        if primary_outcome:
+            variable_content = (
+                (sap_json.get("primary_outcome_measures", "") or "")
+            ).strip()
+        else:
+            variable_content = (
+                (sap_json.get("secondary_outcome_measures", "") or "")
+            ).strip()
+            
 
         if not variable_content:
             raise ValueError(
@@ -368,7 +370,7 @@ class VariableExtractor(AutoCodeExtractor):
         return(variable_content)
 
     def extract(
-        self, sap_text: str, timepoints: List[Dict[str, Any]]
+        self, sap_text: str, timepoints: List[Dict[str, Any]], primary_outcome: bool = False
     ) -> Tuple[List[Dict[str, Any]], Optional[str]]:
         """Extract variables with retry logic using SAP-derived text"""
 
@@ -421,9 +423,11 @@ class VariableExtractor(AutoCodeExtractor):
             errors = None
             try:
                 variables = json.loads(cleaned)
+                for item in variables:
+                    item["primary_outcome"] = primary_outcome
             except json.JSONDecodeError as e:
                 errors = f"Could not parse the AI's response as valid JSON: {str(e)}"
-               
+
             if not errors:
                 errors, warnings = self.validate(variables, timepoints)
 
@@ -537,6 +541,7 @@ class VariableExtractor(AutoCodeExtractor):
             "label",
             "variable_type",
             "timepoints",
+            "primary_outcome",
         }
 
         errors: list[str] = []
@@ -598,6 +603,12 @@ class VariableExtractor(AutoCodeExtractor):
                     f"variable item {index} references missing timepoints {missing}"
                 )
 
+        po = item.get("primary_outcome")
+        if not isinstance(po, bool):
+            errors.append(
+                f"variable item {index} primary_outcome must be a bool"
+            )
+
         return errors, warnings
 
 
@@ -612,13 +623,9 @@ class AnalysisExtractor(AutoCodeExtractor):
         print("\n\nAnalysis content extraction")
 
         analysis_content = (
-            (sap_json.get("statistical_analysis_plan", "") or "")
+            (sap_json.get("primary_analysis_model", "") or "")
             + "\n"
-            + (sap_json.get("primary_outcome_measures", "") or "")
-            + "\n"
-            + (sap_json.get("secondary_outcome_measures", "") or "")
-            + "\n"
-            + (sap_json.get("analysis_methods", "") or "")
+            + (sap_json.get("secondary_analysis", "") or "")
         ).strip()
 
         if not analysis_content:
