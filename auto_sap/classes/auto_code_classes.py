@@ -1,9 +1,6 @@
-from turtle import pd
 from typing import Any, Dict, List, Optional, Tuple
 import json
 import time
-import pandas as pd
-from altair import value
 
 
 # ============================================================
@@ -44,21 +41,23 @@ class AutoCodePipeline:
 
         # Step 1: Extract timepoints
         print("[1/3] Extracting timepoints...")
-        timepoints, timepoint_error = self.timepoint_bot.extract_timepoints(timepoint_content)
+        timepoints, timepoint_error = self.timepoint_bot.extract(timepoint_content)
         if timepoint_error:
             self.errors.append(("timepoints", timepoint_error))
             print(f"\n    💬 {timepoint_error}\n")
 
         # Step 2: Extract variables
         print("\n[2/3] Extracting variables...")
-        variables, variable_error = self.variable_bot.extract_variables(variables_content, timepoints)
+        variables, variable_error = self.variable_bot.extract(variables_content, timepoints)
         if variable_error:
             self.errors.append(("variables", variable_error))
             print(f"\n    💬 {variable_error}\n")
 
         # Step 3: Extract analyses
         print("\n[3/3] Extracting analyses...")
-        analyses, analysis_error = self.analysis_bot.extract_analyses(analysis_content, variables)
+        analyses, analysis_error = self.analysis_bot.extract(
+            analysis_content, variables, timepoints, methods=[]
+        )
         if analysis_error:
             self.errors.append(("analyses", analysis_error))
             print(f"\n    💬 {analysis_error}\n")
@@ -325,8 +324,9 @@ Rules:
                 continue
 
             v = item.get("value", None)
-            if value is None:
-                raise ValueError("value is missing")
+            if v is None:
+                errors.append(f"item {i} value is missing")
+                continue
 
 
             if not isinstance(v, int):
@@ -421,6 +421,7 @@ class VariableExtractor(AutoCodeExtractor):
             cleaned = cleaned.strip()
 
             errors = None
+            warnings: list[str] = []
             try:
                 variables = json.loads(cleaned)
                 for item in variables:
@@ -641,7 +642,7 @@ class AnalysisExtractor(AutoCodeExtractor):
         sap_text: str,
         outcomes: List[Dict[str, Any]],
         timepoints: List[Dict[str, Any]],
-        methods: List[Dict[str, Any]]
+        methods: Optional[List[Dict[str, Any]]] = None,
     ) -> Tuple[List[Dict[str, Any]], Optional[str]]:
         """
         Extract analyses with retry logic using SAP-derived text.
@@ -658,6 +659,9 @@ class AnalysisExtractor(AutoCodeExtractor):
             Tuple of (analysis_list, error_message)
         """
         print(f"    Using content: {len(sap_text):,} chars")
+
+        if methods is None:
+            methods = []
 
         # Build analysis list starting with baseline descriptives
         analysis_list = []
